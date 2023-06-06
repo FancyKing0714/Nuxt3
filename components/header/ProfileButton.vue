@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
 const store = useStore();
-
+const router = useRouter();
 const prifileList = [
     {
         name: 'Profile',
@@ -36,11 +37,15 @@ const prifileList = [
     {
         name: 'Log Out',
         icon: 'logout',
-        action: "logOut",
     },
 ];
-const dddf=ref("dfdsf");
-
+const handleClick = (name) => {
+    if(name == "Log Out"){
+        localStorage.removeItem("token");
+        store.dispatch('handleLogin', false);
+        router.push("/");
+    }
+}
 </script>
 
 <template>
@@ -49,6 +54,7 @@ const dddf=ref("dfdsf");
             <q-item
                 v-for="profile in prifileList"
                 clickable
+                @click = "handleClick(profile.name)"
                 v-close-popup
             >
                 <q-item-section>
