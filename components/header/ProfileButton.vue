@@ -1,22 +1,22 @@
 <script setup lang="ts">
-function onItemClick() {
-    console.log('Clicked on an Item');
-}
+import {useStore} from 'vuex';
+const store = useStore();
+
 const prifileList = [
     {
         name: 'Profile',
         icon: 'user',
-        link: '/profile',
+        link: '/profile/General Information',
     },
     {
         name: 'Deposit',
         icon: 'deposit',
-        link: '/profile',
+        link: '/wallet/Deposit',
     },
     {
         name: 'Bonus',
         icon: 'bonus',
-        link: '/bonus',
+        link: '/Bonus/Available Bonus',
     },
     {
         name: 'Promotions',
@@ -26,32 +26,33 @@ const prifileList = [
     {
         name: 'Wallet',
         icon: 'wallet-icon',
-        link: '/wallet',
+        link: '/wallet/Balances',
     },
     {
         name: 'Game History',
         icon: 'game',
-        link: '/profile',
+        link: '/Profile/Game History',
     },
     {
         name: 'Log Out',
         icon: 'logout',
-        link: '/profile',
+        action: "logOut",
     },
 ];
+const dddf=ref("dfdsf");
+
 </script>
 
 <template>
-    <q-btn-dropdown class="btn-none hidden md:!block" label="Jeff O.">
+    <q-btn-dropdown class="btn-none hidden md:!block" no-caps :label=store.state.User.username >
         <q-list>
             <q-item
                 v-for="profile in prifileList"
                 clickable
                 v-close-popup
-                @click="onItemClick"
             >
                 <q-item-section>
-                    <nuxt-link :to="profile?.link" class="my-button">
+                    <nuxt-link :to="profile?.link" class="my-button" >
                         <q-item-label>
                             <div class="flex items-center justify-start">
                                 <img

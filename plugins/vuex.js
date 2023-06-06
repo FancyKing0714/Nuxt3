@@ -2,8 +2,9 @@ import { createStore } from 'vuex';
 const store = createStore({
     state() {
         return {
-            isDrawer: false,
+            isDrawer: true,
             isLogin: false,
+            User: {},
         };
     },
     mutations: {
@@ -13,6 +14,9 @@ const store = createStore({
         handleLogin(state, payload) {
             state.isLogin = payload;
         },
+        handleGetUser(state, payload) {
+            state.User = payload;
+        },
     },
     actions: {
         handleDrawer({ commit }, payload) {
@@ -20,6 +24,9 @@ const store = createStore({
         },
         handleLogin({ commit }, payload) {
             commit('handleLogin', payload);
+        },
+        handleGetUser({ commit }, payload) {
+            commit('handleGetUser', payload);
         },
     },
 });

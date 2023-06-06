@@ -6,6 +6,7 @@
             // Add the image file type to types array
             "png",
             "vue"
-        ]
+        ],
+        "noImplicitAny": false,
     }
 }

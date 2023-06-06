@@ -1,26 +1,96 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+    import { ref } from 'vue';
+    import axios from 'axios';
+    import { useQuasar } from 'quasar'
+    import {useStore} from 'vuex';
+    
+    const store = useStore();
+    const not = useQuasar();
+    const config = useRuntimeConfig();
 
-const loginInfo = {
-    email: ref(''),
-    password: ref(''),
-};
-const props = defineProps({
-    open: {
-        type: Boolean,
-        required: true,
-    },
-    toggleState: {
-        type: Function,
-        required: true,
-    },
-});
-let open = ref(props.open);
-watch(props, (newValue) => {
-    console.log(newValue.open);
+    const LogIn = () => {
+        Object.keys(loginInfo).map(item => {
+            data = {...data, [item] : loginInfo[item].value};
+        });
+        axios.post(`${config.public.baseURL}/api/login`,data)
+        .then(res =>{
+            const tokenStr=res.data["token"];
+            localStorage.setItem("token",tokenStr.split("|")[1]);     
+            not.notify({
+                color: 'white',
+                textColor: 'dark',
+                message: 'Success',
+                caption: "Password Updated Successfuly",
+                icon: 'done',
+                iconColor: 'green',
+                position: 'top-right',
+                progress:true,
+                multiLine: true,
+                timeout: 1500,
+                })   
+            axios({
+                    method:'get',
+                    url: `${config.public.baseURL}/api/player/getProfile`,
+                    headers: {
+                        "Authorization" : "Bearer " + tokenStr.split("|")[1]
+                    },
+                })
+            .then(res => {
+                store.dispatch('handleGetUser', res.data.Player);
+            })
+            .catch(err => {
+                        not.notify({
+                            color: 'white',
+                            textColor: 'dark',
+                            message: 'Error',
+                            caption: err.response.data.message,
+                            icon: 'info',
+                            iconColor: 'red',
+                            position: 'top-right',
+                            progress:true,
+                            multiLine: true,
+                            timeout: 1500,
+                            })
+            });
+            props.toggleState('onLogin', false);
+            props.toggleState('isLogin', true);
+        })
+        .catch(err => {
+            not.notify({
+                color: 'white',
+                textColor: 'dark',
+                message: 'Error',
+                caption: err.response.data.message,
+                icon: 'info',
+                iconColor: 'red',
+                position: 'top-right',
+                progress:true,
+                multiLine: true,
+                timeout: 1500,
+                })
+        });
+    }
+    const loginInfo = {
+        email: ref(''),
+        password: ref(''),
+    };
+    const props = defineProps({
+        open: {
+            type: Boolean,
+            required: true,
+        },
+        toggleState: {
+            type: Function,
+            required: true,
+        },
+    });
+    let open = ref(props.open);
+    let data = {};
+    watch(props, (newValue) => {
+        console.log(newValue.open);
 
-    open.value = newValue.open;
-});
+        open.value = newValue.open;
+    });
 </script>
 <template>
     <q-dialog v-model="open" @hide="props.toggleState('onLogin', false)">
@@ -105,8 +175,7 @@ watch(props, (newValue) => {
                                 "
                                 @click="
                                     () => {
-                                        props.toggleState('onLogin', false);
-                                        props.toggleState('isLogin', true);
+                                        LogIn()
                                     }
                                 "
                                 label="LOG IN"
@@ -117,6 +186,12 @@ watch(props, (newValue) => {
                             <q-btn
                                 style="font-size: 10px"
                                 class="mt-4 font-medium p-4"
+                                @click="
+                                    () => {
+                                        props.toggleState('onLogin', false);
+                                        props.toggleState('onSignUp', true);
+                                    }
+                                "
                                 label="Create account"
                             />
                         </div>

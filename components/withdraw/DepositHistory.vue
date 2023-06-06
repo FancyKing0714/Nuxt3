@@ -6,7 +6,7 @@
         ></div>
         <div class="relative">
             <q-page>
-                <q-table :rows="rows" :columns="cols">
+                <q-table :rows=rows :cols=cols>
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -62,129 +62,87 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            rows: [
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'visa',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'master-card',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 0,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'interac',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'visa',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'master-card',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 0,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'interac',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'visa',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'master-card',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 0,
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    provider: 'interac',
-                    transactionId: '70824ef76efa1b6b6c5c',
-                    createdAt: '10-02-2023 - 08:26 AM',
-                    status: 1,
-                },
-            ],
-            cols: [
-                {
-                    name: 'index',
-                    align: 'left',
-                    label: 'S.No',
-                },
-                {
-                    name: 'amount',
-                    required: true,
-                    label: 'Amount',
-                    align: 'left',
-                    field: 'amount',
-                },
-                {
-                    name: 'currency',
-                    align: 'left',
-                    label: 'Currency',
-                    field: 'currency',
-                },
-                {
-                    name: 'provider',
-                    align: 'center',
-                    label: 'Provider',
-                    field: 'provider',
-                },
-                {
-                    name: 'transactionId',
-                    align: 'left',
-                    label: 'Transaction ID',
-                    field: 'transactionId',
-                },
-                {
-                    name: 'createdAt',
-                    align: 'left',
-                    label: 'Created At',
-                    field: 'createdAt',
-                },
-                {
-                    name: 'status',
-                    align: 'center',
-                    label: 'Status',
-                    field: 'status',
-                },
-            ],
-        };
+<script setup lang="ts">
+import {useStore} from 'vuex';
+import { onBeforeMount, ref } from 'vue';
+import axios from 'axios';
+import { useQuasar } from 'quasar'
+const not = useQuasar();
+const config = useRuntimeConfig();
+
+onBeforeMount(() => {
+    console.log("deposit log");
+    
+    axios({
+            method:'get',
+            url: `${config.public.baseURL}/api/player/getDepositHistory`,
+            headers: {
+                "Authorization" : "Bearer " + localStorage.getItem("token")
+            },
+        })
+    .then(res => {
+        rows.value = res.data.deposits.data
+    })
+    .catch(err => {
+        not.notify({
+          color: 'white',
+          textColor: 'dark',
+          message: 'Error',
+          caption: err.response.data.message,
+          icon: 'info',
+          iconColor: 'red',
+          position: 'top-right',
+          progress:true,
+          multiLine: true,
+          timeout: 1500,
+        })
+    });
+});
+
+let rows = ref([]);
+const cols = [
+    {
+        name: 'index',
+        align: 'left',
+        label: 'S.No',
     },
-};
+    {
+        name: 'amount',
+        required: true,
+        label: 'Amount',
+        align: 'left',
+        field: 'amount',
+    },
+    {
+        name: 'currency',
+        align: 'left',
+        label: 'Currency',
+        field: 'currency',
+    },
+    {
+        name: 'provider',
+        align: 'center',
+        label: 'Provider',
+        field: 'provider',
+    },
+    {
+        name: 'transactionId',
+        align: 'left',
+        label: 'Transaction ID',
+        field: 'transactionId',
+    },
+    {
+        name: 'createdAt',
+        align: 'left',
+        label: 'Created At',
+        field: 'createdAt',
+    },
+    {
+        name: 'status',
+        align: 'center',
+        label: 'Status',
+        field: 'status',
+    },
+];
 </script>
+

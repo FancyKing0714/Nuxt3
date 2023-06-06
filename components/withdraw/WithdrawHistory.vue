@@ -6,7 +6,7 @@
         ></div>
         <div class="relative">
             <q-page>
-                <q-table :rows="rows" :columns="cols">
+                <q-table :rows=rows :cols=cols>
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -69,136 +69,102 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            rows: [
-                
-            {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'master-card',
-                    status: 1,
-                    detail: "dralilip@yahoo,com",
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'visa',
-                    status: 0,
-                    detail: "dralilip@yahoo,com",
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'USD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'interac',
-                    status: 1,
-                    detail: "dralilip@yahoo,com",
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'master-card',
-                    status: 1,
-                    detail: "dralilip@yahoo,com",
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'CAD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'visa',
-                    status: 0,
-                    detail: "dralilip@yahoo,com",
-                },
-                {
-                    amount: '$20.00',
-                    currency: 'USD',
-                    requested: '09-02-2023 - 08:26 AM',
-                    updatedAt: '10-02-2023 - 08:26 AM',
-                    message: 'Not message yet',
-                    method: 'interac',
-                    status: 1,
-                    detail: "dralilip@yahoo,com",
-                },
-            ],
-            cols: [
-                {
-                    name: 'index',
-                    align: 'left',
-                    label: 'S.No',
-                },
-                {
-                    name: 'amount',
-                    required: true,
-                    label: 'Amount',
-                    align: 'left',
-                    field: 'amount',
-                },
-                {
-                    name: 'currency',
-                    align: 'left',
-                    label: 'Currency',
-                    field: 'currency',
-                },
-                {
-                    name: 'requested',
-                    align: 'left',
-                    label: 'Requested',
-                    field: 'requested',
-                },
-                {
-                    name: 'updatedAt',
-                    align: 'left',
-                    label: 'Updated At',
-                    field: 'updatedAt',
-                },
-                {
-                    name: 'message',
-                    align: 'left',
-                    label: 'Message (from Admin)',
-                    field: 'message',
-                },
-                {
-                    name: 'method',
-                    align: 'center',
-                    label: 'Method',
-                    field: 'method',
-                },
-                {
-                    name: 'status',
-                    align: 'center',
-                    label: 'Status',
-                    field: 'status',
-                },
-                {
-                    name: 'detail',
-                    align: 'center',
-                    label: 'Details',
-                    field: 'detail',
-                },
-                {
-                    name: 'action',
-                    align: 'center',
-                    label: 'Action',
-                    field: 'action',
-                },
-            ],
-        };
+<script setup lang="ts">
+import {useStore} from 'vuex';
+import { onBeforeMount, watch } from 'vue';
+import axios from 'axios';
+import { useQuasar } from 'quasar'
+const not = useQuasar();
+const config = useRuntimeConfig();
+
+onBeforeMount(() => {
+    axios({
+            method:'get',
+            url: `${config.public.baseURL}/api/player/getWithdrawHistory`,
+            headers: {
+                "Authorization" : "Bearer " + localStorage.getItem("token")
+            },
+        })
+    .then(res => {
+        rows.value = res.data.withdraws.data
+    })
+    .catch(err => {
+        not.notify({
+          color: 'white',
+          textColor: 'dark',
+          message: 'Error',
+          caption: err.response.data.message,
+          icon: 'info',
+          iconColor: 'red',
+          position: 'top-right',
+          progress:true,
+          multiLine: true,
+          timeout: 1500,
+        })
+    });
+});
+
+let rows = ref([]);
+const cols = [
+    {
+        name: 'index',
+        align: 'left',
+        label: 'S.No',
     },
-};
+    {
+        name: 'amount',
+        required: true,
+        label: 'Amount',
+        align: 'left',
+        field: 'amount',
+    },
+    {
+        name: 'currency',
+        align: 'left',
+        label: 'Currency',
+        field: 'currency',
+    },
+    {
+        name: 'requested',
+        align: 'left',
+        label: 'Requested',
+        field: 'requested',
+    },
+    {
+        name: 'updatedAt',
+        align: 'left',
+        label: 'Updated At',
+        field: 'updatedAt',
+    },
+    {
+        name: 'message',
+        align: 'left',
+        label: 'Message (from Admin)',
+        field: 'message',
+    },
+    {
+        name: 'method',
+        align: 'center',
+        label: 'Method',
+        field: 'method',
+    },
+    {
+        name: 'status',
+        align: 'center',
+        label: 'Status',
+        field: 'status',
+    },
+    {
+        name: 'detail',
+        align: 'center',
+        label: 'Details',
+        field: 'detail',
+    },
+    {
+        name: 'action',
+        align: 'center',
+        label: 'Action',
+        field: 'action',
+    },
+];
 </script>

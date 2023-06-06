@@ -4,11 +4,20 @@ import AvailableBonus from '~~/components/bonus/AvailableBonus.vue';
 import FreeSpins from '~~/components/bonus/FreeSpins.vue';
 import Activity from '~~/components/landingPage/Activity.vue';
 import { useStore } from 'vuex';
+import { computed , onBeforeMount } from 'vue';
+import { useRouter , useRoute } from 'vue-router';
+
+const route = useRoute();
+const router = useRouter();
+
 const store = useStore();
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
 
+onBeforeMount(()=>{
+    selectCategory(route.params.tab.toString()); 
+});
 const selectedItem = ref('Available Bonus');
 
 const categories = computed(() => [
@@ -41,6 +50,7 @@ const categories = computed(() => [
 
 function selectCategory(val: string) {
     selectedItem.value = val;
+    router.push(`/Bonus/${val}`)
 }
 </script>
 <template>

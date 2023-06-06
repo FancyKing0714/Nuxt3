@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { useStore } from 'vuex';
-const store = useStore();
-const isDrawer = computed(() => {
-    return ref(store.state.isDrawer);
-});
-const isLogin = computed(() => {
-    return ref(store.state.isLogin);
-});
+    import { useStore } from 'vuex';
+    const store = useStore();
+    const isDrawer = computed(() => {
+        return ref(store.state.isDrawer);
+    });
+    const isLogin = computed(() => {
+        return ref(store.state.isLogin);
+    });
 </script>
+
 <template>
     <div class="relative pb-0 sm:pb-16 w-full">
         <div>
@@ -15,7 +16,7 @@ const isLogin = computed(() => {
                 v-if="isLogin.value === true"
                 class="font-bold text-3xl pl-3 hidden md:!block"
             >
-                Welcome Back Jeff on
+                Welcome {{ store.state.User.first_name }} {{ store.state.User.last_name }}
             </p>
             <img
                 class="md:max-w-sm sm:max-w-xs w-48 sm:w-auto"
@@ -35,6 +36,7 @@ const isLogin = computed(() => {
                 <div class="flex items-center justify-between pt-10">
                     <q-btn
                         v-if="isLogin.value === false"
+                       
                         class="font-bold text-2xl sm:px-6 !py-0"
                         unelevated
                         color="primary"
@@ -90,7 +92,7 @@ const isLogin = computed(() => {
                         label="play slots"
                     />
                     <q-btn
-                        v-if="isLogin.value === true"
+                        v-if="isDrawer.value === false"
                         :class="[
                             'font-bold text-2xl lg:px-6 md:ml-4',
                             isDrawer.value ? 'lg:hidden' : '',

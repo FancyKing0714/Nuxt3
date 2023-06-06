@@ -143,6 +143,11 @@ body {
     animation: rotate-image 12s linear infinite;
 }
 
+.ant-notification .ant-notification-topRight
+{
+    z-index: 100!important;
+}
+
 @keyframes rotate-image {
     from {
         transform: rotate(0deg);

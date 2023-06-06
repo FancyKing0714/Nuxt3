@@ -3,8 +3,15 @@ import * as path from 'path';
 export default defineNuxtConfig({
     // ssr: false,
     // add tailwindcss to the modules
-    modules: ['@nuxtjs/tailwindcss', 'nuxt-quasar-ui'],
-
+    modules: [
+        '@nuxtjs/tailwindcss', 
+        'nuxt-quasar-ui',
+    ],
+    runtimeConfig: {
+        public: {
+          baseURL: 'https://beta.canada777.com',
+        },
+    },
     quasar: {
         plugins: [
             'BottomSheet',

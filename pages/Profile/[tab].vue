@@ -4,7 +4,20 @@ import PersonalInfo from '~~/components/profile/PersonalInfo.vue';
 import Verification from '~~/components/profile/Verification.vue';
 import History from '~~/components/profile/History.vue';
 import ResponsibleGambling from '~~/components/profile/ResponsibleGambling.vue';
+import { useStore } from 'vuex';
+import { computed, onBeforeMount } from 'vue';
+import { useRouter , useRoute } from 'vue-router';
+import axios from 'axios';
+import { useQuasar } from 'quasar'
 
+const not = useQuasar();
+const route = useRoute();
+const router = useRouter();
+const store = useStore();
+
+onBeforeMount(() => {
+    selectCategory(route.params.tab.toString()); 
+});
 const selectedItem = ref('General Information');
 
 const categories = computed(() => [
@@ -32,6 +45,7 @@ const categories = computed(() => [
 
 function selectCategory(val: string) {
     selectedItem.value = val;
+    router.push(`/Profile/${val}`);
 }
 </script>
 <template>

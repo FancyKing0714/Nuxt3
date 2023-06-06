@@ -7,7 +7,10 @@ import SelectLanguageBox from '~~/components/header/SelectLanguageBox.vue';
 import ProfileButton from './ProfileButton.vue';
 import WalletButton from './WalletButton.vue';
 import ProfileButtonMobile from './ProfileButtonMobile.vue';
-import { ref } from 'vue';
+import { ref, onBeforeMount } from 'vue';
+import { useStore } from 'vuex';
+const store = useStore();
+
 const props = defineProps({
     toggleState: {
         type: Function,
@@ -28,6 +31,13 @@ let isProfile = ref(false);
 function handleProfile(on: boolean) {
     isProfile.value = on;
 }
+
+onBeforeMount(() => {
+    if(localStorage.getItem("token")){
+        store.dispatch('handleLogin', true);
+    }
+});
+
 </script>
 <template>
     <QHeader class="px-1 py-1 sm:px-3" style="background-color: #292c35">
@@ -66,7 +76,7 @@ function handleProfile(on: boolean) {
                 </div>
                 <div class="sm:pl-5">
                     <LoginRegisterButton
-                        v-if="isLogin === false"
+                        v-if="store.state.isLogin === false"
                         :toggleState="
                             (name:string, val:boolean) =>
                                 props.toggleState(name, val)
@@ -75,7 +85,7 @@ function handleProfile(on: boolean) {
                 </div>
             </div>
             <!-- <div class="w-full flex items-center justify-end"> -->
-                <template v-if="isLogin">
+                <template v-if="store.state.isLogin">
                     <div class="pr-5 hidden md:!block">
                         <WalletButton />
                     </div>

@@ -8,7 +8,6 @@ import games from './games.tmp.json';
 import providers from './providers.tmp.json';
 import Activity from '~~/components/landingPage/Activity.vue';
 const store = useStore();
-console.log(store.state.isDrawer);
 
 </script>
 <template>

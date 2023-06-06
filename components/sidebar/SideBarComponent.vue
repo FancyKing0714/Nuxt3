@@ -6,7 +6,9 @@ import SearchInput from '~~/components/header/SearchInput.vue';
 import SideBarItem from '~~/components/sidebar/SideBarItem.vue';
 import SideBarMenu from '~~/components/sidebar/SideBarMenu.vue';
 import LoginRegisterButton from '../header/LoginRegisterButton.vue';
+import { useStore } from 'vuex';
 
+const store = useStore();
 const props = defineProps({
     leftDrawerOpen: {
         type: Boolean,
@@ -40,7 +42,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
         title: 'Daily Cash Back',
         backUrl: 'side_1.png',
         iconUrl: 'cash_back.png',
-        link: '/wallet',
+        link: '/wallet/Balances',
     },
     {
         title: 'BONUS WHEEl',
@@ -52,7 +54,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
         title: 'BONUS PROMOTIONS',
         backUrl: 'side_3.png',
         iconUrl: 'promotion.png',
-        link: '/bonus',
+        link: '/bonus/Available Bonus',
     },
     {
         title: 'TOURNAMENTS',
@@ -138,7 +140,7 @@ const prifileList = [
             </div>
             <div class="mt-5 text-center">
                 <LoginRegisterButton
-                    v-if="isLogin === false"
+                    v-if="store.state.isLogin === false"
                     :toggleState="toggleState"
                 />
             </div>

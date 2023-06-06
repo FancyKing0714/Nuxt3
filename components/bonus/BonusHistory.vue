@@ -6,7 +6,7 @@
         ></div>
         <div class="relative">
             <q-page>
-                <q-table :rows="rows" :columns="cols">
+                <q-table :rows=rows :cols=cols>
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="isComplete" :props="props">
@@ -61,108 +61,46 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            rows: [
-                {
-                    title: 'Risk Free 110% Bonus upto 200 CAD',
-                    freeSpin: 'No Free Spin',
-                    game: 'No Free Spin',
-                    bonus: '22.00 CAD',
-                    wager: '811.80 CAD / 1470.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2023 - 08:26 AM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: -1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-            ],
-            cols: [
+<script setup lang="ts">
+import { onBeforeMount, ref } from 'vue';
+import axios from 'axios';
+import { useQuasar } from 'quasar'
+const not = useQuasar();
+const config = useRuntimeConfig();
+
+onBeforeMount(() => {
+    axios({
+            method:'get',
+            url: `${config.public.baseURL}/api/player/getBonusHistory`,
+            headers: {
+                "Authorization" : "Bearer " + localStorage.getItem("token")
+            },
+        })
+    .then(res => {
+        rows.value = res.data.bonusHistory.data
+    })
+    .catch(err => {
+        not.notify({
+          color: 'white',
+          textColor: 'dark',
+          message: 'Error',
+          caption: err.response.data.message,
+          icon: 'info',
+          iconColor: 'red',
+          position: 'top-right',
+          progress:true,
+          multiLine: true,
+          timeout: 1500,
+        })
+    });
+});
+
+let rows = ref([]);
+const cols = [
                 {
                     name: 'index',
                     align: 'left',
                     label: 'S.No',
-                    field: (row) => this.rows.indexOf(row) + 1,
                 },
                 {
                     name: 'title',
@@ -207,8 +145,5 @@ export default {
                     label: 'Expire on',
                     field: 'expireOn',
                 },
-            ],
-        };
-    },
-};
+];
 </script>

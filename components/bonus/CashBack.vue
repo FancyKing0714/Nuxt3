@@ -96,7 +96,7 @@
             </div>
 
             <q-page>
-                <q-table :rows="rows" :columns="cols">
+                <q-table :rows=rows :cols=cols>
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -145,73 +145,46 @@
     </div>
 </template>
 
-<script>
-import { useStore } from 'vuex';
+<script setup lang="ts">
+import {useStore} from 'vuex';
+import { onBeforeMount, ref } from 'vue';
+import axios from 'axios';
+import { useQuasar } from 'quasar'
+const not = useQuasar();
+const config = useRuntimeConfig();
 
-export default {
-    setup() {
-        const store = useStore();
+const store = useStore();
+const isDrawer = computed(() => store.state.isDrawer);
 
-        const rows = [
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: 1,
-                expireOn: '10-02-2022 - 12:00 PM',
+onBeforeMount(() => {
+    axios({
+            method:'get',
+            url: `${config.public.baseURL}/api/player/getCashbackHistory`,
+            headers: {
+                "Authorization" : "Bearer " + localStorage.getItem("token")
             },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: 0,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: 1,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: -1,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: 0,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: -1,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: -1,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-            {
-                totalDeposit: '100.00 CAD',
-                cashBackAmount: '100.00 CAD',
-                wager: '3500.00 CAD / 7000.00 CAD',
-                isComplete: 1,
-                expireOn: '10-02-2022 - 12:00 PM',
-            },
-        ];
+        })
+    .then(res => {
+        rows.value = res.data.cashbackHistory.data
+    })
+    .catch(err => {
+        not.notify({
+          color: 'white',
+          textColor: 'dark',
+          message: 'Error',
+          caption: err.response.data.message,
+          icon: 'info',
+          iconColor: 'red',
+          position: 'top-right',
+          progress:true,
+          multiLine: true,
+          timeout: 1500,
+        })
+    });
+});
 
-        const cols = [
+let rows = ref([]);
+const cols = [
             {
                 name: 'totalDeposit',
                 required: true,
@@ -243,14 +216,5 @@ export default {
                 label: 'Expire on',
                 field: 'expireOn',
             },
-        ];
-
-        const isDrawer = computed(() => store.state.isDrawer);
-        return {
-            rows,
-            cols,
-            isDrawer,
-        };
-    },
-};
+];
 </script>

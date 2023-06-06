@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import {useStore} from "vuex";
+const store = useStore();
 </script>
 
 <template>
@@ -17,9 +19,9 @@ import { computed, ref } from 'vue';
             </div>
 
             <div class="w-full text-center mt-16 sm:mt-52 md:mt-16 lg:mt-16">
-                <p class="font-bold text-xl">Jeff O.</p>
-                <p style="color: #7b8193" class="text-xs">
-                    jeffo@canada777.com
+                <p class="font-bold text-xl pb-3">{{store.state.User.username}}</p>
+                <p style="color: #7b8193" class="text-sm pb-3">
+                    {{store.state.User.email}}
                 </p>
                 <q-img class="w-5" src="/imgs/logout.png" />
             </div>
