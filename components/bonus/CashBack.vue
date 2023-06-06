@@ -151,6 +151,7 @@ import { onBeforeMount, ref } from 'vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar'
 const not = useQuasar();
+const config = useRuntimeConfig();
 
 const store = useStore();
 const isDrawer = computed(() => store.state.isDrawer);
@@ -158,7 +159,7 @@ const isDrawer = computed(() => store.state.isDrawer);
 onBeforeMount(() => {
     axios({
             method:'get',
-            url: 'https://beta.canada777.com/api/player/getCashbackHistory',
+            url: `${config.public.baseURL}/api/player/getCashbackHistory`,
             headers: {
                 "Authorization" : "Bearer " + localStorage.getItem("token")
             },

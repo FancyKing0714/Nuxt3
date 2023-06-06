@@ -161,6 +161,7 @@ import { useStore } from "vuex";
 import axios from "axios";
 import { useQuasar } from 'quasar'
 const not = useQuasar();
+const config = useRuntimeConfig();
 
 const store = useStore();
 const person = ref(store.state.User);
@@ -171,7 +172,7 @@ const credential = ref({
 const resetPassword = () => {  
   axios({
             method:'post',
-            url: 'https://beta.canada777.com/api/player/updatePassword',
+            url: `${config.public.baseURL}/api/player/updatePassword`,
             headers: {
                 "Authorization" : "Bearer " + localStorage.getItem("token")
             },

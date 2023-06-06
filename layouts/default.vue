@@ -12,6 +12,7 @@ import MobileFooter from '~~/components/footer/MobileFooter.vue';
 import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar'
+const config = useRuntimeConfig();
 
 const not = useQuasar();
 
@@ -45,7 +46,7 @@ onBeforeMount(() => {
         store.dispatch('handleLogin', true);
         axios({
                 method:'get',
-                url: 'https://beta.canada777.com/api/player/getProfile',
+                url: `${config.public.baseURL}/api/player/getProfile`,
                 headers: {
                     "Authorization" : "Bearer " + localStorage.getItem("token")
                 },

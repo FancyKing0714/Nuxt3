@@ -33,11 +33,12 @@ import axios from 'axios';
 import { useQuasar } from 'quasar'
 const not = useQuasar();
 const store = useStore();
+const config = useRuntimeConfig();
 
 onBeforeMount(() => {
         axios({
                 method:'get',
-                url: 'https://beta.canada777.com/api/player/getGamePlayHistory',
+                url: `${config.public.baseURL}/api/player/getGamePlayHistory`,
                 headers: {
                     "Authorization" : "Bearer " + localStorage.getItem("token")
                 },

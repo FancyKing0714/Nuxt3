@@ -7,7 +7,6 @@
     const isLogin = computed(() => {
         return ref(store.state.isLogin);
     });
-
 </script>
 
 <template>

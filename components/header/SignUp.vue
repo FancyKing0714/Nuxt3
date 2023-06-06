@@ -3,6 +3,7 @@
     import axios from 'axios';
     import { useQuasar } from 'quasar'
     const not = useQuasar();
+    const config = useRuntimeConfig();
 
     let data = {};
     let signupInfo = {
@@ -43,7 +44,7 @@
         });
         await axios({
                 method: 'post',
-                url: 'https://beta.canada777.com/api/register',
+                url: `${config.public.baseURL}/api/register`,
                 data: data
             })
         .then(res=>{

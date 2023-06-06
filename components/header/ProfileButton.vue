@@ -11,12 +11,12 @@ const prifileList = [
     {
         name: 'Deposit',
         icon: 'deposit',
-        link: '/profile',
+        link: '/wallet/Deposit',
     },
     {
         name: 'Bonus',
         icon: 'bonus',
-        link: '/bonus',
+        link: '/Bonus/Available Bonus',
     },
     {
         name: 'Promotions',
@@ -26,12 +26,12 @@ const prifileList = [
     {
         name: 'Wallet',
         icon: 'wallet-icon',
-        link: '/wallet',
+        link: '/wallet/Balances',
     },
     {
         name: 'Game History',
         icon: 'game',
-        link: '/profile',
+        link: '/Profile/Game History',
     },
     {
         name: 'Log Out',

@@ -68,13 +68,14 @@ import { onBeforeMount, ref } from 'vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar'
 const not = useQuasar();
+const config = useRuntimeConfig();
 
 onBeforeMount(() => {
     console.log("deposit log");
     
     axios({
             method:'get',
-            url: 'https://beta.canada777.com/api/player/getDepositHistory',
+            url: `${config.public.baseURL}/api/player/getDepositHistory`,
             headers: {
                 "Authorization" : "Bearer " + localStorage.getItem("token")
             },

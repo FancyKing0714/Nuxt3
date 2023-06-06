@@ -7,6 +7,11 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss', 
         'nuxt-quasar-ui',
     ],
+    runtimeConfig: {
+        public: {
+          baseURL: 'https://beta.canada777.com',
+        },
+    },
     quasar: {
         plugins: [
             'BottomSheet',

@@ -66,11 +66,12 @@ import { onBeforeMount, ref } from 'vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar'
 const not = useQuasar();
+const config = useRuntimeConfig();
 
 onBeforeMount(() => {
     axios({
             method:'get',
-            url: 'https://beta.canada777.com/api/player/getBonusHistory',
+            url: `${config.public.baseURL}/api/player/getBonusHistory`,
             headers: {
                 "Authorization" : "Bearer " + localStorage.getItem("token")
             },
