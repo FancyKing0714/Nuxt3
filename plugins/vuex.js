@@ -4,7 +4,15 @@ const store = createStore({
         return {
             isDrawer: true,
             isLogin: false,
+            isregister: false,
             User: {},
+            notification: {},
+            bonusHistory:[],
+            cashbackHistory:[],
+            freespinHistory:[],
+            depositHistory:[],
+            withdrawHistory:[],
+            gameHistory:[],
         };
     },
     mutations: {
@@ -14,8 +22,32 @@ const store = createStore({
         handleLogin(state, payload) {
             state.isLogin = payload;
         },
+        handleRegister(state, payload) {
+            state.isRegister = payload;
+        },
         handleGetUser(state, payload) {
             state.User = payload;
+        },
+        handleNotification(state, payload) {
+            state.notification = payload;
+        },
+        handleGetBonusHistory(state, payload) {
+            state.bonusHistory = payload;
+        },
+        handleGetCashbackHistory(state, payload) {
+            state.cashbackHistory = payload;
+        },
+        handleGetFreespinHistory(state, payload) {
+            state.freespinHistory = payload;
+        },
+        handleGetDepositHistory(state, payload) {
+            state.depositHistory = payload;
+        },
+        handleGetWithdrawHistory(state, payload) {
+            state.withdrawHistory = payload;
+        },
+        handleGetGameHistory(state, payload) {
+            state.gameHistory = payload;
         },
     },
     actions: {
@@ -25,8 +57,32 @@ const store = createStore({
         handleLogin({ commit }, payload) {
             commit('handleLogin', payload);
         },
+        handleRegister({ commit }, payload) {
+            commit('handleRegister', payload);
+        },
         handleGetUser({ commit }, payload) {
             commit('handleGetUser', payload);
+        },
+        handleNotification({ commit }, payload) {
+            commit('handleNotification', payload);
+        },
+        handleGetBonusHistory({ commit }, payload) {
+            commit('handleGetBonusHistory', payload);
+        },
+        handleGetCashbackHistory({ commit }, payload) {
+            commit('handleGetCashbackHistory', payload);
+        },
+        handleGetFreespinHistory({ commit }, payload) {
+            commit('handleGetFreespinHistory', payload);
+        },
+        handleGetDepositHistory({ commit }, payload) {
+            commit('handleGetDepositHistory', payload);
+        },
+        handleGetWithdrawHistory({ commit }, payload) {
+            commit('handleGetWithdrawHistory', payload);
+        },
+        handleGetGameHistory({ commit }, payload) {
+            commit('handleGetGameHistory', payload);
         },
     },
 });

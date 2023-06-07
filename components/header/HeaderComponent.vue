@@ -34,6 +34,7 @@ function handleProfile(on: boolean) {
 
 onBeforeMount(() => {
     if(localStorage.getItem("token")){
+        store.dispatch('handleRegister', true);
         store.dispatch('handleLogin', true);
     }
 });

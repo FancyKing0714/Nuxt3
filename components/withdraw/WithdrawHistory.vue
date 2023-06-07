@@ -6,7 +6,7 @@
         ></div>
         <div class="relative">
             <q-page>
-                <q-table :rows=rows :cols=cols>
+                <q-table class="my-sticky-header-table" :rows="rows" :columns="cols">
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -71,45 +71,23 @@
 
 <script setup lang="ts">
 import {useStore} from 'vuex';
-import { onBeforeMount, watch } from 'vue';
-import axios from 'axios';
-import { useQuasar } from 'quasar'
-const not = useQuasar();
-const config = useRuntimeConfig();
+const store = useStore();
 
-onBeforeMount(() => {
-    axios({
-            method:'get',
-            url: `${config.public.baseURL}/api/player/getWithdrawHistory`,
-            headers: {
-                "Authorization" : "Bearer " + localStorage.getItem("token")
-            },
-        })
-    .then(res => {
-        rows.value = res.data.withdraws.data
-    })
-    .catch(err => {
-        not.notify({
-          color: 'white',
-          textColor: 'dark',
-          message: 'Error',
-          caption: err.response.data.message,
-          icon: 'info',
-          iconColor: 'red',
-          position: 'top-right',
-          progress:true,
-          multiLine: true,
-          timeout: 1500,
-        })
-    });
-});
+let rows = ref(store.state.withdrawHistory);
+interface columnformat{
+    name: string;
+    label: string;
+    field: string | ((row: any) => any);
+    required?: boolean | undefined;
+    align?: "left" | "center" | "right" | undefined;
+};
 
-let rows = ref([]);
-const cols = [
+const cols :columnformat[] = [
     {
         name: 'index',
         align: 'left',
         label: 'S.No',
+        field: 'id',
     },
     {
         name: 'amount',

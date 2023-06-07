@@ -43,6 +43,7 @@ const handleClick = (name) => {
     if(name == "Log Out"){
         localStorage.removeItem("token");
         store.dispatch('handleLogin', false);
+        store.dispatch('handleRegister', false);
         router.push("/");
     }
 }

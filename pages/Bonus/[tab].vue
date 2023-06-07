@@ -6,6 +6,7 @@ import Activity from '~~/components/landingPage/Activity.vue';
 import { useStore } from 'vuex';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
+import {getBonusHistory, getFreespinHistory, getCashbackHistory } from '~~/action/bonus';
 
 const route = useRoute();
 const router = useRouter();
@@ -16,9 +17,20 @@ const isDrawer = computed(() => {
 });
 
 onBeforeMount(()=>{
-    selectCategory(route.params.tab.toString()); 
+    selectCategory(route.params.tab.toString());    
+    switch(route.params.tab.toString()){
+        case 'Bonus History':
+            getBonusHistory(store);
+            break;
+        case 'Free Spins':
+            getFreespinHistory(store);
+            break;
+        case 'Cash Back':
+            getCashbackHistory(store);
+            break;
+    }
 });
-const selectedItem = ref('Available Bonus');
+const selectedItem = ref(route.params.tab.toString());
 
 const categories = computed(() => [
     {
@@ -49,7 +61,7 @@ const categories = computed(() => [
 ]);
 
 function selectCategory(val: string) {
-    selectedItem.value = val;
+    selectedItem.value = val; 
     router.push(`/Bonus/${val}`)
 }
 </script>
