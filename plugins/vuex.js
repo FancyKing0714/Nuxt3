@@ -13,6 +13,7 @@ const store = createStore({
             depositHistory:[],
             withdrawHistory:[],
             gameHistory:[],
+            gameList:[],
         };
     },
     mutations: {
@@ -49,6 +50,9 @@ const store = createStore({
         handleGetGameHistory(state, payload) {
             state.gameHistory = payload;
         },
+        handleGetAllGames(state, payload) {
+            state.gameList = payload;
+        },
     },
     actions: {
         handleDrawer({ commit }, payload) {
@@ -83,6 +87,9 @@ const store = createStore({
         },
         handleGetGameHistory({ commit }, payload) {
             commit('handleGetGameHistory', payload);
+        },
+        handleGetAllGames({ commit }, payload) {
+            commit('handleGetAllGames', payload);
         },
     },
 });

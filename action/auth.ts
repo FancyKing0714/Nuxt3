@@ -1,5 +1,6 @@
 import {Axios} from '~~/utils/Axios';
 import {getProfile} from './profile';
+import {getGames} from './game';
 
 export const logIn = (data: object, store: any) => {
     Axios('post','/api/login',data)
@@ -8,6 +9,7 @@ export const logIn = (data: object, store: any) => {
         localStorage.setItem("token",tokenStr.split("|")[1]);  
         getProfile(store);
         store.dispatch('handleNotification',{type:'Success',message:'Login Successed!'});
+        getGames(store);
     })
     .catch(err=>{
         store.dispatch('handleNotification',{type:'Error',message:err.response.data.message});

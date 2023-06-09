@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
+import {ref} from 'vue';
 import Conclusion from '~~/components/landingPage/Conclusion.vue';
 import GameList from '~~/components/landingPage/GameList.vue';
 import ProviderList from '~~/components/landingPage/ProviderList.vue';
 // !Get TmpData
-import games from './games.tmp.json';
+// import games from './games.tmp.json';
 import providers from './providers.tmp.json';
 import Activity from '~~/components/landingPage/Activity.vue';
 const store = useStore();
@@ -22,7 +23,7 @@ const store = useStore();
             </section>
             <section class="pt-4">
                 <landing-page-category-bar />
-                <game-list v-for="game in games" :game="game" />
+                <game-list v-for="game in store.state.gameList" :game="game" />
                 <provider-list :providers="providers" />
             </section>
             <section>
