@@ -98,15 +98,15 @@ const onSlideChange = () => {
                             <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <q-btn
                                     text-color=white
-                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 7px;"
+                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 10px;"
                                 >
-                                    <q-icon name="play_arrow" size="md" />
+                                    <q-icon name="play_arrow" size="xl" />
                                 </q-btn>
                                 <q-btn
                                     text-color=white
                                     padding="2px 15px"
                                     label="Demo"
-                                    style="border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                    style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
                                 />
                             </div>
                             <q-btn
