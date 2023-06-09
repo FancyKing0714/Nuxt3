@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed , onBeforeMount } from 'vue';
+import { ref, computed , onBeforeMount ,onMounted} from 'vue';
 import { useStore } from 'vuex';
 import HeaderComponent from '@/components/header/HeaderComponent.vue';
 import SideBarComponent from '@/components/sidebar/SideBarComponent.vue';
@@ -10,9 +10,11 @@ import VerifyEmail from '~~/components/header/VerifyEmail.vue';
 import Welcome from '~~/components/header/Welcome.vue';
 import MobileFooter from '~~/components/footer/MobileFooter.vue';
 import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
-import axios from 'axios';
 import { useQuasar } from 'quasar'
-const config = useRuntimeConfig();
+import { getProfile } from '~~/action/profile';
+import { getGames } from '~~/action/game';
+import {useRouter} from 'vue-router';
+const router = useRouter();
 
 const not = useQuasar();
 
@@ -41,33 +43,29 @@ function toggleState(name: string, val: boolean) {
     }
     state[name].value = val;
 }
-onBeforeMount(() => {
+
+watch(
+        ()=>store.state.notification,
+        ()=>{not.notify({
+                message: store.state.notification.type,
+                caption: store.state.notification.message,
+                icon: store.state.notification.type == 'Success'?'done':'info',
+                iconColor: store.state.notification.type == 'Success'?'green':'red',
+                color: 'white',
+                textColor: 'dark',
+                position: 'top-right',
+                progress:true,
+                multiLine: true,
+                timeout: 1500,}) 
+});
+onMounted(() => {
     if(localStorage.getItem("token")){
         store.dispatch('handleLogin', true);
-        axios({
-                method:'get',
-                url: `${config.public.baseURL}/api/player/getProfile`,
-                headers: {
-                    "Authorization" : "Bearer " + localStorage.getItem("token")
-                },
-            })
-        .then(res => {
-            store.dispatch('handleGetUser', res.data.Player);
-        })
-        .catch(err => {
-                    not.notify({
-                        color: 'white',
-                        textColor: 'dark',
-                        message: 'Error',
-                        caption: err.response.data.message,
-                        icon: 'info',
-                        iconColor: 'red',
-                        position: 'top-right',
-                        progress:true,
-                        multiLine: true,
-                        timeout: 1500,
-                        })
-        });
+        getProfile(store);
+        getGames(store);
+    }
+    else{
+        router.push(`/`);
     }
 });
 </script>

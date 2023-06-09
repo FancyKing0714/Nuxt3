@@ -7,8 +7,8 @@ import ResponsibleGambling from '~~/components/profile/ResponsibleGambling.vue';
 import { useStore } from 'vuex';
 import { computed, onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
-import axios from 'axios';
-import { useQuasar } from 'quasar'
+import { useQuasar } from 'quasar';
+import {getGameHistory} from '~~/action/profile';
 
 const not = useQuasar();
 const route = useRoute();
@@ -17,8 +17,13 @@ const store = useStore();
 
 onBeforeMount(() => {
     selectCategory(route.params.tab.toString()); 
+    switch(route.params.tab.toString()){
+        case 'Game History':
+            getGameHistory(store);
+            break;
+    }
 });
-const selectedItem = ref('General Information');
+const selectedItem = ref(route.params.tab.toString());
 
 const categories = computed(() => [
     {

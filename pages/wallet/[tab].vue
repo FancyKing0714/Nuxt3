@@ -6,15 +6,25 @@ import Withdrawal from '~~/components/withdraw/Withdrawal.vue';
 import Balances from '~~/components/withdraw/Balances.vue';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
-
+import {getDepositHistory, getWithdrawHistory} from '~~/action/wallet';
+import { useStore } from 'vuex';
+const store = useStore();
 const route = useRoute();
 const router = useRouter();
 
 onBeforeMount(()=>{
     selectCategory(route.params.tab.toString()); 
+    switch(route.params.tab.toString()){
+        case 'Deposit History':
+            getDepositHistory(store);
+            break;
+        case 'Withdraw History':
+            getWithdrawHistory(store);
+            break;
+    }
 });
 
-const selectedItem = ref('Balances');
+const selectedItem = ref(route.params.tab.toString());
 
 const categories = computed(() => [
     {
@@ -28,9 +38,9 @@ const categories = computed(() => [
         active: selectedItem.value === 'Deposit',
     },
     {
-        name: 'Withdrawal',
-        icon: 'withdrawl',
-        active: selectedItem.value === 'Withdrawal',
+        name: 'Withdrawa',
+        icon: 'withdraw',
+        active: selectedItem.value === 'Withdrawa',
     },
     {
         name: 'Deposit History',
@@ -38,9 +48,9 @@ const categories = computed(() => [
         active: selectedItem.value === 'Deposit History',
     },
     {
-        name: 'Withdrawl History',
-        icon: 'withdrawl_history',
-        active: selectedItem.value === 'Withdrawl History',
+        name: 'Withdraw History',
+        icon: 'withdraw_history',
+        active: selectedItem.value === 'Withdraw History',
     },
 ]);
 
@@ -83,9 +93,9 @@ function selectCategory(val: string) {
                 </div>
 
                 <DepositHistory v-if="selectedItem === 'Deposit History'" />
-                <WithdrawHistory v-if="selectedItem === 'Withdrawl History'" />
+                <WithdrawHistory v-if="selectedItem === 'Withdraw History'" />
                 <Deposit v-if="selectedItem === 'Deposit'" />
-                <Withdrawal v-if="selectedItem === 'Withdrawal'" />
+                <Withdrawal v-if="selectedItem === 'Withdrawa'" />
                 <Balances v-if="selectedItem === 'Balances'" />
             </section>
             <section class="pt-8">

@@ -6,7 +6,7 @@
         ></div>
         <div class="relative">
             <q-page>
-                <q-table :rows=rows :cols=cols>
+                <q-table :rows = "rows" :columns = "cols" >
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -18,41 +18,30 @@
                             <q-td key="currency" :props="props">
                                 {{ props.row.currency }}
                             </q-td>
-                            <q-td
-                                class="text-center"
-                                key="provider"
-                                :props="props"
-                            >
-                                <img
-                                    class="w-5 h-5"
-                                    :src="`/tmp/${props.row.provider}.png`"
-                                    spinner-color="primary"
-                                />
+                            <q-td key="payment_method" :props="props">
+                                {{ props.row.payment_method }}
                             </q-td>
-                            <q-td key="transactionId" :props="props">
-                                {{ props.row.transactionId }}
+                            <q-td key="transaction_id" :props="props">
+                                {{ props.row.transaction_id }}
                             </q-td>
-                            <q-td key="createdAt" :props="props">
-                                {{ props.row.createdAt }}
+                            <q-td key="created_at" :props="props">
+                                {{ props.row.created_at }}
                             </q-td>
                             <q-td key="status" :props="props">
                                 <q-btn
                                     class="w-20"
-                                    v-if="props.row.status == 0"
+                                    v-if="props.row.status == 'waiting'"
                                     color="primary"
                                     size="xs"
                                     label="pending"
                                 />
                                 <q-btn
                                     class="w-20"
-                                    v-if="props.row.status == 1"
+                                    v-if="props.row.status == 'completed'"
                                     color="positive"
                                     size="xs"
                                     label="Completed"
                                 />
-                            </q-td>
-                            <q-td key="expireOn" :props="props">
-                                {{ props.row.expireOn }}
                             </q-td>
                         </q-tr>
                     </template>
@@ -64,47 +53,25 @@
 
 <script setup lang="ts">
 import {useStore} from 'vuex';
-import { onBeforeMount, ref } from 'vue';
-import axios from 'axios';
-import { useQuasar } from 'quasar'
-const not = useQuasar();
-const config = useRuntimeConfig();
+import { ref } from 'vue';
+const store = useStore();
 
-onBeforeMount(() => {
-    console.log("deposit log");
-    
-    axios({
-            method:'get',
-            url: `${config.public.baseURL}/api/player/getDepositHistory`,
-            headers: {
-                "Authorization" : "Bearer " + localStorage.getItem("token")
-            },
-        })
-    .then(res => {
-        rows.value = res.data.deposits.data
-    })
-    .catch(err => {
-        not.notify({
-          color: 'white',
-          textColor: 'dark',
-          message: 'Error',
-          caption: err.response.data.message,
-          icon: 'info',
-          iconColor: 'red',
-          position: 'top-right',
-          progress:true,
-          multiLine: true,
-          timeout: 1500,
-        })
-    });
-});
+let rows = ref(store.state.depositHistory);
 
-let rows = ref([]);
-const cols = [
+interface columnformat{
+    name: string;
+    label: string;
+    field: string | ((row: any) => any);
+    required?: boolean | undefined;
+    align?: "left" | "center" | "right" | undefined;
+};
+
+const cols :columnformat[] = [
     {
         name: 'index',
         align: 'left',
-        label: 'S.No',
+        label: 'No',
+        field: 'id',
     },
     {
         name: 'amount',
@@ -120,22 +87,22 @@ const cols = [
         field: 'currency',
     },
     {
-        name: 'provider',
-        align: 'center',
-        label: 'Provider',
-        field: 'provider',
-    },
-    {
-        name: 'transactionId',
+        name: 'payment_method',
         align: 'left',
-        label: 'Transaction ID',
-        field: 'transactionId',
+        label: 'Payment Method',
+        field: 'payment_method',
     },
     {
-        name: 'createdAt',
+        name: 'transaction_id',
+        align: 'left',
+        label: 'Transaction Id',
+        field: 'transaction_id',
+    },
+    {
+        name: 'created_at',
         align: 'left',
         label: 'Created At',
-        field: 'createdAt',
+        field: 'created_at',
     },
     {
         name: 'status',

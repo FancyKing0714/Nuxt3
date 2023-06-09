@@ -1,9 +1,17 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
-    import axios from 'axios';
+    import { ref , watch} from 'vue';
+    import {SignUp} from '~~/action/auth';
     import { useQuasar } from 'quasar'
+    import {useStore} from 'vuex';
     const not = useQuasar();
-    const config = useRuntimeConfig();
+    const store = useStore();
+
+    watch(
+        ()=>store.state.isRegister,
+        ()=>{
+            props.toggleState('onLogin' , true);
+            props.toggleState('onSignUp' , false);
+    });
 
     let data = {};
     let signupInfo = {
@@ -38,34 +46,6 @@
         },
     });
     let open = ref(props.open);
-    const SignUp = async () => { 
-        Object.keys(signupInfo).map(item => {
-            data = {...data, [item] : signupInfo[item].value};
-        });
-        await axios({
-                method: 'post',
-                url: `${config.public.baseURL}/api/register`,
-                data: data
-            })
-        .then(res=>{
-            props.toggleState('onLogin' , true);
-            props.toggleState('onSignUp' , false);
-        })
-        .catch(err=>{
-            not.notify({
-                color: 'white',
-                textColor: 'dark',
-                message: 'Error',
-                caption: err.response.data.message,
-                icon: 'info',
-                iconColor: 'red',
-                position: 'top-right',
-                progress:true,
-                multiLine: true,
-                timeout: 1500,
-                })
-        });
-    }      
     watch(props, (newValue) => {
         console.log(newValue.open);
 
@@ -126,7 +106,13 @@
                         </div>
                         <q-btn
                             @click="
-                                SignUp()
+                               ()=>{
+                                let data={};
+                                Object.keys(signupInfo).map(item => {
+                                    data = {...data, [item] : signupInfo[item].value};
+                                });
+                                SignUp(data, store);
+                               } 
                             "
                             class="mt-5 font-bold w-full py-3"
                             style=" 

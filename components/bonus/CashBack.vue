@@ -96,7 +96,7 @@
             </div>
 
             <q-page>
-                <q-table :rows=rows :cols=cols>
+                <q-table :rows="rows" :columns ="cols">
                     <template v-slot:body="props">
                         <q-tr :props="props">
                             <q-td key="index" :props="props">
@@ -147,44 +147,19 @@
 
 <script setup lang="ts">
 import {useStore} from 'vuex';
-import { onBeforeMount, ref } from 'vue';
-import axios from 'axios';
-import { useQuasar } from 'quasar'
-const not = useQuasar();
-const config = useRuntimeConfig();
-
+import { ref } from 'vue';
 const store = useStore();
 const isDrawer = computed(() => store.state.isDrawer);
 
-onBeforeMount(() => {
-    axios({
-            method:'get',
-            url: `${config.public.baseURL}/api/player/getCashbackHistory`,
-            headers: {
-                "Authorization" : "Bearer " + localStorage.getItem("token")
-            },
-        })
-    .then(res => {
-        rows.value = res.data.cashbackHistory.data
-    })
-    .catch(err => {
-        not.notify({
-          color: 'white',
-          textColor: 'dark',
-          message: 'Error',
-          caption: err.response.data.message,
-          icon: 'info',
-          iconColor: 'red',
-          position: 'top-right',
-          progress:true,
-          multiLine: true,
-          timeout: 1500,
-        })
-    });
-});
-
-let rows = ref([]);
-const cols = [
+let rows = ref(store.state.cashbackHistory);
+interface columnformat{
+    name: string;
+    label: string;
+    field: string | ((row: any) => any);
+    required?: boolean | undefined;
+    align?: "left" | "center" | "right" | undefined;
+};
+const cols:columnformat[] = [
             {
                 name: 'totalDeposit',
                 required: true,
