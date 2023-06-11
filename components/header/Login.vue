@@ -10,8 +10,13 @@
     watch(
         ()=>store.state.User,
         ()=>{
-            props.toggleState('onLogin',false);
-            props.toggleState('isLogin',true);
+            if(Object.keys(store.state.User).length === 0){
+                props.toggleState('onLogin',true);
+            }
+            else{
+                props.toggleState('onLogin',false);
+                props.toggleState('isLogin',true);
+            }
     });
 
     const loginInfo = {

@@ -1,7 +1,7 @@
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getBonusHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getBonusHistory')
+export const getBonusHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getBonusHistory',store, router)
     .then(res => {
         store.commit('handleGetBonusHistory', res.data.bonusHistory.data);
     })
@@ -10,8 +10,8 @@ export const getBonusHistory = (store) => {
     });
 }
 
-export const getFreespinHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getFreeSpinsHistory')
+export const getFreespinHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getFreeSpinsHistory',store, router)
     .then(res => {
         store.commit('handleGetFreespinHistory', res.data.freeSpins.data);
     })
@@ -20,8 +20,8 @@ export const getFreespinHistory = (store) => {
     });
 }
 
-export const getCashbackHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getCashbackHistory')
+export const getCashbackHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getCashbackHistory',store, router)
     .then(res => {
         store.commit('handleGetCashbackHistory', res.data.cashbackHistory.data);
     })

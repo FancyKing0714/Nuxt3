@@ -1,7 +1,7 @@
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getDepositHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getDepositHistory')
+export const getDepositHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getDepositHistory',store, router)
     .then(res => {
         store.commit('handleGetBonusHistory', res.data.deposits.data);
     })
@@ -10,8 +10,8 @@ export const getDepositHistory = (store) => {
     });
 }
 
-export const getWithdrawHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getWithdrawHistory')
+export const getWithdrawHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getWithdrawHistory',store, router)
     .then(res => {
         store.commit('handleGetFreespinHistory', res.data.withdraws.data);
     })

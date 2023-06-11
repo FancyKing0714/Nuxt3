@@ -6,6 +6,7 @@
     
     const config = useRuntimeConfig();
     const store = useStore();
+    
     const fpjsClient = new FpjsClient({
         loadOptions: {
             apiKey: config.public.API_KEY
@@ -29,12 +30,6 @@
             });
         }
     );
-    watch(
-        ()=>store.state.isRegister,
-        ()=>{
-            props.toggleState('onLogin' , true);
-            props.toggleState('onSignUp' , false);
-    });
     const signUp = () => {
                             Object.keys(signupInfo).map(item => {
                                 userdata = {...userdata, [item] : signupInfo[item].value};
@@ -43,6 +38,13 @@
                             console.log(userdata);
                             SignUp(userdata, store);
     }
+
+    watch(
+        ()=>store.state.isRegister,
+        ()=>{
+            props.toggleState('onLogin' , true);
+            props.toggleState('onSignUp' , false);
+    });
 
     let userdata = {};
     let signupInfo = {

@@ -60,12 +60,8 @@ watch(
                 timeout: 1500,}) 
 });
 onBeforeMount(() => {
-//     const params = new URLSearchParams(window.location.search);
-// const clickId = params.get('click_id');
-// const promo = params.get('promo');
-// console.log(clickId, promo);
-        getAllGames(store);
-        // getProviders(store);
+    getAllGames(store);
+    // getProviders(store);
     if(Cookies.get("token")){
         store.commit('handleRegister', true);
         store.commit('handleLogin', true);

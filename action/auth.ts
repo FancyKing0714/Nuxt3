@@ -6,8 +6,8 @@ export const logIn = (data: object, store: any) => {
     Axios('post','/api/login',data)
     .then(res=>{
         const tokenStr=res.data["token"];
-        // localStorage.setItem("token",tokenStr.split("|")[1]);  
         Cookies.set('token', tokenStr.split("|")[1] );
+        store.commit('handleLogin',true);
         getProfile(store);
         store.commit('handleNotification',{type:'Success',message:'Login Successed!'});
     })
@@ -16,9 +16,13 @@ export const logIn = (data: object, store: any) => {
     });
 }
 
+export const logOut = (store: any, router: any) => {
+    Cookies.remove('token');
+    store.commit('handleLogin', false);
+    router.push("/");
+}
+
 export const SignUp = (data: object, store: any) => {
-    console.log(data);
-    
     Axios('post','/api/register',data)
     .then(res=>{  
         store.commit('handleRegister',true);

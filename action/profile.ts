@@ -1,7 +1,7 @@
 import {AxiosWithAuth} from '~~/utils/Axios';
 
 export const getProfile = (store) => {
-    AxiosWithAuth('get','/api/player/getProfile')
+    AxiosWithAuth('get','/api/player/getProfile',store)
     .then(res => {
         store.commit('handleGetUser', res.data.Player);
     })
@@ -10,8 +10,8 @@ export const getProfile = (store) => {
     });
 }
 
-export const getGameHistory = (store) => {
-    AxiosWithAuth('get','/api/player/getGamePlayHistory')
+export const getGameHistory = (store, router) => {
+    AxiosWithAuth('get','/api/player/getGamePlayHistory',store, router)
     .then(res => {
         store.commit('handleGetGameHistory', res.data.gamePlayHistory.data);
     })

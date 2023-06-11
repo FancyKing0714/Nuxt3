@@ -25,7 +25,7 @@ onBeforeMount(() => {
     selectCategory(route.params.tab.toString()); 
     switch(route.params.tab.toString()){
         case 'Game History':
-            getGameHistory(store);
+            getGameHistory(store, router);
             break;
     }
 });
