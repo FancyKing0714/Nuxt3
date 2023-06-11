@@ -2,7 +2,7 @@ import { LogTypes } from 'consola';
 import {AxiosWithAuth} from '~~/utils/Axios';
 
 export const getAllGames = (store) => {
-    AxiosWithAuth('get','/api/getAllGames')
+    AxiosWithAuth('get','/api/getAllGames',store)
     .then(res => {
         const result = res.data.games;
         interface game {
@@ -26,7 +26,7 @@ export const getAllGames = (store) => {
     });
 }
 export const getProviders = (store) => {
-    AxiosWithAuth('get','/api/getAllGameProviders')
+    AxiosWithAuth('get','/api/getAllGameProviders',store)
     .then(res => {
         store.commit('handleGetProviders', res.data.gameProviders);
     })

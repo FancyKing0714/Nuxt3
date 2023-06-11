@@ -23,6 +23,8 @@ const store = createStore({
         },
         handleLogin(state, payload) {
             state.isLogin = payload;
+            if(payload === false)
+                state.User = {};
         },
         handleRegister(state, payload) {
             state.isRegister = payload;

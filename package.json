@@ -19,6 +19,7 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro-spa": "^1.0.2",
     "@nuxt/vite-builder": "^3.5.2",
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/toast": "^3.3.1",
     "@quasar/extras": "^1.15.11",
     "@types/js-cookie": "^3.0.3",

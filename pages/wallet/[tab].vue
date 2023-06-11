@@ -23,10 +23,10 @@ onBeforeMount(()=>{
     selectCategory(route.params.tab.toString()); 
     switch(route.params.tab.toString()){
         case 'Deposit History':
-            getDepositHistory(store);
+            getDepositHistory(store, router);
             break;
         case 'Withdraw History':
-            getWithdrawHistory(store);
+            getWithdrawHistory(store, router);
             break;
     }
 });

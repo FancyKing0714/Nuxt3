@@ -25,13 +25,13 @@ onBeforeMount(()=>{
     selectCategory(route.params.tab.toString());    
     switch(route.params.tab.toString()){
         case 'Bonus History':
-            getBonusHistory(store);
+            getBonusHistory(store, router);
             break;
         case 'Free Spins':
-            getFreespinHistory(store);
+            getFreespinHistory(store, router);
             break;
         case 'Cash Back':
-            getCashbackHistory(store);
+            getCashbackHistory(store, router);
             break;
     }
 });
