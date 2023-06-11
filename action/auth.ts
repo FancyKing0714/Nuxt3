@@ -1,11 +1,13 @@
 import {Axios} from '~~/utils/Axios';
 import {getProfile} from './profile';
+import Cookies from 'js-cookie';
 
 export const logIn = (data: object, store: any) => {
     Axios('post','/api/login',data)
     .then(res=>{
         const tokenStr=res.data["token"];
-        localStorage.setItem("token",tokenStr.split("|")[1]);  
+        // localStorage.setItem("token",tokenStr.split("|")[1]);  
+        Cookies.set('token', tokenStr.split("|")[1] );
         getProfile(store);
         store.commit('handleNotification',{type:'Success',message:'Login Successed!'});
     })

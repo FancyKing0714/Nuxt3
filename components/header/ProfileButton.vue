@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
+import Cookies from 'js-cookie'
+
 const store = useStore();
 const router = useRouter();
 const prifileList = [
@@ -41,7 +43,7 @@ const prifileList = [
 ];
 const handleClick = (name) => {
     if(name == "Log Out"){
-        localStorage.removeItem("token");
+        Cookies.remove('token');
         store.commit('handleLogin', false);
         store.commit('handleRegister', false);
         router.push("/");
