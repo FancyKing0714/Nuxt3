@@ -7,14 +7,19 @@ import { useStore } from 'vuex';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
 import {getBonusHistory, getFreespinHistory, getCashbackHistory } from '~~/action/bonus';
+import auth from '~~/middleware/routerMiddleware.js';
+
+definePageMeta({
+  middleware: [auth]
+});
 
 const route = useRoute();
 const router = useRouter();
-
 const store = useStore();
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
+const selectedItem = ref(route.params.tab.toString());
 
 onBeforeMount(()=>{
     selectCategory(route.params.tab.toString());    
@@ -30,7 +35,6 @@ onBeforeMount(()=>{
             break;
     }
 });
-const selectedItem = ref(route.params.tab.toString());
 
 const categories = computed(() => [
     {

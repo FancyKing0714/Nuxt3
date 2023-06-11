@@ -7,7 +7,7 @@ import SelectLanguageBox from '~~/components/header/SelectLanguageBox.vue';
 import ProfileButton from './ProfileButton.vue';
 import WalletButton from './WalletButton.vue';
 import ProfileButtonMobile from './ProfileButtonMobile.vue';
-import { ref, onBeforeMount } from 'vue';
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 const store = useStore();
 
@@ -31,13 +31,6 @@ let isProfile = ref(false);
 function handleProfile(on: boolean) {
     isProfile.value = on;
 }
-
-onBeforeMount(() => {
-    if(localStorage.getItem("token")){
-        store.dispatch('handleRegister', true);
-        store.dispatch('handleLogin', true);
-    }
-});
 
 </script>
 <template>

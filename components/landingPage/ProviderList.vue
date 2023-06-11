@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 interface ProviderInterface {
-    link: string;
+    logo: string;
     name: string;
 }
 
@@ -100,7 +100,7 @@ const onSlideChange = () => {
                         <img
                             class="w-full h-full object-fill object-center"
                             alt="provider"
-                            :src="provider?.link ?? ''"
+                            :src="provider?.logo ?? ''"
                         />
                     </div>
                 </swiper-slide>

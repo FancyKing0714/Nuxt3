@@ -40,7 +40,7 @@ const onSlideChange = () => {
                     </q-btn>
 
                     <q-btn
-                        @click="swiperRef.slide()"
+                        @click="swiperRef.slideNext()"
                         ref="nextBtn"
                         class="mx-2"
                         size="sm"
@@ -62,7 +62,6 @@ const onSlideChange = () => {
                 </div>
             </div>
             <Swiper
-                ref="mySwiper"
                 :slides-per-view="6"
                 :space-between="10"
                 @swiper="onSwiper"
@@ -103,6 +102,7 @@ const onSlideChange = () => {
                                     <q-icon name="play_arrow" size="xl" />
                                 </q-btn>
                                 <q-btn
+                                    v-if="gameItem?.demo == 1"
                                     text-color=white
                                     padding="2px 15px"
                                     label="Demo"

@@ -12,8 +12,10 @@ import MobileFooter from '~~/components/footer/MobileFooter.vue';
 import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
 import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
-import { getGames } from '~~/action/game';
+import { getAllGames , getProviders } from '~~/action/game';
 import {useRouter} from 'vue-router';
+import Cookies from 'js-cookie';
+
 const router = useRouter();
 
 const not = useQuasar();
@@ -35,11 +37,10 @@ const store = useStore();
 
 function toggleState(name: string, val: boolean) {
     if (name === 'leftDrawerOpen') {
-        store.dispatch('handleDrawer', val);
+        store.commit('handleDrawer', val);
     }
     if (name === 'isLogin') {
-        console.log( name, val, "SS" )
-        store.dispatch('handleLogin', val);
+        store.commit('handleLogin', val);
     }
     state[name].value = val;
 }
@@ -58,11 +59,17 @@ watch(
                 multiLine: true,
                 timeout: 1500,}) 
 });
-onMounted(() => {
-    if(localStorage.getItem("token")){
-        store.dispatch('handleLogin', true);
+onBeforeMount(() => {
+//     const params = new URLSearchParams(window.location.search);
+// const clickId = params.get('click_id');
+// const promo = params.get('promo');
+// console.log(clickId, promo);
+        getAllGames(store);
+        // getProviders(store);
+    if(Cookies.get("token")){
+        store.commit('handleRegister', true);
+        store.commit('handleLogin', true);
         getProfile(store);
-        getGames(store);
     }
     else{
         router.push(`/`);

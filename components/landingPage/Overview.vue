@@ -1,5 +1,7 @@
 <script setup lang="ts">
     import { useStore } from 'vuex';
+    import { onMounted } from 'vue';
+
     const store = useStore();
     const isDrawer = computed(() => {
         return ref(store.state.isDrawer);
@@ -102,7 +104,7 @@
                         label="Deposit"
                     />
                     <q-btn
-                        v-if="isLogin.value === false"
+                        v-if="isLogin.value === true"
                         :class="[
                             'font-bold text-2xl lg:px-6',
                         ]"

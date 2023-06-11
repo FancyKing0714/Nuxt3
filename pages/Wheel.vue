@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import Activity from '~~/components/landingPage/Activity.vue';
+import auth from '~~/middleware/routerMiddleware.js';
+
+definePageMeta({
+  middleware: [auth]
+});
+
 </script>
 <template>
     <q-page>
