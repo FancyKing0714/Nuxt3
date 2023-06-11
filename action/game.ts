@@ -1,7 +1,7 @@
 import { LogTypes } from 'consola';
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getGames = (store) => {
+export const getAllGames = (store) => {
     AxiosWithAuth('get','/api/getAllGames')
     .then(res => {
         const result = res.data.games;
@@ -19,10 +19,19 @@ export const getGames = (store) => {
             });
             games = [...games, {"title":type, "list": typeItems}];
         });
-        store.dispatch('handleGetAllGames', games);
+        store.commit('handleGetAllGames', games);
     })
     .catch(err=>{
-        store.dispatch('handleNotification',{type:'Error',message:err.response.data.message});
+        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+    });
+}
+export const getProviders = (store) => {
+    AxiosWithAuth('get','/api/getAllGameProviders')
+    .then(res => {
+        store.commit('handleGetProviders', res.data.gameProviders);
+    })
+    .catch(err=>{
+        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
     });
 }
 

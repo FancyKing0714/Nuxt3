@@ -14,6 +14,7 @@ const store = createStore({
             withdrawHistory:[],
             gameHistory:[],
             gameList:[],
+            providers:[],
         };
     },
     mutations: {
@@ -53,43 +54,8 @@ const store = createStore({
         handleGetAllGames(state, payload) {
             state.gameList = payload;
         },
-    },
-    actions: {
-        handleDrawer({ commit }, payload) {
-            commit('handleDrawer', payload);
-        },
-        handleLogin({ commit }, payload) {
-            commit('handleLogin', payload);
-        },
-        handleRegister({ commit }, payload) {
-            commit('handleRegister', payload);
-        },
-        handleGetUser({ commit }, payload) {
-            commit('handleGetUser', payload);
-        },
-        handleNotification({ commit }, payload) {
-            commit('handleNotification', payload);
-        },
-        handleGetBonusHistory({ commit }, payload) {
-            commit('handleGetBonusHistory', payload);
-        },
-        handleGetCashbackHistory({ commit }, payload) {
-            commit('handleGetCashbackHistory', payload);
-        },
-        handleGetFreespinHistory({ commit }, payload) {
-            commit('handleGetFreespinHistory', payload);
-        },
-        handleGetDepositHistory({ commit }, payload) {
-            commit('handleGetDepositHistory', payload);
-        },
-        handleGetWithdrawHistory({ commit }, payload) {
-            commit('handleGetWithdrawHistory', payload);
-        },
-        handleGetGameHistory({ commit }, payload) {
-            commit('handleGetGameHistory', payload);
-        },
-        handleGetAllGames({ commit }, payload) {
-            commit('handleGetAllGames', payload);
+        handleGetProviders(state, payload) {
+            state.providers = payload;
         },
     },
 });

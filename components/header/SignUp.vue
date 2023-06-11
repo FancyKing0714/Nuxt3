@@ -1,19 +1,50 @@
 <script setup lang="ts">
-    import { ref , watch} from 'vue';
+    import { onMounted , ref , watch} from 'vue';
     import {SignUp} from '~~/action/auth';
-    import { useQuasar } from 'quasar'
     import {useStore} from 'vuex';
-    const not = useQuasar();
+    import { FpjsClient } from '@fingerprintjs/fingerprintjs-pro-spa';
+    
+    const config = useRuntimeConfig();
     const store = useStore();
-
+    const fpjsClient = new FpjsClient({
+        loadOptions: {
+            apiKey: config.public.API_KEY
+        }
+    });
+    let fpData;
+    onMounted(
+        ()=>{
+            fpjsClient.init()
+            .then(() => {
+                fpjsClient.getVisitorData({ extendedResult: true })
+                .then(visitorData=>{
+                    fpData = visitorData;
+                })
+                .catch(err=>{
+                    store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+                });
+            })
+            .catch(err=>{
+                store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+            });
+        }
+    );
     watch(
         ()=>store.state.isRegister,
         ()=>{
             props.toggleState('onLogin' , true);
             props.toggleState('onSignUp' , false);
     });
+    const signUp = () => {
+                            Object.keys(signupInfo).map(item => {
+                                userdata = {...userdata, [item] : signupInfo[item].value};
+                            });
+                            userdata = {...userdata, 'fingerprint': fpData};
+                            console.log(userdata);
+                            SignUp(userdata, store);
+    }
 
-    let data = {};
+    let userdata = {};
     let signupInfo = {
         first_name: ref(''),
         last_name: ref(''),
@@ -105,15 +136,7 @@
                                 of Conditions</span>
                         </div>
                         <q-btn
-                            @click="
-                               ()=>{
-                                let data={};
-                                Object.keys(signupInfo).map(item => {
-                                    data = {...data, [item] : signupInfo[item].value};
-                                });
-                                SignUp(data, store);
-                               } 
-                            "
+                            @click="signUp"
                             class="mt-5 font-bold w-full py-3"
                             style=" 
                                 background-color: #fff004;

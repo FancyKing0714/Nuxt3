@@ -1,4 +1,5 @@
-import * as path from 'path';
+
+import { NuxtConfig } from '@nuxt/types';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     // ssr: false,
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
         public: {
-          baseURL: 'https://beta.canada777.com',
+          API_KEY: '1TMplKctJPlF6U8PBnDK',
         },
     },
     quasar: {

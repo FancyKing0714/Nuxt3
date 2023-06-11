@@ -22,7 +22,7 @@ const prifileList = [
     {
         name: 'Promotions',
         icon: 'promotion',
-        link: '/profile',
+        link: '/bonus/Available Bonus',
     },
     {
         name: 'Wallet',
@@ -42,8 +42,8 @@ const prifileList = [
 const handleClick = (name) => {
     if(name == "Log Out"){
         localStorage.removeItem("token");
-        store.dispatch('handleLogin', false);
-        store.dispatch('handleRegister', false);
+        store.commit('handleLogin', false);
+        store.commit('handleRegister', false);
         router.push("/");
     }
 }

@@ -9,11 +9,17 @@ import { computed, onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
 import {getGameHistory} from '~~/action/profile';
+import auth from '~~/middleware/routerMiddleware.js';
+
+definePageMeta({
+  middleware: [auth]
+});
 
 const not = useQuasar();
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
+const selectedItem = ref(route.params.tab.toString());
 
 onBeforeMount(() => {
     selectCategory(route.params.tab.toString()); 
@@ -23,7 +29,6 @@ onBeforeMount(() => {
             break;
     }
 });
-const selectedItem = ref(route.params.tab.toString());
 
 const categories = computed(() => [
     {
