@@ -1,8 +1,6 @@
 import axios from 'axios';
 const baseURL = "https://beta.canada777.com";
 import Cookies from 'js-cookie'
-import {useStore} from 'vuex';
-import {useRouter} from 'vue-router';
 
 export const AxiosWithAuth = (meth :string, suburl:string, store: any, router?: any, data?: object ) => {
     const instance = axios.create();

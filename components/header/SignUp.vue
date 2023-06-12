@@ -3,6 +3,7 @@
     import {SignUp} from '~~/action/auth';
     import {useStore} from 'vuex';
     import { FpjsClient } from '@fingerprintjs/fingerprintjs-pro-spa';
+import { Cookies } from 'quasar';
     
     const config = useRuntimeConfig();
     const store = useStore();
@@ -34,8 +35,7 @@
                             Object.keys(signupInfo).map(item => {
                                 userdata = {...userdata, [item] : signupInfo[item].value};
                             });
-                            userdata = {...userdata, 'fingerprint': fpData};
-                            console.log(userdata);
+                            userdata = {...userdata, 'fingerprint': fpData , 'click_id': Cookies.get('click_id'), 'promo': Cookies.get('promo')};
                             SignUp(userdata, store);
     }
 
