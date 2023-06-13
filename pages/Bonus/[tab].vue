@@ -8,6 +8,7 @@ import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
 import {getBonusHistory, getFreespinHistory, getCashbackHistory } from '~~/action/bonus';
 import auth from '~~/middleware/routerMiddleware.js';
+import {linkTo, tabToLink, linkToTab} from '~~/utils/link';
 
 definePageMeta({
   middleware: [auth]
@@ -19,18 +20,17 @@ const store = useStore();
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
-const selectedItem = ref(route.params.tab.toString());
+const selectedItem = ref(linkToTab(route.params.tab.toString()));
 
 onBeforeMount(()=>{
-    selectCategory(route.params.tab.toString());    
     switch(route.params.tab.toString()){
-        case 'Bonus History':
+        case 'bonus-history':
             getBonusHistory(store, router);
             break;
-        case 'Free Spins':
+        case 'free-spins':
             getFreespinHistory(store, router);
             break;
-        case 'Cash Back':
+        case 'cash-back':
             getCashbackHistory(store, router);
             break;
     }
@@ -64,9 +64,9 @@ const categories = computed(() => [
     },
 ]);
 
-function selectCategory(val: string) {
+function selectCategory(val: string) {    
     selectedItem.value = val; 
-    router.push(`/Bonus/${val}`)
+    router.push(linkTo(`/bonus/${tabToLink(val)}`));
 }
 </script>
 <template>
@@ -95,7 +95,7 @@ function selectCategory(val: string) {
                     </div>
                 </div>
 
-                <div class="w-full py-4 flex items-center justify-center">
+                <div class="w-full py-7 flex items-center justify-center">
                     <p class="font-bold text-base hidden lg:!block">Bonus</p>
                     <div
                         class="mx-2 hidden lg:!block"

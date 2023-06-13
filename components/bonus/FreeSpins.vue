@@ -4,7 +4,7 @@
             style="background: #383d47"
             class="absolute w-full h-full opacity-50 top-0 left-0 rounded-md"
         ></div>
-        <div class="relative">
+        <div class="relative mt-10">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
                 <div class="flex items-center justify-between relative">
                     <div
@@ -105,9 +105,6 @@
                             <q-td key="title" :props="props">
                                 {{ props.row.title }}
                             </q-td>
-                            <!-- <q-td key="freespins_available" :props="props">
-                                {{ props.row.freespins_available }}
-                            </q-td> -->
                             <q-td key="freespins_used" :props="props">
                                 {{ props.row.freespins_used }}/{{ props.row.freespins_available }}
                             </q-td>
@@ -175,12 +172,6 @@ const cols: columnformat[] = [
                 label: 'Title',
                 align: 'left',
                 field: 'title',
-            },
-            {
-                name: 'freespins_available',
-                align: 'left',
-                label: 'Freespins Available',
-                field: 'freespins_available',
             },
             {
                 name: 'freespins_used',

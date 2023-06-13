@@ -89,19 +89,16 @@
                 </div>
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">Help</p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/terms-and-conditions')">
                         Terms & Conditions
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/bonus-terms-and-conditions')">
                         Bonus Terms
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
-                        Policy
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/privacy-and-security-policy')">
+                        Privacy and Security Policy
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
-                        Table
-                    </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/responsible-gambling')">
                         Responsible Gambling
                     </p>
                 </div>

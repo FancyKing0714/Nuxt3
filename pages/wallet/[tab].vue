@@ -9,6 +9,7 @@ import { useRouter , useRoute } from 'vue-router';
 import {getDepositHistory, getWithdrawHistory} from '~~/action/wallet';
 import { useStore } from 'vuex';
 import auth from '~~/middleware/routerMiddleware.js';
+import {linkTo, linkToTab, tabToLink} from '~~/utils/link';
 
 definePageMeta({
   middleware: [auth]
@@ -17,15 +18,14 @@ definePageMeta({
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
-const selectedItem = ref(route.params.tab.toString());
+const selectedItem = ref(linkToTab(route.params.tab.toString()));
 
 onBeforeMount(()=>{
-    selectCategory(route.params.tab.toString()); 
     switch(route.params.tab.toString()){
-        case 'Deposit History':
+        case 'deposit-history':
             getDepositHistory(store, router);
             break;
-        case 'Withdraw History':
+        case 'withdraw-history':
             getWithdrawHistory(store, router);
             break;
     }
@@ -43,9 +43,9 @@ const categories = computed(() => [
         active: selectedItem.value === 'Deposit',
     },
     {
-        name: 'Withdrawa',
+        name: 'Withdraw',
         icon: 'withdraw',
-        active: selectedItem.value === 'Withdrawa',
+        active: selectedItem.value === 'Withdraw',
     },
     {
         name: 'Deposit History',
@@ -61,7 +61,7 @@ const categories = computed(() => [
 
 function selectCategory(val: string) {
     selectedItem.value = val;
-    router.push(`/wallet/${val}`);
+    router.push(linkTo(`/wallet/${tabToLink(val)}`));
 }
 </script>
 <template>
@@ -100,7 +100,7 @@ function selectCategory(val: string) {
                 <DepositHistory v-if="selectedItem === 'Deposit History'" />
                 <WithdrawHistory v-if="selectedItem === 'Withdraw History'" />
                 <Deposit v-if="selectedItem === 'Deposit'" />
-                <Withdrawal v-if="selectedItem === 'Withdrawa'" />
+                <Withdrawal v-if="selectedItem === 'Withdraw'" />
                 <Balances v-if="selectedItem === 'Balances'" />
             </section>
             <section class="pt-8">

@@ -11,13 +11,16 @@ import Cookies from 'js-cookie'
 const store = useStore();
 const route = useRoute();
 onBeforeMount(()=>{
-    console.log(route.query.click_id);
     const click_id = route.query.click_id;
     const promo = route.query.promo;
     if(click_id)
         Cookies.set('click_id', click_id.toString());
+    else
+        Cookies.remove('click_id');
     if(promo)
         Cookies.set('promo', promo.toString());  
+    else
+        Cookies.remove('promo');  
 });
 </script>
 <template>

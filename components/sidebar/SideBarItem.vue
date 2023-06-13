@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {linkTo} from '~~/utils/link';
 interface SideBarItemInterFace {
     title: string;
     backUrl: string;
@@ -18,7 +19,7 @@ function getUrl(img: string) {
 }
 </script>
 <template>
-    <nuxt-link :to="link">
+    <nuxt-link :to="linkTo(link)">
         <div @click="" class="relative mt-7">
             <div
                 style="max-width: 109px"
