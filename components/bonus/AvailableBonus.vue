@@ -57,7 +57,7 @@ const categories = [
             style="background: #383d47"
             class="absolute w-full h-full opacity-50 top-0 left-0 rounded-md"
         ></div>
-        <div class="relative">
+        <div class="relative mt-10">
             <div class="grid md:grid-cols-2 gap-4">
                 <BonusCard
                     v-for="category in categories"

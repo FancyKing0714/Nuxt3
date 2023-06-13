@@ -10,6 +10,7 @@ import { useRouter , useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
 import {getGameHistory} from '~~/action/profile';
 import auth from '~~/middleware/routerMiddleware.js';
+import {linkTo, linkToTab, tabToLink } from '~~/utils/link';
 
 definePageMeta({
   middleware: [auth]
@@ -19,12 +20,11 @@ const not = useQuasar();
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
-const selectedItem = ref(route.params.tab.toString());
+const selectedItem = ref(linkToTab(route.params.tab.toString()));
 
 onBeforeMount(() => {
-    selectCategory(route.params.tab.toString()); 
     switch(route.params.tab.toString()){
-        case 'Game History':
+        case 'game-history':
             getGameHistory(store, router);
             break;
     }
@@ -55,7 +55,7 @@ const categories = computed(() => [
 
 function selectCategory(val: string) {
     selectedItem.value = val;
-    router.push(`/Profile/${val}`);
+    router.push(linkTo(`/profile/${tabToLink(val)}`));
 }
 </script>
 <template>

@@ -25,6 +25,8 @@ export const logOut = (store: any, router: any) => {
 export const SignUp = (data: object, store: any) => {
     Axios('post','/api/register',data)
     .then(res=>{  
+        Cookies.remove('click_id');
+        Cookies.remove('promo');
         store.commit('handleRegister',true);
         store.commit('handleNotification',{type:'Success',message: 'Register Suxxessed!'});
     })

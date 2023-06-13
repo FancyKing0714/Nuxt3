@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import WalletButton from './WalletButton.vue';
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
+import {logOut} from '~~/action/auth';
+import {linkTo} from '~~/utils/link';
+
+const store = useStore();
+const router = useRouter();
 const props = defineProps({
     open: {
         type: Boolean,
@@ -15,39 +22,44 @@ const profileList = [
     {
         name: 'Profile',
         icon: 'user',
-        link: '/profile',
+        link: '/profile/general-information',
     },
     {
         name: 'Deposit',
         icon: 'deposit',
-        link: '/profile',
+        link: '/wallet/deposit',
+    },
+    {
+        name: 'Withdraw',
+        icon: 'wallet-icon',
+        link: '/wallet/withdraw',
     },
     {
         name: 'Bonus',
         icon: 'bonus',
-        link: '/bonus',
+        link: '/bonus/available-bonus',
     },
     {
-        name: 'Promotions',
+        name: 'Free Spins',
         icon: 'promotion',
-        link: '/profile',
-    },
-    {
-        name: 'Wallet',
-        icon: 'wallet-icon',
-        link: '/wallet',
+        link: '/bonus/free-spins',
     },
     {
         name: 'Game History',
         icon: 'game',
-        link: '/profile',
+        link: '/profile/game-history',
     },
     {
         name: 'Log Out',
         icon: 'logout',
-        link: '/profile',
+        link: '/logout',
     },
 ];
+const handleClick = (name) => {
+    if(name == "Log Out"){
+        logOut(store,router);
+    }
+}
 </script>
 
 <template>
@@ -78,11 +90,12 @@ const profileList = [
                             v-for="profile in profileList"
                             clickable
                             v-close-popup
+                            @click = "handleClick(profile.name)"
                             style="border-bottom: 1px solid #4c4d52"
                         >
                             <q-item-section>
                                 <nuxt-link
-                                    :to="profile?.link"
+                                    :to="linkTo(profile?.link)"
                                     class="my-button"
                                 >
                                     <q-item-label>

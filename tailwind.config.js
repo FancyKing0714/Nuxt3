@@ -1,7 +1,7 @@
 module.exports = {
     mode: 'jit',
-    purge: ['./pages/**/*.vue', './components/**/*.vue', './layouts/**/*.vue'],
-    darkMode: false, // or 'media' or 'class'
+    content: ['./pages/**/*.vue', './components/**/*.vue', './layouts/**/*.vue'],
+    darkMode: 'media', // or 'media' or 'class'
     theme: {
         extend: {
             colors: {

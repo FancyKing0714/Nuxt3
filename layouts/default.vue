@@ -67,9 +67,6 @@ onBeforeMount(() => {
         store.commit('handleLogin', true);
         getProfile(store);
     }
-    else{
-        router.push(`/`);
-    }
 });
 </script>
 

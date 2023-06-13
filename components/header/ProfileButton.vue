@@ -2,6 +2,7 @@
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import {logOut} from '~~/action/auth';
+import {linkTo} from '~~/utils/link';
 
 const store = useStore();
 const router = useRouter();
@@ -9,35 +10,36 @@ const prifileList = [
     {
         name: 'Profile',
         icon: 'user',
-        link: '/profile/General Information',
+        link: '/profile/general-information',
     },
     {
         name: 'Deposit',
         icon: 'deposit',
-        link: '/wallet/Deposit',
+        link: '/wallet/deposit',
+    },
+    {
+        name: 'Withdraw',
+        icon: 'wallet-icon',
+        link: '/wallet/withdraw',
     },
     {
         name: 'Bonus',
         icon: 'bonus',
-        link: '/Bonus/Available Bonus',
+        link: '/bonus/available-bonus',
     },
     {
-        name: 'Promotions',
+        name: 'Free Spins',
         icon: 'promotion',
-        link: '/bonus/Available Bonus',
-    },
-    {
-        name: 'Wallet',
-        icon: 'wallet-icon',
-        link: '/wallet/Balances',
+        link: '/bonus/free-spins',
     },
     {
         name: 'Game History',
         icon: 'game',
-        link: '/Profile/Game History',
+        link: '/profile/game-history',
     },
     {
         name: 'Log Out',
+        link: '/',
         icon: 'logout',
     },
 ];
@@ -58,7 +60,7 @@ const handleClick = (name) => {
                 v-close-popup
             >
                 <q-item-section>
-                    <nuxt-link :to="profile?.link" class="my-button" >
+                    <nuxt-link :to="linkTo(profile?.link)" class="my-button" >
                         <q-item-label>
                             <div class="flex items-center justify-start">
                                 <img

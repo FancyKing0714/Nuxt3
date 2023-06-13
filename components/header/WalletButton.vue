@@ -54,7 +54,7 @@ function onItemClick() {
                 src="/imgs/header/wallet-icon.png"
                 alt="wallet"
             />
-            <p @click="$router.push('/wallet/Deposit')" class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
+            <p @click="$router.push('/wallet/deposit')" class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
         </div>
     </q-btn-group>
 </template>

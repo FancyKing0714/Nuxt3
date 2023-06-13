@@ -2,6 +2,7 @@
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
         class="flex justify-start items-center"
+        v-if="store.state.isLogin === true"
     >
         <q-img class="w-5" src="/imgs/sidebar/deposit.png" alt="deposit" />
         <p class="font-semibold text-sm p-3">Deposit</p>
@@ -38,7 +39,10 @@
         </button>
         <button class="group focus:outline-none">
             <div class="flex items-center justify-between h-12 font-semibold">
-                <div class="flex justify-start items-center">
+                <div 
+                    class="flex justify-start items-center"
+                    @click="$router.push('/promotions')"
+                    >
                     <q-img
                         class="w-5"
                         src="/imgs/sidebar/promotions.png"
@@ -80,10 +84,7 @@
     </div>
 
     <div
-        style="
-            color: #7b8193;
-            border-bottom: 1px solid rgba(125, 131, 150, 0.5);
-        "
+        style="color: #7b8193; border-bottom: 1px solid rgba(125, 131, 150, 0.5);"
         class="flex justify-start items-center"
     >
         <q-img class="w-5" src="/imgs/sidebar/recent.png" alt="deposit" />
@@ -103,4 +104,6 @@
 
 <script setup lang="ts">
 import SideBarGameCategory from './SideBarGameCategory.vue';
+import { useStore } from 'vuex';
+const store = useStore();
 </script>

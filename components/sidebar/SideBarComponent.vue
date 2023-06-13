@@ -42,7 +42,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
         title: 'Daily Cash Back',
         backUrl: 'side_1.png',
         iconUrl: 'cash_back.png',
-        link: '/wallet/Balances',
+        link: '/bonus/cash-back',
     },
     {
         title: 'BONUS WHEEl',
@@ -54,7 +54,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
         title: 'BONUS PROMOTIONS',
         backUrl: 'side_3.png',
         iconUrl: 'promotion.png',
-        link: '/bonus/Available Bonus',
+        link: '/promotions',
     },
     {
         title: 'TOURNAMENTS',
@@ -91,6 +91,7 @@ const prifileList = [
         <div
             style="border-bottom: 1px solid #7d8396"
             class="w-full text-center py-3 md:hidden"
+            v-if="store.state.isLogin === true"
         >
             <q-btn-dropdown
                 class="btn-none !rounded-3xl"
@@ -126,8 +127,9 @@ const prifileList = [
         <div
             class="py-3 w-full text-center md:hidden"
             style="border-bottom: 1px solid #7d8396"
+            v-if="store.state.isLogin === true"
         >
-            <q-btn @click="$router.push('/wallet')" color="primary">
+            <q-btn @click="$router.push('/wallet/deposit')" color="primary">
                 <div class="flex items-center justify-start py-1">
                     <img class="w-7" src="/imgs/deposit_white.png" alt="test" />
                     <p class="font-semibold text-xl pl-2">DEPOSIT</p>
@@ -135,7 +137,7 @@ const prifileList = [
             </q-btn>
         </div>
         <div>
-            <div class="md:!hidden mt-5">
+            <div class="w-full md:hidden mt-5">
                 <SearchInput />
             </div>
             <div class="mt-5 text-center">

@@ -97,14 +97,14 @@ const onSlideChange = () => {
                             <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <q-btn
                                     text-color=white
-                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 10px;"
+                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
                                 >
-                                    <q-icon name="play_arrow" size="xl" />
+                                    <q-icon name="play_arrow" size="lg" />
                                 </q-btn>
                                 <q-btn
                                     v-if="gameItem?.demo == 1"
                                     text-color=white
-                                    padding="2px 15px"
+                                    padding="1px 10px"
                                     label="Demo"
                                     style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
                                 />

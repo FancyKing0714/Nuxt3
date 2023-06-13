@@ -4,7 +4,7 @@
             style="background: #383d47"
             class="absolute w-full h-full opacity-50 top-0 left-0 rounded-md"
         ></div>
-        <div class="relative">
+        <div class="relative mt-10">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
                 <div class="flex items-center justify-between relative">
                     <div

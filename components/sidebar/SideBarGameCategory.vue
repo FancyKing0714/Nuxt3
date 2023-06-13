@@ -19,7 +19,7 @@
             ><div class="flex justify-start items-center">
                 <q-img
                     class="w-4"
-                    src="/imgs/sidebar/live_casino.png"
+                    src="/imgs/sidebar/liveGames.png"
                     alt="slot"
                 />
                 <p
@@ -34,7 +34,7 @@
             ><div class="flex justify-start items-center">
                 <q-img
                     class="w-4"
-                    src="/imgs/sidebar/table.png"
+                    src="/imgs/sidebar/tableGames.png"
                     alt="table"
                 />
                 <p

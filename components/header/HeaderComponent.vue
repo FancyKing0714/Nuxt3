@@ -9,6 +9,8 @@ import WalletButton from './WalletButton.vue';
 import ProfileButtonMobile from './ProfileButtonMobile.vue';
 import { ref } from 'vue';
 import { useStore } from 'vuex';
+import {linkTo} from '~~/utils/link';
+
 const store = useStore();
 
 const props = defineProps({
@@ -50,7 +52,7 @@ function handleProfile(on: boolean) {
                 "
             />
             <QImg
-                @click="$router.push('/')"
+                @click="$router.push(linkTo('/'))"
                 class="q-pl-md cursor-pointer"
                 style="max-width: 190px"
                 src="/imgs/header/logo_full.png"
