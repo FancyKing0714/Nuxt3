@@ -45,8 +45,8 @@ import { Cookies } from 'quasar';
     watch(
         ()=>store.state.isRegister,
         ()=>{
-            props.toggleState('onLogin' , true);
-            props.toggleState('onSignUp' , false);
+            store.commit('handleOnLogin', true);
+            store.commit('handleOnRegister', false);
     });
 
     let userdata = {};
@@ -74,10 +74,6 @@ import { Cookies } from 'quasar';
     const props = defineProps({
         open: {
             type: Boolean,
-            required: true,
-        },
-        toggleState: {
-            type: Function,
             required: true,
         },
     });
@@ -114,7 +110,7 @@ import { Cookies } from 'quasar';
     }
 </script>
 <template>
-    <q-dialog v-model="open" @hide="{props.toggleState('onSignUp', false);initData();}">
+    <q-dialog v-model="open" @hide="{store.commit('handleOnRegister', false);initData();}">
         <q-card  class="w-full sm:w-4/5 md:w-3/5" style="width: 700px">
             <div style="background: rgb(0 90 201)">
                 <div class="sm:grid sm:grid-cols-2 p-2">

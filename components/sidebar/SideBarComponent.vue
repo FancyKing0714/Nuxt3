@@ -14,14 +14,6 @@ const props = defineProps({
         type: Boolean,
         required: true,
     },
-    isLogin: {
-        type: Boolean,
-        required: true,
-    },
-    toggleState: {
-        type: Function,
-        required: true,
-    },
 });
 
 const isOpen = ref(props.leftDrawerOpen);
@@ -86,7 +78,7 @@ const prifileList = [
         show-if-above
         class="px-6 py-3"
         style="background-color: #181a25"
-        @before-hide="props.toggleState('leftDrawerOpen', false)"
+        @before-hide="store.commit('handleDrawer', false)"
     >
         <div
             style="border-bottom: 1px solid #7d8396"
@@ -143,7 +135,6 @@ const prifileList = [
             <div class="mt-5 text-center">
                 <LoginRegisterButton
                     v-if="store.state.isLogin === false"
-                    :toggleState="toggleState"
                 />
             </div>
         </div>

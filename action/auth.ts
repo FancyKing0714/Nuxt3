@@ -30,7 +30,7 @@ export const SignUp = (data: object, store: any) => {
         Cookies.remove('click_id');
         Cookies.remove('promo');
         store.commit('handleRegister',true);
-        store.commit('handleNotification',{type:'Success',message: 'Register Suxxessed!'});
+        store.commit('handleNotification',{type:'Success',message: 'Register Successed!'});
     })
     .catch(err=>{
         store.commit('handleNotification',{type:'Error',message:err.response.data.message});

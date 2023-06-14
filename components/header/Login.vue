@@ -12,11 +12,11 @@
         ()=>store.state.User,
         ()=>{
             if(Object.keys(store.state.User).length === 0){             //once user logout, store.state.User become {}, then show login dialog
-                props.toggleState('onLogin',true);
+                store.commit('handleOnLogin',true);
             }
             else{                                                       //once user login, store.state.User become {...}, then hide login dialog
-                props.toggleState('onLogin',false);                     //then set store.state.login value to true.
-                props.toggleState('isLogin',true);
+                store.commit('handleOnLogin',false);                     //then set store.state.login value to true.
+                store.commit('handleLogin',true);
             }
     });
 
@@ -29,10 +29,6 @@
             type: Boolean,
             required: true,
         },
-        toggleState: {
-            type: Function,
-            required: true,
-        },
     });
     let open = ref(props.open);
     let data = {};
@@ -41,7 +37,7 @@
     });
 </script>
 <template>
-    <q-dialog v-model="open" @hide="props.toggleState('onLogin', false)">
+    <q-dialog v-model="open" @hide="store.commit('handleOnLogin', false)">
         <q-card class="w-full sm:w-4/5 md:w-3/5" style="width: 700px">
             <div style="background: rgb(0 90 201)">
                 <div class="sm:grid sm:grid-cols-2 p-6">
@@ -140,8 +136,8 @@
                                 class="mt-4 font-medium p-4"
                                 @click="
                                     () => {
-                                        props.toggleState('onLogin', false);
-                                        props.toggleState('onSignUp', true);
+                                        store.commit('handleOnLogin', false);
+                                        store.commit('handleOnRegister', true);
                                     }
                                 "
                                 label="Create account"

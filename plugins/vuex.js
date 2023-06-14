@@ -3,6 +3,10 @@ const store = createStore({
     state() {
         return {
             isDrawer: true,
+            isWelcome: true,
+            isVerifyEmail: false,
+            onLogin: false,             //show/hide login diaolg
+            onRegister: false,          //show/hide register dialog
             isLogin: false,             //login value
             isregister: false,          //register value(when user register swap to login)
             User: {},                   //user profile
@@ -22,6 +26,12 @@ const store = createStore({
         handleDrawer(state, payload) {
             state.isDrawer = payload;
         },
+        handleVerifyEmail(state, payload) {
+            state.isVerifyEmail = payload;
+        },
+        handleWelcome(state, payload) {
+            state.isWelcome = payload;
+        },
         handleLogin(state, payload) {
             state.isLogin = payload;
             if(payload === false)
@@ -29,6 +39,12 @@ const store = createStore({
         },
         handleRegister(state, payload) {
             state.isRegister = payload;
+        },
+        handleOnLogin(state, payload) {
+            state.onLogin = payload;
+        },
+        handleOnRegister(state, payload) {
+            state.onRegister = payload;
         },
         handleGetUser(state, payload) {
             state.User = payload;

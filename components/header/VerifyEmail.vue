@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { useStore } from 'vuex';
+const store = useStore();
 const props = defineProps({
     open: {
         type: Boolean,
         required: true,
     },
-    toggleState: {
-        type: Function,
-        required: true,
-    },
 });
 let open = ref(props.open);
 watch(props, (newValue) => {
-    console.log(newValue.open, "DDDDDDDDD");
     open.value = newValue.open;
 });
 </script>
 <template>
-    <q-dialog v-model="open" @hide="props.toggleState('isVerifyEmail', false)">
+    <q-dialog v-model="open" @hide="store.commit('handleVerifyEmail', false)">
         <q-card style="width: 420px; max-width: 60vw">
             <div class="py-12 px-8 text-center" style="background: rgb(0 90 201)">
                 <p class="font-bold text-xl text-shadow-lg">verify your email address</p>
