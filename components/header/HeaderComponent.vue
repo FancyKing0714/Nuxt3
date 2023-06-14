@@ -12,21 +12,6 @@ import { useStore } from 'vuex';
 import {linkTo} from '~~/utils/link';
 
 const store = useStore();
-
-const props = defineProps({
-    toggleState: {
-        type: Function,
-        required: true,
-    },
-    leftDrawerOpen: {
-        type: Boolean,
-        required: true,
-    },
-    isLogin: {
-        type: Boolean,
-        required: true,
-    },
-});
 const { dark } = useQuasar();
 dark.set(true);
 let isProfile = ref(false);
@@ -42,13 +27,13 @@ function handleProfile(on: boolean) {
                 class="cursor-pointer"
                 style="max-width: 30px"
                 :src="
-                    leftDrawerOpen
+                    store.state.isDrawer
                         ? `${'/imgs/header/menu_left.png'}`
                         : `${'/imgs/header/menu_right.png'}`
                 "
                 alt="menu"
                 @click="
-                    () => props.toggleState('leftDrawerOpen', !leftDrawerOpen)
+                    () => store.commit('handleDrawer', !store.state.isDrawer)
                 "
             />
             <QImg
@@ -73,10 +58,6 @@ function handleProfile(on: boolean) {
                 <div class="sm:pl-5">
                     <LoginRegisterButton
                         v-if="store.state.isLogin === false"
-                        :toggleState="
-                            (name:string, val:boolean) =>
-                                props.toggleState(name, val)
-                        "
                     />
                 </div>
             </div>

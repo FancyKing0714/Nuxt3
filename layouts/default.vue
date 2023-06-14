@@ -13,37 +13,10 @@ import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
 import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
 import { getAllGames , getProviders } from '~~/action/game';
-import {useRouter} from 'vue-router';
 import Cookies from 'js-cookie';
 
-const router = useRouter();
-
 const not = useQuasar();
-
-interface State {
-    [name: string]: Ref<boolean>;
-}
-
-const state: State = {
-    isLogin: ref(false),
-    onLogin: ref(false),
-    onSignUp: ref(false),
-    leftDrawerOpen: ref(true),
-    isVerifyEmail: ref(false),
-    isWelcome: ref(true),
-};
-
 const store = useStore();
-
-function toggleState(name: string, val: boolean) {
-    if (name === 'leftDrawerOpen') {
-        store.commit('handleDrawer', val);
-    }
-    if (name === 'isLogin') {
-        store.commit('handleLogin', val);
-    }
-    state[name].value = val;
-}
 
 // watch store.state.notification, when value changed, show notification
 watch(
@@ -64,7 +37,7 @@ watch(
 //init website(domain.com)
 onBeforeMount(() => {
     getAllGames(store);                                     //loadgames
-    getProviders(store);                                    //loadProviders
+    // getProviders(store);                                    //loadProviders
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store);                                  // get player profile
@@ -75,18 +48,9 @@ onBeforeMount(() => {
 <template>
     <q-layout>
         <!-- Header -->
-        <HeaderComponent
-            :leftDrawerOpen="state?.leftDrawerOpen.value"
-            :isLogin="state?.isLogin.value"
-            :toggleState="(name: string, val: boolean)=>toggleState(name, val)"
-        />
-
+        <HeaderComponent />
         <!-- SideBar -->
-        <SideBarComponent
-            :leftDrawerOpen.sync="state?.leftDrawerOpen.value"
-            :isLogin="state?.isLogin?.value"
-            :toggleState="toggleState"
-        />
+        <SideBarComponent :leftDrawerOpen.sync="store.state.isDrawer" />
 
         <!-- Container -->
         <q-page-container style="background-color: #151515">
@@ -102,15 +66,13 @@ onBeforeMount(() => {
             style="background-color: #151515; color: #7d8396"
             >Copyright 2023 Europa777 All Right Reserved.</q-footer
         >
-        <Login :open.sync="state?.onLogin.value" :toggleState="toggleState" />
-        <SignUp :open.sync="state?.onSignUp.value" :toggleState="toggleState" />
+        <Login :open.sync="store.state.onLogin"/>
+        <SignUp :open.sync="store.state.onRegister"/>
         <VerifyEmail
-            :open.sync="state?.isVerifyEmail.value"
-            :toggleState="toggleState"
+            :open.sync="store.state.isVerifyEmail"
         />
         <Welcome
-            :open.sync="state?.isWelcome.value"
-            :toggleState="toggleState"
+            :open.sync="store.state.isWelcome"
         />
     </q-layout>
 </template>

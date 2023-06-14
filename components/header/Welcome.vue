@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { useStore } from 'vuex';
+const store = useStore();
 const props = defineProps({
     open: {
         type: Boolean,
-        required: true,
-    },
-    toggleState: {
-        type: Function,
         required: true,
     },
 });
@@ -20,7 +17,7 @@ watch(props, (newValue) => {
     <q-dialog
         class="welcome"
         v-model="open"
-        @hide="props.toggleState('isWelcome', false)"
+        @hide="store.commit('handleWelcome', false)"
     >
         <q-card class="w-full sm:w-3/5 md:w-1/2" style="width: 700px">
             <div class="relative" style="background: rgb(0 90 201)">
