@@ -7,14 +7,15 @@
     const store = useStore();
     const not = useQuasar();
 
+    //watch login state
     watch(
         ()=>store.state.User,
         ()=>{
-            if(Object.keys(store.state.User).length === 0){
+            if(Object.keys(store.state.User).length === 0){             //once user logout, store.state.User become {}, then show login dialog
                 props.toggleState('onLogin',true);
             }
-            else{
-                props.toggleState('onLogin',false);
+            else{                                                       //once user login, store.state.User become {...}, then hide login dialog
+                props.toggleState('onLogin',false);                     //then set store.state.login value to true.
                 props.toggleState('isLogin',true);
             }
     });
@@ -36,8 +37,6 @@
     let open = ref(props.open);
     let data = {};
     watch(props, (newValue) => {
-        console.log(newValue.open);
-
         open.value = newValue.open;
     });
 </script>

@@ -10,7 +10,16 @@ import auth from '~~/middleware/routerMiddleware.js';
 definePageMeta({
   middleware: [auth]
 });
-
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'Promotion',
+          name: 'Promotion',
+          content: 'Take advantage of our enticing promotions and boost your gaming experience. We offer a variety of bonuses, free spins, and special offers to enhance your chances of winning. Stay updated with our latest promotions and maximize your rewards as you enjoy your favorite games.'
+        }
+      ]
+})
 const store = useStore();
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);

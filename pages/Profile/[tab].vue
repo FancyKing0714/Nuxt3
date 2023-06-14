@@ -20,8 +20,11 @@ const not = useQuasar();
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
+
+//get tab name from router
 const selectedItem = ref(linkToTab(route.params.tab.toString()));
 
+//before component mount, call action if neccessary
 onBeforeMount(() => {
     switch(route.params.tab.toString()){
         case 'game-history':
@@ -53,6 +56,7 @@ const categories = computed(() => [
     },
 ]);
 
+//when user click tab, change selected item and redirect
 function selectCategory(val: string) {
     selectedItem.value = val;
     router.push(linkTo(`/profile/${tabToLink(val)}`));

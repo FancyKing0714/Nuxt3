@@ -12,6 +12,7 @@ yarn install
 
 # npm
 npm install
+node version 18.14.0
 
 # pnpm
 pnpm install

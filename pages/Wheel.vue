@@ -5,7 +5,16 @@ import auth from '~~/middleware/routerMiddleware.js';
 definePageMeta({
   middleware: [auth]
 });
-
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'Wheel Bonus',
+          name: 'Wheel Bonus',
+          content: 'Spin the wheel and unlock incredible rewards! Our Wheel Bonus feature offers a chance to win exciting prizes, such as free spins, cashback, bonus funds, and more. Test your luck and see what fortune has in store for you on the spinning wheel.'
+        }
+      ]
+})
 </script>
 <template>
     <q-page>

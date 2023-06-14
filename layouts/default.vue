@@ -45,6 +45,7 @@ function toggleState(name: string, val: boolean) {
     state[name].value = val;
 }
 
+// watch store.state.notification, when value changed, show notification
 watch(
         ()=>store.state.notification,
         ()=>{not.notify({
@@ -59,13 +60,14 @@ watch(
                 multiLine: true,
                 timeout: 1500,}) 
 });
+
+//init website(domain.com)
 onBeforeMount(() => {
-    getAllGames(store);
-    // getProviders(store);
-    if(Cookies.get("token")){
-        store.commit('handleRegister', true);
-        store.commit('handleLogin', true);
-        getProfile(store);
+    getAllGames(store);                                     //loadgames
+    getProviders(store);                                    //loadProviders
+    if(Cookies.get("token")){                               //if Cookie contains token
+        store.commit('handleLogin', true);                  //store.state.isLogin value set true
+        getProfile(store);                                  // get player profile
     }
 });
 </script>

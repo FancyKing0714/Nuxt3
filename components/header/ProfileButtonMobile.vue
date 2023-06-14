@@ -55,6 +55,8 @@ const profileList = [
         link: '/logout',
     },
 ];
+
+//when user click logout button, call logout action
 const handleClick = (name) => {
     if(name == "Log Out"){
         logOut(store,router);

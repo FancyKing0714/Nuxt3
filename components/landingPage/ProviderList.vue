@@ -18,7 +18,6 @@ const onSwiper = (swiper: any) => {
     swiperRef = swiper;
 };
 const onSlideChange = () => {
-    console.log('slide change');
 };
 </script>
 

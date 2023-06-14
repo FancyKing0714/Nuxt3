@@ -1,6 +1,5 @@
 <script setup lang="ts">
     import { useStore } from 'vuex';
-    import { onMounted } from 'vue';
 
     const store = useStore();
     const isDrawer = computed(() => {

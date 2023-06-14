@@ -15,7 +15,6 @@ const prifileList = [
 ];
 
 function onItemClick() {
-    console.log('Clicked on an Item');
 }
 </script>
 
