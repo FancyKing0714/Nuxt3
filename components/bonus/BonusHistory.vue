@@ -69,7 +69,9 @@ import { ref } from 'vue';
 import {useStore} from 'vuex';
 const store = useStore();
 
+//receive bonus history data from store and show table
 let rows = ref(store.state.bonusHistory);
+
 interface columnformat{
     name: string;
     label: string;

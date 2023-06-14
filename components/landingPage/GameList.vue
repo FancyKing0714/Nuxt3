@@ -15,6 +15,16 @@ const onSwiper = (swiper: any) => {
 const onSlideChange = () => {
     console.log('slide change');
 };
+useHead({
+      title: 'Games',
+      meta: [
+        {
+          hid: 'Games',
+          name: 'Games',
+          content: 'Discover a diverse collection of captivating games at our platform. From thrilling slot games that offer immersive experiences to live games that bring the casino atmosphere to your screen, we have something for everyone. Get ready to embark on an unforgettable gaming journey filled with excitement and big wins.'
+        }
+      ]
+})
 </script>
 
 <template>

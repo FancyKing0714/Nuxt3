@@ -175,8 +175,6 @@ import {ResetPassword} from '~~/action/auth';
 const store = useStore();
 const person = ref(store.state.User);
 let data = {};
-watch(()=>store.state.User,
-()=>person.value = store.state.User);
 const credential = ref({
   old_password: "",
   new_password: "",

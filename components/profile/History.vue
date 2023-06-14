@@ -39,7 +39,9 @@ import {useStore} from 'vuex';
 import { ref } from 'vue';
 const store = useStore();
 
+//get player game history from store.state.gameHistory
 let rows = ref(store.state.gameHistory);
+
 interface columnformat{
     name: string;
     label: string;

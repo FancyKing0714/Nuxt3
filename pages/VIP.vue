@@ -5,7 +5,16 @@ import auth from '~~/middleware/routerMiddleware.js';
 definePageMeta({
   middleware: [auth]
 });
-
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'VIP',
+          name: 'VIP',
+          content: `Elevate your gaming experience by joining our VIP program. As a valued member, you'll receive exclusive benefits, personalized rewards, and dedicated customer support. Enjoy special privileges and take your gameplay to the next level with our VIP club.`
+        }
+      ]
+})
 const torunamentList = [
     {
         img: 'gold.png',

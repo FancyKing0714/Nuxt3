@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Activity from "~~/components/landingPage/Activity.vue"
+
 </script>
 <template>
   <q-page>

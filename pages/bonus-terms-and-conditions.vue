@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import Activity from "~~/components/landingPage/Activity.vue"
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'Bonus Terms',
+          name: 'Bonus Terms',
+          content: 'Learn about the terms and conditions specific to bonuses and promotions. Understand the wagering requirements, eligibility criteria, and other important details associated with bonus offers. Stay informed to make the most of your bonuses and maximize your chances of winning.'
+        }
+      ]
+})
 </script>
 <template>
   <q-page>

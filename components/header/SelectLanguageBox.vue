@@ -2,7 +2,6 @@
 let lang = 'en';
 function onItemClick(item: any) {
     lang = item?.icon
-    console.log('Clicked on an Item');
 }
 
 const langs = [

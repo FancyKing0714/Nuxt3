@@ -3,18 +3,19 @@ const store = createStore({
     state() {
         return {
             isDrawer: true,
-            isLogin: false,
-            isregister: false,
-            User: {},
-            notification: {},
-            bonusHistory:[],
-            cashbackHistory:[],
-            freespinHistory:[],
-            depositHistory:[],
-            withdrawHistory:[],
-            gameHistory:[],
-            gameList:[],
-            providers:[],
+            isLogin: false,             //login value
+            isregister: false,          //register value(when user register swap to login)
+            User: {},                   //user profile
+            notification: {},           //notification(type,message)
+            bonusHistory:[],           //bonus history
+            cashbackHistory:[],           //cashback history
+            freespinHistory:[],           //freespin history
+            depositHistory:[],           //deposit history
+            withdrawHistory:[],           //withdraw history
+            gameHistory:[],           //player game history
+            gameList:[],           // all game list
+            providers:[],           //provider list
+            balance:{},           // balance
         };
     },
     mutations: {
@@ -58,6 +59,9 @@ const store = createStore({
         },
         handleGetProviders(state, payload) {
             state.providers = payload;
+        },
+        handleGetBalance(state, payload) {
+            state.balance = payload;
         },
     },
 });

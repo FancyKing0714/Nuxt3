@@ -8,12 +8,14 @@ import { Cookies } from 'quasar';
     const config = useRuntimeConfig();
     const store = useStore();
     
+    //fingerprintClient Init
     const fpjsClient = new FpjsClient({
         loadOptions: {
             apiKey: config.public.API_KEY
         }
     });
     let fpData;
+    //fetch fingerprint data and store in fpData
     onMounted(
         ()=>{
             fpjsClient.init()
@@ -31,7 +33,7 @@ import { Cookies } from 'quasar';
             });
         }
     );
-    const signUp = () => {
+    const signUp = () => {                                          //call register action with inputed data and fingerprint, click_id and promo
                             Object.keys(signupInfo).map(item => {
                                 userdata = {...userdata, [item] : signupInfo[item].value};
                             });
@@ -39,6 +41,7 @@ import { Cookies } from 'quasar';
                             SignUp(userdata, store);
     }
 
+    //when register successed and store.state.isregister became true, hide register dialog and show login dialog
     watch(
         ()=>store.state.isRegister,
         ()=>{
@@ -80,8 +83,6 @@ import { Cookies } from 'quasar';
     });
     let open = ref(props.open);
     watch(props, (newValue) => {
-        console.log(newValue.open);
-
         open.value = newValue.open;
     });
     const onGenderItemClick = (item: any) => {

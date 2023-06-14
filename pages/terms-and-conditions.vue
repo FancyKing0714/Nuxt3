@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import Activity from "~~/components/landingPage/Activity.vue"
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'Terms and Conditions',
+          name: 'Terms and Conditions',
+          content: 'Familiarize yourself with our terms and conditions to ensure a fair and secure gaming environment. Our comprehensive guidelines outline the rules, responsibilities, and obligations for both players and the platform. Stay informed and play with confidence while adhering to our policies.'
+        }
+      ]
+})
 </script>
 <template>
   <q-page>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Activity from '~~/components/landingPage/Activity.vue';
-import Deposit from '~~/components/withdraw/Deposit.vue';
-import DepositHistory from '~~/components/withdraw/DepositHistory.vue';
-import Withdrawal from '~~/components/withdraw/Withdrawal.vue';
-import Balances from '~~/components/withdraw/Balances.vue';
+import Deposit from '~~/components/wallet/Deposit.vue';
+import DepositHistory from '~~/components/wallet/DepositHistory.vue';
+import Withdrawal from '~~/components/wallet/Withdrawal.vue';
+import Balances from '~~/components/wallet/Balances.vue';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
-import {getDepositHistory, getWithdrawHistory} from '~~/action/wallet';
+import {getDepositHistory, getWithdrawHistory, getBalances} from '~~/action/wallet';
 import { useStore } from 'vuex';
 import auth from '~~/middleware/routerMiddleware.js';
 import {linkTo, linkToTab, tabToLink} from '~~/utils/link';
@@ -18,8 +18,11 @@ definePageMeta({
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
+
+//get tab name from router
 const selectedItem = ref(linkToTab(route.params.tab.toString()));
 
+//before component mount, call action if neccessary
 onBeforeMount(()=>{
     switch(route.params.tab.toString()){
         case 'deposit-history':
@@ -27,6 +30,9 @@ onBeforeMount(()=>{
             break;
         case 'withdraw-history':
             getWithdrawHistory(store, router);
+            break;
+        case 'balances':
+            getBalances(store, router);
             break;
     }
 });
@@ -59,6 +65,7 @@ const categories = computed(() => [
     },
 ]);
 
+//when user click tab, change selected item and redirect
 function selectCategory(val: string) {
     selectedItem.value = val;
     router.push(linkTo(`/wallet/${tabToLink(val)}`));

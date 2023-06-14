@@ -151,7 +151,9 @@ import { ref } from 'vue';
 const store = useStore();
 const isDrawer = computed(() => store.state.isDrawer);
 
+//receive freespin history data from store and show table
 let rows = ref(store.state.freespinHistory);
+
 interface columnformat{
     name: string;
     label: string;

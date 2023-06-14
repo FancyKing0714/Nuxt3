@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import Activity from "~~/components/landingPage/Activity.vue"
+useHead({
+      title: 'Canada777',
+      meta: [
+        {
+          hid: 'Privacy Policy',
+          name: 'Privacy Policy',
+          content: 'Your privacy and security are of utmost importance to us. Our privacy policy outlines how we collect, use, and protect your personal information. Rest assured that your data is handled responsibly, in compliance with industry standards and regulations. Read our privacy policy to understand how we prioritize your privacy.'
+        }
+      ]
+})
 </script>
 <template>
   <q-page>
