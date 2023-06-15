@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {useStore} from 'vuex';
+const store = useStore();
+</script>
 
 <template>
     <div
@@ -53,19 +56,19 @@
                 </div>
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">Quick Links</p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="store.commit('handleOnRegister', true)">
                         Registration
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/deposit')">
                         Deposit
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/bonus/available-bonus')">
                         Bonus
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/withdraw')">
                         Withdraw
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/deposit')">
                         Banking
                     </p>
                 </div>

@@ -24,20 +24,10 @@
         email: ref(''),
         password: ref(''),
     };
-    const props = defineProps({
-        open: {
-            type: Boolean,
-            required: true,
-        },
-    });
-    let open = ref(props.open);
     let data = {};
-    watch(props, (newValue) => {
-        open.value = newValue.open;
-    });
 </script>
 <template>
-    <q-dialog v-model="open" @hide="store.commit('handleOnLogin', false)">
+    <q-dialog v-model="store.state.onLogin" @hide="store.commit('handleOnLogin', false)">
         <q-card class="w-full sm:w-4/5 md:w-3/5" style="width: 700px">
             <div style="background: rgb(0 90 201)">
                 <div class="sm:grid sm:grid-cols-2 p-6">
@@ -111,7 +101,7 @@
                                 >
                             </div>
                             <q-btn
-                                class="mt-4 font-bold"
+                                class="mt-4 font-bold w-full"
                                 style="
                                     background-color: #fff004;
                                     color: black;
@@ -128,12 +118,11 @@
                                 "
                                 label="LOG IN"
                             />
-                            <p style="font-size: 8px" class="pt-4">
+                            <p class="pt-4 text-xs">
                                 Don’t have an account yet?
                             </p>
                             <q-btn
-                                style="font-size: 10px"
-                                class="mt-4 font-medium p-4"
+                                class="mt-4 font-medium p-2 text-xs w-full"
                                 @click="
                                     () => {
                                         store.commit('handleOnLogin', false);

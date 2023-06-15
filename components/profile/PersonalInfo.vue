@@ -128,7 +128,7 @@
           type="password"
           placeholder="Old password"
           standout
-          v-model="credential.old_password"
+          v-model="old_password"
           :dense="true"
         >
           <template v-slot:prepend>
@@ -140,7 +140,7 @@
           type="password"
           placeholder="New password"
           standout
-          v-model="credential.new_password"
+          v-model="new_password"
           :dense="true"
         >
           <template v-slot:prepend>
@@ -156,10 +156,7 @@
       label="Save" 
       @click="
         ()=>{
-          Object.keys(credential).map(item => {
-              data = {...data, [item] : credential[item].value};
-          });
-          ResetPassword( $data , store);          
+          ResetPassword( {'old_password' : old_password, 'new_password' : new_password} , store);          
         }
       "
     />
@@ -174,9 +171,6 @@ import {ResetPassword} from '~~/action/auth';
 
 const store = useStore();
 const person = ref(store.state.User);
-let data = {};
-const credential = ref({
-  old_password: "",
-  new_password: "",
-})
+const old_password = ref("");
+const new_password = ref("");
 </script>

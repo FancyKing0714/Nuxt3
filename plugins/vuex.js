@@ -2,11 +2,12 @@ import { createStore } from 'vuex';
 const store = createStore({
     state() {
         return {
+            onLogin: false,             //show/hide login diaolg
+            onRegister: false,          //show/hide register dialog
+            onMoblieProfile: false,
             isDrawer: true,
             isWelcome: true,
             isVerifyEmail: false,
-            onLogin: false,             //show/hide login diaolg
-            onRegister: false,          //show/hide register dialog
             isLogin: false,             //login value
             isregister: false,          //register value(when user register swap to login)
             User: {},                   //user profile
@@ -31,6 +32,9 @@ const store = createStore({
         },
         handleWelcome(state, payload) {
             state.isWelcome = payload;
+        },
+        handleMobileProfile(state, payload) {
+            state.onMoblieProfile = payload;
         },
         handleLogin(state, payload) {
             state.isLogin = payload;

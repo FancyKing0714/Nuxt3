@@ -56,20 +56,6 @@ const sideBarLinks: SideBarItemInterFace[] = [
     },
 ];
 
-const prifileList = [
-    {
-        name: '12350.58 CAD',
-    },
-    {
-        name: '331.64 USD',
-    },
-    {
-        name: '107.99 EUR',
-    },
-    {
-        name: '35.13 GBP',
-    },
-];
 </script>
 <template>
     <!-- SideBar -->
@@ -90,30 +76,55 @@ const prifileList = [
                 label-class="d-flex align-items-center"
             >
                 <template v-slot:label>
-                    <p class="text-xl font-bold">12350.58 CAD</p>
+                    <p class="text-xl font-bold">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p>
                 </template>
-
-                <q-list>
-                    <q-item
-                        v-for="profile in prifileList"
-                        clickable
-                        v-close-popup
-                    >
-                        <q-item-section>
-                            <q-item-label>
-                                <div class="flex items-center justify-start">
-                                    <p class="text-xxs sm:text-xs pl-1">
-                                        {{ profile.name }}
-                                    </p>
-                                </div>
-                            </q-item-label>
-                        </q-item-section>
-                    </q-item>
-                </q-list>
+                <q-item
+                    clickable
+                    v-close-popup
+                    @click="$router.push('/wallet/balances')"
+                >
+                    <q-item-section>
+                        <q-item-label>
+                            <div class="flex justify-between">
+                                <p class="text-xs sm:text-xs pl-1">Cash Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.balance }} {{ store.state.balance.currency }}</p>
+                            </div>
+                        </q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item
+                    clickable
+                    v-close-popup
+                    @click="$router.push('/wallet/balances')"
+                    class="border-b-2"
+                >
+                    <q-item-section>
+                        <q-item-label>
+                            <div class="flex justify-between">
+                                <p class="text-xs sm:text-xs pl-1">Bonus Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.bonus_balance }} {{ store.state.balance.currency }}</p>
+                            </div>
+                        </q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-item
+                    clickable
+                    v-close-popup
+                    @click="$router.push('/wallet/balances')"
+                >
+                    <q-item-section>
+                        <q-item-label>
+                            <div class="flex justify-between ">
+                                <p class="text-xs sm:text-xs pl-1">Total Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p>
+                            </div>
+                        </q-item-label>
+                    </q-item-section>
+                </q-item>
             </q-btn-dropdown>
-            <p style="color: #7b8193" class="text-xs">Jeff O.</p>
+            <p style="color: #7b8193" class="text-s">{{store.state.User.username}}</p>
             <p class="text-xs">
-                <span style="color: #fff004">LEVEL:</span><span>VIP</span>
+                <span style="color: #fff004">LEVEL : </span><span>VIP</span>
             </p>
         </div>
         <div

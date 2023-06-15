@@ -13,6 +13,7 @@ import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
 import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
 import { getAllGames , getProviders } from '~~/action/game';
+import { getBalances } from '~~/action/wallet';
 import Cookies from 'js-cookie';
 
 const not = useQuasar();
@@ -41,6 +42,7 @@ onBeforeMount(() => {
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store);                                  // get player profile
+        getBalances(store);
     }
 });
 </script>
@@ -66,8 +68,8 @@ onBeforeMount(() => {
             style="background-color: #151515; color: #7d8396"
             >Copyright 2023 Europa777 All Right Reserved.</q-footer
         >
-        <Login :open.sync="store.state.onLogin"/>
-        <SignUp :open.sync="store.state.onRegister"/>
+        <Login />
+        <SignUp />
         <VerifyEmail
             :open.sync="store.state.isVerifyEmail"
         />

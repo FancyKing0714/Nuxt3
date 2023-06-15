@@ -20,10 +20,10 @@ export const getWithdrawHistory = (store, router) => {
     });
 }
 
-export const getBalances = (store, router) => {
-    AxiosWithAuth('get','/api/player/getBalance',store, router)
+export const getBalances = (store) => {
+    AxiosWithAuth('get','/api/player/getBalance',store)
     .then(res => {
-        store.commit('handleGetBalance', res.data.gamePlayHistory.data);
+        store.commit('handleGetBalance', res.data.balance);
     })
     .catch(err=>{
         store.commit('handleNotification',{type:'Error',message:err.response.data.message});

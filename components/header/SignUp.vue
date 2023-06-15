@@ -37,7 +37,7 @@ import { Cookies } from 'quasar';
                             Object.keys(signupInfo).map(item => {
                                 userdata = {...userdata, [item] : signupInfo[item].value};
                             });
-                            userdata = {...userdata, 'fingerprint': fpData , 'click_id': Cookies.get('click_id'), 'promo': Cookies.get('promo')};
+                            userdata = {...userdata, 'fingerprint': fpData.visitorId, 'click_id': Cookies.get('click_id'), 'promo': Cookies.get('promo')};
                             SignUp(userdata, store);
     }
 
@@ -58,6 +58,7 @@ import { Cookies } from 'quasar';
         dob: ref(''),
         email: ref(''),
         password: ref(''),
+        password_confirmation: ref(''),
         country: ref(''),
         street_1_address: ref(''),
         street_2_address: ref(''),
@@ -71,16 +72,6 @@ import { Cookies } from 'quasar';
     signupInfo.gender.value = 'Male';
     const genders = ['Male', 'Female'];
     const currencys = ['CAD', 'USD'];
-    const props = defineProps({
-        open: {
-            type: Boolean,
-            required: true,
-        },
-    });
-    let open = ref(props.open);
-    watch(props, (newValue) => {
-        open.value = newValue.open;
-    });
     const onGenderItemClick = (item: any) => {
         signupInfo.gender.value = item
     }
@@ -96,6 +87,7 @@ import { Cookies } from 'quasar';
             dob: ref(''),
             email: ref(''),
             password: ref(''),
+            password_confirmation: ref(''),
             country: ref(''),
             street_1_address: ref(''),
             street_2_address: ref(''),
@@ -110,11 +102,11 @@ import { Cookies } from 'quasar';
     }
 </script>
 <template>
-    <q-dialog v-model="open" @hide="{store.commit('handleOnRegister', false);initData();}">
+    <q-dialog v-model="store.state.onRegister" @hide="{store.commit('handleOnRegister', false);initData();}">
         <q-card  class="w-full sm:w-4/5 md:w-3/5" style="width: 700px">
             <div style="background: rgb(0 90 201)">
                 <div class="sm:grid sm:grid-cols-2 p-2">
-                    <div class="p-1 hidden sm:!block flex justify-content-center">
+                    <div class="p-1 hidden sm:!block flex justify-content-center text-center">
                         <q-img
                             class="-mb-16 mt-6"
                             style="max-width: 221px"
@@ -144,17 +136,18 @@ import { Cookies } from 'quasar';
                             "
                             label="Register"
                         />
+                        <p class="pt-5 cursor-pointer text-xs" @click="store.commit('handleOnLogin', true);store.commit('handleOnRegister', false);">
+                            Already have an account?
+                        </p>
                     </div>
                     <div class="p-1 text-center">
                         <div>
-                            <P
-                                class="font-bold text-xl text-shadow-lg text-center py-2 mb-2"
-                            >
+                            <P class="font-bold text-2xl text-shadow-lg text-center py-2 mb-2">
                                 Sign up
                             </P>
                             <div class="flex items-center justify-start">
                                 <q-icon
-                                    class="opacity-50"
+                                    class="opacity-50 pr-1"
                                     size="sm"
                                     name="person"
                                 />
@@ -177,20 +170,27 @@ import { Cookies } from 'quasar';
                             </div>
                             <div class="flex items-center justify-start pt-2">
                                 <q-icon
-                                    class="opacity-50"
+                                    class="opacity-50 pr-1"
                                     size="sm"
-                                    name=""
+                                    name="person"
                                 />
                                 <q-input
-                                    class="text-shadow-lg w-full mr-2"
+                                    class="text-shadow-lg w-full"
                                     type="text"
                                     placeholder="UserName"
                                     standout
                                     v-model="signupInfo.username.value"
                                     :dense="true"
                                 />
-                                <q-btn-dropdown
-                                    class="btn-none px-1 py-1 sm:py-2 float-right w-full"
+                            </div>
+                            <div class="flex items-center justify-start pt-2">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name=""
+                                />
+                                <q-btn-dropdown 
+                                    class="btn-none px-1 py-1 sm:py-2 w-1/2"
                                     label-class="d-flex align-items-center"
                                     style="background-color: #1976D2;"
                                 >
@@ -218,135 +218,8 @@ import { Cookies } from 'quasar';
                                         </q-item>
                                     </q-list>
                                 </q-btn-dropdown>
-                            </div>
-                            <div class="flex items-center justify-start pt-2">
-                                <q-icon 
-                                    name="event" 
-                                    class="cursor-pointer opacity-50"
-                                    size="sm"
-                                >
-                                    <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                        <q-date v-model="signupInfo.dob.value">
-                                            <div class="row items-center justify-end">
-                                                <q-btn v-close-popup label="Close" color="primary" flat />
-                                            </div>
-                                        </q-date>
-                                    </q-popup-proxy>
-                                </q-icon>
-                                <q-input
-                                    class="text-shadow-lg w-full"
-                                    type="text"
-                                    mask="date"
-                                    placeholder="Birthday"
-                                    standout
-                                    v-model="signupInfo.dob.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name="mail"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full"
-                                    type="email"
-                                    placeholder="Email address"
-                                    standout
-                                    v-model="signupInfo.email.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name="lock"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full"
-                                    type="password"
-                                    placeholder="Password"
-                                    standout
-                                    v-model="signupInfo.password.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name="flag"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full pr-2"
-                                    type="text"
-                                    placeholder="Country"
-                                    standout
-                                    v-model="signupInfo.country.value"
-                                    :dense="true"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full"
-                                    placeholder="City"
-                                    standout
-                                    v-model="signupInfo.city.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name="room"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full pr-2"
-                                    type="text"
-                                    placeholder="Street 1"
-                                    standout
-                                    v-model="signupInfo.street_1_address.value"
-                                    :dense="true"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full"
-                                    placeholder="Street 2"
-                                    standout
-                                    v-model="signupInfo.street_2_address.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name=""
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full pr-2"
-                                    type="text"
-                                    placeholder="State"
-                                    standout
-                                    v-model="signupInfo.state.value"
-                                    :dense="true"
-                                />
-                                <q-input
-                                    class="pt-2 text-shadow-lg w-full"
-                                    placeholder="Zip Cord"
-                                    standout
-                                    v-model="signupInfo.zip.value"
-                                    :dense="true"
-                                />
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <q-icon
-                                    class="opacity-50"
-                                    size="sm"
-                                    name="paid"
-                                />
                                 <q-btn-dropdown
-                                    class="btn-none px-1 py-1 mt-2 sm:py-2 float-right w-full"
+                                    class="btn-none px-1 py-1 ml-2 sm:py-2 float-right w-1/2"
                                     label-class="d-flex align-items-center"
                                     style="background-color: #1976D2;"
                                 >
@@ -375,9 +248,144 @@ import { Cookies } from 'quasar';
                                     </q-list>
                                 </q-btn-dropdown>
                             </div>
+                            <div class="flex items-center justify-start pt-2">
+                                <q-icon 
+                                    name="event" 
+                                    class="cursor-pointer opacity-50"
+                                    size="sm"
+                                >
+                                    <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                                        <q-date v-model="signupInfo.dob.value">
+                                            <div class="row items-center justify-end">
+                                                <q-btn v-close-popup label="Close" color="primary" flat />
+                                            </div>
+                                        </q-date>
+                                    </q-popup-proxy>
+                                </q-icon>
+                                <q-input
+                                    class="text-shadow-lg w-full pl-1"
+                                    type="text"
+                                    mask="date"
+                                    placeholder="Birthday"
+                                    standout
+                                    v-model="signupInfo.dob.value"
+                                    :dense="true"
+                                />
+                            </div>
                             <div class="flex items-center justify-start">
                                 <q-icon
-                                    class="opacity-50"
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name="mail"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    type="email"
+                                    placeholder="Email address"
+                                    standout
+                                    v-model="signupInfo.email.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name="lock"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    type="password"
+                                    placeholder="Password"
+                                    standout
+                                    v-model="signupInfo.password.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name="lock"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    type="password"
+                                    placeholder="Password Confirmation"
+                                    standout
+                                    v-model="signupInfo.password_confirmation.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name="flag"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full pr-2"
+                                    type="text"
+                                    placeholder="Country"
+                                    standout
+                                    v-model="signupInfo.country.value"
+                                    :dense="true"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    placeholder="City"
+                                    standout
+                                    v-model="signupInfo.city.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name="room"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full pr-2"
+                                    type="text"
+                                    placeholder="Street 1"
+                                    standout
+                                    v-model="signupInfo.street_1_address.value"
+                                    :dense="true"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    placeholder="Street 2"
+                                    standout
+                                    v-model="signupInfo.street_2_address.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
+                                    size="sm"
+                                    name=""
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full pr-2"
+                                    type="text"
+                                    placeholder="State"
+                                    standout
+                                    v-model="signupInfo.state.value"
+                                    :dense="true"
+                                />
+                                <q-input
+                                    class="pt-2 text-shadow-lg w-full"
+                                    placeholder="Zip Cord"
+                                    standout
+                                    v-model="signupInfo.zip.value"
+                                    :dense="true"
+                                />
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <q-icon
+                                    class="opacity-50 pr-1"
                                     size="sm"
                                     name="phone"
                                 />
@@ -392,7 +400,19 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            
+                            <q-btn
+                                @click="signUp"
+                                class="mt-5 font-bold w-full py-3 sm:hidden"
+                                style=" 
+                                    background-color: #fff004;
+                                    color: black;
+                                    font-size: 20px;
+                                "
+                                label="Register"
+                            />
+                            <p class="pt-4 sm:hidden text-xs cursor-pointer" @click="store.commit('handleOnLogin', true);store.commit('handleOnRegister', false);">
+                                Already have an account?
+                            </p>
                         </div>
                     </div>
                 </div>

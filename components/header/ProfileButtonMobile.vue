@@ -7,17 +7,6 @@ import {linkTo} from '~~/utils/link';
 
 const store = useStore();
 const router = useRouter();
-const props = defineProps({
-    open: {
-        type: Boolean,
-        required: true,
-    },
-    handleProfile: {
-        type: Function,
-        required: true,
-    },
-});
-const isOpen = computed(() => ref(props.open));
 const profileList = [
     {
         name: 'Profile',
@@ -67,8 +56,8 @@ const handleClick = (name) => {
 <template>
     <q-dialog
         class="w-full sm:hidden"
-        v-model="isOpen.value"
-        @before-hide="props.handleProfile(false)"
+        v-model="store.state.onMoblieProfile"
+        @before-hide="store.commit('handleMobileProfile', false)"
     >
         <div class="relative overflow-hidden">
             <div
