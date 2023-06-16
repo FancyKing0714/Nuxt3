@@ -38,7 +38,7 @@ const store = useStore();
                 /></q-btn>
                 <p style="font-size: 9px">Slots</p>
             </div>
-            <!-- <div class="flex flex-col justify-center px-2 items-center">
+            <div class="flex flex-col justify-center px-2 items-center">
                 <q-btn 
                     class="btn-none" 
                     round
@@ -47,7 +47,7 @@ const store = useStore();
                     <img class="w-7" src="/imgs/deposit.png" alt="test"/>
                 </q-btn>
                 <p style="font-size: 9px">Deposit</p>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
