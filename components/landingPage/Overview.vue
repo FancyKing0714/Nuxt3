@@ -36,6 +36,7 @@
                         unelevated
                         color="primary"
                         label="SIGN UP"
+                        @click="store.commit('handleOnRegister', true)"
                     />
                     <q-btn
                         v-if="store.state.isLogin === true"
@@ -99,11 +100,12 @@
                     <q-btn
                         v-if="store.state.isLogin === true"
                         :class="[
-                            'font-bold text-2xl lg:px-6',
+                            'font-bold text-2xl lg:px-6 ml-2',
                         ]"
                         unelevated
                         color="primary"
                         label="SIGN UP"
+                        @click="store.commit('handleOnRegister', true)"
                     />
                 </div>
             </div>

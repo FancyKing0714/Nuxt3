@@ -1,6 +1,8 @@
-import {Axios} from '~~/utils/Axios';
+import {Axios, AxiosWithAuth} from '~~/utils/Axios';
 import {getProfile} from './profile';
+import {getBalances} from './wallet';
 import Cookies from 'js-cookie';
+import { log } from 'console';
 
 
 //login
@@ -10,6 +12,7 @@ export const logIn = (data: object, store: any) => {
         const tokenStr=res.data["token"];
         Cookies.set('token', tokenStr.split("|")[1] );
         store.commit('handleLogin',true);
+        getBalances(store);
         getProfile(store);
         store.commit('handleNotification',{type:'Success',message:'Login Successed!'});
     })
@@ -38,7 +41,9 @@ export const SignUp = (data: object, store: any) => {
 }
 //reset password
 export const ResetPassword = (data: object, store: any) => {
-    Axios('post','/api/player/updatePassword',data)
+    console.log(data);
+    
+    AxiosWithAuth('post','/api/player/updatePassword', store, null, data)
     .then(res=>{  
         store.commit('handleNotification',{type:'Success',message: 'Password Updated Successfully!'});
     })

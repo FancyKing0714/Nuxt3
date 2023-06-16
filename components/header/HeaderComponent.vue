@@ -14,11 +14,6 @@ import {linkTo} from '~~/utils/link';
 const store = useStore();
 const { dark } = useQuasar();
 dark.set(true);
-let isProfile = ref(false);
-function handleProfile(on: boolean) {
-    isProfile.value = on;
-}
-
 </script>
 <template>
     <QHeader class="px-1 py-1 sm:px-3" style="background-color: #292c35">
@@ -46,9 +41,9 @@ function handleProfile(on: boolean) {
             <div class="flex items-center justify-center w-full">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center justify-start pt-1">
-                        <div class="hidden lg:!block my-quto">
+                        <!-- <div class="hidden lg:!block my-quto">
                             <CasinoSportToogleButton />
-                        </div>
+                        </div> -->
                         
                         <div class="hidden lg:!block pl-5">
                             <SearchInput />
@@ -71,7 +66,7 @@ function handleProfile(on: boolean) {
                     </div>
                     <div class="pr-5 text-center">
                         <div
-                            @click="handleProfile(true)"
+                            @click="store.commit('handleMobileProfile', true)"
                             class="relative bg-gray-600 rounded-lg before:top-0 rotate-45 w-8 h-8 text-center overflow-hidden cursor-pointer"
                         >
                             <img
@@ -92,8 +87,5 @@ function handleProfile(on: boolean) {
             <!-- </div> -->
         </QToolbar>
     </QHeader>
-    <ProfileButtonMobile
-        :open.sync="isProfile"
-        :handleProfile="handleProfile"
-    />
+    <ProfileButtonMobile />
 </template>

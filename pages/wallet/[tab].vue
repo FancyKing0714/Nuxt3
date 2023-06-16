@@ -6,7 +6,7 @@ import Withdrawal from '~~/components/wallet/Withdrawal.vue';
 import Balances from '~~/components/wallet/Balances.vue';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
-import {getDepositHistory, getWithdrawHistory, getBalances} from '~~/action/wallet';
+import {getDepositHistory, getWithdrawHistory} from '~~/action/wallet';
 import { useStore } from 'vuex';
 import auth from '~~/middleware/routerMiddleware.js';
 import {linkTo, linkToTab, tabToLink} from '~~/utils/link';
@@ -31,9 +31,6 @@ onBeforeMount(()=>{
         case 'withdraw-history':
             getWithdrawHistory(store, router);
             break;
-        case 'balances':
-            getBalances(store, router);
-            break;
     }
 });
 
@@ -50,7 +47,7 @@ const categories = computed(() => [
     },
     {
         name: 'Withdraw',
-        icon: 'withdraw',
+        icon: 'deposit',
         active: selectedItem.value === 'Withdraw',
     },
     {
@@ -60,7 +57,7 @@ const categories = computed(() => [
     },
     {
         name: 'Withdraw History',
-        icon: 'withdraw_history',
+        icon: 'history',
         active: selectedItem.value === 'Withdraw History',
     },
 ]);

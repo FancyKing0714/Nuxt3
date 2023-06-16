@@ -1,11 +1,12 @@
 <template>
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
-        class="flex justify-start items-center"
+        class="flex justify-start items-center hidden md:!block pt-3 pb-3 cursor-pointer"
         v-if="store.state.isLogin === true"
+        @click="$router.push('/wallet/deposit')"
     >
         <q-img class="w-5" src="/imgs/sidebar/deposit.png" alt="deposit" />
-        <p class="font-semibold text-sm p-3">Deposit</p>
+        <p class="font-semibold text-sm p-3 inline">Deposit</p>
     </div>
 
     <!-- Component Start -->
@@ -24,7 +25,7 @@
             </div>
             <SideBarGameCategory />
         </button>
-        <button class="group focus:outline-none">
+        <!-- <button class="group focus:outline-none">
             <div class="flex items-center justify-between h-12 font-semibold">
                 <div class="flex justify-start items-center">
                     <q-img
@@ -34,9 +35,9 @@
                     />
                     <p class="font-semibold text-sm p-3">Sportbook</p>
                 </div>
-                <!-- <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" /> -->
+                <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" />
             </div>
-        </button>
+        </button> -->
         <button class="group focus:outline-none">
             <div class="flex items-center justify-between h-12 font-semibold">
                 <div 

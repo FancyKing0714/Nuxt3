@@ -1,22 +1,32 @@
 <script setup lang="ts">
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
+const store = useStore();
+const router = useRouter();
+
 const list = [
     {
         title: 'iGaming',
         content: [
             {
                 name: 'All Games',
+                link: '',
             },
             {
                 name: 'Slots',
+                link: '',
             },
             {
                 name: 'Live Casino',
+                link: '',
             },
             {
                 name: 'Table',
+                link: '',
             },
             {
                 name: 'Roulette',
+                link: '',
             },
         ],
     },
@@ -25,18 +35,23 @@ const list = [
         content: [
             {
                 name: 'Registration',
+                link: 'register'
             },
             {
                 name: 'Deposit',
+                link: "/wallet/deposit",
             },
             {
                 name: 'Bonus',
+                link: "/bonus/available-bonus",
             },
             {
                 name: 'Withdraw',
+                link: "/wallet/withdraw",
             },
             {
                 name: 'Banking',
+                link: "/wallet/deposit",
             },
         ],
     },
@@ -45,18 +60,23 @@ const list = [
         content: [
             {
                 name: 'About Canda777',
+                link: '',
             },
             {
                 name: 'Provably Fair',
+                link: '',
             },
             {
                 name: 'Contact Us',
+                link: '',
             },
             {
                 name: 'FAQ’s',
+                link: '',
             },
             {
                 name: 'Affiliates',
+                link: '',
             },
         ],
     },
@@ -65,19 +85,30 @@ const list = [
         content: [
             {
                 name: 'Terms & Conditions',
+                link: "/terms-and-conditions",
             },
             {
                 name: 'Bonus Terms',
+                link: "/bonus-terms-and-conditions",
             },
             {
-                name: 'Policy',
+                name: 'Privacy and Security Policy',
+                link: "/privacy-and-security-policy",
             },
             {
                 name: 'Responsible Gambling',
+                link: "/responsible-gambling",
             },
         ],
     },
 ];
+
+const itemClick = (link) => {
+    if(link == "register")
+        store.commit('handleOnRegister',true);
+    else
+        router.push(link);
+}
 </script>
 
 <template>
@@ -88,7 +119,7 @@ const list = [
                 94.97% 94.97% at 50% 5.03%,
                 #202531 0%,
                 #202531 50.48%,
-                #1f252e 100%
+                #1f252e 100%,
             );
         "
     >
@@ -108,7 +139,7 @@ const list = [
                         class="w-full h-full absolute left-0 top-0 opacity-80 rounded-sm"
                     ></div>
                     <div class="relative flex justify-start items-center">
-                        <p style="font-size: 11px" class="font-medium p-3">
+                        <p style="font-size: 13px" class="font-medium p-3">
                             {{ item?.title }}
                         </p>
                     </div>
@@ -123,7 +154,7 @@ const list = [
                     <p
                         v-for="topic in item?.content"
                         class="pb-1 py-2 px-6 text-xs text-left"
-                        style="font-size: 9px; font-weight: 400"
+                        @click="itemClick(topic?.link)"
                     >
                         {{ topic?.name }}
                     </p>

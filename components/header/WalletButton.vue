@@ -1,47 +1,60 @@
 <script setup lang="ts">
-const prifileList = [
-    {
-        name: '12350.58 CAD',
-    },
-    {
-        name: '331.64 USD',
-    },
-    {
-        name: '107.99 EUR',
-    },
-    {
-        name: '35.13 GBP',
-    },
-];
-
-function onItemClick() {
-}
+import { onBeforeMount } from 'vue';
+import {getBalances} from '~~/action/wallet';
+import {useStore} from 'vuex';
+const store = useStore();
 </script>
 
 <template>
     <q-btn-group style="background: #3e4455" rounded>
         <q-btn-dropdown
-            class="btn-none !rounded-3xl"
+            class="btn-none !rounded-3xl "
             label-class="d-flex align-items-center"
         >
-            <template v-slot:label> <p class="text-xxs sm:text-xs pl-1">12350.58 CAD</p> </template>
-            
-            <q-list>
-                <q-item
-                    v-for="profile in prifileList"
-                    clickable
-                    v-close-popup
-                    @click="onItemClick"
-                >
-                    <q-item-section>
-                        <q-item-label>
-                            <div class="flex items-center justify-start">
-                                <p class="text-xxs sm:text-xs pl-1">{{ profile.name }}</p>
-                            </div>
-                        </q-item-label>
-                    </q-item-section>
-                </q-item>
-            </q-list>
+            <template v-slot:label> <p class="text-xxs sm:text-xs pl-1">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p> </template>
+            <q-item
+                clickable
+                v-close-popup
+                @click="$router.push('/wallet/balances')"
+            >
+                <q-item-section>
+                    <q-item-label>
+                        <div class="flex justify-between">
+                            <p class="text-xxs sm:text-xs pl-1">Cash Balance: </p>
+                            <p class="text-xxs sm:text-xs pl-1">{{ store.state.balance.balance }} {{ store.state.balance.currency }}</p>
+                        </div>
+                    </q-item-label>
+                </q-item-section>
+            </q-item>
+            <q-item
+                clickable
+                v-close-popup
+                @click="$router.push('/wallet/balances')"
+                class="border-b-2"
+            >
+                <q-item-section>
+                    <q-item-label>
+                        <div class="flex justify-between">
+                            <p class="text-xxs sm:text-xs pl-1">Bonus Balance: </p>
+                            <p class="text-xxs sm:text-xs pl-1">{{ store.state.balance.bonus_balance }} {{ store.state.balance.currency }}</p>
+                        </div>
+                    </q-item-label>
+                </q-item-section>
+            </q-item>
+            <q-item
+                clickable
+                v-close-popup
+                @click="$router.push('/wallet/balances')"
+            >
+                <q-item-section>
+                    <q-item-label>
+                        <div class="flex justify-between ">
+                            <p class="text-xxs sm:text-xs pl-1">Total Balance: </p>
+                            <p class="text-xxs sm:text-xs pl-1">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p>
+                        </div>
+                    </q-item-label>
+                </q-item-section>
+            </q-item>
         </q-btn-dropdown>
         <div
             style="border: 1px solid #4D5160"
