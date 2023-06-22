@@ -36,8 +36,7 @@ watch(
 });
 
 //init website(domain.com)
-onBeforeMount(() => {
-    getAllGames(store);                                     //loadgames
+onBeforeMount(() => {                                  
     // getProviders(store);                                    //loadProviders
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true

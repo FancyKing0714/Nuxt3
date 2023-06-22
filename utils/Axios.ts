@@ -24,7 +24,7 @@ export const AxiosWithAuth = (meth :string, suburl:string, store: any, router?: 
         data: data
     });
 }
-export const Axios = (meth :string, suburl:string, data: object) => {
+export const Axios = (meth :string, suburl:string, data?: object) => {
     return axios({
         method: meth,
         url: `${baseURL+suburl}`,
