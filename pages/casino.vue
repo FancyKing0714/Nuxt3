@@ -3,7 +3,6 @@ import { useStore } from 'vuex';
 import { ref , onBeforeMount } from 'vue';
 import Conclusion from '~~/components/landingPage/Conclusion.vue';
 import GameListCasinoPage from '~~/components/landingPage/GameListCasinoPage.vue';
-import GameListIndex from '~~/components/landingPage/GameListIndex.vue';
 import ProviderList from '~~/components/landingPage/ProviderList.vue';
 import Activity from '~~/components/landingPage/Activity.vue';
 import {useRoute} from 'vue-router';
@@ -11,10 +10,7 @@ import Cookies from 'js-cookie'
 
 const store = useStore();
 const route = useRoute();
-let tab=ref(route.query?.tab?.toString()?route.query?.tab?.toString():'');
-watch(()=>route.query?.tab, ()=>{
-    tab.value = route.query?.tab?.toString()?route.query?.tab?.toString():'';
-})
+
 //catch click_id and promo when user call website( domain.com ) first
 //because middleware not yet init
 onBeforeMount(()=>{
@@ -46,14 +42,9 @@ useHead({
             style="max-width: 1450px"
             class="w-full px-1 sm:px-0 md:px-6 lg:px-14 py-8 m-auto"
         >
-            <section class="main h-full px-4">
-                <landing-page-overview />
-                <landing-page-intro-cards />
-            </section>
             <section class="pt-4">
                 <landing-page-category-bar />
-                <game-list-casino-page v-if="tab != ''"/>
-                <game-list-index v-if="tab == ''" v-for="game in store.state.allGameList" :game="game"/>
+                <game-list-casino-page />
                 <provider-list :providers="store.state.providers" />
             </section>
             <section>

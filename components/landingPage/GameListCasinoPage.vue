@@ -1,0 +1,117 @@
+<script setup lang="ts">
+import { useStore } from 'vuex';
+const store = useStore();
+useHead({
+      title: 'Games',
+      meta: [
+        {
+          hid: 'Games',
+          name: 'Games',
+          content: 'Discover a diverse collection of captivating games at our platform. From thrilling slot games that offer immersive experiences to live games that bring the casino atmosphere to your screen, we have something for everyone. Get ready to embark on an unforgettable gaming journey filled with excitement and big wins.'
+        }
+      ]
+});
+const imgurl = "https://statics.betfury.io/promotionsImages/image16861322190145281799845@1x.avif";
+</script>
+
+<template>
+    <div class="pt-4">
+        <div class="px-4">
+            <div class="flex flex-wrap justify-around">
+                <div class="card p-1" v-for="gameItem in store.state.gameListByType">
+                    <div class="container" >
+                        <img :src="imgurl" class="img bg-cover"/>
+                        <div class="btnDiv" >
+                            <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <q-btn
+                                    text-color=white
+                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                >
+                                    <q-icon name="play_arrow" size="lg" />
+                                </q-btn>
+                                <q-btn
+                                    v-if="gameItem?.demo == 1"
+                                    text-color=white
+                                    padding="1px 10px"
+                                    label="Demo"
+                                    style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                />
+                            </div>
+                            <q-btn
+                                text-color=yellow
+                                padding="0px"
+                                class="star-icon"
+                                style="background-color: transparent;"
+                            >
+                                <q-icon name="star_border" size="xs" />
+                            </q-btn>
+                        </div>
+                    </div>
+                    <p class="text-center gametext p-2">
+                        {{ gameItem?.name }}
+                    </p>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <q-btn class="px-5" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
+                    Road More
+                </q-btn>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+.card-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card{
+    width: 200px;
+    height:100%;
+}
+.container{
+    position: relative;
+    border-radius: 10px;
+}
+.img {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    z-index: 1;
+}
+.play-demo{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.star-icon{
+    position: absolute;
+    top:7px;
+    right:7px;
+}
+.btnDiv{
+    opacity: 0;
+    position:absolute;
+    z-index: 2;
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    transition: .3s;
+}
+.card:hover .btnDiv{
+    opacity: 1;
+}
+.gametext{
+    font-size: 11px;
+    color: white;
+}
+.card:hover .gametext{
+    font-size:12px;
+    color:white;
+}
+</style>
+

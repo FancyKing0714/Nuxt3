@@ -88,7 +88,7 @@ const faqList = [
                                 style="background: #383d47"
                                 class="w-full h-full absolute left-0 top-0 opacity-40 rounded-sm"
                             ></div>
-                            <p class="py-2 px-6 text-xs text-left">
+                            <p class="py-2 px-6 text-s text-left">
                                 {{ faq?.answer }}
                             </p>
                         </div>

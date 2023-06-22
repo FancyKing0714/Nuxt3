@@ -58,7 +58,7 @@ const store = useStore();
         </q-btn-dropdown>
         <div
             style="border: 1px solid #4D5160"
-            class="q-pl-md q-pt-sm q-pb-sm q-pr-md !rounded-3xl flex items-center justify-start"
+            class="q-pl-md q-pt-sm q-pb-sm q-pr-md !rounded-3xl flex flex-nowrap items-center justify-start"
         >
             <img
                 class="q-mr-sm"

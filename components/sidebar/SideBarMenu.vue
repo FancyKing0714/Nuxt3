@@ -1,7 +1,7 @@
 <template>
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
-        class="flex justify-start items-center hidden md:!block pt-3 pb-3 cursor-pointer"
+        class="flex justify-start items-center hidden md:!block pt-3 pb-3 cursor-pointer hover:bg-blue-600 rounded-md"
         v-if="store.state.isLogin === true"
         @click="$router.push('/wallet/deposit')"
     >
@@ -12,7 +12,10 @@
     <!-- Component Start -->
     <div class="flex flex-col">
         <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold">
+            <div 
+                class="flex items-center justify-between h-12 font-semibold cursor-pointer"
+                @click="dropdown"
+            >
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -21,12 +24,13 @@
                     />
                     <p class="font-semibold text-sm p-3">Games</p>
                 </div>
-                <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" />
+                <q-img class="w-2" src="/imgs/sidebar/accordion_down.png" v-if="!down"/>
+                <q-img class="w-2" src="/imgs/sidebar/accordion_up.png" v-if="down"/>
             </div>
-            <SideBarGameCategory />
+            <SideBarGameCategory :down="down" />
         </button>
         <!-- <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold">
+            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -39,7 +43,7 @@
             </div>
         </button> -->
         <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold">
+            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
                 <div 
                     class="flex justify-start items-center"
                     @click="$router.push('/promotions')"
@@ -55,7 +59,7 @@
             </div>
         </button>
         <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold">
+            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -72,21 +76,21 @@
 
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
-        class="flex justify-start items-center cursor-pointer"
+        class="flex justify-start items-center cursor-pointer hover:bg-blue-600 rounded-md"
         @click="$router.push('/vip')"
     >
         <q-img class="w-5" src="/imgs/sidebar/vip.png" alt="deposit" />
         <p class="font-semibold text-sm p-3">VIP</p>
     </div>
 
-    <div style="color: #7b8193" class="flex justify-start items-center">
+    <div style="color: #7b8193" class="flex justify-start items-center hover:bg-blue-600 rounded-md">
         <q-img class="w-5" src="/imgs/sidebar/fav.png" alt="deposit" />
         <p style="font-size: 11px" class="font-medium p-3">Favorites</p>
     </div>
 
     <div
         style="color: #7b8193; border-bottom: 1px solid rgba(125, 131, 150, 0.5);"
-        class="flex justify-start items-center"
+        class="flex justify-start items-center hover:bg-blue-600 rounded-md"
     >
         <q-img class="w-5" src="/imgs/sidebar/recent.png" alt="deposit" />
         <p style="font-size: 11px" class="font-medium p-3">Recently Played</p>
@@ -107,4 +111,8 @@
 import SideBarGameCategory from './SideBarGameCategory.vue';
 import { useStore } from 'vuex';
 const store = useStore();
+let down = ref(false)
+const dropdown = () => {
+    down.value = !down.value;
+}
 </script>
