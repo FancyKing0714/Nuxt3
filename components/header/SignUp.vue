@@ -106,7 +106,7 @@ import { Cookies } from 'quasar';
         <q-card  class="w-full sm:w-4/5 md:w-3/5" style="width: 700px">
             <div style="background: rgb(0 90 201)">
                 <div class="sm:grid sm:grid-cols-2 p-2">
-                    <div class="p-1 hidden sm:!block flex justify-content-center text-center">
+                    <div class="p-1 hidden sm:!block flex flex-nowrap justify-content-center text-center">
                         <q-img
                             class="-mb-16 mt-6"
                             style="max-width: 221px"
@@ -119,7 +119,7 @@ import { Cookies } from 'quasar';
                             alt="man"
                         />
                         <div
-                            class="flex justify-between items-center pt-3 w-full"
+                            class="flex flex-nowrap justify-between items-center pt-3 w-full"
                         >
                             <span style="font-size: 10px;text-align: center;"
                                 >I confirm that I am at least 18 years old
@@ -142,10 +142,10 @@ import { Cookies } from 'quasar';
                     </div>
                     <div class="p-1 text-center">
                         <div>
-                            <P class="font-bold text-2xl text-shadow-lg text-center py-2 mb-2">
+                            <p class="font-bold text-2xl text-shadow-lg text-center py-2 mb-2">
                                 Sign up
-                            </P>
-                            <div class="flex items-center justify-start">
+                            </p>
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -168,7 +168,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start pt-2">
+                            <div class="flex flex-nowrap items-center justify-start pt-2">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -183,7 +183,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start pt-2">
+                            <div class="flex flex-nowrap items-center justify-start pt-2">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -191,12 +191,12 @@ import { Cookies } from 'quasar';
                                 />
                                 <q-btn-dropdown 
                                     class="btn-none px-1 py-1 sm:py-2 w-1/2"
-                                    label-class="d-flex align-items-center"
+                                    label-class="d-flex flex-nowrap align-items-center"
                                     style="background-color: #1976D2;"
                                 >
                                     <template v-slot:label>
                                         <div
-                                            class="flex items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
+                                            class="flex flex-nowrap items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
                                         >
                                             {{ signupInfo.gender.value }}
                                         </div>
@@ -210,7 +210,7 @@ import { Cookies } from 'quasar';
                                         >
                                             <q-item-section>
                                                 <q-item-label>
-                                                    <div class="flex items-center justify-start">
+                                                    <div class="flex flex-nowrap items-center justify-start">
                                                         <p class="text-xs pl-1">{{ gender }}</p>
                                                     </div>
                                                 </q-item-label>
@@ -220,12 +220,12 @@ import { Cookies } from 'quasar';
                                 </q-btn-dropdown>
                                 <q-btn-dropdown
                                     class="btn-none px-1 py-1 ml-2 sm:py-2 float-right w-1/2"
-                                    label-class="d-flex align-items-center"
+                                    label-class="d-flex flex-nowrap align-items-center"
                                     style="background-color: #1976D2;"
                                 >
                                     <template v-slot:label>
                                         <div
-                                            class="flex items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
+                                            class="flex flex-nowrap items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
                                         >
                                             {{ signupInfo.currency.value }}
                                         </div>
@@ -239,7 +239,7 @@ import { Cookies } from 'quasar';
                                         >
                                             <q-item-section>
                                                 <q-item-label>
-                                                    <div class="flex items-center justify-start">
+                                                    <div class="flex flex-nowrap items-center justify-start">
                                                         <p class="text-xs pl-1">{{ currency }}</p>
                                                     </div>
                                                 </q-item-label>
@@ -248,7 +248,7 @@ import { Cookies } from 'quasar';
                                     </q-list>
                                 </q-btn-dropdown>
                             </div>
-                            <div class="flex items-center justify-start pt-2">
+                            <div class="flex flex-nowrap items-center justify-start pt-2">
                                 <q-icon 
                                     name="event" 
                                     class="cursor-pointer opacity-50"
@@ -272,7 +272,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -287,7 +287,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -302,7 +302,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -317,7 +317,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -339,7 +339,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -361,7 +361,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"
@@ -383,7 +383,7 @@ import { Cookies } from 'quasar';
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50 pr-1"
                                     size="sm"

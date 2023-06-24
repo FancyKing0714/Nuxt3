@@ -16,7 +16,7 @@ const { dark } = useQuasar();
 dark.set(true);
 </script>
 <template>
-    <QHeader class="px-1 py-1 sm:px-3" style="background-color: #292c35">
+    <QHeader class="bg-gray-800 px-1 py-1 sm:px-3">
         <QToolbar class="py-1">
             <QImg
                 class="cursor-pointer"
@@ -45,7 +45,7 @@ dark.set(true);
                             <CasinoSportToogleButton />
                         </div> -->
                         
-                        <div class="hidden lg:!block pl-5">
+                        <div class="hidden md:!block pl-5">
                             <SearchInput />
                         </div>
                     </div>
@@ -58,7 +58,7 @@ dark.set(true);
             </div>
             <!-- <div class="w-full flex items-center justify-end"> -->
                 <template v-if="store.state.isLogin">
-                    <div class="pr-5 hidden md:!block">
+                    <div class="pr-5 hidden lg:!block">
                         <WalletButton />
                     </div>
                     <div class="pr-5">

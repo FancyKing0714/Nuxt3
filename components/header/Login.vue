@@ -1,11 +1,9 @@
 <script setup lang="ts">
     import { ref , watch} from 'vue';
-    import { useQuasar } from 'quasar'
     import {useStore} from 'vuex';
     import { logIn } from '~~/action/auth';
 
     const store = useStore();
-    const not = useQuasar();
 
     //watch login state
     watch(
@@ -57,12 +55,12 @@
                             support.
                         </span>
                         <div>
-                            <P
+                            <p
                                 class="font-bold text-xl text-shadow-lg text-center py-2"
                             >
                                 Log in user
-                            </P>
-                            <div class="flex items-center justify-start">
+                            </p>
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50"
                                     size="sm"
@@ -77,7 +75,7 @@
                                     :dense="true"
                                 />
                             </div>
-                            <div class="flex items-center justify-start">
+                            <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
                                     class="opacity-50"
                                     size="sm"
@@ -93,7 +91,7 @@
                                 />
                             </div>
                             <div
-                                class="flex justify-between items-center pt-2 pl-6"
+                                class="flex flex-nowrap justify-between items-center pt-2 pl-6"
                             >
                                 <span style="font-size: 8px">Remember me</span>
                                 <span style="font-size: 8px"

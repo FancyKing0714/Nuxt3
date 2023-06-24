@@ -15,7 +15,7 @@ const store = useStore();
             <q-item
                 clickable
                 v-close-popup
-                @click="$router.push('/wallet/balances')"
+                @click="$router.push(linkTo('/wallet/balances'))"
             >
                 <q-item-section>
                     <q-item-label>
@@ -29,7 +29,7 @@ const store = useStore();
             <q-item
                 clickable
                 v-close-popup
-                @click="$router.push('/wallet/balances')"
+                @click="$router.push(linkTo('/wallet/balances'))"
                 class="border-b-2"
             >
                 <q-item-section>
@@ -44,7 +44,7 @@ const store = useStore();
             <q-item
                 clickable
                 v-close-popup
-                @click="$router.push('/wallet/balances')"
+                @click="$router.push(linkTo('/wallet/balances'))"
             >
                 <q-item-section>
                     <q-item-label>
@@ -66,7 +66,7 @@ const store = useStore();
                 src="/imgs/header/wallet-icon.png"
                 alt="wallet"
             />
-            <p @click="$router.push('/wallet/deposit')" class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
+            <p @click="$router.push(linkTo('/wallet/deposit'))" class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
         </div>
     </q-btn-group>
 </template>

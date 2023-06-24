@@ -51,10 +51,10 @@ onBeforeMount(() => {
         <!-- Header -->
         <HeaderComponent />
         <!-- SideBar -->
-        <SideBarComponent :leftDrawerOpen.sync="store.state.isDrawer" />
+        <SideBarComponent />
 
         <!-- Container -->
-        <q-page-container style="background-color: #151515">
+        <q-page-container class="bg-gray-900">
             <NuxtPage />
             <PageFooter /> 
             <MobilePageFooter />

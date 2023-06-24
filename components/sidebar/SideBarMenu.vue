@@ -1,9 +1,9 @@
 <template>
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
-        class="flex justify-start items-center hidden md:!block pt-3 pb-3 cursor-pointer hover:bg-blue-600 rounded-md"
+        class="flex justify-start items-center hidden md:!block py-2 my-1 cursor-pointer hover:bg-blue-600 rounded-md"
         v-if="store.state.isLogin === true"
-        @click="$router.push('/wallet/deposit')"
+        @click="$router.push(linkTo('/wallet/deposit'))"
     >
         <q-img class="w-5" src="/imgs/sidebar/deposit.png" alt="deposit" />
         <p class="font-semibold text-sm p-3 inline">Deposit</p>
@@ -11,9 +11,9 @@
 
     <!-- Component Start -->
     <div class="flex flex-col">
-        <button class="group focus:outline-none">
+        <button class="">
             <div 
-                class="flex items-center justify-between h-12 font-semibold cursor-pointer"
+                class="flex items-center justify-between h-12 font-semibold cursor-pointer hover:bg-blue-600 rounded-md"
                 @click="dropdown"
             >
                 <div class="flex justify-start items-center">
@@ -46,7 +46,7 @@
             <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
                 <div 
                     class="flex justify-start items-center"
-                    @click="$router.push('/promotions')"
+                    @click="$router.push(linkTo('/promotions'))"
                     >
                     <q-img
                         class="w-5"
@@ -77,7 +77,7 @@
     <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
         class="flex justify-start items-center cursor-pointer hover:bg-blue-600 rounded-md"
-        @click="$router.push('/vip')"
+        @click="$router.push(linkTo('/vip'))"
     >
         <q-img class="w-5" src="/imgs/sidebar/vip.png" alt="deposit" />
         <p class="font-semibold text-sm p-3">VIP</p>
@@ -99,7 +99,7 @@
         Europa777 Docs
     </p>
     <p
-        @click="$router.push('/faq')"
+        @click="$router.push(linkTo('/faq'))"
         style="font-size: 11px; color: #7b8193"
         class="font-medium pt-2 cursor-pointer"
     >
