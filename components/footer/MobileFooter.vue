@@ -42,7 +42,7 @@ const store = useStore();
                 <q-btn 
                     class="btn-none" 
                     round
-                    @click="$router.push('/wallet/deposit')"
+                    @click="$router.push(linkTo('/wallet/deposit'))"
                 >
                     <img class="w-7" src="/imgs/deposit.png" alt="test"/>
                 </q-btn>

@@ -1,27 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CasinoSportToogleButton from '~~/components/header/CasinoSportToogleButton.vue';
-// import LoginRegisterButton from '~~/components/header/LoginRegisterButton.vue';
+import LoginRegisterButton from '~~/components/header/LoginRegisterButton.vue';
 import SearchInput from '~~/components/header/SearchInput.vue';
 import SideBarItem from '~~/components/sidebar/SideBarItem.vue';
 import SideBarMenu from '~~/components/sidebar/SideBarMenu.vue';
-import LoginRegisterButton from '../header/LoginRegisterButton.vue';
+import {linkTo} from '~~/utils/link';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const props = defineProps({
-    leftDrawerOpen: {
-        type: Boolean,
-        required: true,
-    },
-});
-
-const isOpen = ref(props.leftDrawerOpen);
-
-watch(props, (newValue) => {
-    isOpen.value = newValue.leftDrawerOpen;
-});
-
 interface SideBarItemInterFace {
     title: string;
     backUrl: string;
@@ -60,7 +47,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
 <template>
     <!-- SideBar -->
     <q-drawer
-        v-model="isOpen"
+        v-model="store.state.isDrawer"
         show-if-above
         class="px-6 py-3"
         style="background-color: #181a25"
@@ -68,7 +55,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
     >
         <div
             style="border-bottom: 1px solid #7d8396"
-            class="w-full text-center py-3 md:hidden"
+            class="w-full text-center py-3 lg:hidden"
             v-if="store.state.isLogin === true"
         >
             <q-btn-dropdown
@@ -81,7 +68,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
                 <q-item
                     clickable
                     v-close-popup
-                    @click="$router.push('/wallet/balances')"
+                    @click="$router.push(linkTo('/wallet/balances'))"
                 >
                     <q-item-section>
                         <q-item-label>
@@ -95,7 +82,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
                 <q-item
                     clickable
                     v-close-popup
-                    @click="$router.push('/wallet/balances')"
+                    @click="$router.push(linkTo('/wallet/balances'))"
                     class="border-b-2"
                 >
                     <q-item-section>
@@ -110,7 +97,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
                 <q-item
                     clickable
                     v-close-popup
-                    @click="$router.push('/wallet/balances')"
+                    @click="$router.push(linkTo('/wallet/balances'))"
                 >
                     <q-item-section>
                         <q-item-label>
@@ -132,7 +119,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
             style="border-bottom: 1px solid #7d8396"
             v-if="store.state.isLogin === true"
         >
-            <q-btn @click="$router.push('/wallet/deposit')" color="primary">
+            <q-btn @click="$router.push(linkTo('/wallet/deposit'))" color="primary">
                 <div class="flex items-center justify-start py-1">
                     <img class="w-7" src="/imgs/deposit_white.png" alt="test" />
                     <p class="font-semibold text-xl pl-2">DEPOSIT</p>

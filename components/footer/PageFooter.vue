@@ -59,16 +59,16 @@ const store = useStore();
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="store.commit('handleOnRegister', true)">
                         Registration
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/deposit')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/deposit'))">
                         Deposit
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/bonus/available-bonus')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/bonus/available-bonus'))">
                         Bonus
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/withdraw')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/withdraw'))">
                         Withdraw
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/wallet/deposit')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/deposit'))">
                         Banking
                     </p>
                 </div>
@@ -92,16 +92,16 @@ const store = useStore();
                 </div>
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">Help</p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/terms-and-conditions')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/terms-and-conditions'))">
                         Terms & Conditions
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/bonus-terms-and-conditions')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/bonus-terms-and-conditions'))">
                         Bonus Terms
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/privacy-and-security-policy')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/privacy-and-security-policy'))">
                         Privacy and Security Policy
                     </p>
-                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push('/responsible-gambling')">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/responsible-gambling'))">
                         Responsible Gambling
                     </p>
                 </div>

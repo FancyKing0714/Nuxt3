@@ -9,7 +9,7 @@ const props = defineProps({
     },
 });
 let open = ref(props.open);
-watch(props, (newValue) => {
+watch(()=>props, (newValue) => {
     open.value = newValue.open;
 });
 </script>
