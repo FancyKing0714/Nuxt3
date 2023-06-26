@@ -57,7 +57,7 @@
     ];
 </script>
 <template>
-    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl: max-w-7xl xl:p-5 xl:m-auto xl:h-fit'">
+    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:max-w-5xl 2xl:relative 2xl:max-w-7xl xl:p-5 m-auto xl:h-fit'">
         <!-- title and path -->
         <div class ="hidden" :class="!fullScreenState&&'xl:!block'">
             <div class="py-5 flex flex-row">

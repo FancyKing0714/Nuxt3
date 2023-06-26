@@ -6,7 +6,10 @@ export const getProfile = (store) => {
         store.commit('handleGetUser', res.data.Player);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -16,6 +19,9 @@ export const getGameHistory = (store, router) => {
         store.commit('handleGetGameHistory', res.data.gamePlayHistory.data);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }

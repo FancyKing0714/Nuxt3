@@ -153,6 +153,9 @@ const isDrawer = computed(() => store.state.isDrawer);
 
 //receive freespin history data from store and show table
 let rows = ref(store.state.freespinHistory);
+watch(()=>store.state.freespinHistory,()=>{
+    rows.value = store.state.freespinHistory;
+});
 
 interface columnformat{
     name: string;

@@ -76,6 +76,9 @@ const store = useStore();
 
 //receive withdraw history data from store and show table
 let rows = ref(store.state.withdrawHistory);
+watch(()=>store.state.withdrawHistory,()=>{
+    rows.value = store.state.withdrawHistory;
+});
 
 interface columnformat{
     name: string;

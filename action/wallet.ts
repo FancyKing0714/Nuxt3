@@ -6,7 +6,10 @@ export const getDepositHistory = (store, router) => {
         store.commit('handleGetBonusHistory', res.data.deposits.data);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -16,7 +19,10 @@ export const getWithdrawHistory = (store, router) => {
         store.commit('handleGetFreespinHistory', res.data.withdraws.data);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -26,6 +32,9 @@ export const getBalances = (store) => {
         store.commit('handleGetBalance', res.data.balance);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }

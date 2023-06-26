@@ -52,9 +52,11 @@ const imgurl = "https://statics.betfury.io/promotionsImages/image168613221901452
                     </p>
                 </div>
             </div>
-            <div class="flex justify-center">
-                <q-btn class="px-5" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
-                    Road More
+            <div class="flex flex-col justify-center items-center py-2">
+                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="0.677" />
+                <p class="text-center text-md py-2">Displaying 30 of 45</p>
+                <q-btn class="w-52" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
+                    Load More
                 </q-btn>
             </div>
         </div>

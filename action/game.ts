@@ -1,4 +1,5 @@
 import { LogTypes } from 'consola';
+import { log } from 'console';
 import {Axios} from '~~/utils/Axios';
 
 export const getAllGames = (store) => {
@@ -22,7 +23,10 @@ export const getAllGames = (store) => {
         store.commit('handleGetAllGames', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 export const getAllGamesByType = (store, pagenumber) => {
@@ -35,7 +39,10 @@ export const getAllGamesByType = (store, pagenumber) => {
         store.commit('handleGetGamesByType', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -49,7 +56,10 @@ export const getSlotsGames = (store, pagenumber) => {
         store.commit('handleGetGamesByType', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -63,7 +73,10 @@ export const getTableGames = (store, pagenumber) => {
         store.commit('handleGetGamesByType', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -77,7 +90,10 @@ export const getLiveGames = (store, pagenumber) => {
         store.commit('handleGetGamesByType', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -91,7 +107,10 @@ export const getRouletteGames = (store, pagenumber) => {
         store.commit('handleGetGamesByType', games);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
@@ -101,7 +120,10 @@ export const getProviders = (store) => {
         store.commit('handleGetProviders', res.data.gameProviders);
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 
