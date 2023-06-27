@@ -1,19 +1,23 @@
 <template>
-    <div
-        style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
-        class="flex justify-start items-center hidden md:!block py-2 my-1 cursor-pointer hover:bg-blue-600 rounded-md"
-        v-if="store.state.isLogin === true"
-        @click="$router.push(linkTo('/wallet/deposit'))"
-    >
-        <q-img class="w-5" src="/imgs/sidebar/deposit.png" alt="deposit" />
-        <p class="font-semibold text-sm p-3 inline">Deposit</p>
-    </div>
-
     <!-- Component Start -->
-    <div class="flex flex-col">
-        <button class="">
+    <div class="flex flex-col pt-3">
+        <button 
+            class="group focus:outline-none rounded-md" 
+            style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
+        >
+            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
+                <div 
+                    class="flex justify-start items-center"
+                    @click="$router.push(linkTo('/wallet/deposit'))"
+                    >
+                    <q-img class="w-5" src="/imgs/sidebar/deposit.png" alt="deposit" />
+                    <p class="font-semibold text-sm p-3">Deposit</p>
+                </div>
+            </div>
+        </button>
+        <button >
             <div 
-                class="flex items-center justify-between h-12 font-semibold cursor-pointer hover:bg-blue-600 rounded-md"
+                class="flex items-center justify-between font-semibold cursor-pointer hover:bg-blue-600 rounded-md"
                 @click="dropdown"
             >
                 <div class="flex justify-start items-center">
@@ -43,7 +47,7 @@
             </div>
         </button> -->
         <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
+            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
                 <div 
                     class="flex justify-start items-center"
                     @click="$router.push(linkTo('/promotions'))"
@@ -59,7 +63,7 @@
             </div>
         </button>
         <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
+            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -74,14 +78,14 @@
     </div>
     <!-- Component End  -->
 
-    <div
+    <!-- <div
         style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
         class="flex justify-start items-center cursor-pointer hover:bg-blue-600 rounded-md"
         @click="$router.push(linkTo('/vip'))"
     >
         <q-img class="w-5" src="/imgs/sidebar/vip.png" alt="deposit" />
         <p class="font-semibold text-sm p-3">VIP</p>
-    </div>
+    </div> -->
 
     <div style="color: #7b8193" class="flex justify-start items-center hover:bg-blue-600 rounded-md">
         <q-img class="w-5" src="/imgs/sidebar/fav.png" alt="deposit" />

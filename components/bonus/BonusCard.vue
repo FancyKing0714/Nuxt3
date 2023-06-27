@@ -35,11 +35,12 @@ const props = defineProps({
                     alt="title"
                 />
             </div>
-            <p class="text-xs pt-4">{{ comment }}</p>
+            <p class="text-xs p-4">{{ comment }}</p>
         </div>
 
         <div class="text-center pb-10">
-            <q-btn class="mt-4" color="primary" label="READ MORE" />
+            <q-btn color="primary" label="READ MORE" />
         </div>
     </div>
 </template>
+

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import ActiveBonus from '~~/components/bonus/ActiveBonus.vue';
-import AvailableBonus from '~~/components/bonus/AvailableBonus.vue';
-import FreeSpins from '~~/components/bonus/FreeSpins.vue';
+import Promotions from '~~/components/bonus/Promotions.vue';
 import Activity from '~~/components/landingPage/Activity.vue';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed , onBeforeMount} from 'vue';
 import auth from '~~/middleware/routerMiddleware.js';
+import {getPromotion} from '~~/action/others';
 
 definePageMeta({
   middleware: [auth]
@@ -19,8 +18,11 @@ useHead({
           content: 'Take advantage of our enticing promotions and boost your gaming experience. We offer a variety of bonuses, free spins, and special offers to enhance your chances of winning. Stay updated with our latest promotions and maximize your rewards as you enjoy your favorite games.'
         }
       ]
-})
+});
 const store = useStore();
+onBeforeMount(()=>{
+    getPromotion(store);
+});
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
@@ -38,20 +40,16 @@ const isDrawer = computed(() => {
                 >
                     <div :class="['pr-12 md:pr-24 xl:pr-36', isDrawer.value?'lg:pr-6':'lg:pr-36']">
                         <p>
-                            <span>DAILY CASHBACK OF UP TO</span>&nbsp;<span
-                                style="color: #ffff03"
-                                class="font-black text-5xl"
-                                >20%</span
+                            <span
+                                style="color: rgb(255, 255, 3)"
+                                class="text-5xl lg:text-6xl"
+                                >Promotions</span
                             >
                         </p>
-                        <p>
-                            ONLY ON
-                            <span style="color: #ffff03">EURPOE #1</span> ONLINE
-                            CASINO
-                        </p>
+                        
                     </div>
                 </div>
-                <AvailableBonus />
+                <Promotions />
             </section>
             <section class="pt-8">
                 <Activity />

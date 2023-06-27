@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
+import {gamePlay} from '~~/action/game';
+
 const store = useStore();
+const play = (demo, slug) =>{
+    gamePlay(demo, slug, store);
+};
 useHead({
       title: 'Games',
       meta: [
@@ -11,7 +16,7 @@ useHead({
         }
       ]
 });
-const imgurl = "https://statics.betfury.io/promotionsImages/image16861322190145281799845@1x.avif";
+const imgurl = "/imgs/noGameImg.png";
 </script>
 
 <template>
@@ -20,12 +25,13 @@ const imgurl = "https://statics.betfury.io/promotionsImages/image168613221901452
             <div class="flex flex-wrap justify-around">
                 <div class="card p-1" v-for="gameItem in store.state.gameListByType">
                     <div class="container" >
-                        <img :src="imgurl" class="img bg-cover"/>
+                        <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover"/>
                         <div class="btnDiv" >
                             <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <q-btn
                                     text-color=white
                                     style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                    @click="play(false, gameItem.slug)"
                                 >
                                     <q-icon name="play_arrow" size="lg" />
                                 </q-btn>
@@ -35,6 +41,7 @@ const imgurl = "https://statics.betfury.io/promotionsImages/image168613221901452
                                     padding="1px 10px"
                                     label="Demo"
                                     style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                    @click="play(true, gameItem.slug)"
                                 />
                             </div>
                             <q-btn

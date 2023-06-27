@@ -10,21 +10,24 @@ const store = createStore({
             isVerifyEmail: false,
             isLogin: false,             //login value
             isregister: false,          //register value(when user register swap to login)
+
             User: {},                   //user profile
             notification: {},           //notification(type,message)
+            promotions: [],              //promotions
+            
+            bonusHistory:[],            //bonus history
+            cashbackHistory:[],         //cashback history
+            freespinHistory:[],         //freespin history
+            depositHistory:[],          //deposit history
+            withdrawHistory:[],         //withdraw history
+            gameHistory:[],             //player game history
 
-            bonusHistory:[],           //bonus history
-            cashbackHistory:[],           //cashback history
-            freespinHistory:[],           //freespin history
-            depositHistory:[],           //deposit history
-            withdrawHistory:[],           //withdraw history
-            gameHistory:[],           //player game history
-
-            gameListByType:[],           // current game list
-            allGameList:[],           // current game list
-            pageNumber: 1,             //game list page number when press "Read More" button 
-            providers:[],           //provider list
-            balance:{},           // balance
+            gameListByType:[],          // current game list
+            allGameList:[],             // current game list
+            gameData:"",                // current play game data
+            pageNumber: 1,              //game list page number when press "Read More" button 
+            providers:[],               //provider list
+            balance:{},                 // balance
         };
     },
     mutations: {
@@ -42,6 +45,7 @@ const store = createStore({
         handleGetBalance(state, payload) { state.balance = payload; },
 
         handleGetProviders(state, payload) { state.providers = payload; },
+        handleGetPromotion(state, payload) { state.promotions = payload; },
 
         handleGetBonusHistory(state, payload) { state.bonusHistory = payload; },
         handleGetCashbackHistory(state, payload) { state.cashbackHistory = payload; },
@@ -52,6 +56,7 @@ const store = createStore({
 
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
         handleGetAllGames(state, payload) { state.allGameList = payload; },
+        handleGetGameData(state, payload) { state.gameData = payload; },
         handleReadMore(state, payload) { state.pageNumber = payload; },
         
     },
