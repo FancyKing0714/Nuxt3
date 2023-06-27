@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
+import {gamePlay} from '~~/action/game';
 
 defineProps({
     game: {
@@ -13,7 +14,6 @@ const onSwiper = (swiper: any) => {
     swiperRef = swiper;
 };
 const onSlideChange = () => {
-    console.log('slide change');
 };
 useHead({
       title: 'Games',
@@ -24,7 +24,8 @@ useHead({
           content: 'Discover a diverse collection of captivating games at our platform. From thrilling slot games that offer immersive experiences to live games that bring the casino atmosphere to your screen, we have something for everyone. Get ready to embark on an unforgettable gaming journey filled with excitement and big wins.'
         }
       ]
-})
+});
+const imgurl = "/imgs/noGameImg.png";
 </script>
 
 <template>
@@ -103,7 +104,7 @@ useHead({
                 <swiper-slide v-for="gameItem in game?.list">
                     <div class="container">
                         <div class="container">
-                            <img :src="gameItem?.image" class="img"/>
+                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
                             <div class="btnDiv" >
                                 <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <q-btn

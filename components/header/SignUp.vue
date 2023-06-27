@@ -25,11 +25,11 @@ import { Cookies } from 'quasar';
     //                 fpData = visitorData;
     //             })
     //             .catch(err=>{
-    //                 store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+    //                 store.commit('handleNotification',{type:'Error',message:`Can't fetch FingerPrint Data! Contact To Support Team!`});
     //             });
     //         })
     //         .catch(err=>{
-    //             store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+    //             store.commit('handleNotification',{type:'Error',message:"FingerPrint initialize Error!"});
     //         });
     //     }
     // );

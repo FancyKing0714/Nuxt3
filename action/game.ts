@@ -1,6 +1,4 @@
-import { LogTypes } from 'consola';
-import { log } from 'console';
-import {Axios} from '~~/utils/Axios';
+import {Axios, AxiosWithAuth} from '~~/utils/Axios';
 
 export const getAllGames = (store) => {
     Axios('get','/api/getAllGames',store)
@@ -118,6 +116,18 @@ export const getProviders = (store) => {
     Axios('get','/api/getAllGameProviders',store)
     .then(res => {
         store.commit('handleGetProviders', res.data.gameProviders);
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+export const gamePlay = (demo, slug, store) => {
+    AxiosWithAuth('post',`/api/player/${slug}?demo=${demo}`,store)
+    .then(res => {
+        store.commit('handleGetGameData', res.data.gameProviders);
     })
     .catch(err=>{
         if(err.response)

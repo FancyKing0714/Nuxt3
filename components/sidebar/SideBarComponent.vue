@@ -35,12 +35,12 @@ const sideBarLinks: SideBarItemInterFace[] = [
         iconUrl: 'promotion.png',
         link: '/promotions',
     },
-    {
-        title: 'TOURNAMENTS',
-        backUrl: 'side_4.png',
-        iconUrl: 'tournament.png',
-        link: '/tournament',
-    },
+    // {
+    //     title: 'TOURNAMENTS',
+    //     backUrl: 'side_4.png',
+    //     iconUrl: 'tournament.png',
+    //     link: '/tournament',
+    // },
 ];
 
 </script>
