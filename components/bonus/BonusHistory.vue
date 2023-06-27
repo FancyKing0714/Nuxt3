@@ -71,7 +71,9 @@ const store = useStore();
 
 //receive bonus history data from store and show table
 let rows = ref(store.state.bonusHistory);
-
+watch(()=>store.state.bonusHistory,()=>{
+    rows.value = store.state.bonusHistory;
+})
 interface columnformat{
     name: string;
     label: string;

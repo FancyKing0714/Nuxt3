@@ -17,7 +17,10 @@ export const logIn = (data: object, store: any) => {
         store.commit('handleNotification',{type:'Success',message:'Login Successed!'});
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 //logout
@@ -27,7 +30,7 @@ export const logOut = (store: any, router: any) => {
     router.push("/");
 }
 //register
-export const SignUp = (data: object, store: any) => {
+export const SignUp = (data: object, store: any) => {    
     Axios('post','/api/register',data)
     .then(res=>{  
         Cookies.remove('click_id');
@@ -36,7 +39,10 @@ export const SignUp = (data: object, store: any) => {
         store.commit('handleNotification',{type:'Success',message: 'Register Successed!'});
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
 //reset password
@@ -48,6 +54,9 @@ export const ResetPassword = (data: object, store: any) => {
         store.commit('handleNotification',{type:'Success',message: 'Password Updated Successfully!'});
     })
     .catch(err=>{
-        store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }

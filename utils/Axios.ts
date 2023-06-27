@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { log } from 'console';
 const baseURL = "https://beta.canada777.com";
 import Cookies from 'js-cookie'
 

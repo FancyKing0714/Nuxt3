@@ -58,6 +58,9 @@ const store = useStore();
 
 //receive deposit history data from store and show table
 let rows = ref(store.state.depositHistory);
+watch(()=>store.state.depositHistory,()=>{
+    rows.value = store.state.depositHistory;
+});
 
 interface columnformat{
     name: string;

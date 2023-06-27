@@ -153,6 +153,9 @@ const isDrawer = computed(() => store.state.isDrawer);
 
 //receive cashback history data from store and show table
 let rows = ref(store.state.cashbackHistory);
+watch(()=>store.state.cashbackHistory,()=>{
+    rows.value = store.state.cashbackHistory;
+});
 
 interface columnformat{
     name: string;

@@ -41,6 +41,9 @@ const store = useStore();
 
 //get player game history from store.state.gameHistory
 let rows = ref(store.state.gameHistory);
+watch(()=>store.state.gameHistory,()=>{
+    rows.value = store.state.gameHistory;
+});
 
 interface columnformat{
     name: string;

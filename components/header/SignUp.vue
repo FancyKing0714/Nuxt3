@@ -16,23 +16,23 @@ import { Cookies } from 'quasar';
     });
     let fpData;
     //fetch fingerprint data and store in fpData
-    onMounted(
-        ()=>{
-            fpjsClient.init()
-            .then(() => {
-                fpjsClient.getVisitorData({ extendedResult: true })
-                .then(visitorData=>{
-                    fpData = visitorData;
-                })
-                .catch(err=>{
-                    store.commit('handleNotification',{type:'Error',message:err.response.data.message});
-                });
-            })
-            .catch(err=>{
-                store.commit('handleNotification',{type:'Error',message:err.response.data.message});
-            });
-        }
-    );
+    // onMounted(
+    //     ()=>{
+    //         fpjsClient.init()
+    //         .then(() => {
+    //             fpjsClient.getVisitorData({ extendedResult: true })
+    //             .then(visitorData=>{
+    //                 fpData = visitorData;
+    //             })
+    //             .catch(err=>{
+    //                 store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+    //             });
+    //         })
+    //         .catch(err=>{
+    //             store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+    //         });
+    //     }
+    // );
     const signUp = () => {                                          //call register action with inputed data and fingerprint, click_id and promo
                             Object.keys(signupInfo).map(item => {
                                 userdata = {...userdata, [item] : signupInfo[item].value};

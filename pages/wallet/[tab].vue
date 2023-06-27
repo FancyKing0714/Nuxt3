@@ -2,7 +2,8 @@
 import Activity from '~~/components/landingPage/Activity.vue';
 import Deposit from '~~/components/wallet/Deposit.vue';
 import DepositHistory from '~~/components/wallet/DepositHistory.vue';
-import Withdrawal from '~~/components/wallet/Withdrawal.vue';
+import WithdrawHistory from '~~/components/wallet/WithdrawHistory.vue';
+import Withdraw from '~~/components/wallet/Withdraw.vue';
 import Balances from '~~/components/wallet/Balances.vue';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
@@ -104,7 +105,7 @@ function selectCategory(val: string) {
                 <DepositHistory v-if="selectedItem === 'Deposit History'" />
                 <WithdrawHistory v-if="selectedItem === 'Withdraw History'" />
                 <Deposit v-if="selectedItem === 'Deposit'" />
-                <Withdrawal v-if="selectedItem === 'Withdraw'" />
+                <Withdraw v-if="selectedItem === 'Withdraw'" />
                 <Balances v-if="selectedItem === 'Balances'" />
             </section>
             <section class="pt-8">
