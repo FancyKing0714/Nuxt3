@@ -22,9 +22,11 @@ onBeforeMount(()=>{
 const getGames=(pagenumber)=>{
     let tab = route.query?.tab?.toString()?route.query?.tab?.toString():''; 
     let isCasinoPage = route.path.toString().includes('casino'); 
+    let isLandingpage = route.path.toString() == '/';
     switch(tab){
         case '':
-            isCasinoPage?getAllGamesByType(store, pagenumber):getAllGames(store);
+            isCasinoPage&&getAllGamesByType(store, pagenumber);
+            isLandingpage&&getAllGames(store);
             break;
         case 'slots':
             getSlotsGames(store, pagenumber);

@@ -2,8 +2,6 @@ import {Axios, AxiosWithAuth} from '~~/utils/Axios';
 import {getProfile} from './profile';
 import {getBalances} from './wallet';
 import Cookies from 'js-cookie';
-import { log } from 'console';
-
 
 //login
 export const logIn = (data: object, store: any) => {
@@ -47,8 +45,6 @@ export const SignUp = (data: object, store: any) => {
 }
 //reset password
 export const ResetPassword = (data: object, store: any) => {
-    console.log(data);
-    
     AxiosWithAuth('post','/api/player/updatePassword', store, null, data)
     .then(res=>{  
         store.commit('handleNotification',{type:'Success',message: 'Password Updated Successfully!'});

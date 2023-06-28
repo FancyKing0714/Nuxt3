@@ -22,14 +22,15 @@ const store = createStore({
             withdrawHistory:[],         //withdraw history
             gameHistory:[],             //player game history
 
+            providers:[],               //provider list
+            balance:{},                 // balance
+
             gameListByType:[],          // current game list
+            gameAmountByType:0,          // current game list
             allGameList:[],             // current game list
             gamePlayMode:2,
             gameData:"",
-            gameName:"",
             pageNumber: 1,              //game list page number when press "Read More" button 
-            providers:[],               //provider list
-            balance:{},                 // balance
         };
     },
     mutations: {
@@ -57,10 +58,10 @@ const store = createStore({
         handleGetGameHistory(state, payload) { state.gameHistory = payload; },
 
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
+        handleGetGamesAmount(state, payload) { state.gameAmountByType = payload; },
         handleGetAllGames(state, payload) { state.allGameList = payload; },
         handleGetGameData(state, payload) { state.gameData = payload; },
         handleGamePlayMode(state, payload) { state.gamePlayMode = payload; },
-        handleGameName(state, payload) { state.gameName = payload; },
         handleReadMore(state, payload) { state.pageNumber = payload; },
         
     },

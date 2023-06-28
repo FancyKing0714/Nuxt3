@@ -1,3 +1,4 @@
+import { log } from 'console';
 import {Axios, AxiosWithAuth} from '~~/utils/Axios';
 
 export const getAllGames = (store) => {
@@ -35,6 +36,7 @@ export const getAllGamesByType = (store, pagenumber) => {
             games = [...store.state.gameListByType,...games]
         }
         store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.games.total);
     })
     .catch(err=>{
         if(err.response)
@@ -52,6 +54,7 @@ export const getSlotsGames = (store, pagenumber) => {
             games = [...store.state.gameListByType,...games]
         }
         store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.games.total);
     })
     .catch(err=>{
         if(err.response)
@@ -69,6 +72,7 @@ export const getTableGames = (store, pagenumber) => {
             games = [...store.state.gameListByType,...games]
         }
         store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.games.total);
     })
     .catch(err=>{
         if(err.response)
@@ -86,6 +90,7 @@ export const getLiveGames = (store, pagenumber) => {
             games = [...store.state.gameListByType,...games]
         }
         store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.games.total);
     })
     .catch(err=>{
         if(err.response)
@@ -103,6 +108,7 @@ export const getRouletteGames = (store, pagenumber) => {
             games = [...store.state.gameListByType,...games]
         }
         store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.games.total);
     })
     .catch(err=>{
         if(err.response)

@@ -6,11 +6,8 @@ import {useRouter} from 'vue-router';
 
 const router = useRouter();
 const store = useStore();
-const play = (demo, name, slug) =>{
-    console.log(demo);
-    
+const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
-    store.commit('handleGameName',name);
     router.push(linkTo(`/play/${slug}`));
 };
 defineProps({
@@ -120,7 +117,7 @@ const imgurl = "/imgs/noGameImg.png";
                                     <q-btn
                                         text-color=white
                                         style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                        @click="play(0,gameItem.name, gameItem.slug)"
+                                        @click="play(0, gameItem.slug)"
                                     >
                                         <q-icon name="play_arrow" size="lg" />
                                     </q-btn>
@@ -130,7 +127,7 @@ const imgurl = "/imgs/noGameImg.png";
                                         padding="1px 10px"
                                         label="Demo"
                                         style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                        @click="play(1,gameItem.name, gameItem.slug)"
+                                        @click="play(1, gameItem.slug)"
                                     />
                                 </div>
                                 <q-btn
