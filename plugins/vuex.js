@@ -24,7 +24,9 @@ const store = createStore({
 
             gameListByType:[],          // current game list
             allGameList:[],             // current game list
-            gameData:"",                // current play game data
+            gamePlayMode:2,
+            gameData:"",
+            gameName:"",
             pageNumber: 1,              //game list page number when press "Read More" button 
             providers:[],               //provider list
             balance:{},                 // balance
@@ -57,6 +59,8 @@ const store = createStore({
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
         handleGetAllGames(state, payload) { state.allGameList = payload; },
         handleGetGameData(state, payload) { state.gameData = payload; },
+        handleGamePlayMode(state, payload) { state.gamePlayMode = payload; },
+        handleGameName(state, payload) { state.gameName = payload; },
         handleReadMore(state, payload) { state.pageNumber = payload; },
         
     },
