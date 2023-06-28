@@ -10,9 +10,7 @@
     const slug = route.params.slug.toString();
     const store = useStore();
     let modal = ref(false);
-    watch(()=>store.state.gamePlayMode,()=>{
-        gamePlay(store.state.gamePlayMode, slug, store, router);
-    })
+
     onBeforeMount(()=>{
         if(store.state.gamePlayMode > 1)
             modal.value = true;
@@ -21,7 +19,11 @@
     })
     onUnmounted(()=>{
         store.commit('handleGamePlayMode', 2);
-        store.commit('handleGameName', "");
+    });
+    let playtoggle = ref(Boolean(store.state.gamePlayMode));
+    watch(()=>store.state.gamePlayMode,()=>{
+        playtoggle.value = Boolean(store.state.gamePlayMode);
+        gamePlay(store.state.gamePlayMode, slug, store, router);
     })
     const isValidUrl = (urlString) => {
         var urlPattern = new RegExp('^(https?:\\/\\/)?'+                    // validate protocol
@@ -36,24 +38,12 @@
     const switchFullScreen = (value) => {
         fullScreenState.value = value;
     }
-
-    let playtoggle = ref(true);
-    const toggleChange = (value) => {
-        playtoggle.value = value;
-    }
+    watch(()=>playtoggle.value,()=>{
+        store.commit('handleGamePlayMode', Number(playtoggle.value));
+    })
 </script>
 <template>
-    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:max-w-5xl 2xl:relative 2xl:max-w-7xl xl:p-5 m-auto xl:h-fit'">
-        <!-- title and path -->
-        <div class ="hidden" :class="!fullScreenState&&'xl:!block'">
-            <div class="py-3 flex flex-row">
-                <p class="text-lg text-gray-400 hover:text-white cursor-pointer font-medium" @click="router.push(linkTo('/'))">Home</p>
-                <p class="text-lg text-gray-400 px-2 font-medium"> > </p>
-                <p class="text-lg text-gray-400 hover:text-white cursor-pointer font-medium" @click="router.push(linkTo('/casino'))">Play</p>
-                <p class="text-lg text-gray-400 px-2 font-medium"> > </p>
-                <p class="text-lg hover:text-white font-bold">{{store.state.gameName}}</p>
-            </div>
-        </div>
+    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:py-5 mx-auto xl:h-fit'">
         <!-- desktop close button -->
         <div :class="fullScreenState?'hidden xl:!block absolute top-4 right-4 z-[2001]':'hidden'">
             <div class="bg-gray-700 p-3 ml-1 rounded-full hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(false)">
@@ -66,28 +56,28 @@
                 <q-icon name="close" color="red" size="sm"/>
             </div>
         </div>
-        <!-- game frame -->
-        <div class="relative w-full h-full" :class="!fullScreenState&&'xl:my-2 xl:h-[750px] xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
-            <iframe v-if="isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :src="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
-            <iframe v-if="!isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :srcdoc="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
-        </div>
         <!-- game name, property, recommended game -->
         <div class="hidden" :class="!fullScreenState&&'xl:!block'">
             <div class="flex flex-row justify-between py-2">
                 <div class="flex flex-row">
-                    <div class="bg-gray-700 p-3 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="router.push(linkTo('/casino'))">
+                    <div class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="router.push(linkTo('/casino'))">
                         <q-icon name="close" size="sm"/>
                     </div>
-                    <div class="bg-gray-700 p-3 ml-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
+                    <div class="bg-gray-700 p-2 ml-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
                         <q-icon name="fullscreen" size="sm" />
                     </div>
                 </div>
                 <div class="flex flex-row items-center">
                     <p class="text-sm font-semibold text-gray-500" :class="!playtoggle && 'text-white'">Real Play</p>
-                    <q-toggle v-model="playtoggle" @input="toggleChange"/>
+                    <q-toggle v-model="playtoggle"/>
                     <p class="text-sm font-semibold text-gray-500" :class="!!playtoggle && 'text-white'">Fun Play</p>
                 </div>
             </div>
+        </div>
+        <!-- game frame -->
+        <div class="relative w-full h-full" :class="!fullScreenState&&'xl:my-2 xl:h-[750px] xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
+            <iframe v-if="isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :src="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
+            <iframe v-if="!isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :srcdoc="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
     <q-dialog v-model="modal" persistent transition-show="scale" transition-hide="scale">

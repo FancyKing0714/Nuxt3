@@ -14,10 +14,12 @@ import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
 import { getProviders } from '~~/action/game';
 import { getBalances } from '~~/action/wallet';
+import {useRoute} from 'vue-router';
 import Cookies from 'js-cookie';
 
 const not = useQuasar();
 const store = useStore();
+const route = useRoute();
 
 // watch store.state.notification, when value changed, show notification
 watch(
@@ -56,7 +58,7 @@ onBeforeMount(() => {
         <!-- Container -->
         <q-page-container class="bg-gray-900">
             <NuxtPage />
-            <PageFooter /> 
+            <PageFooter v-if="!route.path.toString().includes('play')"/> 
             <MobilePageFooter />
             <MobileFooter />
         </q-page-container> 

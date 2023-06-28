@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
 import {useRouter} from 'vue-router';
-import {gamePlay} from '~~/action/game';
-import { log } from 'console';
 
 const router = useRouter();
 const store = useStore();
-const play = (demo, name, slug) =>{
-    console.log(demo);
-    
+const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
-    store.commit('handleGameName',name);
     router.push(linkTo(`/play/${slug}`));
 };
 useHead({
@@ -32,13 +27,13 @@ const imgurl = "/imgs/noGameImg.png";
             <div class="flex flex-wrap justify-around">
                 <div class="card p-1" v-for="gameItem in store.state.gameListByType">
                     <div class="container" >
-                        <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover"/>
+                        <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv" >
                             <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <q-btn
                                     text-color=white
                                     style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                    @click="play(0,gameItem.name, gameItem.slug)"
+                                    @click="play(0, gameItem.slug)"
                                 >
                                     <q-icon name="play_arrow" size="lg" />
                                 </q-btn>
@@ -48,7 +43,7 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="1px 10px"
                                     label="Demo"
                                     style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                    @click="play(1,gameItem.name, gameItem.slug)"
+                                    @click="play(1, gameItem.slug)"
                                 />
                             </div>
                             <q-btn
@@ -67,8 +62,8 @@ const imgurl = "/imgs/noGameImg.png";
                 </div>
             </div>
             <div class="flex flex-col justify-center items-center py-2">
-                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="0.677" />
-                <p class="text-center text-md py-2">Displaying 30 of 45</p>
+                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.pageNumber*10 > store.state.gameAmountByType ? 100 : Number(store.state.pageNumber*10 / store.state.gameAmountByType)" />
+                <p class="text-center text-md py-2">Displaying {{ store.state.pageNumber*10 > store.state.gameAmountByType ? store.state.gameAmountByType : store.state.pageNumber*10 }} of {{ store.state.gameAmountByType }}</p>
                 <q-btn class="w-52" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
                     Load More
                 </q-btn>

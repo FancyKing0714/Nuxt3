@@ -4,6 +4,7 @@
         <button 
             class="group focus:outline-none rounded-md" 
             style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
+            v-if="store.state.isLogin === true"
         >
             <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
                 <div 
@@ -87,12 +88,16 @@
         <p class="font-semibold text-sm p-3">VIP</p>
     </div> -->
 
-    <div style="color: #7b8193" class="flex justify-start items-center hover:bg-blue-600 rounded-md">
+    <div 
+        v-if="store.state.isLogin === true" 
+        style="color: #7b8193" class="flex justify-start items-center hover:bg-blue-600 rounded-md"
+    >
         <q-img class="w-5" src="/imgs/sidebar/fav.png" alt="deposit" />
         <p style="font-size: 11px" class="font-medium p-3">Favorites</p>
     </div>
 
     <div
+        v-if="store.state.isLogin === true"
         style="color: #7b8193; border-bottom: 1px solid rgba(125, 131, 150, 0.5);"
         class="flex justify-start items-center hover:bg-blue-600 rounded-md"
     >
