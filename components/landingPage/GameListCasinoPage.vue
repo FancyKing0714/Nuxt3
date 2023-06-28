@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
+import {useRouter} from 'vue-router';
 import {gamePlay} from '~~/action/game';
+import { log } from 'console';
 
+const router = useRouter();
 const store = useStore();
-const play = (demo, slug) =>{
-    gamePlay(demo, slug, store);
+const play = (demo, name, slug) =>{
+    console.log(demo);
+    
+    store.commit('handleGamePlayMode',demo);
+    store.commit('handleGameName',name);
+    router.push(linkTo(`/play/${slug}`));
 };
 useHead({
       title: 'Games',
@@ -31,7 +38,7 @@ const imgurl = "/imgs/noGameImg.png";
                                 <q-btn
                                     text-color=white
                                     style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                    @click="play(false, gameItem.slug)"
+                                    @click="play(0,gameItem.name, gameItem.slug)"
                                 >
                                     <q-icon name="play_arrow" size="lg" />
                                 </q-btn>
@@ -41,7 +48,7 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="1px 10px"
                                     label="Demo"
                                     style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                    @click="play(true, gameItem.slug)"
+                                    @click="play(1,gameItem.name, gameItem.slug)"
                                 />
                             </div>
                             <q-btn

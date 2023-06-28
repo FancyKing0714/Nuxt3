@@ -124,10 +124,10 @@ export const getProviders = (store) => {
             store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
-export const gamePlay = (demo, slug, store) => {
-    AxiosWithAuth('post',`/api/player/${slug}?demo=${demo}`,store)
+export const gamePlay = (demo, slug, store, router) => {
+    AxiosWithAuth('post',`/api/player/play/${slug}/?demo=${demo}`,store, router)
     .then(res => {
-        store.commit('handleGetGameData', res.data.gameProviders);
+        store.commit('handleGetGameData', res.data.data);
     })
     .catch(err=>{
         if(err.response)
