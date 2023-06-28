@@ -11,7 +11,7 @@ Make sure to install the dependencies:
 yarn install
 
 # npm
-npm install
+npm install --force
 
 # pnpm
 pnpm install
