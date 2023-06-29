@@ -25,14 +25,7 @@ export default defineNuxtConfig({
         extras: {
             font: 'roboto-font',
             fontIcons: [  
-                'material-icons',
-                'mdi-v7',
-                'ionicons-v4', // last webfont was available in v4.6.3
-                'eva-icons',
-                'fontawesome-v6',
-                'themify',
-                'line-awesome',
-                'bootstrap-icons'
+                'material-icons'
             ],
         },
     },
