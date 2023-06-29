@@ -30,12 +30,12 @@ const langs = [
 
 <template>
     <q-btn-dropdown
-        class="btn-none p-1 sm:p-2 float-right"
+        class="btn-none p-1 sm:p-2 ml-3 float-right"
         label-class="d-flex align-items-center"
     >
         <template v-slot:label>
             <div
-                class="flex items-center justify-start text-xxs sm:text-sm sm:pr-3"
+                class="flex items-center flex-nowrap justify-start text-xxs sm:text-sm sm:pr-3"
             >
                 <img
                     class="w-8 pr-1"

@@ -13,7 +13,6 @@ export default defineNuxtConfig({
           API_KEY: '1TMplKctJPlF6U8PBnDK',
         },
     },
-  
     quasar: {
         plugins: [
             'BottomSheet',
