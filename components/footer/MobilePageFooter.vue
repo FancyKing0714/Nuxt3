@@ -10,23 +10,23 @@ const list = [
         content: [
             {
                 name: 'All Games',
-                link: '',
+                link: 'casino',
             },
             {
                 name: 'Slots',
-                link: '',
+                link: 'casino?tab=slots',
             },
             {
                 name: 'Live Casino',
-                link: '',
+                link: 'casino?tab=live',
             },
             {
                 name: 'Table',
-                link: '',
+                link: 'casino?tab=table',
             },
             {
                 name: 'Roulette',
-                link: '',
+                link: 'casino?tab=roulette',
             },
         ],
     },
@@ -58,25 +58,25 @@ const list = [
     {
         title: 'About Us',
         content: [
-            {
-                name: 'About Canda777',
-                link: '',
-            },
-            {
-                name: 'Provably Fair',
-                link: '',
-            },
+            // {
+            //     name: 'About Europa777',
+            //     link: '',
+            // },
+            // {
+            //     name: 'Provably Fair',
+            //     link: '',
+            // },
             {
                 name: 'Contact Us',
-                link: '',
+                link: '/contact-us',
             },
             {
                 name: 'FAQ’s',
-                link: '',
+                link: '/faq',
             },
             {
                 name: 'Affiliates',
-                link: '',
+                link: 'Affiliates',
             },
         ],
     },
@@ -107,7 +107,7 @@ const itemClick = (link) => {
     if(link == "register")
         store.commit('handleOnRegister',true);
     else
-        router.push(link);
+        router.push(linkTo(link));
 }
 </script>
 
@@ -149,15 +149,30 @@ const itemClick = (link) => {
                     />
                 </div>
                 <div
-                    class="relative max-h-0 overflow-hidden duration-300 group-focus:max-h-28"
+                    class="relative max-h-0 overflow-hidden duration-300 group-focus:max-h-40"
                 >
+                <div
+                    v-for="topic in item?.content"
+                >
+                    <a 
+                        href="https://affiliateslots.com/" 
+                        target="_blank"
+                    >    
+                        <p
+                            v-if=" topic?.link == 'Affiliates' "
+                            class="pb-1 py-2 px-6 text-xs text-left"
+                        >
+                            {{ topic?.name }}
+                        </p>
+                    </a>
                     <p
-                        v-for="topic in item?.content"
+                        v-if=" topic?.link != 'Affiliates' "
                         class="pb-1 py-2 px-6 text-xs text-left"
                         @click="itemClick(topic?.link)"
                     >
                         {{ topic?.name }}
                     </p>
+                </div>
                 </div>
             </button>
 
@@ -166,6 +181,8 @@ const itemClick = (link) => {
                     style="max-width: 163px"
                     src="/imgs/logo_full.png"
                     alt="logo"
+                    class="cursor-pointer"
+                    @click="$router.push(linkTo('/'))"
                 />
                 <p class="pt-4" style="font-size: 9px; font-weight: 500">
                     You’re in luck! You have landed on the best online casino in

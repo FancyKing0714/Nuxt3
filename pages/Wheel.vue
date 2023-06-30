@@ -29,7 +29,7 @@ useHead({
                         src="/imgs/wheel/wheel_spin.png"
                         alt="spin"
                     />
-                    <LuckyWheel />
+                    <BonusLuckyWheel />
                 </div>
             </section>
             <section class="pt-8">

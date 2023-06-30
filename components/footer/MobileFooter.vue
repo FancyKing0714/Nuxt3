@@ -20,22 +20,33 @@ const store = useStore();
         </div>
         <div class="grid grid-cols-5">
             <div class="flex flex-col justify-center px-2 items-center">
-                <q-btn class="btn-none" round
-                    ><img class="w-7" src="/imgs/all_games.png" alt="test"
-                /></q-btn>
+                <q-btn 
+                    class="btn-none" 
+                    round
+                    @click="$router.push(linkTo('/casino'))"
+                >
+                    <img class="w-7" src="/imgs/all_games.png" alt="test" />
+                </q-btn>
                 <p style="font-size: 9px">All Games</p>
             </div>
             <div class="flex flex-col justify-center px-2 items-center">
-                <q-btn class="btn-none" round
-                    ><img class="w-7" src="/imgs/search.png" alt="test"
-                /></q-btn>
+                <q-btn 
+                    class="btn-none" 
+                    round
+                >
+                    <img class="w-7" src="/imgs/search.png" alt="test" />
+                </q-btn>
                 <p style="font-size: 9px">Search</p>
             </div>
             <div></div>
             <div class="flex flex-col justify-center px-2 items-center">
-                <q-btn class="btn-none" round
-                    ><img class="w-7" src="/imgs/slot-grey.png" alt="test"
-                /></q-btn>
+                <q-btn 
+                    class="btn-none" 
+                    round
+                    @click="$router.push(linkTo('/casino?tab=slots'))"
+                >
+                    <img class="w-7" src="/imgs/slot-grey.png" alt="test" />
+                </q-btn>
                 <p style="font-size: 9px">Slots</p>
             </div>
             <div class="flex flex-col justify-center px-2 items-center">

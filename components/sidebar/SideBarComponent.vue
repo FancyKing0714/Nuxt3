@@ -110,11 +110,11 @@ const sideBarLinks: SideBarItemInterFace[] = [
                 </q-item>
             </q-btn-dropdown>
             <p style="color: #7b8193" class="text-s">{{store.state.User.username}}</p>
-            <p class="text-xs">
+            <!-- <p class="text-xs">
                 <span style="color: #fff004">LEVEL : </span><span>VIP</span>
-            </p>
+            </p> -->
         </div>
-        <div
+        <!-- <div
             class="py-3 w-full text-center md:hidden"
             style="border-bottom: 1px solid #7d8396"
             v-if="store.state.isLogin === true"
@@ -125,7 +125,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
                     <p class="font-semibold text-xl pl-2">DEPOSIT</p>
                 </div>
             </q-btn>
-        </div>
+        </div> -->
         <div>
             <div class="w-full md:hidden mt-5">
                 <SearchInput />

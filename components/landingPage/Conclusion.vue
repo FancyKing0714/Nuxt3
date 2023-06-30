@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {useStore} from 'vuex';
+const store= useStore();
+</script>
 
 <template>
     <div class="grid grid-cols-10 m-4 gap-2">
@@ -19,6 +22,7 @@
                     size="sm"
                     color="primary"
                     label="Join Now"
+                    @click="$router.push(linkTo('/bonus/cash-back'))"
                 />
             </div>
         </div>
@@ -47,7 +51,7 @@
                     </div>
                 </div>
 
-                <q-btn class="mt-2" size="sm" color="primary" label="SIGN UP" />
+                <q-btn class="mt-2" size="sm" color="primary" label="SIGN UP" @click="store.commit('handleOnRegister', true)"/>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ const isDrawer = computed(() => {
                         >
                             Get free spin every 2 hours!
                         </p>
-                        <q-btn size="xs" label="Free Spin" />
+                        <q-btn size="xs" label="Free Spin"  @click="$router.push(linkTo('/wheel'))"/>
                     </div>
                     <q-img
                         class="h-full rounded-md"

@@ -71,7 +71,7 @@ const handleClick = (name) => {
                 />
             </div>
             <div
-                class="rounded-md"
+                class="rounded-md pb-2"
                 style="background: #3c3c3c; min-width: 290px"
             >
                 <div class="text-center pt-20">
@@ -98,7 +98,7 @@ const handleClick = (name) => {
                                                 :src="`/imgs/header/${profile.icon}.png`"
                                                 alt="profile"
                                             />
-                                            <p class="text-xxs pl-1">
+                                            <p class="text-xxs pl-1 ml-2">
                                                 {{ profile.name }}
                                             </p>
                                         </div>

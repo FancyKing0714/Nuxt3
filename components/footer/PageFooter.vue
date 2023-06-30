@@ -24,6 +24,8 @@ const store = useStore();
                     style="max-width: 163px"
                     src="/imgs/logo_full.png"
                     alt="logo"
+                    class="cursor-pointer"
+                    @click="$router.push(linkTo('/'))"
                 />
                 <p class="pt-4" style="font-size: 9px; font-weight: 500">
                     You’re in luck! You have landed on the best online casino in
@@ -38,19 +40,19 @@ const store = useStore();
             >
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">iGaming</p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino'))">
                         All Games
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=slots'))">
                         Slots
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=live'))">
                         Live Casino
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=table'))">
                         Table
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=roulette'))">
                         Roulette
                     </p>
                 </div>
@@ -74,21 +76,21 @@ const store = useStore();
                 </div>
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">About Us</p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <!-- <p class="pb-1" style="font-size: 11px; font-weight: 400">
                         About Europa777
-                    </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    </p> -->
+                    <!-- <p class="pb-1" style="font-size: 11px; font-weight: 400">
                         Provably Fair
-                    </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    </p> -->
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/contact-us'))">
                         Contact Us
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/faq'))">
                         FAQ’s
                     </p>
-                    <p class="pb-1" style="font-size: 11px; font-weight: 400">
+                    <a href="https://affiliateslots.com/" target="_blank"><p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400">
                         Affiliates
-                    </p>
+                    </p></a>
                 </div>
                 <div class="col-span-1">
                     <p class="text-base font-semibold pb-2">Help</p>
@@ -114,6 +116,8 @@ const store = useStore();
                         style="max-width: 163px"
                         src="/imgs/logo_full.png"
                         alt="logo"
+                        class="cursor-pointer"
+                        @click="$router.push(linkTo('/'))"
                     />
                     <p class="pt-4" style="font-size: 9px; font-weight: 500">
                         You’re in luck! You have landed on the best online
