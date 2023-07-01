@@ -14,7 +14,6 @@ const onFavorite = (id) => {
         removeFavoriteGame(store, id);
     else
         addFavoriteGame(store, id);
-    getFavoriteGames(store);
 }
 useHead({
       title: 'Games',
