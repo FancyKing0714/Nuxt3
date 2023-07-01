@@ -27,10 +27,12 @@ const store = createStore({
 
             gameListByType:[],          // current game list
             gameAmountByType:0,          // current game list
+            currentLoaded:0,          // current game list
             allGameList:[],             // current game list
             gamePlayMode:2,
             gameData:"",
             pageNumber: 1,              //game list page number when press "Read More" button 
+            remainingTime:20,
         };
     },
     mutations: {
@@ -59,6 +61,7 @@ const store = createStore({
 
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
         handleGetGamesAmount(state, payload) { state.gameAmountByType = payload; },
+        handleCurrentLoaded(state, payload) { state.currentLoaded = payload; },
         handleGetAllGames(state, payload) { state.allGameList = payload; },
         handleGetGameData(state, payload) { state.gameData = payload; },
         handleGamePlayMode(state, payload) { state.gamePlayMode = payload; },

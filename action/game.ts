@@ -37,6 +37,7 @@ export const getAllGamesByType = (store, pagenumber) => {
         }
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
     .catch(err=>{
         if(err.response)
@@ -130,6 +131,7 @@ export const getProviders = (store) => {
             store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
+
 export const gamePlay = (demo, slug, store, router) => {
     AxiosWithAuth('post',`/api/player/play/${slug}/?demo=${demo}`,store, router)
     .then(res => {

@@ -59,14 +59,15 @@ const store = useStore();
         <div
             style="border: 1px solid #4D5160"
             class="q-pl-md q-pt-sm q-pb-sm q-pr-md !rounded-3xl flex flex-nowrap items-center justify-start"
+            @click="$router.push(linkTo('/wallet/deposit'))"
         >
             <img
-                class="q-mr-sm"
+                class="q-mr-sm cursor-pointer"
                 style="max-width: 22px"
                 src="/imgs/header/wallet-icon.png"
                 alt="wallet"
             />
-            <p @click="$router.push(linkTo('/wallet/deposit'))" class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
+            <p class="text-xxs sm:text-xs pl-1 cursor-pointer">Deposit</p>
         </div>
     </q-btn-group>
 </template>

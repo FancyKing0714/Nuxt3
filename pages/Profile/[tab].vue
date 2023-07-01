@@ -81,18 +81,11 @@ function selectCategory(val: string) {
                     <div
                         class="col-span-12 md:col-span-6 lg:col-span-7 xl:col-span-9"
                     >
-                        <CategoryBar
-                            :selectCategory="selectCategory"
-                            :categories.sync="categories"
-                        />
+                        <CategoryBar :selectCategory="selectCategory" :categories.sync="categories" />
                         <div class="p-1"></div>
-                        <ResponsibleGambling
-                            v-if="selectedItem === 'Responsible Gambling'"
-                        />
+                        <ResponsibleGambling v-if="selectedItem === 'Responsible Gambling'" />
                         <History v-if="selectedItem === 'Game History'" />
-                        <PersonalInfo
-                            v-if="selectedItem === 'General Information'"
-                        />
+                        <PersonalInfo v-if="selectedItem === 'General Information'" />
                         <Verification v-if="selectedItem === 'Verification'" />
                     </div>
                 </div>

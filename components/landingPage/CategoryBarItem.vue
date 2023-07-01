@@ -30,7 +30,7 @@ const clickButton = () => {
 
 <template>
   <div
-    class="flex items-center justify-center w-26 p-3 cursor-pointer rounded-xl"
+    class="flex flex-nowrap items-center justify-center w-26 p-3 cursor-pointer rounded-xl"
     :style="{backgroundColor: active? '#2283ee' : '' }"
     @click="clickButton"
   >

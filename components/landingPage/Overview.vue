@@ -32,7 +32,7 @@
                     <q-btn
                         v-if="store.state.isLogin === false"
                        
-                        class="font-bold text-2xl sm:px-6 !py-0"
+                        class="font-bold text-2xl sm:px-6 !py-0 z-[10]"
                         unelevated
                         color="primary"
                         label="SIGN UP"
@@ -47,6 +47,7 @@
                         unelevated
                         color="primary"
                         label="Deposit"
+                        @click="$router.push(linkTo('/wallet/deposit'))"
                     />
                     <div class="flex items-center flex-col justify-between">
                         <p class="font-bold text-lg pl-3">2ND/3RD DEPOSIT</p>
@@ -82,25 +83,27 @@
                 <div class="pt-3 pl-3 flex items-center justify-start">
                     <q-btn
                         v-if="store.state.isLogin === true"
-                        class="font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6"
+                        class="font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 mr-2"
                         outline
                         color="white"
                         label="play slots"
+                        @click="$router.push(linkTo('/casino?tab=slots'))"
                     />
                     <q-btn
                         v-if="store.state.isDrawer === false"
                         :class="[
-                            'font-bold text-2xl lg:px-6 md:ml-4',
+                            'font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 mx-2',
                             store.state.isDrawer ? 'lg:hidden' : '',
                         ]"
                         unelevated
                         color="primary"
                         label="Deposit"
+                        @click="$router.push(linkTo('/wallet/deposit'))"
                     />
                     <q-btn
                         v-if="store.state.isLogin === true"
                         :class="[
-                            'font-bold text-2xl lg:px-6 ml-2',
+                            'font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 z-[10]',
                         ]"
                         unelevated
                         color="primary"

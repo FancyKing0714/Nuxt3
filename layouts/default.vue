@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed , onBeforeMount ,onMounted} from 'vue';
+import { onBeforeMount } from 'vue';
 import { useStore } from 'vuex';
 import HeaderComponent from '@/components/header/HeaderComponent.vue';
 import SideBarComponent from '@/components/sidebar/SideBarComponent.vue';

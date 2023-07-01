@@ -45,7 +45,7 @@ dark.set(true);
                             <CasinoSportToogleButton />
                         </div> -->
                         
-                        <div class="hidden md:!block pl-5">
+                        <div class="hidden sm:!block pl-5">
                             <SearchInput />
                         </div>
                     </div>
@@ -56,7 +56,7 @@ dark.set(true);
                     />
                 </div>
             </div>
-            <!-- <div class="w-full flex items-center justify-end"> -->
+            <!-- <div class="w-full flex flex-nowrap items-center justify-end"> -->
                 <template v-if="store.state.isLogin">
                     <div class="pr-5 hidden lg:!block">
                         <WalletButton />
@@ -77,11 +77,11 @@ dark.set(true);
                             />
                         </div>
                     </div>
-                    <QBtn dense round flat icon="notifications">
+                    <!-- <QBtn dense round flat icon="notifications">
                         <QBadge rounded color="red" floating transparent>
                             4
                         </QBadge>
-                    </QBtn>
+                    </QBtn> -->
                 </template>
                 <SelectLanguageBox />
             <!-- </div> -->

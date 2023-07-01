@@ -52,7 +52,7 @@ const handleClick = (name) => {
 </script>
 
 <template>
-    <q-btn-dropdown class="btn-none hidden md:!block" no-caps :label=store.state.User.username >
+    <q-btn-dropdown class="btn-none hidden sm:!block" no-caps :label=store.state.User.username >
         <q-list>
             <q-item
                 v-for="profile in prifileList"
@@ -69,7 +69,7 @@ const handleClick = (name) => {
                                     :src="`/imgs/header/${profile.icon}.png`"
                                     alt="profile"
                                 />
-                                <p class="text-xs pl-1">{{ profile.name }}</p>
+                                <p class="text-xs pl-2">{{ profile.name }}</p>
                             </div>
                         </q-item-label>
                     </nuxt-link>

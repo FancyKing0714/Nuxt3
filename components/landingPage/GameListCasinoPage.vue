@@ -63,7 +63,7 @@ const imgurl = "/imgs/noGameImg.png";
             </div>
             <div class="flex flex-col justify-center items-center py-2">
                 <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.pageNumber*10 > store.state.gameAmountByType ? 100 : Number(store.state.pageNumber*10 / store.state.gameAmountByType)" />
-                <p class="text-center text-md py-2">Displaying {{ store.state.pageNumber*10 > store.state.gameAmountByType ? store.state.gameAmountByType : store.state.pageNumber*10 }} of {{ store.state.gameAmountByType }}</p>
+                <p class="text-center text-md py-2">Displaying {{ store.state.currentLoaded }} of {{ store.state.gameAmountByType }}</p>
                 <q-btn class="w-52" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
                     Load More
                 </q-btn>

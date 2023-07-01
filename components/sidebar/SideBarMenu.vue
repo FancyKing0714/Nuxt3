@@ -2,11 +2,11 @@
     <!-- Component Start -->
     <div class="flex flex-col pt-3">
         <button 
-            class="group focus:outline-none rounded-md" 
+            class="group focus:outline-none rounded-md px-2 hover:bg-blue-600" 
             style="border-bottom: 1px solid rgba(125, 131, 150, 0.5)"
             v-if="store.state.isLogin === true"
         >
-            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
+            <div class="flex items-center justify-between font-semibold rounded-md">
                 <div 
                     class="flex justify-start items-center"
                     @click="$router.push(linkTo('/wallet/deposit'))"
@@ -16,9 +16,9 @@
                 </div>
             </div>
         </button>
-        <button >
+        <button>
             <div 
-                class="flex items-center justify-between font-semibold cursor-pointer hover:bg-blue-600 rounded-md"
+                class="flex items-center justify-between font-semibold cursor-pointer px-2 hover:bg-blue-600 rounded-md"
                 @click="dropdown"
             >
                 <div class="flex justify-start items-center">
@@ -34,8 +34,8 @@
             </div>
             <SideBarGameCategory :down="down" />
         </button>
-        <!-- <button class="group focus:outline-none">
-            <div class="flex items-center justify-between h-12 font-semibold hover:bg-blue-600 rounded-md">
+        <!-- <button>
+            <div class="flex items-center justify-between font-semibold cursor-pointer px-2 hover:bg-blue-600 rounded-md">
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -47,8 +47,8 @@
                 <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" />
             </div>
         </button> -->
-        <button class="group focus:outline-none">
-            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
+        <button>
+            <div class="flex items-center justify-between font-semibold px-2 hover:bg-blue-600 rounded-md">
                 <div 
                     class="flex justify-start items-center"
                     @click="$router.push(linkTo('/promotions'))"
@@ -63,8 +63,8 @@
                 <!-- <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" /> -->
             </div>
         </button>
-        <button class="group focus:outline-none">
-            <div class="flex items-center justify-between font-semibold hover:bg-blue-600 rounded-md">
+        <!-- <button>
+            <div class="flex items-center justify-between font-semibold cursor-pointer px-2 hover:bg-blue-600 rounded-md">
                 <div class="flex justify-start items-center">
                     <q-img
                         class="w-5"
@@ -73,9 +73,9 @@
                     />
                     <p class="font-semibold text-sm p-3">Referral</p>
                 </div>
-                <!-- <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" /> -->
+                <q-img class="w-2" src="/imgs/sidebar/accordion_icon.svg" />
             </div>
-        </button>
+        </button> -->
     </div>
     <!-- Component End  -->
 
@@ -90,27 +90,29 @@
 
     <div 
         v-if="store.state.isLogin === true" 
-        style="color: #7b8193" class="flex justify-start items-center hover:bg-blue-600 rounded-md"
+        class="flex justify-start items-center hover:bg-blue-600 rounded-md px-2 cursor-pointer"
+        @click="$router.push(linkTo('/casino?tab=favorites'))"
     >
         <q-img class="w-5" src="/imgs/sidebar/fav.png" alt="deposit" />
-        <p style="font-size: 11px" class="font-medium p-3">Favorites</p>
+        <p style="font-size: 12px" class="font-medium p-3">Favorites</p>
     </div>
 
     <div
         v-if="store.state.isLogin === true"
-        style="color: #7b8193; border-bottom: 1px solid rgba(125, 131, 150, 0.5);"
-        class="flex justify-start items-center hover:bg-blue-600 rounded-md"
+        style=" border-bottom: 1px solid rgba(125, 131, 150, 0.5);"
+        class="flex justify-start items-center hover:bg-blue-600 rounded-md px-2 cursor-pointer"
+        @click="$router.push(linkTo('/casino?tab=recent'))"
     >
         <q-img class="w-5" src="/imgs/sidebar/recent.png" alt="deposit" />
-        <p style="font-size: 11px" class="font-medium p-3">Recently Played</p>
+        <p style="font-size: 12px" class="font-medium p-3">Recently Played</p>
     </div>
-    <p style="font-size: 11px; color: #7b8193" class="font-medium pt-2">
+    <!-- <p style="font-size: 11px; color: #7b8193" class="font-medium pt-2">
         Europa777 Docs
-    </p>
+    </p> -->
     <p
-        @click="$router.push(linkTo('/faq'))"
-        style="font-size: 11px; color: #7b8193"
-        class="font-medium pt-2 cursor-pointer"
+        @click="$router.push(linkTo('/contact-us'))"
+        style="font-size: 13px; color:"
+        class="font-medium pt-4 cursor-pointer px-2"
     >
         Contact Us
     </p>
