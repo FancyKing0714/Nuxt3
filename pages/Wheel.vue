@@ -25,7 +25,6 @@ let time =ref(0) ;
 onBeforeMount(()=>{
     time.value = store.state.remainingTime;
     let timer = setInterval(() => {
-        console.log(h.value , m.value , s.value);
         time.value = time.value - 1;
         h.value = Math.floor(time.value / 3600);
         let tmp = time.value % 3600;

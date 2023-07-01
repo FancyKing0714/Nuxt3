@@ -25,7 +25,7 @@ const router = useRouter();
                 <p style="color: #ffffff8c" class="text-sm pb-3">
                     {{store.state.User.email}}
                 </p>
-                <q-img class="w-7 mb-4" src="/imgs/logout.png" @click="logOut(store,router)"/>
+                <q-img class="w-7 mb-4 cursor-pointer" src="/imgs/logout.png" @click="logOut(store,router)"/>
             </div>
         </div>
     </div>
