@@ -6,11 +6,13 @@
         >
            <div class="center" ref="center"></div>
         </div>
+        <!-- <p>{{ time }}</p> -->
     </div>
 </template>
 
 <script>
 export default {
+    props:['time'],
     data() {
         return {
             tamanyoRuleta: 360,
@@ -22,6 +24,8 @@ export default {
     },
     mounted() {
         this.$refs.center.addEventListener('click', () => {
+            if(time > 0)
+                return;
             let numID = 'number-';
             const num =
                 1 + Math.round(Math.random() * (this.numeroCasillas - 1));
@@ -46,6 +50,7 @@ export default {
 
             this.$refs.ruleta.removeAttribute('id');
             this.$refs.ruleta.setAttribute('id', numID);
+            
         });
     },
 };
