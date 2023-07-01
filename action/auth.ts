@@ -23,8 +23,8 @@ export const logIn = (data: object, store: any) => {
 }
 //logout
 export const logOut = (store: any, router: any) => {
-    Cookies.remove('token');
     store.commit('handleLogin', false);
+    Cookies.remove('token');
     router.push("/");
 }
 //register

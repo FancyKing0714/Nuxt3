@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {useRouter, useRoute} from 'vue-router';
+import { useStore } from 'vuex';
+const store = useStore();
 const router = useRouter();
 const route = useRoute();
 const props = defineProps({
@@ -30,6 +32,7 @@ const clickButton = () => {
 
 <template>
   <div
+    v-if=" store.state.isLogin || link != 'favorites' && link != 'recent' "
     class="flex flex-nowrap items-center justify-center w-26 p-3 cursor-pointer rounded-xl"
     :style="{backgroundColor: active? '#2283ee' : '' }"
     @click="clickButton"
