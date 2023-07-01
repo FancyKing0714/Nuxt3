@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
 import {useRouter} from 'vue-router';
+import { addFavoriteGame , removeFavoriteGame , getFavoriteGames } from '~~/action/game';
 
 const router = useRouter();
 const store = useStore();
@@ -8,6 +9,13 @@ const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
     router.push(linkTo(`/play/${slug}`));
 };
+const onFavorite = (id) => {
+    if(store.state.favoriteGameList.includes(id))
+        removeFavoriteGame(store, id);
+    else
+        addFavoriteGame(store, id);
+    getFavoriteGames(store);
+}
 useHead({
       title: 'Games',
       meta: [
@@ -51,8 +59,10 @@ const imgurl = "/imgs/noGameImg.png";
                                 padding="0px"
                                 class="star-icon"
                                 style="background-color: transparent;"
+                                @click="onFavorite(gameItem?.id)"
                             >
-                                <q-icon name="star_border" size="xs" />
+                                <q-icon v-if="store.state.favoriteGameList.includes(gameItem?.id)" name="star" size="xs" />
+                                <q-icon v-if="!store.state.favoriteGameList.includes(gameItem?.id)" name="star_border" size="xs" />
                             </q-btn>
                         </div>
                     </div>
@@ -62,9 +72,15 @@ const imgurl = "/imgs/noGameImg.png";
                 </div>
             </div>
             <div class="flex flex-col justify-center items-center py-2">
-                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.pageNumber*10 > store.state.gameAmountByType ? 100 : Number(store.state.pageNumber*10 / store.state.gameAmountByType)" />
-                <p class="text-center text-md py-2">Displaying {{ store.state.currentLoaded }} of {{ store.state.gameAmountByType }}</p>
-                <q-btn class="w-52" text-color="white" color="primary" @click="store.commit('handleReadMore',store.state.pageNumber+1)">
+                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.gameAmountByType > 0 ? (store.state.currentLoaded > store.state.gameAmountByType ? 100 : Number(store.state.currentLoaded / store.state.gameAmountByType)) : 0" />
+                <p class="text-center text-md py-2">Displaying {{ store.state.currentLoaded > store.state.gameAmountByType ? store.state.gameAmountByType : store.state.currentLoaded }} of {{ store.state.gameAmountByType }}</p>
+                <q-btn 
+                    v-if="store.state.currentLoaded < store.state.gameAmountByType"
+                    class="w-52" 
+                    text-color="white" 
+                    color="primary" 
+                    @click="store.commit('handleReadMore',store.state.pageNumber+1)"
+                >
                     Load More
                 </q-btn>
             </div>

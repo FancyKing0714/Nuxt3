@@ -12,7 +12,7 @@ import MobileFooter from '~~/components/footer/MobileFooter.vue';
 import MobilePageFooter from '~~/components/footer/MobilePageFooter.vue';
 import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
-import { getProviders } from '~~/action/game';
+import { getProviders , getRecentPlayedGames , getFavoriteGames } from '~~/action/game';
 import { getBalances } from '~~/action/wallet';
 import {useRoute} from 'vue-router';
 import Cookies from 'js-cookie';
@@ -39,11 +39,13 @@ watch(
 
 //init website(domain.com)
 onBeforeMount(() => {                                  
-    // getProviders(store);                                    //loadProviders
+    getProviders(store);                                    //loadProviders
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store);                                  // get player profile
         getBalances(store);
+        getRecentPlayedGames(store);
+        getFavoriteGames(store);
     }
 });
 </script>
