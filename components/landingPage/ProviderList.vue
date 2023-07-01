@@ -94,10 +94,10 @@ const onSlideChange = () => {
                 <swiper-slide v-for="provider in providers">
                     <div
                         style="background: #4d5160"
-                        class="h-14 w-full text-center rounded-2xl p-2"
+                        class="h-16 w-full flex justify-center text-center rounded-2xl p-2"
                     >
                         <img
-                            class="w-full h-full object-fill object-center"
+                            class="h-full object-fill object-center"
                             alt="provider"
                             :src="provider?.logo ?? ''"
                         />

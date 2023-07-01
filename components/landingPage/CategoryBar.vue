@@ -3,7 +3,7 @@ import CategoryBarItem from './CategoryBarItem.vue';
 import { watch , onBeforeMount } from 'vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
-import { getAllGames,getAllGamesByType, getSlotsGames, getTableGames, getLiveGames, getRouletteGames } from '~~/action/game';
+import { getAllGames, getAllGamesByType, getSlotsGames, getTableGames, getLiveGames, getRouletteGames , getFavoriteGames , getRecentPlayedGames } from '~~/action/game';
 
 const route = useRoute();
 const store = useStore();
@@ -11,12 +11,18 @@ watch(()=>route.query.tab,()=>{
     if(store.state.pageNumber == 1)
         getGames(1);
     store.commit('handleReadMore', 1);
+    store.commit('handleCurrentLoaded',0);
+    store.commit('handleGetGamesByType',[]);
+    store.commit('handleGetGamesAmount',0);
 })
 watch(()=>store.state.pageNumber,()=>{
     getGames(store.state.pageNumber);
 })
 onBeforeMount(()=>{
     store.commit('handleReadMore', 1);
+    store.commit('handleCurrentLoaded',0);
+    store.commit('handleGetGamesByType',[]);
+    store.commit('handleGetGamesAmount',0);
     getGames(1);
 });
 const getGames=(pagenumber)=>{
@@ -39,6 +45,12 @@ const getGames=(pagenumber)=>{
             break;
         case 'roulette':
             getRouletteGames(store, pagenumber);
+            break;
+        case 'favorites':
+            getFavoriteGames(store);
+            break;
+        case 'recent':
+            getRecentPlayedGames(store);
             break;
     }
 }

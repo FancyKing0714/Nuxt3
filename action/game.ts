@@ -56,6 +56,7 @@ export const getSlotsGames = (store, pagenumber) => {
         }
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
     .catch(err=>{
         if(err.response)
@@ -74,6 +75,7 @@ export const getTableGames = (store, pagenumber) => {
         }
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
     .catch(err=>{
         if(err.response)
@@ -92,6 +94,7 @@ export const getLiveGames = (store, pagenumber) => {
         }
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
     .catch(err=>{
         if(err.response)
@@ -110,6 +113,75 @@ export const getRouletteGames = (store, pagenumber) => {
         }
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
+export const getRecentPlayedGames = (store) => {
+    AxiosWithAuth('get',`/api/player/getRecentGameHistory`,store)
+    .then(res => {
+        let games = res.data.data.data;
+        store.commit('handleGetGamesByType', games);
+        store.commit('handleGetGamesAmount',res.data.data.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.data.per_page);
+    })
+    .catch(err=>{
+
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
+export const getFavoriteGames = (store) => {
+    AxiosWithAuth('get',`/api/player/getFavoriteGames`,store)
+    .then(res => {
+        let games = res.data.games.data;
+        let favorites = games.map(game => {
+            return game?.id;
+        });
+        store.commit('handleGetGamesByType', games);
+        store.commit('handleFavoriteGameList', favorites);
+        store.commit('handleGetGamesAmount',res.data.games.total);
+        store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+export const addFavoriteGame = (store, id) => {
+    AxiosWithAuth('post',`/api/player/addFavorite/${id}`,store)
+    .then(res => {
+        let favorites = store.state.favoriteGameList;
+        favorites.push(id);
+        store.commit('handleFavoriteGameList', favorites);
+        store.commit('handleNotification',{type:'Success', message: res.data.message});
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
+export const removeFavoriteGame = (store, id) => {
+    AxiosWithAuth('post',`/api/player/removeFavorite/${id}`,store)
+    .then(res => {
+        let favorites = store.state.favoriteGameList;
+        favorites.pop(id);
+        store.commit('handleFavoriteGameList', favorites);
+        store.commit('handleNotification',{type:'Success',message: res.data.message});
     })
     .catch(err=>{
         if(err.response)
