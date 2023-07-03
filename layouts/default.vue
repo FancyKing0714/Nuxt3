@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue';
+import { onBeforeMount , inject } from 'vue';
 import { useStore } from 'vuex';
 import HeaderComponent from '@/components/header/HeaderComponent.vue';
 import SideBarComponent from '@/components/sidebar/SideBarComponent.vue';
@@ -38,7 +38,7 @@ watch(
 });
 
 //init website(domain.com)
-onBeforeMount(() => {                                  
+onBeforeMount(() => {           
     getProviders(store);                                    //loadProviders
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true

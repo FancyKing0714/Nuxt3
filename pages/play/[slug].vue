@@ -66,10 +66,6 @@
                     <div class="bg-gray-700 p-2 ml-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
                         <q-icon name="fullscreen" size="sm" />
                     </div>
-                    <!-- <div class="bg-gray-700 p-2 ml-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
-                        <q-icon v-if="store.state.favoriteGameList.includes(slug)" name="star" size="sm" />
-                        <q-icon v-if="!store.state.favoriteGameList.includes(slug)" name="star_outline" size="sm" />
-                    </div> -->
                 </div>
                 <div class="flex flex-row items-center">
                     <p class="text-sm font-semibold text-gray-500" :class="!playtoggle && 'text-white'">Real Play</p>
@@ -79,7 +75,7 @@
             </div>
         </div>
         <!-- game frame -->
-        <div class="relative w-full h-full" :class="!fullScreenState&&'xl:my-2 xl:h-[750px] xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
+        <div class="relative w-full h-full bg-gray-700" :class="!fullScreenState&&'xl:my-2 xl:h-[750px] xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
             <iframe v-if="isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :src="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
             <iframe v-if="!isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :srcdoc="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
         </div>
