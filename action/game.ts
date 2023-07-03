@@ -127,7 +127,7 @@ export const getRecentPlayedGames = (store) => {
     AxiosWithAuth('get',`/api/player/getRecentGameHistory`,store)
     .then(res => {
         let games = res.data.data.data;
-        store.commit('handleGetGamesByType', games);
+        store.commit('handleRecentGameList', games);
         store.commit('handleGetGamesAmount',res.data.data.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.data.per_page);
     })
@@ -144,11 +144,9 @@ export const getFavoriteGames = (store) => {
     AxiosWithAuth('get',`/api/player/getFavoriteGames`,store)
     .then(res => {
         let games = res.data.games.data;
-        let favorites = games.map(game => {
-            return game?.id;
-        });
-        store.commit('handleGetGamesByType', games);
-        store.commit('handleFavoriteGameList', favorites);
+        let IDlist = games.map(item=>{return item.id});
+        store.commit('handleFavoriteGameIDList', IDlist);
+        store.commit('handleFavoriteGameList', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
@@ -162,9 +160,9 @@ export const getFavoriteGames = (store) => {
 export const addFavoriteGame = (store, id) => {
     AxiosWithAuth('post',`/api/player/addFavorite/${id}`,store)
     .then(res => {
-        let favorites = store.state.favoriteGameList;
-        favorites.push(id);
-        store.commit('handleFavoriteGameList', favorites);
+        let IDlist = store.state.favoriteGameIDList.map(item=>{return item});
+        IDlist.push(id);
+        store.commit('handleFavoriteGameIDList', IDlist);
         store.commit('handleNotification',{type:'Success', message: res.data.message});
     })
     .catch(err=>{
@@ -178,9 +176,8 @@ export const addFavoriteGame = (store, id) => {
 export const removeFavoriteGame = (store, id) => {
     AxiosWithAuth('post',`/api/player/removeFavorite/${id}`,store)
     .then(res => {
-        let favorites = store.state.favoriteGameList;
-        favorites.pop(id);
-        store.commit('handleFavoriteGameList', favorites);
+        let IDlist = store.state.favoriteGameIDList.filter(item=>item!=id).map(item=>{return item});
+        store.commit('handleFavoriteGameIDList', IDlist);
         store.commit('handleNotification',{type:'Success',message: res.data.message});
     })
     .catch(err=>{

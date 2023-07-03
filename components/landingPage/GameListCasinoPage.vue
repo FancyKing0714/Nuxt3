@@ -1,21 +1,30 @@
 <script setup lang="ts">
-import { useStore } from 'vuex';
+import {onBeforeMount} from "vue";
+import { useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import { linkTo } from '~~/utils/link';
-import { addFavoriteGame , removeFavoriteGame , getFavoriteGames } from '~~/action/game';
+import { addFavoriteGame , removeFavoriteGame } from '~~/action/game';
 
 const router = useRouter();
 const store = useStore();
+
+defineProps({
+    games: {
+        type: Object,
+    },
+});
+
 const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
     router.push(linkTo(`/play/${slug}`));
 };
 const onFavorite = (id) => {
-    if(store.state.favoriteGameList.includes(id))
+    if(store.state.favoriteGameIDList.includes(id))
         removeFavoriteGame(store, id);
     else
         addFavoriteGame(store, id);
 }
+
 let focusgame = ref("");
 const handleFocusGame = (id) => {
     focusgame.value = id;
@@ -36,8 +45,9 @@ const imgurl = "/imgs/noGameImg.png";
 <template>
     <div class="pt-5">
         <div>
+            
             <div class="flex flex-wrap justify-center">
-                <div class="hidden sm:!block card p-1" v-for="gameItem in store.state.gameListByType">
+                <div class="hidden sm:!block card p-1" v-for="gameItem in games">
                     <div class="container" >
                         <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv" >
@@ -65,8 +75,8 @@ const imgurl = "/imgs/noGameImg.png";
                                 style="background-color: transparent;"
                                 @click="onFavorite(gameItem?.id)"
                             >
-                                <q-icon v-if="store.state.favoriteGameList.includes(gameItem?.id)" name="star" size="xs" />
-                                <q-icon v-if="!store.state.favoriteGameList.includes(gameItem?.id)" name="star_border" size="xs" />
+                                <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                                <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
                             </q-btn>
                         </div>
                     </div>
@@ -74,7 +84,7 @@ const imgurl = "/imgs/noGameImg.png";
                         {{ gameItem?.name }}
                     </p>
                 </div>
-                <div class="sm:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
+                <div class="sm:hidden card-mobile p-1" v-for="gameItem in games" @click="handleFocusGame(gameItem.id)">
                     <div class="container-mobile" >
                         <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'">
@@ -102,8 +112,8 @@ const imgurl = "/imgs/noGameImg.png";
                                 style="background-color: transparent;"
                                 @click="onFavorite(gameItem?.id)"
                             >
-                                <q-icon v-if="store.state.favoriteGameList.includes(gameItem?.id)" name="star" size="xs" />
-                                <q-icon v-if="!store.state.favoriteGameList.includes(gameItem?.id)" name="star_border" size="xs" />
+                                <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                                <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
                             </q-btn>
                         </div>
                         <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>

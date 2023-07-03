@@ -36,14 +36,15 @@ watch(
                 multiLine: true,
                 timeout: 1500,}) 
 });
-
+watch(()=>route.path, ()=>{
+    getBalances(store);                                  //loadProviders
+});
 //init website(domain.com)
-onBeforeMount(() => {           
-    getProviders(store);                                    //loadProviders
+onBeforeMount(() => {          
+    getProviders(store);   
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store);                                  // get player profile
-        getBalances(store);
         getRecentPlayedGames(store);
         getFavoriteGames(store);
     }

@@ -9,7 +9,6 @@ import Activity from '~~/components/landingPage/Activity.vue';
 import {useRoute} from 'vue-router';
 import Cookies from 'js-cookie';
 
-// const vue3mq = useVue3Mq();
 const store = useStore();
 const route = useRoute();
 let tab=ref(route.query?.tab?.toString()?route.query?.tab?.toString():'');
@@ -30,6 +29,7 @@ onBeforeMount(()=>{
     else                                                                //else remove origin promo from cookie
         Cookies.remove('promo');  
 });
+
 useHead({
       title: 'Canada777',
       meta: [
@@ -39,7 +39,14 @@ useHead({
           content: 'Welcome to our website! Explore a wide range of exciting games, thrilling promotions, and exclusive VIP rewards. Start your gaming adventure now and experience the best online entertainment. Play, win, and have a great time at our platform.'
         }
       ]
-})
+});
+
+const getGames = () => {
+    if(route.query?.tab?.toString() == 'recent') return store.state.recentGameList;
+    else if(route.query?.tab?.toString() == 'favorites') return store.state.favoriteGameList;
+    else return store.state.gameListByType;
+};
+
 </script>
 <template>
     <q-page>
@@ -53,7 +60,7 @@ useHead({
             </section>
             <section class="pt-4">
                 <landing-page-category-bar />
-                <game-list-casino-page v-if="tab != ''"/>
+                <game-list-casino-page v-if="tab != ''" :games="getGames()" />
                 <game-list-index v-if="tab == ''" v-for="game in store.state.allGameList" :game="game"/>
                 <provider-list :providers="store.state.providers" />
             </section>

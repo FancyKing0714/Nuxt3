@@ -25,6 +25,7 @@ onBeforeMount(()=>{
     else                                                                //else remove origin promo from cookie
         Cookies.remove('promo');  
 });
+
 useHead({
       title: 'Canada777',
       meta: [
@@ -34,7 +35,14 @@ useHead({
           content: 'Welcome to our website! Explore a wide range of exciting games, thrilling promotions, and exclusive VIP rewards. Start your gaming adventure now and experience the best online entertainment. Play, win, and have a great time at our platform.'
         }
       ]
-})
+});
+
+const getGames = () => {
+    if(route.query?.tab?.toString() == 'recent') return store.state.recentGameList;
+    else if(route.query?.tab?.toString() == 'favorites') return store.state.favoriteGameList;
+    else return store.state.gameListByType;
+};
+
 </script>
 <template>
     <q-page>
@@ -44,7 +52,7 @@ useHead({
         >
             <section>
                 <landing-page-category-bar />
-                <game-list-casino-page />
+                <game-list-casino-page :games="getGames()" />
                 <provider-list :providers="store.state.providers" />
             </section>
             <section>
