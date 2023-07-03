@@ -7,8 +7,9 @@ import GameListIndex from '~~/components/landingPage/GameListIndex.vue';
 import ProviderList from '~~/components/landingPage/ProviderList.vue';
 import Activity from '~~/components/landingPage/Activity.vue';
 import {useRoute} from 'vue-router';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
+// const vue3mq = useVue3Mq();
 const store = useStore();
 const route = useRoute();
 let tab=ref(route.query?.tab?.toString()?route.query?.tab?.toString():'');
@@ -44,7 +45,7 @@ useHead({
     <q-page>
         <div
             style="max-width: 1450px"
-            class="w-full px-1 sm:px-0 md:px-6 lg:px-14 py-8 m-auto"
+            class="w-full px-0 sm:px-3 md:px-6 lg:px-9 py-9 m-auto"
         >
             <section class="main h-full px-4">
                 <landing-page-overview />

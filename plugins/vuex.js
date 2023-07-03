@@ -5,7 +5,7 @@ const store = createStore({
             onLogin: false,             // show/hide login diaolg
             onRegister: false,          // show/hide register dialog
             onMoblieProfile: false, 
-            isDrawer: true, 
+            isDrawer: false, 
             isWelcome: true, 
             isVerifyEmail: false, 
             isLogin: false,             // login value

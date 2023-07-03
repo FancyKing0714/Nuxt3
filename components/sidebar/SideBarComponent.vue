@@ -47,11 +47,13 @@ const sideBarLinks: SideBarItemInterFace[] = [
 <template>
     <!-- SideBar -->
     <q-drawer
-        v-model="store.state.isDrawer"
         show-if-above
+        :width="300"
+        :breakpoint="1024"
         class="px-6 py-3"
         style="background-color: #181a25"
         @before-hide="store.commit('handleDrawer', false)"
+        v-model="store.state.isDrawer"
     >
         <div
             style="border-bottom: 1px solid #7d8396"
@@ -127,7 +129,7 @@ const sideBarLinks: SideBarItemInterFace[] = [
             </q-btn>
         </div> -->
         <div>
-            <div class="w-full md:hidden mt-5">
+            <div class="flex justify-center md:hidden mt-5">
                 <SearchInput />
             </div>
             <div class="mt-5 text-center">

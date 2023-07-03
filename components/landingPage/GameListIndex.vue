@@ -10,6 +10,12 @@ const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
     router.push(linkTo(`/play/${slug}`));
 };
+
+let focusgame = ref("");
+const handleFocusGame = (id) => {
+    focusgame.value = id;
+};
+
 defineProps({
     game: {
         type: Object,
@@ -108,7 +114,7 @@ const imgurl = "/imgs/noGameImg.png";
                     },
                 }"
             >
-                <swiper-slide v-for="gameItem in game?.list">
+                <swiper-slide class="hidden sm:!block" v-for="gameItem in game?.list">
                     <div class="container">
                         <div class="container">
                             <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
@@ -146,6 +152,44 @@ const imgurl = "/imgs/noGameImg.png";
                             {{ gameItem?.name }}
                         </p>
                     </div>
+                </swiper-slide>
+                <swiper-slide class="sm:hidden" v-for="gameItem in game?.list">
+                    <div class="container" @click="handleFocusGame(gameItem.id)">
+                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
+                            <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'" >
+                                <div class="play-demo flex flex-col justify-center items-center">
+                                    <q-btn
+                                        text-color=white
+                                        style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                        @click="play(0, gameItem.slug)"
+                                    >
+                                        <q-icon name="play_arrow" size="lg" />
+                                    </q-btn>
+                                    <q-btn
+                                        v-if="gameItem?.demo == 1"
+                                        text-color=white
+                                        padding="1px 10px"
+                                        label="Demo"
+                                        style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                        @click="play(1, gameItem.slug)"
+                                    />
+                                </div>
+                                <q-btn
+                                    text-color=yellow
+                                    padding="0px"
+                                    class="star-icon"
+                                    style="background-color: transparent;"
+                                >
+                                    <q-icon name="star_border" size="xs" />
+                                </q-btn>
+                            </div>
+                            <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>
+                        </div>
+                        <p
+                            class="text-center gametext p-2"
+                        >
+                            {{ gameItem?.name }}
+                        </p>
                 </swiper-slide>
             </Swiper>
         </div>
@@ -186,6 +230,26 @@ const imgurl = "/imgs/noGameImg.png";
     background-color: rgba(0,0,0,0.8);
     transition: .3s;
 }
+.btnDiv-mobile{
+    position:absolute;
+    z-index: 2;
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.btnDiv-mobile-cover{
+    position:absolute;
+    z-index: 3;
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0);
+}
 .container:hover .btnDiv{
     opacity: 1;
 }
@@ -193,9 +257,6 @@ const imgurl = "/imgs/noGameImg.png";
     font-size: 11px;
     color: white;
 }
-.container:hover .gametext{
-    color:white;
-    font-size:12px;
-}
+
 </style>
 

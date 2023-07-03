@@ -101,7 +101,7 @@ const provider = {
 
 <template>
     <div
-        class="rounded-lg w-full py-2 px-3  overflow-x-auto"
+        class="sm:rounded-lg w-full py-2 px-3  overflow-x-auto"
         style="background: #282b34"
     >
         <div style="min-width: 768px;" class="w-full flex flex-nowrap justify-between">

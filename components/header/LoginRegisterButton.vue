@@ -13,7 +13,7 @@ const store = useStore();
         </div>
         <div
             style="background-color: #3f4655"
-            class="sm:py-2 sm:px-3 px-3 py-2 text-xs sm:text-sm !rounded-3xl flex items-center justify-start cursor-pointer"
+            class="sm:py-2 sm:px-3 px-3 py-2 text-xs sm:text-sm !rounded-3xl flex items-center justify-center cursor-pointer"
             @click="store.commit('handleOnRegister', true)"
         >
             Registration

@@ -40,9 +40,9 @@ useHead({
     <q-page>
         <div
             style="max-width: 1450px"
-            class="w-full px-1 sm:px-0 md:px-6 lg:px-14 py-8 m-auto"
+            class="w-full p-0 sm:p-3 md:p-6 lg:p-9 m-auto"
         >
-            <section class="pt-4">
+            <section>
                 <landing-page-category-bar />
                 <game-list-casino-page />
                 <provider-list :providers="store.state.providers" />
