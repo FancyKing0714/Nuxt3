@@ -7,6 +7,7 @@
         type="text"
         placeholder="First name"
         standout
+        readonly
         v-model="person.first_name"
         :dense="true"
       >
@@ -19,6 +20,7 @@
         type="text"
         placeholder="Last name"
         standout
+        readonly
         v-model="person.last_name"
         :dense="true"
       >
@@ -31,6 +33,7 @@
         type="email"
         placeholder="Email"
         standout
+        readonly
         v-model="person.email"
         :dense="true"
       >
@@ -42,6 +45,7 @@
         mask="phone"
         placeholder="Phone number"
         standout
+        readonly
         v-model="person.phone"
         :dense="true"
       >
@@ -54,6 +58,7 @@
         type="text"
         placeholder="Gender"
         standout
+        readonly
         v-model="person.gender"
         :dense="true"
       >
@@ -66,6 +71,7 @@
         type="date"
         placeholder="Date of birth"
         standout
+        readonly
         v-model="person.dob"
         :dense="true"
       >
@@ -78,6 +84,7 @@
         type="text"
         placeholder="Street address"
         standout
+        readonly
         v-model="person.street_1_address"
         :dense="true"
       >
@@ -90,6 +97,7 @@
         type="text"
         placeholder="State"
         standout
+        readonly
         v-model="person.state"
         :dense="true"
       >
@@ -102,6 +110,7 @@
         type="text"
         placeholder="City"
         standout
+        readonly
         v-model="person.city"
         :dense="true"
       >
@@ -114,6 +123,7 @@
         type="text"
         placeholder="Country"
         standout
+        readonly
         v-model="person.country"
         :dense="true"
       >

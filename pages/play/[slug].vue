@@ -43,7 +43,7 @@
     })
 </script>
 <template>
-    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:py-5 mx-auto xl:h-fit'">
+    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:py-5 mx-auto'">
         <!-- desktop close button -->
         <div :class="fullScreenState?'hidden xl:!block absolute top-4 right-4 z-[2001]':'hidden'">
             <div class="bg-gray-700 p-3 ml-1 rounded-full hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(false)">
@@ -56,9 +56,9 @@
                 <q-icon name="close" color="red" size="sm"/>
             </div>
         </div>
-        <!-- game name, property, recommended game -->
+        <!-- game close, fullscreen, play/fun -->
         <div class="hidden" :class="!fullScreenState&&'xl:!block'">
-            <div class="flex flex-row justify-between py-2">
+            <div class="flex flex-row justify-between pt-2">
                 <div class="flex flex-row">
                     <div class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="router.push(linkTo('/casino'))">
                         <q-icon name="close" size="sm"/>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <!-- game frame -->
-        <div class="relative w-full h-full bg-gray-700" :class="!fullScreenState&&'xl:my-2 xl:h-[750px] xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
+        <div class="relative w-full h-full bg-gray-700" :class="!fullScreenState&&'xl:my-2 xl:h-5/6 xl:border-gray-400 xl:border-2 xl:border-solid xl:rounded-2xl'">
             <iframe v-if="isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :src="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
             <iframe v-if="!isValidUrl(store.state.gameData)" class="w-full h-full text-white" :class="!fullScreenState&&'xl:rounded-2xl'" :srcdoc="store.state.gameData"  frameborder="0" allowfullscreen></iframe>
         </div>

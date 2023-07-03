@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { useStore } from 'vuex';
+    import { fillFieldNames } from 'ant-design-vue/lib/vc-cascader/utils/commonUtil';
+import { useStore } from 'vuex';
 
     const store = useStore();
 </script>
@@ -31,7 +32,6 @@
                 <div class="flex items-center justify-between pt-10">
                     <q-btn
                         v-if="store.state.isLogin === false"
-                       
                         class="font-bold text-2xl sm:px-6 !py-0 z-[10]"
                         unelevated
                         color="primary"
@@ -82,7 +82,7 @@
 
                 <div class="pt-3 pl-3 flex items-center justify-start">
                     <q-btn
-                        v-if="store.state.isLogin === true"
+                        v-if="store.state.isDrawer === false"
                         class="font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 mr-2"
                         outline
                         color="white"
@@ -90,18 +90,15 @@
                         @click="$router.push(linkTo('/casino?tab=slots'))"
                     />
                     <q-btn
-                        v-if="store.state.isDrawer === false"
-                        :class="[
-                            'font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 mx-2',
-                            store.state.isDrawer ? 'lg:hidden' : '',
-                        ]"
+                        v-if="store.state.isLogin === true"
+                        class="font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 mx-2"
                         unelevated
                         color="primary"
                         label="Deposit"
                         @click="$router.push(linkTo('/wallet/deposit'))"
                     />
                     <q-btn
-                        v-if="store.state.isLogin === true"
+                        v-if="store.state.isLogin === false"
                         :class="[
                             'font-bold text-lg md:text-xl lg:text-2xl !leading-loose lg:px-6 z-[10]',
                         ]"
