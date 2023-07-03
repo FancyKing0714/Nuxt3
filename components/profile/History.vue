@@ -23,9 +23,6 @@
                 <q-td key="currency" :props="props">
                     {{ props.row.currency }}
                 </q-td>
-                <q-td key="status" :props="props">
-                    {{ props.row.status }}
-                </q-td>
                 <q-td key="created_at" :props="props">
                     {{ props.row.created_at }}
                 </q-td>
@@ -94,12 +91,6 @@ const cols:columnformat[] = [
                     align: 'left',
                     label: 'Currency',
                     field: 'currency',
-                },
-                {
-                    name: 'status',
-                    align: 'left',
-                    label: 'State',
-                    field: 'status',
                 },
                 {
                     name: 'created_at',

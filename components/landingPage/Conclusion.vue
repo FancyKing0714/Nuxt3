@@ -18,11 +18,20 @@ const store= useStore();
                     </p>
                 </div>
                 <q-btn
+                    v-if="store.state.isLogin === true"
                     class="mt-2"
                     size="sm"
                     color="primary"
                     label="Join Now"
                     @click="$router.push(linkTo('/bonus/cash-back'))"
+                />
+                <q-btn 
+                    v-if="store.state.isLogin === false"
+                    class="mt-2" 
+                    size="sm" 
+                    color="primary" 
+                    label="SIGN UP" 
+                    @click="store.commit('handleOnRegister', true)"
                 />
             </div>
         </div>
@@ -51,7 +60,22 @@ const store= useStore();
                     </div>
                 </div>
 
-                <q-btn class="mt-2" size="sm" color="primary" label="SIGN UP" @click="store.commit('handleOnRegister', true)"/>
+                <q-btn 
+                    v-if="store.state.isLogin === true"
+                    class="mt-2" 
+                    size="sm" 
+                    color="primary" 
+                    label="Deposit" 
+                    @click="$router.push(linkTo('/wallet/deposit'))"
+                />
+                <q-btn 
+                    v-if="store.state.isLogin === false"
+                    class="mt-2" 
+                    size="sm" 
+                    color="primary" 
+                    label="SIGN UP" 
+                    @click="store.commit('handleOnRegister', true)"
+                />
             </div>
         </div>
     </div>
