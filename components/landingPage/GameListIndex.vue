@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 import { useStore } from 'vuex';
 import {useRouter} from 'vue-router';
+import {changeTitle} from '~~/utils/string';
+import { addFavoriteGame , removeFavoriteGame } from '~~/action/game';
 
 const router = useRouter();
 const store = useStore();
@@ -21,8 +23,15 @@ defineProps({
         type: Object,
     },
 });
-let swiperRef: any;
 
+const onFavorite = (id) => {
+    if(store.state.favoriteGameIDList.includes(id))
+        removeFavoriteGame(store, id);
+    else
+        addFavoriteGame(store, id);
+}
+
+let swiperRef: any;
 const onSwiper = (swiper: any) => {
     swiperRef = swiper;
 };
@@ -47,7 +56,7 @@ const imgurl = "/imgs/noGameImg.png";
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center">
                     <img class="w-4" :src="`/imgs/sidebar/${game?.title}.png`" alt="hot" />
-                    <p class="font-bold text-lg pl-2">{{ game?.title }}</p>
+                    <p class="font-bold text-lg pl-2">{{ changeTitle(game?.title) }}</p>
                 </div>
                 <div>
                     <q-btn
@@ -141,8 +150,10 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="0px"
                                     class="star-icon"
                                     style="background-color: transparent;"
+                                    @click="onFavorite(gameItem?.id)"
                                 >
-                                    <q-icon name="star_border" size="xs" />
+                                    <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                                    <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
                                 </q-btn>
                             </div>
                         </div>
@@ -153,7 +164,7 @@ const imgurl = "/imgs/noGameImg.png";
                         </p>
                     </div>
                 </swiper-slide>
-                <swiper-slide class="sm:hidden" v-for="gameItem in game?.list">
+                <swiper-slide class="sm:!hidden" v-for="gameItem in game?.list">
                     <div class="container" @click="handleFocusGame(gameItem.id)">
                             <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
                             <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'" >
@@ -179,8 +190,10 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="0px"
                                     class="star-icon"
                                     style="background-color: transparent;"
+                                    @click="onFavorite(gameItem?.id)"
                                 >
-                                    <q-icon name="star_border" size="xs" />
+                                    <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                                    <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
                                 </q-btn>
                             </div>
                             <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>

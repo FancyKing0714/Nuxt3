@@ -10,5 +10,7 @@ export const seperate = (str:string) => {
         result = [...result , {string: urlPattern.test(item), content: item}];
     });
     return result;
-    
 };
+export const changeTitle = (str:string) => {
+    return str.replace(/([A-Z])/g, " $1").trim().replace(/^\w/, c => c.toUpperCase());
+}
