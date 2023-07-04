@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
-import { ref } from 'vue';
+import { ref , onUnmounted} from 'vue';
 import { getGameHistory } from '~~/action/profile'; 
 
 const router = useRouter();
@@ -68,25 +68,31 @@ const pagination = ref({
       page: 1,
       rowsPerPage: 5,
 })
-
+onUnmounted(()=>{
+    store.commit('handleGetHistory', []);
+    store.commit('handleGetHistoryAccount', 0);
+    store.commit('handlePageNumber', 1);
+});
 const prevPage = (prev:Function) => {
     pagination.value.page-=1;
 }
 const nextPage = (next:Function) => {
-    if(store.state.gameHistory.length < (pagination.value.page+1)*pagination.value.rowsPerPage){
-        let cnt = Math.ceil(((pagination.value.page+1)*pagination.value.rowsPerPage - store.state.gameHistory.length)/10);
-        for(var i=0; i<cnt; i++){
-            getGameHistory(store.state.pageNumber+1, store, router);
-            store.commit('handleReadMore',store.state.pageNumber+1);
+    if(store.state.historyAmount>pagination.value.page*pagination.value.rowsPerPage){
+        if(store.state.history.length < (pagination.value.page+1)*pagination.value.rowsPerPage){
+            let cnt = Math.ceil(((pagination.value.page+1)*pagination.value.rowsPerPage - store.state.history.length)/10);
+            for(var i=0; i<cnt; i++){
+                getGameHistory(store.state.pageNumber+1, store, router);
+                store.commit('handlePageNumber',store.state.pageNumber+1);
+            }
         }
+        pagination.value.page+=1;
     }
-    pagination.value.page+=1;
 }
 
 //get player game history from store.state.gameHistory
-let rows = ref(store.state.gameHistory);
-watch(()=>store.state.gameHistory,()=>{
-    rows.value = store.state.gameHistory;
+let rows = ref(store.state.history);
+watch(()=>store.state.history,()=>{
+    rows.value = store.state.history;
 });
 
 interface columnformat{

@@ -27,10 +27,10 @@ const selectedItem = ref(linkToTab(route.params.tab.toString()));
 onBeforeMount(()=>{
     switch(route.params.tab.toString()){
         case 'deposit-history':
-            getDepositHistory(store, router);
+            getDepositHistory(store.state.pageNumber, store, router);
             break;
         case 'withdraw-history':
-            getWithdrawHistory(store, router);
+            getWithdrawHistory(store.state.pageNumber, store, router);
             break;
     }
 });

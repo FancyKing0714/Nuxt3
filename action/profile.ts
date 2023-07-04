@@ -19,10 +19,10 @@ export const getGameHistory = (pagenum, store, router) => {
     .then(res => {
         let result = res.data.gamePlayHistory.data;
         if(pagenum>1){
-            result = [...store.state.gameHistory, ...result];
+            result = [...store.state.history, ...result];
         }
         store.commit('handleGetHistoryAccount', res.data.gamePlayHistory.total)
-        store.commit('handleGetGameHistory', result);
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)

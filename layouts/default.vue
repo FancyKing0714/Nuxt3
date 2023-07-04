@@ -49,8 +49,6 @@ onBeforeMount(() => {
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store, router);                                  // get player profile
         getBalances(store);
-        // getRecentPlayedGames(store);
-        // getFavoriteGames(store);
     }
 });
 </script>
