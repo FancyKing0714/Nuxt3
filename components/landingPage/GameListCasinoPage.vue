@@ -40,7 +40,7 @@ const imgurl = "/imgs/noGameImg.png";
     <div class="pt-5">
         <div>
             <div class="flex flex-wrap justify-center">
-                <div class="hidden sm:!block card p-1" v-for="gameItem in store.state.gameListByType">
+                <div class="hidden md:!block card p-1" v-for="gameItem in store.state.gameListByType">
                     <div class="container" >
                         <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv" >
@@ -77,7 +77,7 @@ const imgurl = "/imgs/noGameImg.png";
                         {{ gameItem?.name }}
                     </p>
                 </div>
-                <div class="sm:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
+                <div class="md:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
                     <div class="container-mobile" >
                         <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'">
