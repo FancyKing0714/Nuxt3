@@ -10,7 +10,10 @@ import Cookies from 'js-cookie'
 
 const store = useStore();
 const route = useRoute();
-
+let tab=ref(route.query?.tab?.toString()?route.query?.tab?.toString():'');
+watch(()=>route.query?.tab, ()=>{
+    tab.value = route.query?.tab?.toString()?route.query?.tab?.toString():'';
+})
 //catch click_id and promo when user call website( domain.com ) first
 //because middleware not yet init
 onBeforeMount(()=>{
@@ -25,7 +28,6 @@ onBeforeMount(()=>{
     else                                                                //else remove origin promo from cookie
         Cookies.remove('promo');  
 });
-
 useHead({
       title: 'Canada777',
       meta: [
@@ -37,12 +39,6 @@ useHead({
       ]
 });
 
-const getGames = () => {
-    if(route.query?.tab?.toString() == 'recent') return store.state.recentGameList;
-    else if(route.query?.tab?.toString() == 'favorites') return store.state.favoriteGameList;
-    else return store.state.gameListByType;
-};
-
 </script>
 <template>
     <q-page>
@@ -52,7 +48,7 @@ const getGames = () => {
         >
             <section>
                 <landing-page-category-bar />
-                <game-list-casino-page :games="getGames()" />
+                <game-list-casino-page />
                 <provider-list :providers="store.state.providers" />
             </section>
             <section>

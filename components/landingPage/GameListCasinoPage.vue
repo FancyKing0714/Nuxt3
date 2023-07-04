@@ -8,12 +8,6 @@ import { addFavoriteGame , removeFavoriteGame } from '~~/action/game';
 const router = useRouter();
 const store = useStore();
 
-defineProps({
-    games: {
-        type: Object,
-    },
-});
-
 const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
     router.push(linkTo(`/play/${slug}`));
@@ -45,9 +39,8 @@ const imgurl = "/imgs/noGameImg.png";
 <template>
     <div class="pt-5">
         <div>
-            
             <div class="flex flex-wrap justify-center">
-                <div class="hidden sm:!block card p-1" v-for="gameItem in games">
+                <div class="hidden sm:!block card p-1" v-for="gameItem in store.state.gameListByType">
                     <div class="container" >
                         <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
                         <div class="btnDiv" >
