@@ -42,6 +42,7 @@ useHead({
 });
 
 const getGames = () => {
+    console.log(route.query?.tab?.toString());
     if(route.query?.tab?.toString() == 'recent') return store.state.recentGameList;
     else if(route.query?.tab?.toString() == 'favorites') return store.state.favoriteGameList;
     else return store.state.gameListByType;
