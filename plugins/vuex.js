@@ -27,9 +27,7 @@ const store = createStore({
             balance:{},                 // balance
 
             gameListByType:[],          // current game list(type)
-            favoriteGameList:[],        // favorite game list
-            favoriteGameIDList:[],        // favorite game list
-            recentGameList:[],          // recent played game list
+            favoriteGameIDList:[],      // favorite game list
             gameAmountByType:0,         // game amount of type
             currentLoaded:0,            // current loaded game amount
             allGameList:[],             // current game list
@@ -64,13 +62,11 @@ const store = createStore({
         handleGetGameHistory(state, payload) { state.gameHistory = payload; },
         handleGetHistoryAccount(state, payload) { state.historyAmount = payload; },
 
+        handleGetAllGames(state, payload) { state.allGameList = payload; },
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
-        handleFavoriteGameList(state, payload) { state.favoriteGameList = payload; },
         handleFavoriteGameIDList(state, payload) { state.favoriteGameIDList = payload; },
-        handleRecentGameList(state, payload) { state.recentGameList = payload; },
         handleGetGamesAmount(state, payload) { state.gameAmountByType = payload; },
         handleCurrentLoaded(state, payload) { state.currentLoaded = payload; },
-        handleGetAllGames(state, payload) { state.allGameList = payload; },
         handleGetGameData(state, payload) { state.gameData = payload; },
         handleGamePlayMode(state, payload) { state.gamePlayMode = payload; },
         handleReadMore(state, payload) { state.pageNumber = payload; },

@@ -126,8 +126,7 @@ export const getRouletteGames = (store, pagenumber) => {
 export const getRecentPlayedGames = (store) => {
     AxiosWithAuth('get',`/api/player/getRecentGameHistory`,store)
     .then(res => {
-        let games = res.data.data.data;
-        store.commit('handleRecentGameList', games);
+        store.commit('handleGetGamesByType', res.data.data.data);
         store.commit('handleGetGamesAmount',res.data.data.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.data.per_page);
     })
@@ -146,7 +145,7 @@ export const getFavoriteGames = (store) => {
         let games = res.data.games.data;
         let IDlist = games.map(item=>{return item.id});
         store.commit('handleFavoriteGameIDList', IDlist);
-        store.commit('handleFavoriteGameList', games);
+        store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
     })
