@@ -123,15 +123,18 @@ export const getRouletteGames = (store, pagenumber) => {
     });
 }
 
-export const getRecentPlayedGames = (store) => {
-    AxiosWithAuth('get',`/api/player/getRecentGameHistory`,store)
+export const getRecentPlayedGames = (store, pagenumber) => {
+    AxiosWithAuth('get',`/api/player/getRecentGameHistory?page=${pagenumber}`,store)
     .then(res => {
-        store.commit('handleGetGamesByType', res.data.data.data);
+        let games = res.data.data.data;
+        if(pagenumber>1) {
+            games = [...store.state.gameListByType,...games]
+        }
+        store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.data.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.data.per_page);
     })
     .catch(err=>{
-
         if(err.response)
             store.commit('handleNotification',{type:'Error',message:err.response.data.message});
         else
@@ -139,11 +142,15 @@ export const getRecentPlayedGames = (store) => {
     });
 }
 
-export const getFavoriteGames = (store) => {
-    AxiosWithAuth('get',`/api/player/getFavoriteGames`,store)
+export const getFavoriteGames = (store, pagenumber) => {
+    AxiosWithAuth('get',`/api/player/getFavoriteGames?page=${pagenumber}`,store)
     .then(res => {
         let games = res.data.games.data;
         let IDlist = games.map(item=>{return item.id});
+        if(pagenumber>1) {
+            games = [...store.state.gameListByType, ...games];
+            IDlist = [...store.state.favoriteGameIDList, ...IDlist];
+        }
         store.commit('handleFavoriteGameIDList', IDlist);
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);

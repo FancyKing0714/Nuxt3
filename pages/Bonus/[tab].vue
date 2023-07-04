@@ -28,13 +28,13 @@ const selectedItem = ref(linkToTab(route.params.tab.toString()));
 onBeforeMount(()=>{
     switch(route.params.tab.toString()){
         case 'bonus-history':
-            getBonusHistory(store, router);
+            getBonusHistory(store.state.pageNumber, store, router);
             break;
         case 'free-spins':
-            getFreespinHistory(store, router);
+            getFreespinHistory(store.state.pageNumber, store, router);
             break;
         case 'cash-back':
-            getCashbackHistory(store, router);
+            getCashbackHistory(store.state.pageNumber, store, router);
             break;
     }
 });

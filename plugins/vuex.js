@@ -15,13 +15,8 @@ const store = createStore({
             notification: {},           // notification(type,message)
             promotions: [],             // promotions
             
-            bonusHistory:[],            // bonus history
-            cashbackHistory:[],         // cashback history
-            freespinHistory:[],         // freespin history
-            depositHistory:[],          // deposit history
-            withdrawHistory:[],         // withdraw history
-            gameHistory:[],             // player game history
-            historyAmount: 0,             // player game history count
+            history:[],                 // player history
+            historyAmount: 0,           // player history count
 
             providers:[],               // provider list
             balance:{},                 // balance
@@ -54,12 +49,7 @@ const store = createStore({
         handleGetProviders(state, payload) { state.providers = payload; },
         handleGetPromotion(state, payload) { state.promotions = payload; },
 
-        handleGetBonusHistory(state, payload) { state.bonusHistory = payload; },
-        handleGetCashbackHistory(state, payload) { state.cashbackHistory = payload; },
-        handleGetFreespinHistory(state, payload) { state.freespinHistory = payload; },
-        handleGetDepositHistory(state, payload) { state.depositHistory = payload; },
-        handleGetWithdrawHistory(state, payload) { state.withdrawHistory = payload; },
-        handleGetGameHistory(state, payload) { state.gameHistory = payload; },
+        handleGetHistory(state, payload) { state.history = payload; },
         handleGetHistoryAccount(state, payload) { state.historyAmount = payload; },
 
         handleGetAllGames(state, payload) { state.allGameList = payload; },
@@ -69,7 +59,8 @@ const store = createStore({
         handleCurrentLoaded(state, payload) { state.currentLoaded = payload; },
         handleGetGameData(state, payload) { state.gameData = payload; },
         handleGamePlayMode(state, payload) { state.gamePlayMode = payload; },
-        handleReadMore(state, payload) { state.pageNumber = payload; },
+
+        handlePageNumber(state, payload) { state.pageNumber = payload; },
         
     },
 });

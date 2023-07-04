@@ -10,7 +10,7 @@ const store = useStore();
 watch(()=>route.query.tab,()=>{
     if(store.state.pageNumber == 1)
         getGames(1);
-    store.commit('handleReadMore', 1);
+    store.commit('handlePageNumber', 1);
     store.commit('handleCurrentLoaded',0);
     store.commit('handleGetGamesByType',[]);
     store.commit('handleGetGamesAmount',0);
@@ -19,7 +19,7 @@ watch(()=>store.state.pageNumber,()=>{
     getGames(store.state.pageNumber);
 })
 onBeforeMount(()=>{
-    store.commit('handleReadMore', 1);
+    store.commit('handlePageNumber', 1);
     store.commit('handleCurrentLoaded',0);
     store.commit('handleGetGamesByType',[]);
     store.commit('handleGetGamesAmount',0);
@@ -47,10 +47,10 @@ const getGames=(pagenumber)=>{
             getRouletteGames(store, pagenumber);
             break;
         case 'favorites':
-            getFavoriteGames(store);
+            getFavoriteGames(store, pagenumber);
             break;
         case 'recent':
-            getRecentPlayedGames(store);
+            getRecentPlayedGames(store, pagenumber);
             break;
     }
 }

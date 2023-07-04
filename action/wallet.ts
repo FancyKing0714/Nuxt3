@@ -1,9 +1,14 @@
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getDepositHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getDepositHistory',store, router)
+export const getDepositHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getDepositHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetBonusHistory', res.data.deposits.data);
+        let result = res.data.deposits.data;
+        if(pagenum>1){
+            result = [...store.state.history, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.deposits.total)
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)
@@ -13,10 +18,15 @@ export const getDepositHistory = (store, router) => {
     });
 }
 
-export const getWithdrawHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getWithdrawHistory',store, router)
+export const getWithdrawHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getWithdrawHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetFreespinHistory', res.data.withdraws.data);
+        let result = res.data.withdraws.data;
+        if(pagenum>1){
+            result = [...store.state.history, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.withdraws.total)
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)

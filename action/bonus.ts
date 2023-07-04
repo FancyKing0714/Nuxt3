@@ -1,9 +1,14 @@
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getBonusHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getBonusHistory',store, router)
+export const getBonusHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getBonusHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetBonusHistory', res.data.bonusHistory.data);
+        let result = res.data.bonusHistory.data;
+        if(pagenum>1){
+            result = [...store.state.history, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.bonusHistory.total)
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)
@@ -13,10 +18,15 @@ export const getBonusHistory = (store, router) => {
     });
 }
 
-export const getFreespinHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getFreeSpinsHistory',store, router)
+export const getFreespinHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getFreeSpinsHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetFreespinHistory', res.data.freeSpins.data);
+        let result = res.data.freeSpins.data;
+        if(pagenum>1){
+            result = [...store.state.history, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.freeSpins.total)
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)
@@ -26,10 +36,15 @@ export const getFreespinHistory = (store, router) => {
     });
 }
 
-export const getCashbackHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getCashbackHistory',store, router)
+export const getCashbackHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getCashbackHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetCashbackHistory', res.data.cashbackHistory.data);
+        let result = res.data.cashbackHistory.data;
+        if(pagenum>1){
+            result = [...store.state.history, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.cashbackHistory.total)
+        store.commit('handleGetHistory', result);
     })
     .catch(err=>{
         if(err.response)

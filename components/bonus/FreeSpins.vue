@@ -139,6 +139,25 @@
                             </q-td>
                         </q-tr>
                     </template>
+                    <template v-slot:pagination="scope">
+                        <q-btn
+                            icon="chevron_left"
+                            color="grey-8"
+                            round
+                            dense
+                            flat
+                            :disable="scope.isFirstPage"
+                            @click="prevPage(scope.prevPage)"
+                        />
+                        <q-btn
+                            icon="chevron_right"
+                            color="grey-8"
+                            round
+                            dense
+                            flat
+                            @click="nextPage(scope.nextPage)"
+                        />
+                    </template>
                 </q-table>
             </q-page>
         </div>
@@ -147,14 +166,44 @@
 
 <script setup lang="ts">
 import {useStore} from 'vuex';
-import { ref } from 'vue';
+import {useRouter} from 'vue-router';
+import { ref , onUnmounted } from 'vue';
+import { getFreespinHistory } from '~~/action/bonus'; 
+
+const router = useRouter();
 const store = useStore();
 const isDrawer = computed(() => store.state.isDrawer);
+const pagination = ref({
+      sortBy: 'desc',
+      descending: false,
+      page: 1,
+      rowsPerPage: 5,
+})
+onUnmounted(()=>{
+    store.commit('handleGetHistory', []);
+    store.commit('handleGetHistoryAccount', 0);
+    store.commit('handlePageNumber', 1);
+});
+const prevPage = (prev:Function) => {
+    pagination.value.page-=1;
+}
+const nextPage = (next:Function) => {
+    if(store.state.historyAmount>pagination.value.page*pagination.value.rowsPerPage){
+        if(store.state.history.length < (pagination.value.page+1)*pagination.value.rowsPerPage){
+            let cnt = Math.ceil(((pagination.value.page+1)*pagination.value.rowsPerPage - store.state.history.length)/10);
+            for(var i=0; i<cnt; i++){
+                getFreespinHistory(store.state.pageNumber+1, store, router);
+                store.commit('handlePageNumber',store.state.pageNumber+1);
+            }
+        }
+        pagination.value.page+=1;
+    }
+}
 
 //receive freespin history data from store and show table
-let rows = ref(store.state.freespinHistory);
-watch(()=>store.state.freespinHistory,()=>{
-    rows.value = store.state.freespinHistory;
+let rows = ref(store.state.history);
+watch(()=>store.state.history,()=>{
+    rows.value = store.state.history;
 });
 
 interface columnformat{
