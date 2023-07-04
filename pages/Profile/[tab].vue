@@ -7,8 +7,7 @@ import ResponsibleGambling from '~~/components/profile/ResponsibleGambling.vue';
 import { useStore } from 'vuex';
 import { computed, onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
-import { useQuasar } from 'quasar';
-import {getGameHistory} from '~~/action/profile';
+import { getGameHistory , getProfile } from '~~/action/profile';
 import auth from '~~/middleware/routerMiddleware.js';
 import {linkTo, linkToTab, tabToLink } from '~~/utils/link';
 
@@ -16,7 +15,6 @@ definePageMeta({
   middleware: [auth]
 });
 
-const not = useQuasar();
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
@@ -28,7 +26,10 @@ const selectedItem = ref(linkToTab(route.params.tab.toString()));
 onBeforeMount(() => {
     switch(route.params.tab.toString()){
         case 'game-history':
-            getGameHistory(store, router);
+            getGameHistory(store.state.pageNumber, store, router);
+            break;
+        case 'general-information':
+            getProfile(store, router);
             break;
     }
 });

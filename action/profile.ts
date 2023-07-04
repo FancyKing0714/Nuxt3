@@ -1,7 +1,8 @@
+import { log } from 'console';
 import {AxiosWithAuth} from '~~/utils/Axios';
 
-export const getProfile = (store) => {
-    AxiosWithAuth('get','/api/player/getProfile',store)
+export const getProfile = (store, router) => {
+    AxiosWithAuth('get','/api/player/getProfile',store, router)
     .then(res => {
         store.commit('handleGetUser', res.data.Player);
     })
@@ -13,10 +14,15 @@ export const getProfile = (store) => {
     });
 }
 
-export const getGameHistory = (store, router) => {
-    AxiosWithAuth('get','/api/player/getGamePlayHistory',store, router)
+export const getGameHistory = (pagenum, store, router) => {
+    AxiosWithAuth('get',`/api/player/getGamePlayHistory?page=${pagenum}`,store, router)
     .then(res => {
-        store.commit('handleGetGameHistory', res.data.gamePlayHistory.data);
+        let result = res.data.gamePlayHistory.data;
+        if(pagenum>1){
+            result = [...store.state.gameHistory, ...result];
+        }
+        store.commit('handleGetHistoryAccount', res.data.gamePlayHistory.total)
+        store.commit('handleGetGameHistory', result);
     })
     .catch(err=>{
         if(err.response)

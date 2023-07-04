@@ -1,5 +1,9 @@
 <template>
-    <q-table :rows="rows" :columns ="cols">
+    <q-table 
+        :rows="rows" 
+        :columns ="cols"
+        v-model:pagination="pagination"
+    >
         <template v-slot:body="props">
             <q-tr :props="props">
                 <q-td key="index" :props="props">
@@ -28,13 +32,56 @@
                 </q-td>
             </q-tr>
         </template>
+        <template v-slot:pagination="scope">
+            <q-btn
+                icon="chevron_left"
+                color="grey-8"
+                round
+                dense
+                flat
+                :disable="scope.isFirstPage"
+                @click="prevPage(scope.prevPage)"
+            />
+            <q-btn
+                icon="chevron_right"
+                color="grey-8"
+                round
+                dense
+                flat
+                @click="nextPage(scope.nextPage)"
+            />
+        </template>
     </q-table>
 </template>
 
 <script setup lang="ts">
 import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
 import { ref } from 'vue';
+import { getGameHistory } from '~~/action/profile'; 
+
+const router = useRouter();
 const store = useStore();
+const pagination = ref({
+      sortBy: 'desc',
+      descending: false,
+      page: 1,
+      rowsPerPage: 5,
+})
+
+const prevPage = (prev:Function) => {
+    pagination.value.page-=1;
+}
+const nextPage = (next:Function) => {
+    if(store.state.gameHistory.length < (pagination.value.page+1)*pagination.value.rowsPerPage){
+        let cnt = Math.ceil(((pagination.value.page+1)*pagination.value.rowsPerPage - store.state.gameHistory.length)/10);
+        for(var i=0; i<cnt; i++){
+            getGameHistory(store.state.pageNumber+1, store, router);
+            store.commit('handleReadMore',store.state.pageNumber+1);
+        }
+    }
+    pagination.value.page+=1;
+}
 
 //get player game history from store.state.gameHistory
 let rows = ref(store.state.gameHistory);

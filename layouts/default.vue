@@ -14,12 +14,13 @@ import { useQuasar } from 'quasar'
 import { getProfile } from '~~/action/profile';
 import { getProviders , getRecentPlayedGames , getFavoriteGames } from '~~/action/game';
 import { getBalances } from '~~/action/wallet';
-import {useRoute} from 'vue-router';
+import {useRoute , useRouter} from 'vue-router';
 import Cookies from 'js-cookie';
 
 const not = useQuasar();
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 
 // watch store.state.notification, when value changed, show notification
 watch(
@@ -37,14 +38,17 @@ watch(
                 timeout: 1500,}) 
 });
 watch(()=>route.path, ()=>{
-    getBalances(store);                                  //loadProviders
+    if(Cookies.get("token")){      
+        getBalances(store);
+    }                                  //loadProviders
 });
 //init website(domain.com)
 onBeforeMount(() => {          
     getProviders(store);   
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
-        getProfile(store);                                  // get player profile
+        getProfile(store, router);                                  // get player profile
+        getBalances(store);
         getRecentPlayedGames(store);
         getFavoriteGames(store);
     }

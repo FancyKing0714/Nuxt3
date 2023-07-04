@@ -21,6 +21,7 @@ const store = createStore({
             depositHistory:[],          // deposit history
             withdrawHistory:[],         // withdraw history
             gameHistory:[],             // player game history
+            historyAmount: 0,             // player game history count
 
             providers:[],               // provider list
             balance:{},                 // balance
@@ -61,6 +62,7 @@ const store = createStore({
         handleGetDepositHistory(state, payload) { state.depositHistory = payload; },
         handleGetWithdrawHistory(state, payload) { state.withdrawHistory = payload; },
         handleGetGameHistory(state, payload) { state.gameHistory = payload; },
+        handleGetHistoryAccount(state, payload) { state.historyAmount = payload; },
 
         handleGetGamesByType(state, payload) { state.gameListByType = payload; },
         handleFavoriteGameList(state, payload) { state.favoriteGameList = payload; },
