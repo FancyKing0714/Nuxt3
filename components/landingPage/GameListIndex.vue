@@ -123,7 +123,7 @@ const imgurl = "/imgs/noGameImg.png";
                     },
                 }"
             >
-                <swiper-slide class="hidden sm:!block" v-for="gameItem in game?.list">
+                <swiper-slide class="hidden md:!block" v-for="gameItem in game?.list">
                     <div class="container">
                         <div class="container">
                             <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
@@ -164,7 +164,7 @@ const imgurl = "/imgs/noGameImg.png";
                         </p>
                     </div>
                 </swiper-slide>
-                <swiper-slide class="sm:!hidden" v-for="gameItem in game?.list">
+                <swiper-slide class="md:!hidden" v-for="gameItem in game?.list">
                     <div class="container" @click="handleFocusGame(gameItem.id)">
                             <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
                             <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'" >
