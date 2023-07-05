@@ -33,7 +33,7 @@ dark.set(true);
             />
             <QImg
                 @click="$router.push(linkTo('/'))"
-                class="lg:mr-16 ml-1 cursor-pointer max-w-[190px]"
+                class="lg:mr-8 ml-1 cursor-pointer max-w-[190px]"
                 style="max-width: 190px"
                 src="/imgs/header/logo_full.png"
                 alt="logo-full"
