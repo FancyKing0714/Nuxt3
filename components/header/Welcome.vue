@@ -24,7 +24,7 @@ watch(()=>props, (newValue) => {
                 <div class="sm:grid sm:grid-cols-10 p-6">
                     <div class="p-1 col-span-4 hidden sm:!block">
                         <q-img
-                            class="absolute bottom-0 left-0"
+                            class="absolute bottom-10 left-0"
                             style="max-width: 221px"
                             src="/imgs/man_thumb.png"
                             alt="man"
@@ -40,23 +40,20 @@ watch(()=>props, (newValue) => {
                             >
                                 EUROPE #1
                             </p>
-                            <p class="font-medium text-xl text-shadow-lg">
+                            <p class="font-medium text-xl text-shadow-lg mb-[-5px]">
                                 Online Casino
                             </p>
                             <span
-                                class="p-1 text-shadow-lg hidden sm:!block"
+                                class="pt-0 pb-2 text-shadow-lg hidden sm:!block"
                                 style="
-                                    font-size: 10px;
-                                    font-family: Montserrat-Italic;
-                                    border-bottom: 1px solid
-                                        rgba(95, 83, 106, 0.5);
+                                    font-size: 12px;
+                                    font-family: 'Roboto Condensed',sans-serif;
                                 "
                             >
-                                Enjoy 3500+ games, fast payouts and 24/7 live
-                                support.
+                                Enjoy 3500+ games, fast payouts and 24/7 live support.
                             </span>
                         </div>
-                        <div class="col-span-4 relative1">
+                        <div class="col-span-4 relative">
                             <img
                                 class="w-44 sm:hidden absolute bottom-0 left-0"
                                 src="/imgs/man_thumb_t.png"
@@ -64,33 +61,28 @@ watch(()=>props, (newValue) => {
                             />
                         </div>
                         <div class="col-span-6">
-                            <p class="text-xl font-bold">welcome bonus</p>
+                            <p class="text-xl font-bold mb-[-7px]">welcome bonus</p>
+                            <div class="flex felx-row">
+                                <q-icon name="euro" size="48px" class="text-bold" style="color: #fff004"/>
+                                <span
+                                    class="font-black font-bold text-5xl"
+                                    style="color: #fff004"
+                                    >1800</span
+                                >
+                            </div>
                             <div
-                                class="sm:flex items-center justify-center pt-2"
+                                class="flex items-center justify-start sm:ml-7"
                             >
                                 <div>
                                     <span
-                                        class="font-black sm:font-bold text-5xl sm:text-2xl md:text-3xl"
+                                        class="font-black font-bold text-3xl md:text-3xl"
                                         style="color: #fff004"
                                         >200%</span
                                     >
-                                    <span class="text-xs hidden sm:block"
+                                    <span class="text-xs pl-1"
                                         >bonus</span
                                     >
                                 </div>
-                                <div
-                                    style="
-                                        background-color: rgba(
-                                            95,
-                                            83,
-                                            106,
-                                            0.5
-                                        );
-                                        width: 1px;
-                                        height: 20px;
-                                    "
-                                    class="bg-gray-700 mx-1 hidden sm:block"
-                                ></div>
                                 <div>
                                     <span
                                         class="font-bold text-3xl sm:text-2xl md:text-3xl"

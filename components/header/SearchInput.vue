@@ -2,7 +2,7 @@
 
 <template>
     <div
-        class="relative max-w-[181px] text-gray-600 focus-within:text-gray-400"
+        class="relative w-[181px] text-gray-600 focus-within:text-gray-400"
     >
         <span class="absolute inset-y-0 right-1 flex items-center">
             <q-img

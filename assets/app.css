@@ -5,7 +5,9 @@
 .q-btn--rectangle {
     border-radius: 6px;
 }
-
+.q-tab-panel{
+    padding: 0px;
+}
 body {
     font-family: 'Montserrat', sans-serif;
 }

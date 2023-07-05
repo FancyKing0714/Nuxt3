@@ -38,103 +38,101 @@ const imgurl = "/imgs/noGameImg.png";
 
 <template>
     <div class="pt-5">
-        <div>
-            <div class="flex flex-wrap justify-center">
-                <div class="hidden md:!block card p-1" v-for="gameItem in store.state.gameListByType">
-                    <div class="container" >
-                        <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
-                        <div class="btnDiv" >
-                            <div class="play-demo flex flex-col justify-center items-center">
-                                <q-btn
-                                    text-color=white
-                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                    @click="play(0, gameItem.slug)"
-                                >
-                                    <q-icon name="play_arrow" size="lg" />
-                                </q-btn>
-                                <q-btn
-                                    v-if="gameItem?.demo == 1"
-                                    text-color=white
-                                    padding="1px 10px"
-                                    label="Demo"
-                                    style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                    @click="play(1, gameItem.slug)"
-                                />
-                            </div>
+        <div class="flex flex-wrap justify-center sm:justify-between">
+            <div class="hidden md:!block card p-1" v-for="gameItem in store.state.gameListByType">
+                <div class="container" >
+                    <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[160px]"/>
+                    <div class="btnDiv" >
+                        <div class="play-demo flex flex-col justify-center items-center">
                             <q-btn
-                                text-color=yellow
-                                padding="0px"
-                                class="star-icon"
-                                style="background-color: transparent;"
-                                @click="onFavorite(gameItem?.id)"
+                                text-color=white
+                                style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                @click="play(0, gameItem.slug)"
                             >
-                                <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
-                                <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
+                                <q-icon name="play_arrow" size="lg" />
                             </q-btn>
-                        </div>
-                    </div>
-                    <p class="text-center gametext p-2">
-                        {{ gameItem?.name }}
-                    </p>
-                </div>
-                <div class="md:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
-                    <div class="container-mobile" >
-                        <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[128px]"/>
-                        <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'">
-                            <div class="play-demo flex flex-col justify-center items-center">
-                                <q-btn
-                                    text-color=white
-                                    style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                    @click="play(0, gameItem.slug)"
-                                >
-                                    <q-icon name="play_arrow" size="lg" />
-                                </q-btn>
-                                <q-btn
-                                    v-if="gameItem?.demo == 1"
-                                    text-color=white
-                                    padding="1px 10px"
-                                    label="Demo"
-                                    style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                    @click="play(1, gameItem.slug)"
-                                />
-                            </div>
                             <q-btn
-                                text-color=yellow
-                                padding="0px"
-                                class="star-icon"
-                                style="background-color: transparent;"
-                                @click="onFavorite(gameItem?.id)"
-                            >
-                                <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
-                                <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
-                            </q-btn>
+                                v-if="gameItem?.demo == 1"
+                                text-color=white
+                                padding="1px 10px"
+                                label="Demo"
+                                style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                @click="play(1, gameItem.slug)"
+                            />
                         </div>
-                        <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>
+                        <q-btn
+                            text-color=yellow
+                            padding="0px"
+                            class="star-icon"
+                            style="background-color: transparent;"
+                            @click="onFavorite(gameItem?.id)"
+                        >
+                            <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                            <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
+                        </q-btn>
                     </div>
-                    <p class="text-center gametext p-2">
-                        {{ gameItem?.name }}
-                    </p>
                 </div>
+                <p class="text-center gametext p-2">
+                    {{ gameItem?.name }}
+                </p>
             </div>
-            <div class="flex flex-col justify-center items-center py-2">
-                <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.gameAmountByType > 0 ? (store.state.currentLoaded > store.state.gameAmountByType ? 100 : Number(store.state.currentLoaded / store.state.gameAmountByType)) : 0" />
-                <p class="text-center text-md py-2">Displaying {{ store.state.currentLoaded > store.state.gameAmountByType ? store.state.gameAmountByType : store.state.currentLoaded }} of {{ store.state.gameAmountByType }}</p>
-                <q-btn 
-                    v-if="store.state.currentLoaded < store.state.gameAmountByType"
-                    class="w-52" 
-                    text-color="white" 
-                    color="primary" 
-                    @click="store.commit('handlePageNumber',store.state.pageNumber+1)"
-                >
-                    Load More
-                </q-btn>
+            <div class="md:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
+                <div class="container-mobile" >
+                    <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[160px]"/>
+                    <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'">
+                        <div class="play-demo flex flex-col justify-center items-center">
+                            <q-btn
+                                text-color=white
+                                style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                @click="play(0, gameItem.slug)"
+                            >
+                                <q-icon name="play_arrow" size="lg" />
+                            </q-btn>
+                            <q-btn
+                                v-if="gameItem?.demo == 1"
+                                text-color=white
+                                padding="1px 10px"
+                                label="Demo"
+                                style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                @click="play(1, gameItem.slug)"
+                            />
+                        </div>
+                        <q-btn
+                            text-color=yellow
+                            padding="0px"
+                            class="star-icon"
+                            style="background-color: transparent;"
+                            @click="onFavorite(gameItem?.id)"
+                        >
+                            <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
+                            <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
+                        </q-btn>
+                    </div>
+                    <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>
+                </div>
+                <p class="text-center gametext p-2">
+                    {{ gameItem?.name }}
+                </p>
             </div>
+        </div>
+        <div class="flex flex-col justify-center items-center py-2">
+            <q-linear-progress class="w-52" rounded  stripe size="7px" :value="store.state.gameAmountByType > 0 ? (store.state.currentLoaded > store.state.gameAmountByType ? 100 : Number(store.state.currentLoaded / store.state.gameAmountByType)) : 0" />
+            <p class="text-center text-md py-2">Displaying {{ store.state.currentLoaded > store.state.gameAmountByType ? store.state.gameAmountByType : store.state.currentLoaded }} of {{ store.state.gameAmountByType }}</p>
+            <q-btn 
+                v-if="store.state.currentLoaded < store.state.gameAmountByType"
+                class="w-52" 
+                text-color="white" 
+                color="primary" 
+                @click="store.commit('handlePageNumber',store.state.pageNumber+1)"
+            >
+                Load More
+            </q-btn>
         </div>
     </div>
 </template>
 <style>
 .card{
-    width: 200px;
+    width: 250px;
     height:100%;
 }
 .container{
@@ -142,7 +140,7 @@ const imgurl = "/imgs/noGameImg.png";
     border-radius: 10px;
 }
 .card-mobile{
-    width: 200px;
+    width: 250px;
     height:100%;
 }
 .container-mobile{

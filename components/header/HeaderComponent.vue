@@ -16,7 +16,7 @@ const { dark } = useQuasar();
 dark.set(true);
 </script>
 <template>
-    <QHeader class="bg-gray-800 px-1 py-1 sm:px-3">
+    <QHeader class="bg-gray-800 px-2 py-1 sm:px-4">
         <QToolbar class="py-1">
             <QImg
                 class="cursor-pointer"
@@ -33,23 +33,21 @@ dark.set(true);
             />
             <QImg
                 @click="$router.push(linkTo('/'))"
-                class="q-pl-md cursor-pointer"
+                class="lg:mr-16 ml-1 cursor-pointer max-w-[190px]"
                 style="max-width: 190px"
                 src="/imgs/header/logo_full.png"
                 alt="logo-full"
             />
-            <div class="flex items-center justify-center w-full">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center justify-start pt-1">
-                        <!-- <div class="hidden lg:!block my-quto">
-                            <CasinoSportToogleButton />
-                        </div> -->
-                        
-                        <div class="hidden sm:!block pl-5">
-                            <SearchInput />
-                        </div>
-                    </div>
+            <div class="flex items-center justify-start pt-1">
+                <!-- <div class="hidden lg:!block my-quto">
+                    <CasinoSportToogleButton />
+                </div> -->
+                
+                <div class="hidden sm:!block pl-5">
+                    <SearchInput />
                 </div>
+            </div>
+            <div class="flex items-center justify-end w-full">
                 <div class="sm:pl-5">
                     <LoginRegisterButton
                         v-if="store.state.isLogin === false"
@@ -58,13 +56,13 @@ dark.set(true);
             </div>
             <!-- <div class="w-full flex flex-nowrap items-center justify-end"> -->
                 <template v-if="store.state.isLogin">
-                    <div class="pr-5 hidden lg:!block">
+                    <div class="hidden lg:!block">
                         <WalletButton />
                     </div>
-                    <div class="pr-5">
+                    <div class="mx-2">
                         <ProfileButton />
                     </div>
-                    <div class="pr-5 text-center">
+                    <div class=" text-center">
                         <div
                             @click="store.commit('handleMobileProfile', true)"
                             class="relative bg-gray-600 rounded-lg before:top-0 rotate-45 w-8 h-8 text-center overflow-hidden cursor-pointer"

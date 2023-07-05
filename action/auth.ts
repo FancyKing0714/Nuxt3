@@ -4,14 +4,14 @@ import {getBalances} from './wallet';
 import Cookies from 'js-cookie';
 
 //login
-export const logIn = (data: object, store: any) => {
+export const logIn = (data: object, store: any, router: any) => {
     Axios('post','/api/login',data)
     .then(res=>{
         const tokenStr=res.data["token"];
         Cookies.set('token', tokenStr.split("|")[1] );
         store.commit('handleLogin',true);
         getBalances(store);
-        getProfile(store);
+        getProfile(store, router);
         store.commit('handleNotification',{type:'Success',message:'Login Successed!'});
     })
     .catch(err=>{
