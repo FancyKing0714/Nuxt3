@@ -6,7 +6,7 @@ const store = useStore();
 <template>
     <div
         style="background: #202530"
-        class="sm:!hidden fixed bottom-0 z-50 w-full px-2 pt-3 pb-8"
+        class="sm:!hidden fixed bottom-0 z-50 w-full px-2 pt-3 pb-3"
         v-if="store.state.isLogin"
     >
         <div class="relative">
@@ -33,6 +33,7 @@ const store = useStore();
                 <q-btn 
                     class="btn-none" 
                     round
+                    @click="store.commit('handleDrawer', true)"
                 >
                     <img class="w-7" src="/imgs/search.png" alt="test" />
                 </q-btn>

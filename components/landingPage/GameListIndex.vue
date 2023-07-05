@@ -95,7 +95,7 @@ const imgurl = "/imgs/noGameImg.png";
                 </div>
             </div>
             <Swiper
-                :slides-per-view="6"
+                :slides-per-view="1"
                 :space-between="10"
                 @swiper="onSwiper"
                 @slideChange="onSlideChange"
@@ -106,19 +106,27 @@ const imgurl = "/imgs/noGameImg.png";
                 }"
                 :breakpoints="{
                     '320': {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 5,
                     },
                     '640': {
                         slidesPerView: 3,
                         spaceBetween: 5,
                     },
-                    '768': {
+                    '820': {
                         slidesPerView: 4,
                         spaceBetween: 10,
                     },
-                    '1024': {
-                        slidesPerView: 6,
+                    '1035': {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    '1240': {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                    '1440': {
+                        slidesPerView: 5,
                         spaceBetween: 10,
                     },
                 }"

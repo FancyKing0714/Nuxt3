@@ -63,7 +63,7 @@ const onSlideChange = () => {
             </div>
             <Swiper
                 ref="mySwiper"
-                :slides-per-view="6"
+                :slides-per-view="2"
                 :space-between="10"
                 @swiper="onSwiper"
                 @slideChange="onSlideChange"
@@ -82,10 +82,14 @@ const onSlideChange = () => {
                         spaceBetween: 5,
                     },
                     '768': {
-                        slidesPerView: 4,
+                        slidesPerView: 5,
                         spaceBetween: 10,
                     },
                     '1024': {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                    '1444': {
                         slidesPerView: 6,
                         spaceBetween: 10,
                     },
@@ -94,7 +98,7 @@ const onSlideChange = () => {
                 <swiper-slide v-for="provider in providers">
                     <div
                         style="background: #4d5160"
-                        class="h-16 w-full flex justify-center text-center rounded-2xl p-2"
+                        class="h-10 md:h-12 lg:h-14 xl:h-16 w-full flex justify-center text-center rounded-2xl p-2"
                     >
                         <img
                             class="h-full object-fill object-center"

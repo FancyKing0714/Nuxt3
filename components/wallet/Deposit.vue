@@ -43,55 +43,45 @@
                     <p class="font-bold text-base">Deposit Sum</p>
 
                     <div class="flex justify-start items-center py-4">
-                        <q-btn class="w-28 h-10" color="primary" label="50" />
+                        <q-btn class="w-36 h-10" color="primary" label="50" />
                         <div class="p-1"></div>
                         <q-btn
                             style="background: #120f0f 95%"
-                            class="w-28 h-10"
+                            class="w-36 h-10"
                             label="100"
                         />
                     </div>
 
                     <q-input
-                        class="w-full pr-2"
                         filled
                         v-model="number"
                         type="number"
-                        suffix="CAD"
                         :dense="true"
-                    />
-
-                    <div class="flex items-center justify-between py-4">
-                        <p class="text-base font-bold">Available Bonuses</p>
-                        <q-toggle
-                            size="xs"
-                            v-model="shape"
-                            val="xs"
-                            leftLabel
-                            label="Use Bonuses"
+                    >
+                        <q-btn
+                            label="CAD"
+                            color="primary"
                         />
+                    </q-input>
+
+                    <div class="flex items-center justify-between pt-4">
+                        <p class="text-base font-bold">Do you have a bonus code?</p>
                     </div>
 
                     <div class="flex items-center justify-start">
                         <q-input
-                            class="w-full pr-2"
+                            class="w-36 mr-2"
                             filled
                             v-model="number"
                             type="number"
                             :dense="true"
                         />
-                        <q-btn color="primary" label="SET" />
+                        <q-btn class="w-36 h-10" color="primary" label="Add" />
                     </div>
 
-                    <p style="color: #949497" class="text-xs py-4">
+                    <p style="color: #d0d0d8" class="text-xs py-4">
                         No Bonuses Available
                     </p>
-
-                    <q-btn
-                        class="px-10 h-10"
-                        color="primary"
-                        label="Deposit 30 CAD"
-                    />
                 </div>
             </div>
 
@@ -108,7 +98,7 @@
                             }
                         "
                         ><q-img
-                            class="w-6"
+                            class="w-6 mr-1"
                             src="/imgs/method.svg"
                         />Method</span
                     >
@@ -119,7 +109,7 @@
                                 step = 2;
                             }
                         "
-                        ><q-img class="w-6" src="/imgs/data.svg" />Data</span
+                        ><q-img class="w-6 mr-1" src="/imgs/data.svg" />Data</span
                     >
                     <span
                         class="font-medium text-base cursor-pointer"
@@ -129,7 +119,7 @@
                             }
                         "
                         ><q-img
-                            class="w-6"
+                            class="w-6 mr-1"
                             src="/imgs/submit.svg"
                         />Submit</span
                     >
@@ -197,52 +187,29 @@
                             </div>
                         </div>
                         <p class="font-bold text-base">Deposit Sum</p>
-                        <div class="flex justify-start items-center py-4">
+                        <div class="grid grid-cols-2 py-4">
                             <q-btn
-                                class="w-28 h-10"
+                                class="w-full h-10 mr-1"
                                 color="primary"
                                 label="50"
                             />
-                            <div class="p-1"></div>
                             <q-btn
                                 style="background: #120f0f 95%"
-                                class="w-28 h-10"
+                                class="w-full h-10 ml-1"
                                 label="100"
                             />
                         </div>
-
-                        <q-input
-                            class="w-full mt-2"
-                            filled
-                            v-model="number"
-                            type="text"
-                            :dense="true"
-                        />
                         <q-input
                             class="w-full mt-2"
                             filled
                             v-model="number"
                             :dense="true"
-                        />
-                        <q-input
-                            class="w-full mt-2"
-                            filled
-                            v-model="number"
-                            :dense="true"
-                        />
-                        <q-input
-                            class="w-full mt-2"
-                            filled
-                            v-model="number"
-                            :dense="true"
-                        />
-                        <q-input
-                            class="w-full mt-2"
-                            filled
-                            v-model="number"
-                            suffix="CAD"
-                            :dense="true"
-                        />
+                        >
+                            <q-btn
+                                color="primary"
+                                label="CAD"
+                            />
+                        </q-input>
                         <div class="grid grid-cols-2">
                             <q-btn
                                 class="w-full mt-2 mr-1"
@@ -269,36 +236,24 @@
 
                     <q-step :name="3" title="STEP 3" :done="step > 3">
                         <div class="flex items-center justify-between py-4">
-                            <p class="text-base font-bold">Available Bonuses</p>
-                            <q-toggle
-                                size="xs"
-                                v-model="shape"
-                                val="xs"
-                                leftLabel
-                                label="Use Bonuses"
-                            />
+                            <p class="text-base font-bold">Do you have a bonus code?</p>
                         </div>
 
-                        <div class="flex items-center justify-start">
+                        <div class="grid grid-cols-2 gap-2">
                             <q-input
-                                class="w-full pr-2"
+                                class="w-full"
                                 filled
                                 v-model="number"
                                 type="number"
                                 :dense="true"
                             />
-                            <q-btn color="primary" label="SET" />
+                            <q-btn class="w-full" color="primary" label="Add" />
                         </div>
 
-                        <p style="color: #949497" class="text-xxs py-4">
+                        <p style="color: #d0d0d8" class="text-xxs py-4">
                             No Bonuses Available
                         </p>
-
-                        <q-btn
-                            class="px-10 h-10"
-                            color="primary"
-                            label="Deposit 30 CAD"
-                        />
+                        <q-btn class="w-full" color="primary" label="Deposit" />
                     </q-step>
                 </q-stepper>
             </div>

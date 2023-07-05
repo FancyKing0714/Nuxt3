@@ -20,15 +20,24 @@ import { useStore } from 'vuex';
                 alt="logo"
             />
             <p class="font-bold md:text-3xl text-2xl pl-3"># 1 Online casino</p>
-            <div class="sm:hidden">
-                <p class="font-bold text-2xl pl-3">welcome bonus</p>
+            <div class="sm:!hidden ">
+                <p class="font-bold text-2xl pl-3 pt-3">welcome bonus</p>
+                <div class="flex felx-row pl-3 pb-2">
+                    <q-icon name="euro" class="text-[48px] md:text-[72px] text-bold" style="color: #fff004"/>
+                    <span
+                        class="font-black font-bold text-5xl md:text-7xl"
+                        style="color: #fff004"
+                        >1800</span
+                    >
+                </div>
                 <p
                     style="color: #fff004"
-                    class="font-black text-6xl pl-3"
+                    class="font-bold text-3xl pl-3"
                 >
-                    200%
+                    200%  
+                    <span class="font-bold text-lg text-white">Bouns</span>
                 </p>
-                <p class="font-bold text-2xl pl-3 pb-8">UP TO $600</p>
+                <span class="font-bold text-xl text-white pl-3">+100 Free spins</span>
                 <div class="flex items-center justify-between pt-10">
                     <q-btn
                         v-if="store.state.isLogin === false"
@@ -59,8 +68,8 @@ import { useStore } from 'vuex';
             </div>
 
             <div class="hidden sm:!block">
-                <p
-                    style="font-family: Montserrat-Italic"
+                <p 
+                    style="font-family: 'Roboto Condensed',sans-serif"
                     :class="[
                         'font-medium text-lg xl:block pl-3 pt-1',
                         store.state.isDrawer ? 'lg:hidden' : '',
@@ -68,16 +77,24 @@ import { useStore } from 'vuex';
                 >
                     Enjoy 3500+ games, fast payouts and 24/7 live support.
                 </p>
+                <p class="text-2xl font-bold mb-[-7px] pl-3 mt-5">welcome bonus</p>
+                <div class="flex felx-row pl-3">
+                    <q-icon name="euro" class="text-[60px] md:text-[72px] text-bold" style="color: #fff004"/>
+                    <span
+                        class="font-black font-bold text-6xl md:text-7xl"
+                        style="color: #fff004"
+                        >1800</span
+                    >
+                </div>
                 <p v-if="store.state.isLogin === false">
-                    <span style="color: #fff004" class="text-4xl font-bold"
+                    <span style="color: #fff004" class="text-3xl xl:text-4xl font-bold pl-3 pr-2"
                         >200%</span
                     >
-                    <span class="text-base">BONUS</span>
-                    <br class="md: hidden" />
-                    <span style="color: #fff004" class="text-4xl font-bold"
+                    <span class="text-bold">BONUS</span>
+                    <span style="color: #fff004" class="text-3xl xl:text-4xl font-bold p-2"
                         >+100</span
                     >
-                    <span class="text-base">FREE SPINS</span>
+                    <span class="text-bold">FREE SPINS</span>
                 </p>
 
                 <div class="pt-3 pl-3 flex items-center justify-start">
@@ -140,10 +157,7 @@ import { useStore } from 'vuex';
         </div>
 
         <img
-            :class="[
-                store.state.isDrawer ? 'lg:w-72 lg:top-0 lg:-right-3' : 'lg:w-full',
-                'absolute -right-3 -bottom-24 z-0 w-56 top-14 sm:top-0 md:w-96 md:!block sm:max-w-sm md:max-w-md xl:max-w-lg xl:w-auto sm_hidden',
-            ]"
+            class="absolute -right-3 -bottom-24 z-0 w-56 top-4 sm:top-8 sm:w-72 md:w-96 md:!block sm:max-w-sm md:max-w-lg xl:max-w-md xl:w-auto sm_hidden"
             src="/imgs/new.png"
             alt="new"
         />

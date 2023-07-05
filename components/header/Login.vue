@@ -1,10 +1,11 @@
 <script setup lang="ts">
     import { ref , watch} from 'vue';
     import {useStore} from 'vuex';
+    import {useRouter} from 'vue-router';
     import { logIn } from '~~/action/auth';
 
     const store = useStore();
-
+    const router = useRouter();
     //watch login state
     watch(
         ()=>store.state.User,
@@ -111,7 +112,7 @@
                                         Object.keys(loginInfo).map(item => {
                                             data = {...data, [item] : loginInfo[item].value};
                                         });
-                                        logIn(data, store);
+                                        logIn(data, store, router);
                                     }
                                 "
                                 label="LOG IN"

@@ -44,7 +44,7 @@ watch(()=>route.path, ()=>{
 });
 //init website(domain.com)
 onBeforeMount(() => {          
-    getProviders(store);   
+    // getProviders(store);   
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store, router);                                  // get player profile
@@ -71,7 +71,7 @@ onBeforeMount(() => {
 
         <!-- Footer -->
         <q-footer
-            class="text-sm font-normal text-center z-0 pt-3 px-3 pb-40 sm:pb-3"
+            class="text-sm font-normal text-center z-0 pt-3 px-3 pb-32 sm:pb-3"
             style="background-color: #151515; color: #7d8396"
             >Copyright 2023 Europa777 All Right Reserved.</q-footer
         >
