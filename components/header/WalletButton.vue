@@ -64,7 +64,7 @@ const store = useStore();
             </q-item>
         </q-btn-dropdown>
         <div class="flex items-center justify-center w-28" v-if="route.path.toString().includes('play')">
-            <p class="text-md font-bold pl-1">In Game</p>
+            <p class="text-md font-bold pl-1">Playing</p>
         </div>
         <div
             style="border: 1px solid #4D5160"
