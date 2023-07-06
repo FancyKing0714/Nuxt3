@@ -4,7 +4,7 @@ import 'swiper/swiper-bundle.css';
 import { useStore } from 'vuex';
 import {useRouter} from 'vue-router';
 import {changeTitle} from '~~/utils/string';
-import { addFavoriteGame , removeFavoriteGame } from '~~/action/game';
+import { addFavoriteGameById , removeFavoriteGameById } from '~~/action/game';
 
 const router = useRouter();
 const store = useStore();
@@ -24,11 +24,11 @@ defineProps({
     },
 });
 
-const onFavorite = (id) => {
-    if(store.state.favoriteGameIDList.includes(id))
-        removeFavoriteGame(store, id);
+const onFavorite = (id, slug) => {
+    if(store.state.favoriteGameSlugList.includes(slug))
+        removeFavoriteGameById(store, id, slug);
     else
-        addFavoriteGame(store, id);
+        addFavoriteGameById(store, id, slug);
 }
 
 let swiperRef: any;
@@ -158,10 +158,10 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="0px"
                                     class="star-icon"
                                     style="background-color: transparent;"
-                                    @click="onFavorite(gameItem?.id)"
+                                    @click="onFavorite(gameItem?.id, gameItem.slug)"
                                 >
-                                    <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
-                                    <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
+                                    <q-icon v-if="store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star" size="xs" />
+                                    <q-icon v-if="!store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star_border" size="xs" />
                                 </q-btn>
                             </div>
                         </div>
@@ -198,10 +198,10 @@ const imgurl = "/imgs/noGameImg.png";
                                     padding="0px"
                                     class="star-icon"
                                     style="background-color: transparent;"
-                                    @click="onFavorite(gameItem?.id)"
+                                    @click="onFavorite(gameItem?.id, gameItem.slug)"
                                 >
-                                    <q-icon v-if="store.state.favoriteGameIDList.includes(gameItem?.id)" name="star" size="xs" />
-                                    <q-icon v-if="!store.state.favoriteGameIDList.includes(gameItem?.id)" name="star_border" size="xs" />
+                                    <q-icon v-if="store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star" size="xs" />
+                                    <q-icon v-if="!store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star_border" size="xs" />
                                 </q-btn>
                             </div>
                             <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>

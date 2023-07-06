@@ -146,12 +146,12 @@ export const getFavoriteGames = (store, pagenumber) => {
     AxiosWithAuth('get',`/api/player/getFavoriteGames?page=${pagenumber}`,store)
     .then(res => {
         let games = res.data.games.data;
-        let IDlist = games.map(item=>{return item.id});
+        let slugList = games.map(item=>{return item.slug});
         if(pagenumber>1) {
             games = [...store.state.gameListByType, ...games];
-            IDlist = [...store.state.favoriteGameIDList, ...IDlist];
+            slugList = [...store.state.favoriteGameIDList, ...slugList];
         }
-        store.commit('handleFavoriteGameIDList', IDlist);
+        store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleGetGamesByType', games);
         store.commit('handleGetGamesAmount',res.data.games.total);
         store.commit('handleCurrentLoaded',store.state.currentLoaded + res.data.games.per_page);
@@ -163,12 +163,13 @@ export const getFavoriteGames = (store, pagenumber) => {
             store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
     });
 }
-export const addFavoriteGame = (store, id) => {
+
+export const addFavoriteGameById = (store, id, slug) => {
     AxiosWithAuth('post',`/api/player/addFavorite/${id}`,store)
     .then(res => {
-        let IDlist = store.state.favoriteGameIDList.map(item=>{return item});
-        IDlist.push(id);
-        store.commit('handleFavoriteGameIDList', IDlist);
+        let slugList = store.state.favoriteGameIDList.map(item=>{return item});
+        slugList.push(slug);
+        store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleNotification',{type:'Success', message: res.data.message});
     })
     .catch(err=>{
@@ -179,11 +180,42 @@ export const addFavoriteGame = (store, id) => {
     });
 }
 
-export const removeFavoriteGame = (store, id) => {
+export const removeFavoriteGameById = (store, id, slug) => {
     AxiosWithAuth('post',`/api/player/removeFavorite/${id}`,store)
     .then(res => {
-        let IDlist = store.state.favoriteGameIDList.filter(item=>item!=id).map(item=>{return item});
-        store.commit('handleFavoriteGameIDList', IDlist);
+        let slugList = store.state.favoriteGameSlugList.filter(item=>item!=slug).map(item=>{return item});
+        store.commit('handleFavoriteGameSlugList', slugList);
+        store.commit('handleNotification',{type:'Success',message: res.data.message});
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
+export const addFavoriteGameBySlug = (store, slug) => {
+    AxiosWithAuth('post',`/api/player/addFavorite/${slug}`,store)
+    .then(res => {
+        let slugList = store.state.favoriteGameIDList.map(item=>{return item});
+        slugList.push(slug);
+        store.commit('handleFavoriteGameSlugList', slugList);
+        store.commit('handleNotification',{type:'Success', message: res.data.message});
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
+export const removeFavoriteGameBySlug = (store, slug) => {
+    AxiosWithAuth('post',`/api/player/removeFavorite/${slug}`,store)
+    .then(res => {
+        let slugList = store.state.favoriteGameSlugList.filter(item=>item!=slug).map(item=>{return item});
+        store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleNotification',{type:'Success',message: res.data.message});
     })
     .catch(err=>{

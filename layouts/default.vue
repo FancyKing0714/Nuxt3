@@ -60,7 +60,7 @@ onBeforeMount(() => {
         <HeaderComponent />
         <!-- SideBar -->
         <SideBarComponent />
-
+        
         <!-- Container -->
         <q-page-container class="bg-gray-900">
             <NuxtPage />
@@ -68,13 +68,14 @@ onBeforeMount(() => {
             <MobilePageFooter />
             <MobileFooter />
         </q-page-container> 
-
+            
         <!-- Footer -->
         <q-footer
             class="text-sm font-normal text-center z-0 pt-3 px-3 pb-32 sm:pb-3"
             style="background-color: #151515; color: #7d8396"
-            >Copyright 2023 Europa777 All Right Reserved.</q-footer
-        >
+            >Copyright 2023 Europa777 All Right Reserved.
+        </q-footer>
+        
         <Login />
         <SignUp />
         <VerifyEmail

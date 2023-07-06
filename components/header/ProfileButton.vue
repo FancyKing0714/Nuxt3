@@ -52,7 +52,25 @@ const handleClick = (name) => {
 </script>
 
 <template>
-    <q-btn-dropdown class="btn-none hidden sm:!block" no-caps :label=store.state.User.username >
+    <q-btn-dropdown 
+        class="btn-none hidden sm:!block" 
+        no-caps 
+    >
+        <template v-slot:label>
+            <div
+                @click="store.commit('handleMobileProfile', true)"
+                class="relative rounded-lg before:top-0 rotate-45 w-8 h-8 text-center overflow-hidden cursor-pointer mr-3"
+                style="background-color: #3E4753;"
+            >
+                <img
+                    style="margin-left: 2px"
+                    class="absolute -rotate-45 w-full h-auto"
+                    src="/tmp/avatar.png"
+                    alt="user"
+                />
+            </div>
+            {{ store.state.User.username }}
+        </template>
         <q-list>
             <q-item
                 v-for="profile in prifileList"
