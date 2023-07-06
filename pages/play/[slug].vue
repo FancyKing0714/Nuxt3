@@ -4,6 +4,7 @@
     import { gamePlay } from '../../action/game';
     import {useStore} from 'vuex';
     import {useRouter , useRoute} from 'vue-router';
+    import { addFavoriteGameBySlug , removeFavoriteGameBySlug } from '~~/action/game';
 
     const router = useRouter();
     const route = useRoute();
@@ -43,7 +44,7 @@
     })
 </script>
 <template>
-    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:h-hull xl:pt-2 xl:pb-20 mx-auto'">
+    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:pt-2 xl:pb-32 mx-auto'">
         <!-- desktop close button -->
         <div :class="fullScreenState?'hidden xl:!block absolute top-4 right-4 z-[2001]':'hidden'">
             <div class="bg-gray-700 p-3 ml-1 rounded-full hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(false)">
@@ -65,10 +66,16 @@
                     <p class="text-sm font-semibold text-gray-500" :class="!!playtoggle && 'text-white'">Fun Play</p>
                 </div>
                 <div class="flex flex-row">
-                    <div class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
+                    <div v-if="!!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="removeFavoriteGameBySlug(store, slug)">
+                        <q-icon name="favorite" size="sm" />
+                    </div>
+                    <div v-if="!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="addFavoriteGameBySlug(store, slug)">
+                        <q-icon name="favorite_border" size="sm" />
+                    </div>
+                    <div class="bg-gray-700 p-2 mx-2 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(true)">
                         <q-icon name="fullscreen" size="sm" />
                     </div>
-                    <div class="bg-gray-700 p-2 ml-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="router.push(linkTo('/casino'))">
+                    <div class="bg-gray-700 p-2 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="router.push(linkTo('/casino'))">
                         <q-icon name="close" size="sm"/>
                     </div>
                 </div>

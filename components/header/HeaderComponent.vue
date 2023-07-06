@@ -17,52 +17,61 @@ dark.set(true);
 </script>
 <template>
     <QHeader class="bg-gray-800 px-2 py-1 sm:px-4">
-        <QToolbar class="py-1">
-            <QImg
-                class="cursor-pointer"
-                style="max-width: 30px"
-                :src="
-                    store.state.isDrawer
-                        ? `${'/imgs/header/menu_left.png'}`
-                        : `${'/imgs/header/menu_right.png'}`
-                "
-                alt="menu"
-                @click="
-                    () => store.commit('handleDrawer', !store.state.isDrawer)
-                "
-            />
-            <QImg
-                @click="$router.push(linkTo('/'))"
-                class="lg:mr-8 ml-1 cursor-pointer max-w-[190px]"
-                style="max-width: 190px"
-                src="/imgs/header/logo_full.png"
-                alt="logo-full"
-            />
-            <div class="flex items-center justify-start pt-1">
-                <!-- <div class="hidden lg:!block my-quto">
-                    <CasinoSportToogleButton />
-                </div> -->
-                
-                <div class="hidden sm:!block pl-5">
-                    <SearchInput />
-                </div>
-            </div>
-            <div class="flex items-center justify-end w-full">
-                <div class="sm:pl-5">
-                    <LoginRegisterButton
-                        v-if="store.state.isLogin === false"
+        <QToolbar class="py-1 flex justify-between">
+            <div class="flex flex-row flex-nowrap items-center">
+                <div class="w-[30px]">
+                    <QImg
+                        class="cursor-pointer"
+                        style=""
+                        :src="
+                            store.state.isDrawer
+                                ? `${'/imgs/header/menu_left.png'}`
+                                : `${'/imgs/header/menu_right.png'}`
+                        "
+                        alt="menu"
+                        @click="
+                            () => store.commit('handleDrawer', !store.state.isDrawer)
+                        "
                     />
                 </div>
+                <div 
+                    class="w-[190px]"
+                >
+                    <QImg
+                        @click="$router.push(linkTo('/'))"
+                        class=" ml-1 cursor-pointer "
+                        style="max-width: 190px"
+                        src="/imgs/header/logo_full.png"
+                        alt="logo-full"
+                    />
+                </div>
+                <div class="flex items-center justify-start pt-1">
+                    <!-- <div class="hidden lg:!block my-quto">
+                        <CasinoSportToogleButton />
+                    </div> -->
+                    
+                    <div class="hidden md:!block pl-5">
+                        <SearchInput />
+                    </div>
+                </div>
             </div>
-            <!-- <div class="w-full flex flex-nowrap items-center justify-end"> -->
+            <div class="flex flex-row flex-nowrap">
+                <div class="flex items-center justify-end">
+                    <div class="sm:pl-5">
+                        <LoginRegisterButton
+                            v-if="store.state.isLogin === false"
+                        />
+                    </div>
+                </div>
+                <!-- <div class="w-full flex flex-nowrap items-center justify-end"> -->
                 <template v-if="store.state.isLogin">
                     <div class="hidden lg:!block">
                         <WalletButton />
                     </div>
-                    <div class="mx-2">
+                    <div class="ml-2">
                         <ProfileButton />
                     </div>
-                    <div class=" text-center">
+                    <div class="sm:hidden text-center">
                         <div
                             @click="store.commit('handleMobileProfile', true)"
                             class="relative bg-gray-600 rounded-lg before:top-0 rotate-45 w-8 h-8 text-center overflow-hidden cursor-pointer"
@@ -82,7 +91,7 @@ dark.set(true);
                     </QBtn> -->
                 </template>
                 <SelectLanguageBox />
-            <!-- </div> -->
+            </div>
         </QToolbar>
     </QHeader>
     <ProfileButtonMobile />

@@ -48,9 +48,9 @@ const sideBarLinks: SideBarItemInterFace[] = [
     <!-- SideBar -->
     <q-drawer
         show-if-above
-        :width="300"
-        :breakpoint="1024"
-        class="px-6 py-3"
+        :width="270"
+        :breakpoint="1084"
+        class="px-3 py-3"
         style="background-color: #181a25"
         @before-hide="store.commit('handleDrawer', false)"
         v-model="store.state.isDrawer"

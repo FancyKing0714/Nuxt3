@@ -2,21 +2,20 @@
 
 <template>
     <div
-        class="relative w-[181px] text-gray-600 focus-within:text-gray-400"
+        class="relative max-w-[200px] bg-gray-700 focus-within:bg-white rounded-lg group focus-within:text-gray-400 pl-[25px]"
     >
-        <span class="absolute inset-y-0 right-1 flex items-center">
-            <q-img
-                class="q-mr-sm"
+        <span class="absolute left-2 z-[1000] w-[22px]">
+            <q-icon
+                class="pt-2"
                 style="max-width: 22px"
-                src="/imgs/header/search.png"
-                alt="sports"
+                name="search"
+                size="sm"
             />
         </span>
         <input
             type="search"
             name="q"
-            style="background-color: #3e4455; height: 40px"
-            class="py-2 text-sm text-white rounded-3xl px-5 focus:outline-none focus:bg-white focus:text-gray-900 w-full"
+            class="py-2 pl-2 text-md bg-gray-700 rounded-lg h-10 focus:outline-none focus:bg-white focus:text-black max-w-[200px]"
             placeholder="Search for Games"
         />
     </div>

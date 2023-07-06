@@ -20,10 +20,10 @@ function getUrl(img: string) {
 </script>
 <template>
     <nuxt-link :to="linkTo(link)">
-        <div @click="" class="relative mt-7">
+        <div @click="" class="relative mt-8">
             <div
                 style="max-width: 109px"
-                class="absolute top-1/2 -translate-y-1/2 z-10 left-2"
+                class="absolute top-1/2 -translate-y-1/2 z-10 left-5"
             >
                 <p
                     style="line-height: 15px"
@@ -42,7 +42,7 @@ function getUrl(img: string) {
                 style="width: 108px"
                 :class="[
                     'absolute',
-                    'right-0',
+                    'right-1',
                     'bottom-0',
                     title === 'BONUS WHEEl' ? 'rotate' : '',
                 ]"
