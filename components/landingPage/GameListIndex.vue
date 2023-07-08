@@ -217,9 +217,6 @@ const imgurl = "/imgs/noGameImg.png";
     </div>
 </template>
 <style>
-.card{
-    position: relative;
-}
 .container{
     position: relative;
     border-radius: 10px;

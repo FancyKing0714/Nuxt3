@@ -164,6 +164,23 @@ export const getFavoriteGames = (store, pagenumber) => {
     });
 }
 
+export const getFavoriteGameSlugs = (store, pagenumber) => {
+    AxiosWithAuth('get',`/api/player/getFavoriteGames?page=${pagenumber}`,store)
+    .then(res => {
+        let slugList = res.data.games.data.map(item=>{return item.slug});
+        if(pagenumber>1) {
+            slugList = [...store.state.favoriteGameIDList, ...slugList];
+        }
+        store.commit('handleFavoriteGameSlugList', slugList);
+    })
+    .catch(err=>{
+        if(err.response)
+            store.commit('handleNotification',{type:'Error',message:err.response.data.message});
+        else
+            store.commit('handleNotification',{type:'Error',message: "Network Connection Error."});
+    });
+}
+
 export const addFavoriteGameById = (store, id, slug) => {
     AxiosWithAuth('post',`/api/player/addFavorite/${id}`,store)
     .then(res => {

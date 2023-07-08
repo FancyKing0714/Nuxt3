@@ -10,7 +10,8 @@ const store = createStore({
             isVerifyEmail: false, 
             isLogin: false,             // login value
             isregister: false,          // register value(when user register swap to login)
- 
+            isSearchDiaolg: false,
+            
             User: {},                   // user profile
             notification: {},           // notification(type,message)
             promotions: [],             // promotions
@@ -42,6 +43,7 @@ const store = createStore({
         handleRegister(state, payload) { state.isRegister = payload; },
         handleOnLogin(state, payload) { state.onLogin = payload; },
         handleOnRegister(state, payload) { state.onRegister = payload; },
+        handleOnSearchDialog(state, payload) { state.isSearchDiaolg = payload; },
 
         handleGetUser(state, payload) { state.User = payload; },
         handleNotification(state, payload) { state.notification = payload; },

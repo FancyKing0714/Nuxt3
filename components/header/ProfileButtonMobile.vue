@@ -46,10 +46,12 @@ const profileList = [
 ];
 
 //when user click logout button, call logout action
-const handleClick = (name) => {
-    if(name == "Log Out"){
+const handleClick = (link) => {
+    if(link == '/logout'){
         logOut(store,router);
     }
+    else
+        router.push(linkTo(link));
 }
 </script>
 
@@ -62,7 +64,7 @@ const handleClick = (name) => {
         <div class="relative overflow-hidden">
             <div
                 style="background: #3c3c3c"
-                class="!w-24 square transform rotate-45 left-1/2 -translate-x-1/2 rounded-md overflow-hidden text-center top-12 z-50"
+                class="!w-24 square transform rotate-45 left-1/2 -translate-x-1/2 rounded-md overflow-hidden text-center top-[51px] z-50"
             >
                 <q-img
                     class="w-full transform -rotate-45 z-50"
@@ -76,34 +78,29 @@ const handleClick = (name) => {
             >
                 <div class="text-center pt-20">
                     <WalletButton />
-                    <q-list class="px-3 pt-3">
+                    <q-list class="px-2 pt-3">
                         <q-item
                             v-for="profile in profileList"
                             clickable
                             v-close-popup
-                            @click = "handleClick(profile.name)"
+                            @click = "handleClick(profile.link)"
                             style="border-bottom: 1px solid #4c4d52"
                         >
                             <q-item-section>
-                                <nuxt-link
-                                    :to="linkTo(profile?.link)"
-                                    class="my-button"
-                                >
-                                    <q-item-label>
-                                        <div
-                                            class="flex items-center justify-start"
-                                        >
-                                            <img
-                                                style="width: 12px"
-                                                :src="`/imgs/header/${profile.icon}.png`"
-                                                alt="profile"
-                                            />
-                                            <p class="text-xxs pl-1 ml-2">
-                                                {{ profile.name }}
-                                            </p>
-                                        </div>
-                                    </q-item-label>
-                                </nuxt-link>
+                                <q-item-label>
+                                    <div
+                                        class="flex items-center justify-start "
+                                    >
+                                        <img
+                                            style="width: 15px"
+                                            :src="`/imgs/header/${profile.icon}.png`"
+                                            alt="profile"
+                                        />
+                                        <p class="text-xs pl-2 ml-2">
+                                            {{ profile.name }}
+                                        </p>
+                                    </div>
+                                </q-item-label>
                             </q-item-section>
                         </q-item>
                     </q-list>

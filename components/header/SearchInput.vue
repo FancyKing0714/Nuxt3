@@ -1,22 +1,25 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useStore } from 'vuex';
+const store = useStore();
+</script>
 
 <template>
     <div
-        class="relative max-w-[200px] bg-gray-700 focus-within:bg-white rounded-lg group focus-within:text-gray-400 pl-[25px]"
+        class="bg-gray-700 rounded-lg px- h-9 flex flex-nowrap items-center px-2"
+        @click="store.commit('handleOnSearchDialog', true)"
     >
-        <span class="absolute left-2 z-[1000] w-[22px]">
+        <span class="w-[22px]">
             <q-icon
-                class="pt-2"
+                class=""
                 style="max-width: 22px"
                 name="search"
                 size="sm"
             />
         </span>
-        <input
-            type="search"
-            name="q"
-            class="py-2 pl-2 text-md bg-gray-700 rounded-lg h-10 focus:outline-none focus:bg-white focus:text-black max-w-[200px]"
-            placeholder="Search for Games"
-        />
+        <p
+            class="text-md rounded-lg"
+        >
+            Search for Games
+        </p>
     </div>
 </template>

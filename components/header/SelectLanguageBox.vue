@@ -30,8 +30,7 @@ const langs = [
 
 <template>
     <q-btn-dropdown
-        class="btn-none ml-3 float-right"
-        label-class="d-flex align-items-center"
+        class="hidden lg:!block btn-none mt-1 -ml-2 float-right"
     >
         <template v-slot:label>
             <div

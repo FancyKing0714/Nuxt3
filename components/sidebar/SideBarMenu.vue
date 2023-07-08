@@ -112,7 +112,7 @@
     <p
         @click="$router.push(linkTo('/contact-us'))"
         style="font-size: 13px; color:"
-        class="font-medium pt-4 cursor-pointer px-2"
+        class="font-medium p-4  cursor-pointer"
     >
         Contact Us
     </p>

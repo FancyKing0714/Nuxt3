@@ -14,8 +14,8 @@ const store = useStore();
                 style="background: #202530"
                 class="absolute w-16 h-24 text-center py-3 -top-7 rounded-full left-1/2 transform -translate-x-1/2"
             >
-                <q-btn round color="primary" icon="person" @click="store.commit('handleMobileProfile', true)"/>
-                <p class="pt-4" style="font-size: 9px">My Account</p>
+                <q-btn round color="primary" icon="search" @click="store.commit('handleOnSearchDialog', true)"/>
+                <p class="pt-4 text-bold" style="font-size: 13px">Search</p>
             </div>
         </div>
         <div class="grid grid-cols-5">
@@ -27,19 +27,8 @@ const store = useStore();
                 >
                     <img class="w-7" src="/imgs/all_games.png" alt="test" />
                 </q-btn>
-                <p style="font-size: 9px">All Games</p>
+                <p class="text-bold" style="font-size: 13px">Games</p>
             </div>
-            <div class="flex flex-col justify-center px-2 items-center">
-                <q-btn 
-                    class="btn-none" 
-                    round
-                    @click="store.commit('handleDrawer', true)"
-                >
-                    <img class="w-7" src="/imgs/search.png" alt="test" />
-                </q-btn>
-                <p style="font-size: 9px">Search</p>
-            </div>
-            <div></div>
             <div class="flex flex-col justify-center px-2 items-center">
                 <q-btn 
                     class="btn-none" 
@@ -48,7 +37,18 @@ const store = useStore();
                 >
                     <img class="w-7" src="/imgs/slot-grey.png" alt="test" />
                 </q-btn>
-                <p style="font-size: 9px">Slots</p>
+                <p class="text-bold" style="font-size: 13px">Slots</p>
+            </div>
+            <div></div>
+            <div class="flex flex-col justify-center px-2 items-center">
+                <q-btn 
+                    class="btn-none" 
+                    round
+                    @click="$router.push(linkTo('/casino?tab=live'))"
+                >
+                    <img class="w-8" src="/imgs/liveGames.png" alt="test" />
+                </q-btn>
+                <p class="text-bold" style="font-size: 13px">Live</p>
             </div>
             <div class="flex flex-col justify-center px-2 items-center">
                 <q-btn 
@@ -58,7 +58,7 @@ const store = useStore();
                 >
                     <img class="w-7" src="/imgs/deposit.png" alt="test"/>
                 </q-btn>
-                <p style="font-size: 9px">Deposit</p>
+                <p class="text-bold" style="font-size: 13px">Deposit</p>
             </div>
         </div>
     </div>

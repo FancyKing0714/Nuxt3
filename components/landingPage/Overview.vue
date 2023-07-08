@@ -6,42 +6,54 @@ import { useStore } from 'vuex';
 </script>
 
 <template>
-    <div class="relative pb-0 sm:pb-16 w-full">
-        <div>
-            <p
-                v-if="store.state.isLogin === true"
-                class="font-bold text-3xl pl-3 hidden md:!block"
-            >
-                Welcome {{ store.state.User.first_name }} {{ store.state.User.last_name }}
-            </p>
-            <img
-                class="md:max-w-sm sm:max-w-xs w-48 sm:w-auto"
-                src="/imgs/logo_full.png"
-                alt="logo"
-            />
-            <p class="font-bold md:text-3xl text-2xl pl-3"># 1 Online casino</p>
-            <div class="sm:!hidden ">
-                <p class="font-bold text-2xl pl-3 pt-3">welcome bonus</p>
-                <div class="flex felx-row pl-3 pb-2">
-                    <q-icon name="euro" class="text-[48px] md:text-[72px] text-bold" style="color: #fff004"/>
-                    <span
-                        class="font-black font-bold text-5xl md:text-7xl"
-                        style="color: #fff004"
-                        >1800</span
-                    >
+    <div class="relative pb-0 sm:pb-16 w-full ">
+        <div class="z-[2000]">
+            <div class="sm:hidden">
+                <div class="relative flex flex-col items-end">
+                    <div class="absolute left-0 top-2">
+                        <p
+                            v-if="store.state.isLogin === true"
+                            class="font-bold text-3xl pl-3 hidden md:!block"
+                        >
+                            Welcome {{ store.state.User.first_name }} {{ store.state.User.last_name }}
+                        </p>
+                        <img
+                            class="md:max-w-sm sm:max-w-xs w-48 sm:w-auto"
+                            src="/imgs/logo_full.png"
+                            alt="logo"
+                        />
+                        <p class="font-bold md:text-3xl text-2xl pl-3"># 1 Online casino</p>
+                        <p class="font-bold text-2xl pl-3 pt-3">welcome bonus</p>
+                        <div 
+                            class="flex felx-row pl-3 "
+                        >
+                            <q-icon name="euro" class="text-[48px] md:text-[72px] text-bold" style="color: #fff004"/>
+                            <span
+                                class="font-black font-bold text-5xl md:text-7xl"
+                                style="color: #fff004"
+                                >1800</span
+                            >
+                        </div>
+                        <p
+                            style="color: #fff004;"
+                            class="font-bold text-3xl pl-3"
+                            v-if="store.state.isLogin === false"
+                        >
+                            200%  
+                            <span class="font-bold text-lg text-white">Bouns</span>
+                        </p>
+                        <span v-if="store.state.isLogin === false" class="font-bold text-xl text-white pl-3">+100 Free spins</span>
+                    </div>
+                    <img
+                        class="sm:hidden w-64 -mr-3 "
+                        src="/imgs/new.png"
+                        alt="new"
+                    />
                 </div>
-                <p
-                    style="color: #fff004"
-                    class="font-bold text-3xl pl-3"
-                >
-                    200%  
-                    <span class="font-bold text-lg text-white">Bouns</span>
-                </p>
-                <span class="font-bold text-xl text-white pl-3">+100 Free spins</span>
-                <div class="flex items-center justify-between pt-10">
+                <div class="flex items-center justify-between pt-5">
                     <q-btn
                         v-if="store.state.isLogin === false"
-                        class="font-bold text-2xl sm:px-6 !py-0 z-[10]"
+                        class="sm:mt-1 font-bold text-lg md:text-xl lg:text-2xl sm:px-6 !py-0 z-[10]"
                         unelevated
                         color="primary"
                         label="SIGN UP"
@@ -50,7 +62,7 @@ import { useStore } from 'vuex';
                     <q-btn
                         v-if="store.state.isLogin === true"
                         :class="[
-                            'font-bold text-lg md:text-xl lg:text-2xl lg:px-6 md:ml-4',
+                            'sm:mt-1 font-bold text-lg md:text-xl lg:text-2xl lg:px-6 md:ml-4',
                             store.state.isDrawer ? 'lg:hidden' : '',
                         ]"
                         unelevated
@@ -59,8 +71,8 @@ import { useStore } from 'vuex';
                         @click="$router.push(linkTo('/wallet/deposit'))"
                     />
                     <div class="flex items-center flex-col justify-between">
-                        <p class="font-bold text-lg pl-3">2ND/3RD DEPOSIT</p>
-                        <p class="gradiant text-2xl font-black pl-3">
+                        <p class="font-bold text-xl pl-3">2ND/3RD DEPOSIT</p>
+                        <p class="gradiant text-3xl font-black pl-3">
                             100% bonus
                         </p>
                     </div>
@@ -68,6 +80,18 @@ import { useStore } from 'vuex';
             </div>
 
             <div class="hidden sm:!block">
+                <p
+                    v-if="store.state.isLogin === true"
+                    class="font-bold text-3xl pl-3 hidden md:!block"
+                >
+                    Welcome {{ store.state.User.first_name }} {{ store.state.User.last_name }}
+                </p>
+                <img
+                    class="md:max-w-sm sm:max-w-xs w-48 sm:w-auto"
+                    src="/imgs/logo_full.png"
+                    alt="logo"
+                />
+                <p class="font-bold md:text-3xl text-2xl pl-3"># 1 Online casino</p>
                 <p 
                     style="font-family: 'Roboto Condensed',sans-serif"
                     :class="[
@@ -157,7 +181,7 @@ import { useStore } from 'vuex';
         </div>
 
         <img
-            class="absolute -right-3 -bottom-24 z-0 w-56 top-4 sm:top-8 sm:w-72 md:w-96 md:!block sm:max-w-sm md:max-w-lg xl:max-w-md xl:w-auto sm_hidden"
+            class="z-[1000] hidden sm:!block absolute -right-3 -bottom-24 z-0 w-64 top-3 sm:top-8 sm:w-72 md:w-96 md:!block sm:max-w-sm md:max-w-lg xl:max-w-md xl:w-auto sm_hidden"
             src="/imgs/new.png"
             alt="new"
         />
