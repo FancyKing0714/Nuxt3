@@ -66,7 +66,7 @@
                     <p class="text-sm font-semibold text-gray-500" :class="!!playtoggle && 'text-white'">Fun Play</p>
                 </div>
                 <div class="flex flex-row">
-                    <div v-if="!!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="removeFavoriteGameBySlug(store, slug)">
+                    <div v-if="!!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="removeFavoriteGameBySlug(store, slug, route.query?.tab)">
                         <q-icon name="favorite" size="sm" />
                     </div>
                     <div v-if="!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="addFavoriteGameBySlug(store, slug)">
