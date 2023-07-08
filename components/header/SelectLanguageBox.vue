@@ -30,14 +30,14 @@ const langs = [
 
 <template>
     <q-btn-dropdown
-        class="hidden lg:!block btn-none mt-1 -ml-2 float-right"
+        class="hidden lg:!block btn-none float-right"
     >
         <template v-slot:label>
             <div
-                class="flex items-center flex-nowrap justify-start text-sm "
+                class="flex items-center flex-nowrap items-center justify-start text-sm py-1"
             >
                 <img
-                    class="w-8 pr-1"
+                    class="w-7 pr-1"
                     :src="`/imgs/header/${lang}_large.png`"
                     alt="lang"
                 />
