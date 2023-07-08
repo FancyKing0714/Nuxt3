@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onBeforeMount} from 'vue';
+import {watch} from 'vue';
 import { useStore } from "vuex";
 import { useRouter , useRoute} from "vue-router";
 import { linkTo } from "~~/utils/link";
@@ -11,7 +11,7 @@ const store = useStore();
 const searchText = ref("");
 const provider = ref("");
 const providerList= ref([]);
-onBeforeMount(()=>{
+watch(()=>store.state.providers, ()=>{
   providerList.value = store.state.providers.map(provider=>provider.name);
 });
 const providers = ref(providerList.value);
@@ -23,7 +23,7 @@ const filterProvider = (val, update, abort) => {
   update(() => {
     const needle = val.toLowerCase();
     providers.value = providerList.value.filter(
-      (v) => v.toLowerCase().indexOf(needle) > -1
+      (v:string) => v.toLowerCase().indexOf(needle) > -1
     );
   });
 };

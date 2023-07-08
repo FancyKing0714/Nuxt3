@@ -33,7 +33,7 @@ const clickButton = () => {
 <template>
   <div
     v-if=" store.state.isLogin || link != 'favorites' && link != 'recent' "
-    class="flex flex-nowrap items-center justify-center w-26 p-3 cursor-pointer rounded-xl"
+    class="flex flex-nowrap items-center justify-center w-26 p-3 cursor-pointer rounded-lg"
     :style="{backgroundColor: active? '#2283ee' : '' }"
     @click="clickButton"
   >

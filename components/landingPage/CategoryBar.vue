@@ -104,18 +104,37 @@ const provider = {
 
 <template>
     <div
-        class="sm:rounded-lg w-full py-2 px-3  overflow-x-auto"
+        class="sm:rounded-lg w-full py-2 px-3"
         style="background: #282b34"
     >
-        <div class="flex flex-nowrap justify-between items-center">
-            <div class="flex flex-nowrap">
+        <div class="flex justify-between items-center">
+            <div class="flex flex-nowrap pb-2 mb-2 md:pb-0 md:mb-0 overflow-x-auto">
                 <CategoryBarItem
                     v-for="category in categories"
                     v-bind="category"
                 />
             </div>
-            <div class="hidden xl:!block">
-                <HeaderSearchInput />
+            <div 
+                class="md:hidden w-full md:w-[170px]"
+                :class="!!store.state.isDrawer ? 'xl:!block' : 'lg:!block xl:hidden'"    
+            >
+                <div
+                    class="flex items-center bg-gray-700 rounded-lg h-9 my-1 px-2"
+                    @click="store.commit('handleOnSearchDialog', true)"
+                >
+                    <p
+                        class="text-md rounded-lg"
+                    >
+                        <span class="w-[22px]">
+                            <q-icon
+                                style="max-width: 22px"
+                                name="search"
+                                size="sm"
+                            />
+                        </span>
+                        Search for Games
+                    </p>
+                </div>
             </div>
             <!-- <CategoryBarItem v-bind="provider" /> -->
         </div>

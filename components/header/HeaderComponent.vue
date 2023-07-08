@@ -36,7 +36,7 @@ dark.set(true);
                 </div>
                 <div 
                     class="w-[150px] lg:w-[190px]"
-                    :class="store.state.isDrawer?'mr-12':'mr-3'"
+                    :class="store.state.isDrawer?'mr-9':'mr-3'"
                 >
                     <QImg
                         @click="$router.push(linkTo('/'))"
@@ -56,11 +56,9 @@ dark.set(true);
                 </div>
             </div>
             <div class="flex flex-row flex-nowrap items-center">
-                    <div class="sm:pl-5 pt-1">
-                        <LoginRegisterButton
-                            v-if="store.state.isLogin === false"
-                        />
-                    </div>
+                    <LoginRegisterButton
+                        v-if="store.state.isLogin === false"
+                    />
                 <!-- <div class="w-full flex flex-nowrap items-center justify-end"> -->
                 <template v-if="store.state.isLogin">
                     <div class="">
