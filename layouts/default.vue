@@ -40,11 +40,12 @@ watch(
 watch(()=>route.path, ()=>{
     if(Cookies.get("token")){      
         getBalances(store);
+        getFavoriteGameSlugs(store, store.state.pageNumber);
     }                                  
 });
 //init website(domain.com)
 onBeforeMount(() => {          
-    // getProviders(store);   
+    getProviders(store);   
     if(Cookies.get("token")){                               //if Cookie contains token
         store.commit('handleLogin', true);                  //store.state.isLogin value set true
         getProfile(store, router);                                  // get player profile

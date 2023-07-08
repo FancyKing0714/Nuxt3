@@ -184,7 +184,7 @@ export const getFavoriteGameSlugs = (store, pagenumber) => {
 export const addFavoriteGameById = (store, id, slug) => {
     AxiosWithAuth('post',`/api/player/addFavorite/${id}`,store)
     .then(res => {
-        let slugList = store.state.favoriteGameIDList.map(item=>{return item});
+        let slugList = store.state.favoriteGameSlugList.map(item=>{return item});
         slugList.push(slug);
         store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleNotification',{type:'Success', message: res.data.message});
@@ -197,9 +197,13 @@ export const addFavoriteGameById = (store, id, slug) => {
     });
 }
 
-export const removeFavoriteGameById = (store, id, slug) => {
+export const removeFavoriteGameById = (store, id, slug, tab) => {
     AxiosWithAuth('post',`/api/player/removeFavorite/${id}`,store)
     .then(res => {
+        if(tab == "favorites"){
+            let favorites = store.state.gameListByType.filter(item=>item.id != id);
+            store.commit('handleGetGamesByType', favorites);
+        }
         let slugList = store.state.favoriteGameSlugList.filter(item=>item!=slug).map(item=>{return item});
         store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleNotification',{type:'Success',message: res.data.message});
@@ -228,9 +232,13 @@ export const addFavoriteGameBySlug = (store, slug) => {
     });
 }
 
-export const removeFavoriteGameBySlug = (store, slug) => {
+export const removeFavoriteGameBySlug = (store, slug, tab) => {
     AxiosWithAuth('post',`/api/player/removeFavorite/${slug}`,store)
     .then(res => {
+        if(tab == "favorites"){
+            let favorites = store.state.gameListByType.filter(item=>item.slug != slug);
+            store.commit('handleGetGamesByType', favorites);
+        }
         let slugList = store.state.favoriteGameSlugList.filter(item=>item!=slug).map(item=>{return item});
         store.commit('handleFavoriteGameSlugList', slugList);
         store.commit('handleNotification',{type:'Success',message: res.data.message});

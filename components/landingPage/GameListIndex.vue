@@ -2,11 +2,12 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 import { useStore } from 'vuex';
-import {useRouter} from 'vue-router';
+import {useRouter , useRoute} from 'vue-router';
 import {changeTitle} from '~~/utils/string';
 import { addFavoriteGameById , removeFavoriteGameById } from '~~/action/game';
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 const play = (demo, slug) =>{
     store.commit('handleGamePlayMode',demo);
@@ -26,7 +27,7 @@ defineProps({
 
 const onFavorite = (id, slug) => {
     if(store.state.favoriteGameSlugList.includes(slug))
-        removeFavoriteGameById(store, id, slug);
+        removeFavoriteGameById(store, id, slug, route.query?.tab);
     else
         addFavoriteGameById(store, id, slug);
 }

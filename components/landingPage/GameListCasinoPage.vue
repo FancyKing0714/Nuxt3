@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useStore} from 'vuex';
-import {useRouter} from 'vue-router';
+import {useRouter , useRoute} from 'vue-router';
 import { linkTo } from '~~/utils/link';
 import { addFavoriteGameById , removeFavoriteGameById } from '~~/action/game';
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 
 const play = (demo, slug) =>{
@@ -13,7 +14,7 @@ const play = (demo, slug) =>{
 };
 const onFavorite = (id, slug) => {
     if(store.state.favoriteGameSlugList.includes(slug))
-        removeFavoriteGameById(store, id, slug);
+        removeFavoriteGameById(store, id, slug, route.query?.tab);
     else
         addFavoriteGameById(store, id, slug);
 }

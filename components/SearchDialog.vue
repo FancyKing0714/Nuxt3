@@ -1,32 +1,28 @@
 <script setup lang="ts">
+import {onBeforeMount} from 'vue';
 import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import { useRouter , useRoute} from "vue-router";
 import { linkTo } from "~~/utils/link";
 import { addFavoriteGameById, removeFavoriteGameById } from "~~/action/game";
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 const searchText = ref("");
 const provider = ref("");
-const providerList: string[] = [
-  "aaa",
-  "abb",
-  "acc",
-  "abc",
-  "ccc",
-  "efd",
-  "see",
-  "wee",
-];
-const providers = ref(providerList);
+const providerList= ref([]);
+onBeforeMount(()=>{
+  providerList.value = store.state.providers.map(provider=>provider.name);
+});
+const providers = ref(providerList.value);
 const filterProvider = (val, update, abort) => {
-  // if (val.length < 2) {
-  //   abort();
-  //   return;
-  // }
+  if (val.length < 2) {
+    abort();
+    return;
+  }
   update(() => {
     const needle = val.toLowerCase();
-    providers.value = providerList.filter(
+    providers.value = providerList.value.filter(
       (v) => v.toLowerCase().indexOf(needle) > -1
     );
   });
@@ -38,7 +34,7 @@ const play = (demo, slug) => {
 };
 const onFavorite = (id, slug) => {
   if (store.state.favoriteGameSlugList.includes(slug))
-    removeFavoriteGameById(store, id, slug);
+    removeFavoriteGameById(store, id, slug, route.query?.tab);
   else addFavoriteGameById(store, id, slug);
 };
 
@@ -74,7 +70,7 @@ const imgurl = "/imgs/noGameImg.png";
               placeholder="Select provider"
               hide-selected
               fill-input
-              :options="providerList"
+              :options="providers"
               @filter="filterProvider"
               dense
               clearable
