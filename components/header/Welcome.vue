@@ -53,14 +53,14 @@ watch(()=>props, (newValue) => {
                                 Enjoy 3500+ games, fast payouts and 24/7 live support.
                             </span>
                         </div>
+                        <img
+                            class="w-48 z-[1000] sm:hidden absolute bottom-3 left-0"
+                            src="/imgs/man_thumb_t.png"
+                            alt="man_thumb_t"
+                        />
                         <div class="col-span-4 relative">
-                            <img
-                                class="w-44 sm:hidden absolute bottom-0 left-0"
-                                src="/imgs/man_thumb_t.png"
-                                alt="man_thumb_t"
-                            />
                         </div>
-                        <div class="col-span-6">
+                        <div class="col-span-6 z-[2000]">
                             <p class="text-xl font-bold mb-[-7px]">welcome bonus</p>
                             <div class="flex felx-row">
                                 <q-icon name="euro" size="48px" class="text-bold" style="color: #fff004"/>

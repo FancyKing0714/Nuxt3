@@ -38,9 +38,9 @@ const imgurl = "/imgs/noGameImg.png";
 <template>
     <div class="pt-5">
         <div class="flex flex-wrap justify-center sm:justify-between">
-            <div class="hidden md:!block card p-1" v-for="gameItem in store.state.gameListByType">
-                <div class="container" >
-                    <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[160px]"/>
+            <div class="hidden md:!block card p-1 w-[240px]" v-for="gameItem in store.state.gameListByType">
+                <div class="container h-[160px]" >
+                    <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover"/>
                     <div class="btnDiv" >
                         <div class="play-demo flex flex-col justify-center items-center">
                             <q-btn
@@ -75,9 +75,9 @@ const imgurl = "/imgs/noGameImg.png";
                     {{ gameItem?.name }}
                 </p>
             </div>
-            <div class="md:hidden card-mobile p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
-                <div class="container-mobile" >
-                    <img :src="gameItem?.image?gameItem?.image:imgurl" class="img bg-cover h-[160px]"/>
+            <div class="md:hidden card-mobile w-[186px] p-1" v-for="gameItem in store.state.gameListByType" @click="handleFocusGame(gameItem.id)">
+                <div class="container-mobile h-[124px]" >
+                    <img :src="gameItem.image?gameItem.image:imgurl" class="img bg-cover"/>
                     <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'">
                         <div class="play-demo flex flex-col justify-center items-center">
                             <q-btn
@@ -131,22 +131,23 @@ const imgurl = "/imgs/noGameImg.png";
 </template>
 <style>
 .card{
-    width: 250px;
-    height:100%;
+    height: 100%;
 }
 .container{
     position: relative;
+    width: 100%;
     border-radius: 10px;
 }
 .card-mobile{
-    width: 250px;
     height:100%;
 }
 .container-mobile{
+    width: 100%;
     position: relative;
     border-radius: 10px;
 }
 .img {
+    height: 100%;
     width: 100%;
     position: relative;
     border-radius: 10px;

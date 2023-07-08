@@ -15,7 +15,6 @@ interface SideBarItemInterFace {
     iconUrl: string;
     link: string;
 }
-
 const sideBarLinks: SideBarItemInterFace[] = [
     {
         title: 'Daily Cash Back',
@@ -42,14 +41,43 @@ const sideBarLinks: SideBarItemInterFace[] = [
     //     link: '/tournament',
     // },
 ];
+let lang = {
+    name:'English',
+    icon:'en',
+};
+function onItemClick(item: any) {
+    lang = item
+}
 
+const langs = [
+    {
+        name: 'English',
+        icon: 'en',
+    },
+    {
+        name: 'Spanish',
+        icon: 'es',
+    },
+    {
+        name: 'Portuguese',
+        icon: 'pt',
+    },
+    {
+        name: 'French',
+        icon: 'fr',
+    },
+    {
+        name: 'Serbian',
+        icon: 'sr',
+    },
+];
 </script>
 <template>
     <!-- SideBar -->
     <q-drawer
         show-if-above
         :width="270"
-        :breakpoint="1084"
+        :breakpoint="1064"
         class="px-3 py-3"
         style="background-color: #181a25"
         @before-hide="store.commit('handleDrawer', false)"
@@ -129,16 +157,13 @@ const sideBarLinks: SideBarItemInterFace[] = [
             </q-btn>
         </div> -->
         <div>
-            <div class="flex justify-center md:hidden mt-5">
-                <SearchInput />
-            </div>
             <div class="mt-5 text-center">
                 <LoginRegisterButton
                     v-if="store.state.isLogin === false"
                 />
             </div>
         </div>
-        <q-list>
+        <q-list class="">
             <SideBarItem
                 v-for="item in sideBarLinks"
                 :key="item.title"
@@ -146,5 +171,44 @@ const sideBarLinks: SideBarItemInterFace[] = [
             />
             <SideBarMenu />
         </q-list>
+        <q-btn-dropdown
+            class="lg:hidden btn-none float-right w-full"
+            label-class="d-flex align-items-center"
+        >
+            <template v-slot:label>
+                <div
+                    class="flex flex-nowrap justify-start text-sm w-full"
+                >
+                    <img
+                        class="w-7 mr-3"
+                        :src="`/imgs/header/${lang.icon}_large.png`"
+                        alt="lang"
+                    />
+                    {{ lang.name }}
+                </div>
+            </template>
+
+            <q-list>
+                <q-item
+                    v-for="lang in langs"
+                    clickable
+                    v-close-popup
+                    @click="onItemClick(lang)"
+                >
+                    <q-item-section>
+                        <q-item-label>
+                            <div class="flex items-center justify-start">
+                                <img
+                                    class="w-3"
+                                    :src="`/imgs/header/${lang.icon}.png`"
+                                    alt="lang"
+                                />
+                                <p class="text-xs pl-1">{{ lang.name }}</p>
+                            </div>
+                        </q-item-label>
+                    </q-item-section>
+                </q-item>
+            </q-list>
+        </q-btn-dropdown>
     </q-drawer>
 </template>

@@ -7,18 +7,21 @@ import { getAllGames, getAllGamesByType, getSlotsGames, getTableGames, getLiveGa
 
 const route = useRoute();
 const store = useStore();
+let routePath = '';
 watch(()=>route.query.tab,()=>{
-    if(store.state.pageNumber == 1)
+    if(store.state.pageNumber == 1 && routePath==route.path)
         getGames(1);
     store.commit('handlePageNumber', 1);
     store.commit('handleCurrentLoaded',0);
     store.commit('handleGetGamesByType',[]);
     store.commit('handleGetGamesAmount',0);
+    routePath = route.path;
 })
 watch(()=>store.state.pageNumber,()=>{
     getGames(store.state.pageNumber);
 })
 onBeforeMount(()=>{
+    routePath = route.path;
     store.commit('handlePageNumber', 1);
     store.commit('handleCurrentLoaded',0);
     store.commit('handleGetGamesByType',[]);
@@ -104,7 +107,7 @@ const provider = {
         class="sm:rounded-lg w-full py-2 px-3  overflow-x-auto"
         style="background: #282b34"
     >
-        <div style="min-width: 768px;" class="w-full flex flex-nowrap justify-between">
+        <div class="flex flex-nowrap justify-between items-center">
             <div class="flex flex-nowrap">
                 <CategoryBarItem
                     v-for="category in categories"
