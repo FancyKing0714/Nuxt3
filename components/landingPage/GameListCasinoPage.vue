@@ -37,7 +37,7 @@ const imgurl = "/imgs/noGameImg.png";
 </script>
 
 <template>
-    <div class="pt-5">
+    <div class="pt-5 px-2">
       <div class="flex flex-wrap justify-between">
         <div
           class="group hidden md:!block h-full p-1 w-[240px]"
@@ -111,11 +111,11 @@ const imgurl = "/imgs/noGameImg.png";
           </p>
         </div>
         <div
-          class="md:hidden h-full w-[135px] sm:w-[180px] p-1"
+          class="md:hidden h-full w-[120px] sm:w-[180px] p-1"
           v-for="gameItem in store.state.gameListByType"
           @click="handleFocusGame(gameItem.id)"
         >
-          <div class="relative w-full h-[90px] sm:h-[120px] rounded-lg">
+          <div class="relative w-full h-[80px] sm:h-[120px] rounded-lg">
             <img
               :src="gameItem.image ? gameItem.image : imgurl"
               class="relative h-full w-full rounded-lg z-[1] bg-cover"
@@ -185,7 +185,7 @@ const imgurl = "/imgs/noGameImg.png";
               v-if="focusgame != gameItem.id"
             ></div>
           </div>
-          <p class="text-center gametext p-2">
+          <p class="text-center text-white text-[11px] group-hover:text-[12px] p-2">
             {{ gameItem?.name }}
           </p>
         </div>
