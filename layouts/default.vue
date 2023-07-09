@@ -71,7 +71,8 @@ onBeforeMount(() => {
                 <MobileFooter />
                 <!-- Footer -->
                 <div
-                    class="text-sm font-normal text-center p-3 z-[3000] sm:pb-3 pb-[120px]"
+                    class="text-sm font-normal text-center p-3 z-[3000]"
+                    :class="store.state.isLogin&&'sm:pb-3 pb-[120px]'"
                     style="background-color: #151515; color: #7d8396;"
                     >Copyright 2023 Europa777 All Right Reserved.
                 </div>
