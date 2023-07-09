@@ -25,7 +25,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     height: 10px;
 }
 ::-webkit-scrollbar-track {
@@ -159,5 +159,11 @@ body {
 @media (max-width: 371px) {
     .sm_hidden {
         display: none!important;
+    }
+}
+@media (max-width: 780px) {
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 10px;
     }
 }

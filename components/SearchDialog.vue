@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {watch} from 'vue';
 import { useStore } from "vuex";
 import { useRouter , useRoute} from "vue-router";
 import { linkTo } from "~~/utils/link";
@@ -100,17 +99,17 @@ const imgurl = "/imgs/noGameImg.png";
         <div class="">
           <div class="flex flex-wrap justify-between">
             <div
-              class="hidden md:!block card p-1 w-[180px]"
+              class="group hidden md:!block h-full p-1 w-[180px]"
               v-for="gameItem in store.state.gameListByType"
             >
-              <div class="container h-[120px]">
+              <div class="relative w-full h-[120px] rounded-lg">
                 <img
                   :src="gameItem?.image ? gameItem?.image : imgurl"
-                  class="img bg-cover"
+                  class="relative h-full w-full rounded-lg z-[1] bg-cover"
                 />
-                <div class="btnDiv">
+                <div class="opacity-0 group-hover:opacity-100 absolute w-full h-full top-0 left-0 z-[2] rounded-lg bg-gray-900 bg-opacity-80 transition ease-in-out duration-300">
                   <div
-                    class="play-demo flex flex-col justify-center items-center"
+                    class="absolute w-full h-full flex flex-col justify-center items-center"
                   >
                     <q-btn
                       text-color="white"
@@ -141,7 +140,7 @@ const imgurl = "/imgs/noGameImg.png";
                   <q-btn
                     text-color="yellow"
                     padding="0px"
-                    class="star-icon"
+                    class="absolute top-2 right-2"
                     style="background-color: transparent"
                     @click="onFavorite(gameItem.id, gameItem.slug)"
                   >
@@ -166,26 +165,26 @@ const imgurl = "/imgs/noGameImg.png";
                   </q-btn>
                 </div>
               </div>
-              <p class="text-center gametext p-2">
+              <p class="text-center text-white text-[11px] group-hover:text-[12px] p-2">
                 {{ gameItem?.name }}
               </p>
             </div>
             <div
-              class="md:hidden card-mobile w-[135px] p-1"
+              class="md:hidden h-full w-[135px] p-1"
               v-for="gameItem in store.state.gameListByType"
               @click="handleFocusGame(gameItem.id)"
             >
-              <div class="container-mobile h-[90px]">
+              <div class="relative w-full h-[90px] rounded-lg">
                 <img
                   :src="gameItem.image ? gameItem.image : imgurl"
-                  class="img bg-cover"
+                  class="relative h-full w-full rounded-lg z-[1] bg-cover"
                 />
                 <div
-                  class="btnDiv-mobile opacity-0 duration-300"
+                  class="absolute w-full h-full top-0 left-0 z-[2] rounded-lg bg-gray-900 bg-opacity-80 opacity-0 duration-300"
                   :class="focusgame == gameItem.id && 'opacity-100'"
                 >
                   <div
-                    class="play-demo flex flex-col justify-center items-center"
+                    class="absolute w-full h-full flex flex-col justify-center items-center"
                   >
                     <q-btn
                       text-color="white"
@@ -216,7 +215,7 @@ const imgurl = "/imgs/noGameImg.png";
                   <q-btn
                     text-color="yellow"
                     padding="0px"
-                    class="star-icon"
+                    class="absolute top-2 right-2"
                     style="background-color: transparent"
                     @click="onFavorite(gameItem.id, gameItem.slug)"
                   >
@@ -241,7 +240,7 @@ const imgurl = "/imgs/noGameImg.png";
                   </q-btn>
                 </div>
                 <div
-                  class="btnDiv-mobile-cover"
+                  class="absolute z-[3] w-full h-full top-0 left-0 rounded-lg"
                   v-if="focusgame != gameItem.id"
                 ></div>
               </div>
@@ -255,81 +254,3 @@ const imgurl = "/imgs/noGameImg.png";
     </q-card>
   </q-dialog>
 </template>
-<style>
-.card {
-  height: 100%;
-}
-.container {
-  position: relative;
-  width: 100%;
-  border-radius: 10px;
-}
-.card-mobile {
-  height: 100%;
-}
-.container-mobile {
-  width: 100%;
-  position: relative;
-  border-radius: 10px;
-}
-.img {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  border-radius: 10px;
-  z-index: 1;
-}
-.play-demo {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.star-icon {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-}
-.btnDiv {
-  opacity: 0;
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  transition: 0.3s;
-}
-.btnDiv-mobile {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.btnDiv-mobile-cover {
-  position: absolute;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0);
-}
-.gametext {
-  font-size: 11px;
-  color: white;
-}
-.card:hover .btnDiv {
-  opacity: 1;
-}
-.card:hover .gametext {
-  font-size: 12px;
-  color: white;
-}
-</style>

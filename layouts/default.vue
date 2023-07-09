@@ -56,26 +56,27 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <q-layout>
-        <!-- Header -->
-        <HeaderComponent />
-        <!-- SideBar -->
-        <SideBarComponent />
-        
-        <!-- Container -->
-        <q-page-container class="bg-gray-900">
-            <NuxtPage />
-            <PageFooter v-if="!route.path.toString().includes('play')"/> 
-            <MobilePageFooter />
-            <MobileFooter />
-        </q-page-container> 
+    <q-layout class>
+        <div class="h-screen overflow-y-auto">
+            <!-- Header -->
+            <HeaderComponent />
+            <!-- SideBar -->
+            <SideBarComponent />
             
-        <!-- Footer -->
-        <q-footer
-            class="text-sm font-normal text-center z-0 pt-3 px-3 pb-32 sm:pb-3"
-            style="background-color: #151515; color: #7d8396"
-            >Copyright 2023 Europa777 All Right Reserved.
-        </q-footer>
+            <!-- Container -->
+            <q-page-container class="bg-gray-900 h-fit overflow-y-auto">
+                <NuxtPage />
+                <PageFooter v-if="!route.path.toString().includes('play')"/> 
+                <MobilePageFooter />
+                <MobileFooter />
+                <!-- Footer -->
+                <div
+                    class="text-sm font-normal text-center p-3 z-[3000]"
+                    style="background-color: #151515; color: #7d8396"
+                    >Copyright 2023 Europa777 All Right Reserved.
+                </div>
+            </q-page-container> 
+        </div>
         
         <Login />
         <SignUp />
