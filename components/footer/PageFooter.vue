@@ -5,7 +5,7 @@ const store = useStore();
 
 <template>
     <div
-    class="hidden sm:!block"
+    class="hidden sm:!block "
         style="
             background: radial-gradient(
                 94.97% 94.97% at 50% 5.03%,
@@ -17,7 +17,7 @@ const store = useStore();
     >
         <div
             style="border-bottom: 1px solid rgba(123, 129, 147, 0.3)"
-            class="p-5 grid grid-cols-4"
+            class="p-5 grid grid-cols-4 justify-items-center"
         >
             <div class="hidden lg:!block lg:col-span-1" style="max-width: 196px">
                 <q-img
