@@ -75,13 +75,13 @@ const langs = [
 <template>
     <!-- SideBar -->
     <q-drawer
+        v-model="store.state.isDrawer"
         show-if-above
         :width="270"
         :breakpoint="1064"
-        class="px-3 py-3"
+        class="p-3 overflow-x-hidden"
         style="background-color: #181a25"
         @before-hide="store.commit('handleDrawer', false)"
-        v-model="store.state.isDrawer"
     >
         <div
             style="border-bottom: 1px solid #7d8396"

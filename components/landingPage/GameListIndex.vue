@@ -133,11 +133,11 @@ const imgurl = "/imgs/noGameImg.png";
                 }"
             >
                 <swiper-slide class="hidden md:!block" v-for="gameItem in game?.list">
-                    <div class="container">
-                        <div class="container">
-                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
-                            <div class="btnDiv" >
-                                <div class="play-demo" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="group">
+                        <div class="relative rounded-lg">
+                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="relative rounded-lg z-[1]"/>
+                            <div class="absolute opacity-0 group-hover:opacity-100 w-full h-full z-[2] top-0 left-0 rounded-lg bg-gray-900 bg-opacity-80 transition ease-in-out duration-300" >
+                                <div class="absolute w-full h-full" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <q-btn
                                         text-color=white
                                         style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
@@ -157,7 +157,7 @@ const imgurl = "/imgs/noGameImg.png";
                                 <q-btn
                                     text-color=yellow
                                     padding="0px"
-                                    class="star-icon"
+                                    class="absolute top-2 right-2"
                                     style="background-color: transparent;"
                                     @click="onFavorite(gameItem?.id, gameItem.slug)"
                                 >
@@ -165,6 +165,48 @@ const imgurl = "/imgs/noGameImg.png";
                                     <q-icon v-if="!store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star_border" size="xs" />
                                 </q-btn>
                             </div>
+                        </div>
+                        <p
+                            class="text-center text-white text-[11px] group-hover:text-[12px] p-2"
+                        >
+                            {{ gameItem?.name }}
+                        </p>
+                    </div>
+                </swiper-slide>
+                <swiper-slide class="md:!hidden" v-for="gameItem in game?.list">
+                    <div>
+                        <div class="group relative rounded-lg" @click="handleFocusGame(gameItem.id)">
+                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="relative rounded-lg z-[1]"/>
+                            <div class="absolute z-[2] w-full h-full top-0 left-0 rounded-lg bg-gray-900 bg-opacity-80 opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'" >
+                                <div class="absolute w-full h-full flex flex-col justify-center items-center">
+                                    <q-btn
+                                        text-color=white
+                                        style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
+                                        @click="play(0, gameItem.slug)"
+                                    >
+                                        <q-icon name="play_arrow" size="lg" />
+                                    </q-btn>
+                                    <q-btn
+                                        v-if="gameItem?.demo == 1"
+                                        text-color=white
+                                        padding="1px 10px"
+                                        label="Demo"
+                                        style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
+                                        @click="play(1, gameItem.slug)"
+                                    />
+                                </div>
+                                <q-btn
+                                    text-color=yellow
+                                    padding="0px"
+                                    class="absolute top-2 right-2"
+                                    style="background-color: transparent;"
+                                    @click="onFavorite(gameItem?.id, gameItem.slug)"
+                                >
+                                    <q-icon v-if="store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star" size="xs" />
+                                    <q-icon v-if="!store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star_border" size="xs" />
+                                </q-btn>
+                            </div>
+                            <div class="absolute z-[3] w-full h-full top-0 left-0 rounded-lg" v-if="focusgame!=gameItem.id"></div>
                         </div>
                         <p
                             class="text-center gametext p-2"
@@ -173,109 +215,8 @@ const imgurl = "/imgs/noGameImg.png";
                         </p>
                     </div>
                 </swiper-slide>
-                <swiper-slide class="md:!hidden" v-for="gameItem in game?.list">
-                    <div class="container" @click="handleFocusGame(gameItem.id)">
-                            <img :src="gameItem?.image?gameItem?.image:imgurl" class="img"/>
-                            <div class="btnDiv-mobile opacity-0 duration-300 " :class="(focusgame==gameItem.id)&&'opacity-100'" >
-                                <div class="play-demo flex flex-col justify-center items-center">
-                                    <q-btn
-                                        text-color=white
-                                        style="border-radius: 50%; background-color:red; padding: 5px; margin-bottom: 5px;"
-                                        @click="play(0, gameItem.slug)"
-                                    >
-                                        <q-icon name="play_arrow" size="lg" />
-                                    </q-btn>
-                                    <q-btn
-                                        v-if="gameItem?.demo == 1"
-                                        text-color=white
-                                        padding="1px 10px"
-                                        label="Demo"
-                                        style="font-size: x-small; border-radius: 10%; background-color:transparent;border: white 2px solid;"
-                                        @click="play(1, gameItem.slug)"
-                                    />
-                                </div>
-                                <q-btn
-                                    text-color=yellow
-                                    padding="0px"
-                                    class="star-icon"
-                                    style="background-color: transparent;"
-                                    @click="onFavorite(gameItem?.id, gameItem.slug)"
-                                >
-                                    <q-icon v-if="store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star" size="xs" />
-                                    <q-icon v-if="!store.state.favoriteGameSlugList.includes(gameItem?.slug)" name="star_border" size="xs" />
-                                </q-btn>
-                            </div>
-                            <div class="btnDiv-mobile-cover" v-if="focusgame!=gameItem.id"></div>
-                        </div>
-                        <p
-                            class="text-center gametext p-2"
-                        >
-                            {{ gameItem?.name }}
-                        </p>
-                </swiper-slide>
             </Swiper>
         </div>
     </div>
 </template>
-<style>
-.container{
-    position: relative;
-    border-radius: 10px;
-}
-.img {
-    position: relative;
-    border-radius: 10px;
-    z-index: 1;
-}
-.play-demo{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.star-icon{
-    position: absolute;
-    top:7px;
-    right:7px;
-}
-.btnDiv{
-    opacity: 0;
-    position:absolute;
-    z-index: 2;
-    width: 100%;
-    height:100%;
-    top: 0;
-    left: 0;
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.8);
-    transition: .3s;
-}
-.btnDiv-mobile{
-    position:absolute;
-    z-index: 2;
-    width: 100%;
-    height:100%;
-    top: 0;
-    left: 0;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-.btnDiv-mobile-cover{
-    position:absolute;
-    z-index: 3;
-    width: 100%;
-    height:100%;
-    top: 0;
-    left: 0;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0);
-}
-.container:hover .btnDiv{
-    opacity: 1;
-}
-.gametext{
-    font-size: 11px;
-    color: white;
-}
-
-</style>
 
