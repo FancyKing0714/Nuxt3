@@ -316,7 +316,7 @@ const imgurl = "/imgs/noGameImg.png";
                 color="primary"
                 @click="showMore"
             >
-                Load More
+                Show More
             </q-btn>
         </div>
       </div>
