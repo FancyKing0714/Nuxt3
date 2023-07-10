@@ -16,7 +16,7 @@ const { dark } = useQuasar();
 dark.set(true);
 </script>
 <template>
-    <QHeader class="bg-gray-800 py-1 px-2 z-[3000]">
+    <QHeader class="bg-gray-800 py-1 px-2">
         <QToolbar class="p-2 flex justify-between">
             <div class="flex flex-row flex-nowrap items-center">
                 <div class="w-[30px]">

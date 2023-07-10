@@ -44,7 +44,7 @@
     })
 </script>
 <template>
-    <div class="absolute top-0 left-0 w-screen h-screen z-[2000]" :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:pt-2 xl:pb-32 mx-auto'">
+    <div class="absolute top-0 left-0 w-screen h-screen z-[2000] " :class="!fullScreenState&&'xl:relative xl:w-11/12 xl:pt-2 xl:pb-32 mx-auto xl:z-[1000]'">
         <!-- desktop close button -->
         <div :class="fullScreenState?'hidden xl:!block absolute top-4 right-4 z-[2001]':'hidden'">
             <div class="bg-gray-700 p-3 ml-1 rounded-full hover:cursor-pointer hover:bg-gray-800" @click="switchFullScreen(false)">
