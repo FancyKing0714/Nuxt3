@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
 const store = useStore();
+import { tran } from "~~/utils/translation";
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
@@ -19,7 +20,7 @@ const isDrawer = computed(() => {
                         src="/imgs/add_currency.png"
                         alt="asdasd"
                     />
-                    <p>Add Currency</p>
+                    <p>{{tran('Add Currenc', store.state.lang)}}y</p>
                 </div>
             </q-btn>
             <div
@@ -33,36 +34,36 @@ const isDrawer = computed(() => {
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Withdrawable</p>
+                        <p>{{tran('Withdrawable', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Lock by Bonus</p>
+                        <p>{{tran('Lock by Bonus', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Cash Back</p>
+                        <p>{{tran('Cash Back', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Total</p>
+                        <p>{{tran('Total', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <q-btn
                         style="background: #11a449"
                         class="w-full mt-2"
-                        label="Deposit"
+                        :label="tran('Deposit', store.state.lang)"
                     />
                     <q-btn
                         class="w-full mt-2"
                         color="primary"
-                        label="Withdrawl"
+                        :label="tran('Withdrawl', store.state.lang)"
                         disable
                     />
                 </div>
@@ -71,36 +72,36 @@ const isDrawer = computed(() => {
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Withdrawable</p>
+                        <p>{{tran('Withdrawable', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Lock by Bonus</p>
+                        <p>{{tran('Lock by Bonus', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Cash Back</p>
+                        <p>{{tran('Cash Back', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Total</p>
+                        <p>{{tran('Total', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <q-btn
                         style="background: #11a449"
                         class="w-full mt-2"
-                        label="Deposit"
+                        :label="tran('Deposit', store.state.lang)"
                     />
                     <q-btn
                         class="w-full mt-2"
                         color="primary"
-                        label="Withdrawl"
+                        :label="tran('Withdrawl', store.state.lang)"
                         disable
                     />
                 </div>
@@ -109,36 +110,36 @@ const isDrawer = computed(() => {
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Withdrawable</p>
+                        <p>{{tran('Withdrawable', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Lock by Bonus</p>
+                        <p>{{tran('Lock by Bonus', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Cash Back</p>
+                        <p>{{tran('Cash Back', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Total</p>
+                        <p>{{tran('Total', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <q-btn
                         style="background: #11a449"
                         class="w-full mt-2"
-                        label="Deposit"
+                        :label="tran('Deposit', store.state.lang)"
                     />
                     <q-btn
                         class="w-full mt-2"
                         color="primary"
-                        label="Withdrawl"
+                        :label="tran('Withdrawl', store.state.lang)"
                         disable
                     />
                 </div>
@@ -147,36 +148,36 @@ const isDrawer = computed(() => {
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Withdrawable</p>
+                        <p>{{tran('Withdrawable', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Lock by Bonus</p>
+                        <p>{{tran('Lock by Bonus', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Cash Back</p>
+                        <p>{{tran('Cash Back', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <div
                         class="flex items-center justify-between text-xs font-medium"
                     >
-                        <p>Total</p>
+                        <p>{{tran('Total', store.state.lang)}}</p>
                         <p>0.00</p>
                     </div>
                     <q-btn
                         style="background: #11a449"
                         class="w-full mt-2"
-                        label="Deposit"
+                        :label="tran('Deposit', store.state.lang)"
                     />
                     <q-btn
                         class="w-full mt-2"
                         color="primary"
-                        label="Withdrawl"
+                        :label="tran('Withdrawl', store.state.lang)"
                         disable
                     />
                 </div>

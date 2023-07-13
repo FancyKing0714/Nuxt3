@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
 const store= useStore();
+import { tran } from "~~/utils/translation";
 </script>
 
 <template>
@@ -9,10 +10,10 @@ const store= useStore();
             <q-img class="w-full h-full" src="/imgs/back_daily_b.png" />
             <div class="w-2/3 absolute top-1/2 -translate-y-1/2 z-10 left-8">
                 <p class="font-bold text-xl md:text-xl xl:text-2xl text-shadow-lg">
-                    DAILY<br />CASHBACK
+                    {{tran('DAILY', store.state.lang)}}<br />{{tran('CASHBACK', store.state.lang)}}
                 </p>
                 <div class="">
-                    <p class="text-sm md:text-xs xl:text-sm pt-1 mb-[-7px]">UP TO</p>
+                    <p class="text-sm md:text-xs xl:text-sm pt-1 mb-[-7px]">{{tran('UP TO', store.state.lang)}}</p>
                     <p style="color: #ffd62f" class="text-6xl md:text-5xl xl:text-7xl font-black">
                         20%
                     </p>
@@ -22,7 +23,7 @@ const store= useStore();
                     class="mt-2"
                     size="md"
                     color="primary"
-                    label="Join Now"
+                    :label="tran('Join Now', store.state.lang)"
                     @click="$router.push(linkTo('/bonus/cash-back'))"
                 />
                 <q-btn 
@@ -30,7 +31,7 @@ const store= useStore();
                     class="mt-2" 
                     size="md" 
                     color="primary" 
-                    label="SIGN UP" 
+                    :label="tran('SIGN UP', store.state.lang)" 
                     @click="store.commit('handleOnRegister', true)"
                 />
             </div>
@@ -38,7 +39,7 @@ const store= useStore();
         <div class="col-span-10 md:col-span-6 relative">
             <q-img class="w-full h-full" src="/imgs/back_bonus_b.png" />
             <div class="absolute top-4 z-10 left-1/4 sm:ml-7 md:ml-3 xl:ml-0 text-center">
-                <p class="font-bold text-md sm:text-xl text-shadow-lg">WELCOME BONUS</p>
+                <p class="font-bold text-md sm:text-xl text-shadow-lg">{{tran('WELCOME BONUS', store.state.lang)}}</p>
                 <div class="flex felx-row">
                     <q-icon name="euro" class="text-[38px] xl:text-[72px] text-bold" style="color: #fff004"/>
                     <span
@@ -55,7 +56,7 @@ const store= useStore();
                         >
                             200%
                         </p>
-                        <p class="text-xs xl:text-md xl:font-bold">BONUS</p>
+                        <p class="text-xs xl:text-md xl:font-bold">{{tran('BONUS', store.state.lang)}}</p>
                     </div>
                     <div class="ml-3">
                         <p
@@ -64,7 +65,7 @@ const store= useStore();
                         >
                             +100
                         </p>
-                        <p class="text-xs xl:text-md xl:font-bold">FREE SPINS</p>
+                        <p class="text-xs xl:text-md xl:font-bold">{{tran('FREE SPINS', store.state.lang)}}</p>
                     </div>
                 </div>
 
@@ -73,7 +74,7 @@ const store= useStore();
                     class="mt-2" 
                     size="md" 
                     color="primary" 
-                    label="Deposit" 
+                    :label="tran('Deposit', store.state.lang)" 
                     @click="$router.push(linkTo('/wallet/deposit'))"
                 />
                 <q-btn 
@@ -81,7 +82,7 @@ const store= useStore();
                     class="mt-2" 
                     size="md" 
                     color="primary" 
-                    label="SIGN UP" 
+                    :label="tran('SIGN UP', store.state.lang)" 
                     @click="store.commit('handleOnRegister', true)"
                 />
             </div>

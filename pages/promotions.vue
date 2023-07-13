@@ -5,6 +5,7 @@ import { useStore } from 'vuex';
 import { computed , onBeforeMount} from 'vue';
 import auth from '~~/middleware/routerMiddleware.js';
 import {getPromotion} from '~~/action/others';
+import { tran } from "~~/utils/translation";
 
 definePageMeta({
   middleware: [auth]
@@ -43,7 +44,7 @@ const isDrawer = computed(() => {
                             <span
                                 style="color: rgb(255, 255, 3)"
                                 class="text-5xl lg:text-6xl"
-                                >Promotions</span
+                                >{{tran('Promotions', store.state.lang)}}</span
                             >
                         </p>
                         

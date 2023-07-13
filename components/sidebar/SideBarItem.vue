@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 import {linkTo} from '~~/utils/link';
 interface SideBarItemInterFace {
     title: string;
@@ -29,7 +32,7 @@ function getUrl(img: string) {
                     style="line-height: 15px"
                     class="text-base font-bold text-shadow-md"
                 >
-                    {{ title }}
+                    {{ tran(title, store.state.lang) }}
                 </p>
             </div>
             <img

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import {  onBeforeUpdate , watch} from "vue"; 
 import { useStore } from "vuex";
 import { useRouter , useRoute} from "vue-router";
+import { tran } from "~~/utils/translation";
 import { linkTo } from "~~/utils/link";
 import { addFavoriteGameById, removeFavoriteGameById } from "~~/action/game";
 
@@ -8,10 +10,11 @@ const router = useRouter();
 const route = useRoute();
 const store = useStore();
 const searchText = ref("");
-const provider = ref("");
+let provider = ref('');
 const providerList= ref([]);
-watch(()=>store.state.providers, ()=>{
+onBeforeUpdate(()=>{
   providerList.value = store.state.providers.map(provider=>provider.name);
+  provider.value = store.state.selectedProvider;
 });
 const providers = ref(providerList.value);
 const filterProvider = (val, update, abort) => {
@@ -36,7 +39,9 @@ const onFavorite = (id, slug) => {
     removeFavoriteGameById(store, id, slug, route.query?.tab);
   else addFavoriteGameById(store, id, slug);
 };
-
+const selectProvider = (item) => {
+  console.log(item);  
+}
 let focusgame = ref("");
 const handleFocusGame = (id) => {
   focusgame.value = id;
@@ -46,14 +51,14 @@ const imgurl = "/imgs/noGameImg.png";
 <template>
   <q-dialog
     v-model="store.state.isSearchDiaolg"
-    @hide="store.commit('handleOnSearchDialog', false)"
+    @hide="store.commit('handleOnSearchDialog', {a:false, b:''});"
   >
     <q-card style="width: 600px; max-width: 80vw" class="relative bg-gray-900">
       <q-card-section>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <q-input
             filled
-            placeholder="At least 3 characters..."
+            :placeholder="tran('At least 3 characters...', store.state.lang)"
             v-model="searchText"
             dense
           >
@@ -68,6 +73,7 @@ const imgurl = "/imgs/noGameImg.png";
               use-input
               placeholder="Select provider"
               hide-selected
+              @new-value="selectProvider"
               fill-input
               :options="providers"
               @filter="filterProvider"
@@ -84,7 +90,7 @@ const imgurl = "/imgs/noGameImg.png";
               <template v-slot:no-option>
                 <q-item>
                   <q-item-section class="text-grey">
-                    No results
+                    {{ tran('No results', store.state.lang) }}
                   </q-item-section>
                 </q-item>
               </template>

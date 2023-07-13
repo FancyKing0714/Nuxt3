@@ -5,6 +5,7 @@
     import { FpjsClient } from '@fingerprintjs/fingerprintjs-pro-spa';
     import { Cookies } from 'quasar';
     import countryCodes from './countryCode.json';
+    import { tran } from "~~/utils/translation";
 
     const config = useRuntimeConfig();
     const store = useStore();
@@ -151,18 +152,16 @@
                             class="flex flex-nowrap justify-between items-center w-full mb-2"
                         >
                             <span style="font-size: 10px;text-align: center;"
-                                >I confirm that I am at least 18 years old
-                                and I have read and accept the General Terms
-                                of Conditions</span>
+                                >{{tran('confirm', store.state.lang)}}</span>
                         </div>
                         <p class="cursor-pointer text-xs pt-2 underline" @click="store.commit('handleOnLogin', true);store.commit('handleOnRegister', false);">
-                            Already have an account?
+                            {{tran('alreadyAccount', store.state.lang)}}
                         </p>
                     </div>
                     <div class="p-1 mt-7 text-center">
                         <div>
                             <p class="font-bold text-2xl text-shadow-lg text-center py-2 mb-2">
-                                Sign Up
+                                {{tran('Sign Up', store.state.lang)}}
                             </p>
 
                             <q-tab-panels v-model="tab" animated class="bg-transparent text-white mb-3">
@@ -176,7 +175,7 @@
                                         <q-input
                                             class="text-shadow-lg w-full"
                                             type="text"
-                                            placeholder="First Name"
+                                            :placeholder="tran('First Name', store.state.lang)"
                                             standout
                                             v-model="signupInfo.first_name.value"
                                             :dense="true"
@@ -191,7 +190,7 @@
                                         <q-input
                                             class="text-shadow-lg w-full "
                                             type="text"
-                                            placeholder="Last Name"
+                                            :placeholder="tran('Last Name', store.state.lang)"
                                             standout
                                             v-model="signupInfo.last_name.value"
                                             :dense="true"
@@ -206,7 +205,7 @@
                                         <q-input
                                             class="text-shadow-lg w-full"
                                             type="text"
-                                            placeholder="UserName"
+                                            :placeholder="tran('UserName', store.state.lang)"
                                             standout
                                             v-model="signupInfo.username.value"
                                             :dense="true"
@@ -221,7 +220,7 @@
                                         <q-input
                                             class=" text-shadow-lg w-full"
                                             type="email"
-                                            placeholder="Email address"
+                                            :placeholder="tran('Email address', store.state.lang)"
                                             standout
                                             v-model="signupInfo.email.value"
                                             :dense="true"
@@ -236,7 +235,7 @@
                                         <q-input
                                             class=" text-shadow-lg w-full"
                                             type="password"
-                                            placeholder="Password"
+                                            :placeholder="tran('Password', store.state.lang)"
                                             standout
                                             v-model="signupInfo.password.value"
                                             :dense="true"
@@ -251,7 +250,7 @@
                                         <q-input
                                             class=" text-shadow-lg w-full"
                                             type="password"
-                                            placeholder="Password Confirmation"
+                                            :placeholder="tran('Password Confirmation', store.state.lang)"
                                             standout
                                             v-model="signupInfo.password_confirmation.value"
                                             :dense="true"
@@ -272,7 +271,7 @@
                                                 <div
                                                     class="flex flex-nowrap items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
                                                     >
-                                                    {{ signupInfo.currency.value=='' ? 'Currency' : signupInfo.currency.value }}
+                                                    {{ signupInfo.currency.value=='' ? tran('Currency', store.state.lang) : signupInfo.currency.value }}
                                                 </div>
                                             </template>
                                             <q-list>
@@ -306,7 +305,7 @@
                                             class="text-shadow-lg w-full pl-1"
                                             type="text"
                                             mask="date"
-                                            placeholder="Birthday"
+                                            :placeholder="tran('Birthday', store.state.lang)"
                                             standout
                                             v-model="signupInfo.dob.value"
                                             :dense="true"
@@ -319,7 +318,7 @@
                                                 <q-popup-proxy cover transition-show="scale" transition-hide="scale">
                                                     <q-date v-model="signupInfo.dob.value">
                                                         <div class="row items-center justify-end">
-                                                            <q-btn v-close-popup label="Close" color="primary" flat />
+                                                            <q-btn v-close-popup :label="tran('Close', store.state.lang)" color="primary" flat />
                                                         </div>
                                                     </q-date>
                                                 </q-popup-proxy>
@@ -341,7 +340,7 @@
                                                 <div
                                                     class="flex flex-nowrap items-center justify-start text-xs font-normal sm:text-sm sm:pr-3"
                                                 >
-                                                    {{ signupInfo.gender.value }}
+                                                    {{ tran(signupInfo.gender.value, store.state.lang) }}
                                                 </div>
                                             </template>
                                             <q-list>
@@ -354,7 +353,7 @@
                                                     <q-item-section>
                                                         <q-item-label>
                                                             <div class="flex flex-nowrap items-center justify-start">
-                                                                <p class="text-xs pl-1">{{ gender }}</p>
+                                                                <p class="text-xs pl-1">{{ tran(gender, store.state.lang) }}</p>
                                                             </div>
                                                         </q-item-label>
                                                     </q-item-section>
@@ -372,7 +371,7 @@
                                             filled
                                             v-model="model"
                                             use-input
-                                            placeholder="Country"
+                                            :placeholder="tran('Country', store.state.lang)"
                                             hide-selected
                                             fill-input
                                             input-debounce="0"
@@ -384,7 +383,7 @@
                                             <template v-slot:no-option>
                                             <q-item>
                                                 <q-item-section class="text-grey">
-                                                No results
+                                                    {{tran('No results', store.state.lang)}}
                                                 </q-item-section>
                                             </q-item>
                                             </template>
@@ -399,7 +398,7 @@
                                         <q-input
                                             class="pt-1 text-shadow-lg w-full"
                                             type="text"
-                                            placeholder="State"
+                                            :placeholder="tran('State', store.state.lang)"
                                             standout
                                             v-model="signupInfo.state.value"
                                             :dense="true"
@@ -413,7 +412,7 @@
                                         />
                                         <q-input
                                             class="pt-1 text-shadow-lg w-full"
-                                            placeholder="City"
+                                            :placeholder="tran('City', store.state.lang)"
                                             standout
                                             v-model="signupInfo.city.value"
                                             :dense="true"
@@ -428,7 +427,7 @@
                                         <q-input
                                             class="pt-1 text-shadow-lg w-full"
                                             type="text"
-                                            placeholder="Street"
+                                            :placeholder="tran('Street', store.state.lang)"
                                             standout
                                             v-model="signupInfo.street_1_address.value"
                                             :dense="true"
@@ -442,7 +441,7 @@
                                         />
                                         <q-input
                                             class="text-shadow-lg w-full"
-                                            placeholder="Postal Code "
+                                            :placeholder="tran('Postal Code', store.state.lang)"
                                             standout
                                             v-model="signupInfo.zip.value"
                                             :dense="true"
@@ -476,7 +475,7 @@
                                 <q-btn 
                                     class="w-full font-bold px-11"
                                     style="background-color: #fff004; color: black;" 
-                                    :label="tab" 
+                                    :label="tran(tab, store.state.lang)" 
                                     @click="tabChange"/>
                                 
                                 <q-btn
@@ -487,11 +486,11 @@
                                         background-color: #fff004;
                                         color: black;
                                     "
-                                    label="Register"
+                                    :label="tran('Register', store.state.lang)"
                                 />
                             </div>
                             <p class="pt-4 sm:hidden text-xs cursor-pointer underline" @click="store.commit('handleOnLogin', true);store.commit('handleOnRegister', false);">
-                                Already have an account?
+                                {{tran('alreadyAccount', store.state.lang)}}
                             </p>
                         </div>
                     </div>

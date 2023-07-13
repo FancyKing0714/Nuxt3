@@ -2,6 +2,7 @@
 import {ref , watch, onBeforeMount } from 'vue'
 import Activity from '~~/components/landingPage/Activity.vue';
 import auth from '~~/middleware/routerMiddleware.js';
+import { tran } from "~~/utils/translation";
 import {useStore} from 'vuex';
 
 definePageMeta({
@@ -53,14 +54,14 @@ onBeforeMount(()=>{
                         class="flex flex-row justify-center mt-7"
                         v-if="time>0"
                     >
-                        <p class="text-xl font-bold mr-2">Next Spin Available in : </p>
+                        <p class="text-xl font-bold mr-2">{{tran('Next Spin Available in :', store.state.lang)}}</p>
                         <p class="text-xl font-bold">{{ h }} h {{ m }} m {{ s }} s</p>
                     </div>
                     <div 
                         class="flex flex-row justify-center mt-7"
                         v-if="time==0"
                     >
-                        <p class="text-xl font-bold">Free Spin Is Available Now</p>
+                        <p class="text-xl font-bold">{{tran('Free Spin Is Available Now', store.state.lang)}}</p>
                     </div>
                 </div>
             </section>

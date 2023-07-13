@@ -3,6 +3,7 @@ import { useStore} from 'vuex';
 import {useRouter , useRoute} from 'vue-router';
 import { linkTo } from '~~/utils/link';
 import { addFavoriteGameById , removeFavoriteGameById } from '~~/action/game';
+import { tran } from "~~/utils/translation";
 
 const router = useRouter();
 const route = useRoute();
@@ -68,7 +69,7 @@ const imgurl = "/imgs/noGameImg.png";
                   v-if="gameItem?.demo == 1"
                   text-color="white"
                   padding="1px 10px"
-                  label="Demo"
+                  :label="tran('Demo', store.state.lang)"
                   style="
                     font-size: x-small;
                     border-radius: 10%;
@@ -143,7 +144,7 @@ const imgurl = "/imgs/noGameImg.png";
                   v-if="gameItem?.demo == 1"
                   text-color="white"
                   padding="1px 5px"
-                  label="Demo"
+                  :label="tran('Demo', store.state.lang)"
                   style="
                     font-size: x-small;
                     border-radius: 10%;

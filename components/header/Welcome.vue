@@ -24,8 +24,8 @@ watch(()=>props, (newValue) => {
                 <div class="sm:grid sm:grid-cols-10 p-6">
                     <div class="p-1 col-span-4 hidden sm:!block">
                         <q-img
-                            class="absolute bottom-10 left-0"
-                            style="max-width: 221px"
+                            class="absolute bottom-7 -left-1"
+                            style="max-width: 270px"
                             src="/imgs/man_thumb.png"
                             alt="man"
                         />

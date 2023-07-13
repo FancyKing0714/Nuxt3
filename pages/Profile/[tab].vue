@@ -6,6 +6,7 @@ import History from '~~/components/profile/History.vue';
 import ResponsibleGambling from '~~/components/profile/ResponsibleGambling.vue';
 import { useStore } from 'vuex';
 import { computed, onBeforeMount } from 'vue';
+import { tran } from "~~/utils/translation";
 import { useRouter , useRoute } from 'vue-router';
 import { getGameHistory , getProfile } from '~~/action/profile';
 import auth from '~~/middleware/routerMiddleware.js';
@@ -75,7 +76,7 @@ function selectCategory(val: string) {
                         class="col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-3"
                     >
                         <p class="text-base font-bold py-3 text-center">
-                            Profile
+                            {{tran('Profile', store.state.lang)}}
                         </p>
                         <ProfileUser />
                     </div>

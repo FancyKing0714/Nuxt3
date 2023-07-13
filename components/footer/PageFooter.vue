@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
 const store = useStore();
+import { tran } from "~~/utils/translation";
 </script>
 
 <template>
@@ -28,54 +29,50 @@ const store = useStore();
                     @click="$router.push(linkTo('/'))"
                 />
                 <p class="pt-4" style="font-size: 9px; font-weight: 500">
-                    You’re in luck! You have landed on the best online casino in
-                    Canada. But that is not all, Europa777 welcomes not only
-                    Canadian players, but players from around the world too. Try
-                    your luck on our extraordinary selection of games and become
-                    one of the luckiest players out there.
+                    {{ tran(`footerDescription`, store.state.lang) }}
                 </p>
             </div>
             <div
                 class="px-10 grid grid-cols-2 sm:grid-cols-4 md:gap-4 w-full lg:w-auto md:col-span-2 col-span-4"
             >
                 <div class="col-span-1">
-                    <p class="text-base font-semibold pb-2">iGaming</p>
+                    <p class="text-base font-semibold pb-2">{{ tran(`iGaming`, store.state.lang) }}</p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino'))">
-                        All Games
+                        {{ tran(`All Games`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=slots'))">
-                        Slots
+                        {{ tran(`Slots`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=live'))">
-                        Live Casino
+                        {{ tran(`Live Casino`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=table'))">
-                        Table
+                        {{ tran(`Table`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/casino?tab=roulette'))">
-                        Roulette
+                        {{ tran(`Roulette`, store.state.lang) }}
                     </p>
                 </div>
                 <div class="col-span-1">
-                    <p class="text-base font-semibold pb-2">Quick Links</p>
+                    <p class="text-base font-semibold pb-2">{{ tran(`Quick Links`, store.state.lang) }}</p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="store.commit('handleOnRegister', true)">
-                        Registration
+                        {{ tran(`Registration`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/deposit'))">
-                        Deposit
+                        {{ tran(`Deposit`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/bonus/available-bonus'))">
-                        Bonus
+                        {{ tran(`Bonus`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/withdraw'))">
-                        Withdraw
+                        {{ tran(`Withdraw`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/wallet/deposit'))">
-                        Banking
+                        {{ tran(`Banking`, store.state.lang) }}
                     </p>
                 </div>
                 <div class="col-span-1">
-                    <p class="text-base font-semibold pb-2">About Us</p>
+                    <p class="text-base font-semibold pb-2">{{ tran(`About Us`, store.state.lang) }}</p>
                     <!-- <p class="pb-1" style="font-size: 11px; font-weight: 400">
                         About Europa777
                     </p> -->
@@ -83,28 +80,28 @@ const store = useStore();
                         Provably Fair
                     </p> -->
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/contact-us'))">
-                        Contact Us
+                        {{ tran(`Contact Us`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/faq'))">
-                        FAQ’s
+                        {{ tran(`FAQs`, store.state.lang) }}
                     </p>
                     <a href="https://affiliateslots.com/" target="_blank"><p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400">
-                        Affiliates
+                        {{ tran(`Affiliates`, store.state.lang) }}
                     </p></a>
                 </div>
                 <div class="col-span-1">
-                    <p class="text-base font-semibold pb-2">Help</p>
+                    <p class="text-base font-semibold pb-2">{{ tran(`Help`, store.state.lang) }}</p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/terms-and-conditions'))">
-                        Terms & Conditions
+                        {{ tran(`Terms & Conditions`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/bonus-terms-and-conditions'))">
-                        Bonus Terms
+                        {{ tran(`Bonus Terms`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/privacy-and-security-policy'))">
-                        Privacy and Security Policy
+                        {{ tran(`Privacy and Security Policy`, store.state.lang) }}
                     </p>
                     <p class="pb-1 cursor-pointer" style="font-size: 11px; font-weight: 400" @click="$router.push(linkTo('/responsible-gambling'))">
-                        Responsible Gambling
+                        {{ tran(`Responsible Gambling`, store.state.lang) }}
                     </p>
                 </div>
             </div>
@@ -120,22 +117,17 @@ const store = useStore();
                         @click="$router.push(linkTo('/'))"
                     />
                     <p class="pt-4" style="font-size: 9px; font-weight: 500">
-                        You’re in luck! You have landed on the best online
-                        casino in Canada. But that is not all, Europa777
-                        welcomes not only Canadian players, but players from
-                        around the world too. Try your luck on our extraordinary
-                        selection of games and become one of the luckiest
-                        players out there.
+                        {{ tran(`footerDescription`, store.state.lang) }}
                     </p>
                 </div>
                 <div style="max-width: 196px">
-                    <p class="text-base font-semibold pb-2">Payment Methods</p>
+                    <p class="text-base font-semibold pb-2">{{ tran(`Payment Methods`, store.state.lang) }}</p>
                     <q-img
                         class="w-full"
                         src="/imgs/footer/payment.png"
                         alt="logo"
                     />
-                    <p class="text-base font-semibold pt-4 pb-2">Follow Us</p>
+                    <p class="text-base font-semibold pt-4 pb-2">{{ tran(`Follow Us`, store.state.lang) }}</p>
                     <div class="flex justify-between items-center">
                         <q-img
                             style="max-width: 17px"

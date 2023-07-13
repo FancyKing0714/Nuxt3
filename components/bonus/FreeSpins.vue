@@ -16,7 +16,7 @@
                                 isDrawer ? 'lg:text-sm' : 'lg:text-2xl',
                             ]"
                         >
-                            BONUS WHEEL
+                        {{tran('BONUS WHEEL', store.state.lang)}}
                         </p>
                         <p
                             :class="[
@@ -24,7 +24,7 @@
                                 isDrawer ? 'lg:text-xxs' : 'lg:text-xs',
                             ]"
                         >
-                            Get free spin every 2 hours!
+                        {{tran('Get free spin every 2 hours!', store.state.lang)}}
                         </p>
                         <q-btn
                             :class="[
@@ -32,7 +32,7 @@
                                 isDrawer ? 'lg:mt-2' : 'lg:mt-4',
                             ]"
                             size="xs"
-                            label="Free Spin"
+                            :label="tran('Free Spin', store.state.lang)"
                         />
                     </div>
                     <q-img
@@ -59,7 +59,7 @@
                                 isDrawer ? 'lg:text-sm' : 'lg:text-2xl',
                             ]"
                         >
-                            DAILY CASHBACK
+                        {{tran('DAILY CASHBACK', store.state.lang)}}
                         </p>
                         <div class="flex items-center justify-start">
                             <p
@@ -68,7 +68,7 @@
                                     isDrawer ? 'lg:text-xxs' : 'lg:text-xs',
                                 ]"
                             >
-                                UP TO
+                            {{tran('UP TO', store.state.lang)}}
                             </p>
                             <p
                                 style="color: #ffd62f"
@@ -114,21 +114,21 @@
                                     v-if="props.row.status == 0"
                                     color="primary"
                                     size="xs"
-                                    label="Cancel"
+                                    :label="tran('Cancel', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-14"
                                     v-if="props.row.status == 1"
                                     color="positive"
                                     size="xs"
-                                    label="Yes"
+                                    :label="tran('Yes', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-14"
                                     v-if="props.row.status == -1"
                                     color="grey"
                                     size="xs"
-                                    label="No"
+                                    :label="tran('Nope', store.state.lang)"
                                 />
                             </q-td>
                             <q-td key="created_at" :props="props">
@@ -169,6 +169,7 @@ import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import { ref , onUnmounted } from 'vue';
 import { getFreespinHistory } from '~~/action/bonus'; 
+import { tran } from "~~/utils/translation";
 
 const router = useRouter();
 const store = useStore();
@@ -217,38 +218,38 @@ const cols: columnformat[] = [
             {
                 name: 'index',
                 align: 'left',
-                label: 'No',
+                label: tran('No', store.state.lang),
                 field: 'id',
             },
             {
                 name: 'title',
                 required: true,
-                label: 'Title',
+                label: tran('Title', store.state.lang),
                 align: 'left',
                 field: 'title',
             },
             {
                 name: 'freespins_used',
                 align: 'left',
-                label: 'Free Spins',
+                label: tran('Free Spins', store.state.lang),
                 field: 'freespins_used',
             },
             {
                 name: 'status',
                 align: 'left',
-                label: 'Status',
+                label: tran('Status', store.state.lang),
                 field: 'status',
             },
             {
                 name: 'created_at',
                 align: 'left',
-                label: 'Created At',
+                label: tran('Created At', store.state.lang),
                 field: 'created_at',
             },
             {
                 name: 'expired_at',
                 align: 'center',
-                label: 'Expired At',
+                label: tran('Expired At', store.state.lang),
                 field: 'expired_at',
             },
 ];

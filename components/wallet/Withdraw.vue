@@ -9,7 +9,7 @@
             <div class="hidden sm:!grid grid-cols-10 gap-4">
                 <div class="col-span-4">
                     <div class="flex items-center justify-between w-full">
-                        <p class="font-bold text-base">Balance</p>
+                        <p class="font-bold text-base">{{tran('Balance', store.state.lang)}}</p>
                         <div class="flex items-center justify-around">
                             <span class="font-bold text-base pr-2">0.00</span>
                             <q-select
@@ -33,21 +33,21 @@
                                 spinner-color="primary"
                             />
                             <p class="text-xs" style="color: #535559">
-                                Min C$30
+                                {{tran('Min', store.state.lang)}} $30
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-6">
-                    <p class="font-bold text-base py-2">Interac R eTransfer</p>
+                    <p class="font-bold text-base py-2">{{tran('Interac R eTransfer', store.state.lang)}}</p>
                     <div class="pb-4">
                         <div class="py-2">
                             <span class="font-bold text-base"
-                                >Withdrawal Sum</span
+                                >{{tran('Withdrawal Sum', store.state.lang)}}</span
                             >
                             <span class="px-12"></span>
                             <span style="color: #949497" class="text-xs py-4">
-                                Instant Min: 30 Max: 3,000
+                                {{tran('Instant', store.state.lang)}} {{tran('Min', store.state.lang)}}: 30 {{tran('Max', store.state.lang)}}: 3,000
                             </span>
                         </div>
                         <q-input
@@ -62,11 +62,11 @@
                     <div class="pb-4">
                         <div class="py-2">
                             <span class="font-bold text-base"
-                                >R Trade-Mark of Interac Corp.</span
+                                >{{tran('R Trade-Mark of Interac Corp.', store.state.lang)}}</span
                             >
                             <span class="px-12"></span>
                             <span style="color: #949497" class="text-xs py-4">
-                                User Under License
+                                {{tran('User Under License', store.state.lang)}}
                             </span>
                         </div>
                         <q-input
@@ -82,7 +82,7 @@
                     <q-btn
                         class="px-10 h-10 mt-1"
                         color="primary"
-                        label="Withdraw 30 CAD"
+                        :label="tran('Withdraw', store.state.lang)+' 30 CAD'"
                     />
                 </div>
             </div>
@@ -105,7 +105,7 @@
                         ><q-img
                             class="w-6"
                             src="/imgs/method.svg"
-                        />Method</span
+                        />{{tran('Method', store.state.lang)}}</span
                     >
                     <span
                         :class="[
@@ -120,7 +120,7 @@
                         ><q-img
                             class="w-6"
                             src="/imgs/submit.svg"
-                        />Submit</span
+                        />{{tran('Submit', store.state.lang)}}</span
                     >
                 </div>
                 <q-stepper
@@ -131,7 +131,7 @@
                 >
                     <q-step :name="1" title="STEP 1" :done="step > 1">
                         <div class="flex items-center justify-between w-full">
-                            <p class="font-bold text-base">Balance</p>
+                            <p class="font-bold text-base">{{tran('Balance', store.state.lang)}}</p>
                             <div class="flex items-center justify-around">
                                 <span class="font-bold text-base pr-2"
                                     >0.00</span
@@ -157,14 +157,14 @@
                                     spinner-color="primary"
                                 />
                                 <p class="text-xs" style="color: #535559">
-                                    Min C$30
+                                    {{tran('Min', store.state.lang)}} $30
                                 </p>
                             </div>
                         </div>
                         <q-btn
                             style="background: #11a449"
                             class="w-full mt-2"
-                            label="Next"
+                            :label="tran('Next', store.state.lang)"
                             @click="
                                 () => {
                                     step = 2;
@@ -180,19 +180,19 @@
                         :done="step > 2"
                     >
                         <p class="font-bold text-base py-2">
-                            Interac R eTransfer
+                            {{tran('Interac R eTransfer', store.state.lang)}}
                         </p>
                         <div class="pb-4">
                             <div class="py-2">
                                 <span class="font-bold text-base"
-                                    >Withdrawal Sum</span
+                                    >{{tran('Withdrawal Sum', store.state.lang)}}</span
                                 >
                                 <span class="px-12"></span>
                                 <span
                                     style="color: #949497"
                                     class="text-xs py-4"
                                 >
-                                    Instant Min: 30 Max: 3,000
+                                {{tran('Instant', store.state.lang)}} {{tran('Min', store.state.lang)}}: 30 {{tran('Max', store.state.lang)}}: 3,000
                                 </span>
                             </div>
                             <q-input
@@ -207,14 +207,14 @@
                         <div class="pb-4">
                             <div class="py-2">
                                 <span class="font-bold text-base"
-                                    >R Trade-Mark of Interac Corp.</span
+                                    >{{tran('R Trade-Mark of Interac Corp.', store.state.lang)}}</span
                                 >
                                 <span class="px-12"></span>
                                 <span
                                     style="color: #949497"
                                     class="text-xs py-4"
                                 >
-                                    User Under License
+                                {{tran('User Under License', store.state.lang)}}
                                 </span>
                             </div>
                             <q-input
@@ -230,7 +230,7 @@
                         <q-btn
                             class="px-10 h-10 mt-1"
                             color="primary"
-                            label="Withdraw 30 CAD"
+                            :label="tran('Withdraw', store.state.lang)+' 30 CAD'"
                         />
                     </q-step>
                 </q-stepper>
@@ -240,6 +240,9 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 import {ref} from 'vue';
 const step = ref(1);
 const shape = ref(['']);

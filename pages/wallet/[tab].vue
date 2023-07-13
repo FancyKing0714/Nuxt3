@@ -9,6 +9,7 @@ import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
 import {getDepositHistory, getWithdrawHistory} from '~~/action/wallet';
 import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
 import auth from '~~/middleware/routerMiddleware.js';
 import {linkTo, linkToTab, tabToLink} from '~~/utils/link';
 
@@ -82,14 +83,14 @@ function selectCategory(val: string) {
                     <div>
                         <img class="w-40 m-auto" src="/imgs/logo_full.png" alt="logo" />
                         <p style="color: #ffff03" class="font-black text-5xl">
-                            Europe #1
+                            {{tran('Europe #1', store.state.lang)}}
                         </p>
-                        <p>Online casino</p>
+                        <p>{{tran('Online casino', store.state.lang)}}</p>
                     </div>
                 </div>
 
                 <div class="w-full py-4 flex items-center justify-center">
-                    <p class="font-bold text-base hidden lg:!block">WALLET</p>
+                    <p class="font-bold text-base hidden lg:!block">{{tran('WALLET', store.state.lang)}}</p>
                     <div
                         class="mx-2 hidden lg:!block"
                         style="width: 1px; height: 20px; background: #383d47"

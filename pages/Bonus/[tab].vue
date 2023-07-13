@@ -6,6 +6,7 @@ import Activity from '~~/components/landingPage/Activity.vue';
 import { useStore } from 'vuex';
 import { computed , onBeforeMount } from 'vue';
 import { useRouter , useRoute } from 'vue-router';
+import { tran } from "~~/utils/translation";
 import {getBonusHistory, getFreespinHistory, getCashbackHistory } from '~~/action/bonus';
 import auth from '~~/middleware/routerMiddleware.js';
 import {linkTo, tabToLink, linkToTab} from '~~/utils/link';
@@ -85,22 +86,22 @@ function selectCategory(val: string) {
                 >
                     <div :class="['pr-12 md:pr-24 xl:pr-36', isDrawer.value?'lg:pr-6':'lg:pr-36']">
                         <p>
-                            <span>DAILY CASHBACK OF UP TO</span>&nbsp;<span
+                            <span>{{tran('DAILY CASHBACK OF UP TO', store.state.lang)}}</span>&nbsp;<span
                                 style="color: #ffff03"
                                 class="font-black text-5xl"
                                 >20%</span
                             >
                         </p>
                         <p>
-                            ONLY ON
-                            <span style="color: #ffff03">EURPOE #1</span> ONLINE
-                            CASINO
+                            {{tran('ONLY ON', store.state.lang)}}
+                            <span style="color: #ffff03">{{tran('EURPOE #1', store.state.lang)}}</span> {{tran('ONLINE', store.state.lang)}}
+                            {{tran('CASINO', store.state.lang)}}
                         </p>
                     </div>
                 </div>
 
                 <div class="w-full py-7 flex items-center justify-center">
-                    <p class="font-bold text-base hidden lg:!block">Bonus</p>
+                    <p class="font-bold text-base hidden lg:!block">{{tran('Bonus', store.state.lang)}}</p>
                     <div
                         class="mx-2 hidden lg:!block"
                         style="width: 1px; height: 20px; background: #383d47"

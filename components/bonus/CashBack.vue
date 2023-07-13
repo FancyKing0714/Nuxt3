@@ -16,7 +16,7 @@
                                 isDrawer ? 'lg:text-sm' : 'lg:text-2xl',
                             ]"
                         >
-                            BONUS WHEEL
+                        {{tran('BONUS WHEEL', store.state.lang)}}
                         </p>
                         <p
                             :class="[
@@ -24,7 +24,7 @@
                                 isDrawer ? 'lg:text-xxs' : 'lg:text-xs',
                             ]"
                         >
-                            Get free spin every 2 hours!
+                        {{tran('Get free spin every 2 hours!', store.state.lang)}}
                         </p>
                         <q-btn
                             :class="[
@@ -32,7 +32,7 @@
                                 isDrawer ? 'lg:mt-2' : 'lg:mt-4',
                             ]"
                             size="xs"
-                            label="Free Spin"
+                            :label="tran('Free Spin', store.state.lang)"
                         />
                     </div>
                     <q-img
@@ -59,7 +59,7 @@
                                 isDrawer ? 'lg:text-sm' : 'lg:text-2xl',
                             ]"
                         >
-                            DAILY CASHBACK
+                        {{tran('DAILY CASHBACK', store.state.lang)}}
                         </p>
                         <div class="flex items-center justify-start">
                             <p
@@ -68,7 +68,7 @@
                                     isDrawer ? 'lg:text-xxs' : 'lg:text-xs',
                                 ]"
                             >
-                                UP TO
+                            {{tran('UP TO', store.state.lang)}}
                             </p>
                             <p
                                 style="color: #ffd62f"
@@ -117,21 +117,21 @@
                                     v-if="props.row.isComplete == 0"
                                     color="primary"
                                     size="xs"
-                                    label="expired"
+                                    :label="tran('expired', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-20"
                                     v-if="props.row.isComplete == 1"
                                     color="positive"
                                     size="xs"
-                                    label="completed"
+                                    :label="tran('completed', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-20"
                                     v-if="props.row.isComplete == -1"
                                     color="grey"
                                     size="xs"
-                                    label="claim"
+                                    :label="tran('claim', store.state.lang)"
                                 />
                             </q-td>
                             <q-td key="expireOn" :props="props">
@@ -168,6 +168,7 @@
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import { ref , onUnmounted} from 'vue';
+import { tran } from "~~/utils/translation";
 import { getCashbackHistory } from '~~/action/bonus';
 
 const router = useRouter();
@@ -214,6 +215,12 @@ interface columnformat{
     align?: "left" | "center" | "right" | undefined;
 };
 const cols:columnformat[] = [
+            {
+                name: 'index',
+                label: tran('No', store.state.lang),
+                align: 'left',
+                field: 'id',
+            },
             {
                 name: 'totalDeposit',
                 required: true,

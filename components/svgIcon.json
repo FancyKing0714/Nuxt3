@@ -1,0 +1,15 @@
+{
+    "scaleup":"zoom_out",
+    "scaledown":"zoom_in",
+    "left":"arrow_back",
+    "right":"arrow_forward",
+    "up":"arrow_upward",
+    "down":"arrow_downward",
+    "tightly":"",
+    "wider":"code",
+    "eb1":"",
+    "eb2":"",
+    "eb3":"",
+    "eb4":"",
+    "ebcancel":"close"
+}

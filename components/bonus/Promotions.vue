@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { useStore } from 'vuex';
 import {seperate} from '~~/utils/string';
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
 const store = useStore();
+
+
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
@@ -59,7 +62,7 @@ watch(()=>store.state.promotions,()=>{
                     </div>
                     <p class="text-md text-bold p-4">{{ category?.description }}</p>
                     <div class="text-center pb-10">
-                        <q-btn color="primary" label="READ MORE" />
+                        <q-btn color="primary" :label="tran('READ MORE', store.state.lang)" />
                     </div>
                 </div>
             </div>
