@@ -6,13 +6,13 @@
         ></div>
         <div class="relative">
             <div class="flex items-center justify-between pb-4">
-                <p class="text-base font-bold">Responsible Gambling</p>
+                <p class="text-base font-bold">{{tran('Responsible Gambling', store.state.lang)}}</p>
                 <q-toggle
                     size="xs"
                     v-model="shape"
                     val="xs"
                     leftLabel
-                    label="Advanced Mode"
+                    :label="tran('Advanced Mode', store.state.lang)"
                 />
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -22,24 +22,21 @@
                     style="background: #494e5d"
                     class="py-4 px-2 text-center rounded-md"
                 >
-                    <p class="text-base pb-3 font-bold">{{ limit?.title }}</p>
+                    <p class="text-base pb-3 font-bold">{{ tran(limit?.title, store.state.lang) }}</p>
                     <p
                         style="min-height: 86px"
                         class="text-xs font-medium pb-3"
                     >
-                        {{ limit?.content }}
+                        {{ tran(limit?.content, store.state.lang) }}
                     </p>
-                    <q-btn class="!text-base" color="primary" label="Add New" />
+                    <q-btn class="!text-base" color="primary" :label="tran('Add New', store.state.lang)" />
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-4 pt-4">
                 <div style="background: #494e5d" class="py-4 px-2 rounded-md">
-                    <p class="text-base pb-3 font-bold">Session Limit</p>
+                    <p class="text-base pb-3 font-bold">{{ tran('Session Limit', store.state.lang) }}</p>
                     <p class="text-xs font-medium pb-3">
-                        You can limit the amount of time spent gambling. The
-                        restriction takes effect instantly. If you hit the
-                        limit, you will be automatically logged out of your
-                        account.
+                        {{tran('sessionlimit', store.state.lang)}}
                     </p>
                     <div class="flex items-center justify-start">
                         <q-input
@@ -47,58 +44,45 @@
                             filled
                             v-model="number"
                             type="number"
-                            suffix="Min"
+                            :suffix="tran('Min', store.state.lang)"
                             :dense="true"
                         >
                         </q-input>
-                        <q-btn color="primary" label="SET" />
+                        <q-btn color="primary" :label="tran('SET', store.state.lang)" />
                     </div>
                 </div>
                 <div style="background: #494e5d" class="py-4 px-2 rounded-md">
-                    <p class="text-base pb-3 font-bold">Cooling Off</p>
+                    <p class="text-base pb-3 font-bold">{{tran('Cooling Off', store.state.lang)}}</p>
                     <p class="text-xs font-medium pb-3">
-                        Feel the need to stay away from the casino for some
-                        time? You can set a cooling-off limit for a certain
-                        period of time. The restriction takes effect instantly.
-                        You won’t be able to make deposits and play during the
-                        specified period, also you will be excluded from all
-                        advertising offers. After the set period expires, you’ll
-                        receive a notification email saying your account is
-                        active again.
+                        {{tran('coolingoff', store.state.lang)}}
                     </p>
                     <div class="flex items-center justify-start">
                         <q-select
                             class="w-1/2 pr-2"
                             standout="text-white"
-                            placeholder="🖺Document Type"
+                            :placeholder="tran('Document Type', store.state.lang)"
                             v-model="shape"
                             :options="[]"
                             :dense="true"
                         />
-                        <q-btn color="primary" label="SET" />
+                        <q-btn color="primary" :label="tran('SET', store.state.lang)" />
                     </div>
                 </div>
                 <div style="background: #494e5d" class="py-4 px-2 rounded-md">
-                    <p class="text-base pb-3 font-bold">Self Exclusion</p>
+                    <p class="text-base pb-3 font-bold">{{tran('Self Exclusion', store.state.lang)}}</p>
                     <p class="text-xs font-medium pb-3">
-                        Feel the need to block access to your account? You can
-                        set a self-exclusion limit for a definite or an
-                        indefinite period of time. The restriction takes effect
-                        instantly. During the set period you will now be able to
-                        log into your account. To be excluded from gambling on
-                        our site for an indefinite period of time. please,
-                        contact our support team via Live-Chat
+                        {{tran('selfexclusion', store.state.lang)}}
                     </p>
                     <div class="flex items-center justify-start">
                         <q-select
                             class="w-1/2 pr-2"
                             standout="text-white"
-                            placeholder="🖺Document Type"
+                            :placeholder="tran('Document Type', store.state.lang)"
                             v-model="shape"
                             :options="[]"
                             :dense="true"
                         />
-                        <q-btn color="primary" label="SET" />
+                        <q-btn color="primary" :label="tran('SET', store.state.lang)" />
                     </div>
                 </div>
             </div>
@@ -107,6 +91,9 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 const shape = ref(['']);
 const number = ref(0);
 const limits = [

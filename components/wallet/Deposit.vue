@@ -9,7 +9,7 @@
             <div class="hidden sm:!grid grid-cols-10 gap-4">
                 <div class="col-span-4">
                     <div class="flex items-center justify-between w-full">
-                        <p class="font-bold text-base">Balance</p>
+                        <p class="font-bold text-base">{{tran('Balance', store.state.lang)}}</p>
                         <div class="flex items-center justify-around">
                             <span class="font-bold text-base pr-2">0.00</span>
                             <q-select
@@ -33,14 +33,14 @@
                                 spinner-color="primary"
                             />
                             <p class="text-xs" style="color: #535559">
-                                Min C$30
+                                {{tran('Min', store.state.lang)}} C$30
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-6">
-                    <p class="font-bold text-base py-2">Interac</p>
-                    <p class="font-bold text-base">Deposit Sum</p>
+                    <p class="font-bold text-base py-2">{{tran('Interac', store.state.lang)}}</p>
+                    <p class="font-bold text-base">{{tran('Deposit Sum', store.state.lang)}}</p>
 
                     <div class="flex justify-start items-center py-4">
                         <q-btn class="w-36 h-10" color="primary" label="50" />
@@ -65,7 +65,7 @@
                     </q-input>
 
                     <div class="flex items-center justify-between pt-4">
-                        <p class="text-base font-bold">Do you have a bonus code?</p>
+                        <p class="text-base font-bold">{{tran('Do you have a bonus code?', store.state.lang)}}</p>
                     </div>
 
                     <div class="flex items-center justify-start">
@@ -76,11 +76,11 @@
                             type="number"
                             :dense="true"
                         />
-                        <q-btn class="w-36 h-10" color="primary" label="Add" />
+                        <q-btn class="w-36 h-10" color="primary" :label="tran('Add', store.state.lang)" />
                     </div>
 
                     <p style="color: #d0d0d8" class="text-xs py-4">
-                        No Bonuses Available
+                        {{tran('No Bonuses Available', store.state.lang)}}
                     </p>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                         ><q-img
                             class="w-6 mr-1"
                             src="/imgs/method.svg"
-                        />Method</span
+                        />{{tran('Method', store.state.lang)}}</span
                     >
                     <span
                     :class="['font-medium text-base cursor-pointer', step > 2 ? 'text-green-700': '']"
@@ -109,7 +109,7 @@
                                 step = 2;
                             }
                         "
-                        ><q-img class="w-6 mr-1" src="/imgs/data.svg" />Data</span
+                        ><q-img class="w-6 mr-1" src="/imgs/data.svg" />{{tran('Data', store.state.lang)}}</span
                     >
                     <span
                         class="font-medium text-base cursor-pointer"
@@ -121,7 +121,7 @@
                         ><q-img
                             class="w-6 mr-1"
                             src="/imgs/submit.svg"
-                        />Submit</span
+                        />{{tran('Submit', store.state.lang)}}</span
                     >
                 </div>
                 <q-stepper
@@ -132,7 +132,7 @@
                 >
                     <q-step :name="1" title="STEP 1" :done="step > 1">
                         <div class="flex items-center justify-between w-full">
-                            <p class="font-bold text-base">Balance</p>
+                            <p class="font-bold text-base">{{tran('Balance', store.state.lang)}}</p>
                             <div class="flex items-center justify-around">
                                 <span class="font-bold text-base pr-2"
                                     >0.00</span
@@ -158,13 +158,13 @@
                                     spinner-color="primary"
                                 />
                                 <p class="text-xs" style="color: #535559">
-                                    Min C$30
+                                    {{tran('Min', store.state.lang)}} $30
                                 </p>
                             </div>
                             <q-btn
                                 style="background: #11a449"
                                 class="w-full mt-2"
-                                label="Deposit"
+                                :label="tran('Deposit', store.state.lang)"
                                 @click="
                                     () => {
                                         step = 2;
@@ -181,12 +181,12 @@
                         :done="step > 2"
                     >
                         <div class="flex items-center justify-between">
-                            <p class="font-bold text-base py-2">Credit Card</p>
+                            <p class="font-bold text-base py-2">{{tran('Credit Card', store.state.lang)}}</p>
                             <div class="bg-white rounded-md w-1/2 p-3">
                                 <img alt="card" src="/imgs/payment/visa.png" />
                             </div>
                         </div>
-                        <p class="font-bold text-base">Deposit Sum</p>
+                        <p class="font-bold text-base">{{tran('Deposit Sum', store.state.lang)}}</p>
                         <div class="grid grid-cols-2 py-4">
                             <q-btn
                                 class="w-full h-10 mr-1"
@@ -214,7 +214,7 @@
                             <q-btn
                                 class="w-full mt-2 mr-1"
                                 color="primary"
-                                label="Back"
+                                :label="tran('Back', store.state.lang)"
                                 @click="
                                     () => {
                                         step = 1;
@@ -224,7 +224,7 @@
                             <q-btn
                                 style="background: #11a449"
                                 class="w-full mt-2 ml-1"
-                                label="Next"
+                                :label="tran('Next', store.state.lang)"
                                 @click="
                                     () => {
                                         step = 3;
@@ -236,7 +236,7 @@
 
                     <q-step :name="3" title="STEP 3" :done="step > 3">
                         <div class="flex items-center justify-between py-4">
-                            <p class="text-base font-bold">Do you have a bonus code?</p>
+                            <p class="text-base font-bold">{{tran('Do you have a bonus code?', store.state.lang)}}</p>
                         </div>
 
                         <div class="grid grid-cols-2 gap-2">
@@ -247,13 +247,13 @@
                                 type="number"
                                 :dense="true"
                             />
-                            <q-btn class="w-full" color="primary" label="Add" />
+                            <q-btn class="w-full" color="primary" :label="tran('Add', store.state.lang)" />
                         </div>
 
                         <p style="color: #d0d0d8" class="text-xxs py-4">
-                            No Bonuses Available
+                            {{tran('No Bonuses Available', store.state.lang)}}
                         </p>
-                        <q-btn class="w-full" color="primary" label="Deposit" />
+                        <q-btn class="w-full" color="primary" :label="tran('Deposit', store.state.lang)" />
                     </q-step>
                 </q-stepper>
             </div>
@@ -262,6 +262,9 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 const shape = ref(['']);
 const number = '';
 const currency = 'CAD';

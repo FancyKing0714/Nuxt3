@@ -33,14 +33,14 @@
                                     v-if="props.row.status == 'waiting'"
                                     color="primary"
                                     size="xs"
-                                    label="pending"
+                                    :label="tran('pending', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-20"
                                     v-if="props.row.status == 'completed'"
                                     color="positive"
                                     size="xs"
-                                    label="Completed"
+                                    :label="tran('Completed', store.state.lang)"
                                 />
                             </q-td>
                         </q-tr>
@@ -74,6 +74,7 @@
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import { ref , onUnmounted} from 'vue';
+import { tran } from "~~/utils/translation";
 import { getDepositHistory } from '~~/action/wallet';
 
 const router = useRouter();
@@ -122,44 +123,44 @@ const cols :columnformat[] = [
     {
         name: 'index',
         align: 'left',
-        label: 'No',
+        label: tran('No', store.state.lang),
         field: 'id',
     },
     {
         name: 'amount',
         required: true,
-        label: 'Amount',
+        label: tran('Amount', store.state.lang),
         align: 'left',
         field: 'amount',
     },
     {
         name: 'currency',
         align: 'left',
-        label: 'Currency',
+        label: tran('Currency', store.state.lang),
         field: 'currency',
     },
     {
         name: 'payment_method',
         align: 'left',
-        label: 'Payment Method',
+        label: tran('Payment Method', store.state.lang),
         field: 'payment_method',
     },
     {
         name: 'transaction_id',
         align: 'left',
-        label: 'Transaction Id',
+        label: tran('Transaction Id', store.state.lang),
         field: 'transaction_id',
     },
     {
         name: 'created_at',
         align: 'left',
-        label: 'Created At',
+        label: tran('Created At', store.state.lang),
         field: 'created_at',
     },
     {
         name: 'status',
         align: 'center',
-        label: 'Status',
+        label: tran('Status', store.state.lang),
         field: 'status',
     },
 ];

@@ -4,6 +4,7 @@ import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import {logOut} from '~~/action/auth';
 import {linkTo} from '~~/utils/link';
+import { tran } from "~~/utils/translation";
 
 const store = useStore();
 const router = useRouter();
@@ -97,7 +98,7 @@ const handleClick = (link) => {
                                             alt="profile"
                                         />
                                         <p class="text-xs pl-2 ml-2">
-                                            {{ profile.name }}
+                                            {{ tran(profile.name, store.state.lang) }}
                                         </p>
                                     </div>
                                 </q-item-label>

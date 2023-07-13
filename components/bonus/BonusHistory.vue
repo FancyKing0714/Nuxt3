@@ -87,6 +87,7 @@
 import { ref , onUnmounted} from 'vue';
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
+import { tran } from "~~/utils/translation";
 import { getBonusHistory } from '~~/action/bonus';
 
 const store = useStore();
@@ -133,56 +134,56 @@ const cols:columnformat[] = [
                 {
                     name: 'index',
                     align: 'left',
-                    label: 'No',
+                    label: tran('No', store.state.lang),
                     field: 'id',
                 },
                 {
                     name: 'title',
                     required: true,
-                    label: 'Title',
+                    label: tran('Title', store.state.lang),
                     align: 'left',
                     field: 'title',
                 },
                 {
                     name: 'amount',
                     align: 'left',
-                    label: 'Amount',
+                    label: tran('Amount', store.state.lang),
                     field: 'amount',
                 },
                 {
                     name: 'currency',
                     align: 'left',
-                    label: 'Currency',
+                    label: tran('Currency', store.state.lang),
                     field: 'currency',
                 },
                 {
                     name: 'wager',
                     align: 'left',
-                    label: 'Wager',
+                    label: tran('Wager', store.state.lang),
                     field: 'wager',
                 },
                 {
                     name: 'wagered',
                     align: 'left',
-                    label: 'Wagered',
+                    label: tran('Wagered', store.state.lang),
                     field: 'wagered',
                 },
                 {
                     name: 'status',
                     align: 'center',
-                    label: 'Status',
+                    label: tran('Status', store.state.lang),
                     field: 'status',
                 },
                 {
                     name: 'created_at',
                     align: 'left',
-                    label: 'Created At',
+                    label: tran('Created At', store.state.lang),
                     field: 'created_at',
                 },
                 {
                     name: 'expired_at',
                     align: 'left',
-                    label: 'Expired At',
+                    label: tran('Expired At', store.state.lang),
                     field: 'expired_at',
                 },
 ];

@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 const store = createStore({
     state() {
         return {
+            lang:'en',
             onLogin: false,             // show/hide login diaolg
             onRegister: false,          // show/hide register dialog
             onMoblieProfile: false, 
@@ -11,6 +12,8 @@ const store = createStore({
             isLogin: false,             // login value
             isregister: false,          // register value(when user register swap to login)
             isSearchDiaolg: false,
+            selectedProvider: '',
+            isAvatarDiaolg: true,
             
             User: {},                   // user profile
             notification: {},           // notification(type,message)
@@ -35,6 +38,7 @@ const store = createStore({
         };
     },
     mutations: {
+        handleSetLanguage(state, payload) {state.lang = payload; },
         handleDrawer(state, payload) { state.isDrawer = payload; },
         handleVerifyEmail(state, payload) { state.isVerifyEmail = payload; },
         handleWelcome(state, payload) { state.isWelcome = payload; },
@@ -43,7 +47,8 @@ const store = createStore({
         handleRegister(state, payload) { state.isRegister = payload; },
         handleOnLogin(state, payload) { state.onLogin = payload; },
         handleOnRegister(state, payload) { state.onRegister = payload; },
-        handleOnSearchDialog(state, payload) { state.isSearchDiaolg = payload; },
+        handleOnSearchDialog(state, payload) { state.isSearchDiaolg = payload.a; state.selectedProvider = payload.b; },
+        handleOnAvatarDialog(state, payload) { state.isAvatarDiaolg = payload; },
 
         handleGetUser(state, payload) { state.User = payload; },
         handleNotification(state, payload) { state.notification = payload; },

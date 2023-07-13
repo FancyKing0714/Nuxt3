@@ -3,6 +3,7 @@ import CategoryBarItem from './CategoryBarItem.vue';
 import { watch , onBeforeMount } from 'vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
+import { tran } from "~~/utils/translation";
 import { getAllGames, getAllGamesByType, getSlotsGames, getTableGames, getLiveGames, getRouletteGames , getFavoriteGames , getRecentPlayedGames } from '~~/action/game';
 
 const route = useRoute();
@@ -120,7 +121,7 @@ const provider = {
             >
                 <div
                     class="flex items-center bg-gray-700 rounded-lg h-9 my-1 px-2"
-                    @click="store.commit('handleOnSearchDialog', true)"
+                    @click="store.commit('handleOnSearchDialog', {a:true, b:''});"
                 >
                     <p
                         class="text-md rounded-lg"
@@ -132,7 +133,7 @@ const provider = {
                                 size="sm"
                             />
                         </span>
-                        Search for Games
+                        {{tran('Search for Games', store.state.lang)}}
                     </p>
                 </div>
             </div>

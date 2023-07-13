@@ -3,6 +3,7 @@
     import {useStore} from 'vuex';
     import {useRouter} from 'vue-router';
     import { logIn } from '~~/action/auth';
+    import { tran } from "~~/utils/translation";    
 
     const store = useStore();
     const router = useRouter();
@@ -39,10 +40,10 @@
                     </div>
                     <div class="p-1 text-center">
                         <p class="font-black text-3xl text-shadow-lg">
-                            Europe #1
+                            {{tran('Europe #1', store.state.lang)}}
                         </p>
                         <p class="font-medium text-base text-shadow-lg">
-                            Online Casino
+                            {{tran('Online Casino', store.state.lang)}}
                         </p>
                         <span
                             class="p-1 text-shadow-lg"
@@ -52,14 +53,13 @@
                                 border-bottom: 1px solid rgba(95, 83, 106, 0.5);
                             "
                         >
-                            Enjoy 3500+ games, fast payouts and 24/7 live
-                            support.
+                            {{tran('enjoy', store.state.lang)}}
                         </span>
                         <div>
                             <p
                                 class="font-bold text-xl text-shadow-lg text-center py-2"
                             >
-                                Log in user
+                                {{tran('Log in user', store.state.lang)}}
                             </p>
                             <div class="flex flex-nowrap items-center justify-start">
                                 <q-icon
@@ -70,7 +70,7 @@
                                 <q-input
                                     class="text-shadow-lg w-full"
                                     type="email"
-                                    placeholder="Email address"
+                                    :placeholder="tran('Email address', store.state.lang)"
                                     standout
                                     v-model="loginInfo.email.value"
                                     :dense="true"
@@ -85,7 +85,7 @@
                                 <q-input
                                     class="pt-2 text-shadow-lg w-full"
                                     type="password"
-                                    placeholder="Password"
+                                    :placeholder="tran('Password', store.state.lang)"
                                     standout
                                     v-model="loginInfo.password.value"
                                     :dense="true"
@@ -94,9 +94,9 @@
                             <div
                                 class="flex flex-nowrap justify-between items-center pt-2 pl-6"
                             >
-                                <span style="font-size: 8px">Remember me</span>
+                                <span style="font-size: 8px">{{tran('', store.state.lang)}}Remember me</span>
                                 <span style="font-size: 8px"
-                                    >Forgot your password?</span
+                                    >{{tran('Forgot your password?', store.state.lang)}}</span
                                 >
                             </div>
                             <q-btn
@@ -115,10 +115,10 @@
                                         logIn(data, store, router);
                                     }
                                 "
-                                label="LOG IN"
+                                :label="tran('LOG IN', store.state.lang)"
                             />
                             <p class="pt-4 text-xs">
-                                Don’t have an account yet?
+                                {{tran('Don’t have an account yet?', store.state.lang)}}
                             </p>
                             <q-btn
                                 class="mt-4 font-medium p-2 text-xs w-full"
@@ -128,7 +128,7 @@
                                         store.commit('handleOnRegister', true);
                                     }
                                 "
-                                label="Create account"
+                                :label="tran('Create account', store.state.lang)"
                             />
                         </div>
                     </div>

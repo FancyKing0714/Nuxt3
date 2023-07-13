@@ -4,6 +4,7 @@ import "swiper/swiper-bundle.css";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { changeTitle } from "~~/utils/string";
+import { tran } from "~~/utils/translation";
 import { addFavoriteGameById, removeFavoriteGameById } from "~~/action/game";
 
 const router = useRouter();
@@ -66,7 +67,7 @@ const imgurl = "/imgs/noGameImg.png";
             :src="`/imgs/sidebar/${game?.title}.png`"
             alt="hot"
           />
-          <p class="font-bold text-lg pl-2">{{ changeTitle(game?.title) }}</p>
+          <p class="font-bold text-lg pl-2">{{ tran(changeTitle(game?.title), store.state.lang) }}</p>
         </div>
         <div class="hidden sm:!block">
           <q-btn
@@ -92,12 +93,11 @@ const imgurl = "/imgs/noGameImg.png";
             ref="seeAll"
             size="sm"
             style="background: #3f4655"
-            label="See all"
+            :label="tran('See all', store.state.lang)"
           />
         </div>
       </div>
       <Swiper
-        class="hidden sm:!block"
         :slides-per-view="1"
         :space-between="10"
         @swiper="onSwiper"
@@ -169,7 +169,7 @@ const imgurl = "/imgs/noGameImg.png";
                     v-if="gameItem?.demo == 1"
                     text-color="white"
                     padding="1px 10px"
-                    label="Demo"
+                    :label="tran('Demo', store.state.lang)"
                     style="
                       font-size: x-small;
                       border-radius: 10%;
@@ -211,7 +211,7 @@ const imgurl = "/imgs/noGameImg.png";
           </div>
         </swiper-slide>
       </Swiper>
-      <div class="sm:hidden">
+      <!-- <div class="sm:hidden">
         <div class="flex flex-wrap justify-between">
           <div
             class="md:hidden h-full w-[120px] p-1"
@@ -319,7 +319,7 @@ const imgurl = "/imgs/noGameImg.png";
                 Show More
             </q-btn>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -1,4 +1,7 @@
 <script setup>
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 definePageMeta({
   layout: 'empty',
 });
@@ -10,7 +13,7 @@ definePageMeta({
     <div>
       <div style="font-size: 30vh">404</div>
 
-      <div class="text-h2" style="opacity: 0.4">Oops. Nothing here...</div>
+      <div class="text-h2" style="opacity: 0.4">{{tran('Oops. Nothing here...', store.state.lang)}}Oops. Nothing here...</div>
 
       <q-btn
         class="q-mt-xl"

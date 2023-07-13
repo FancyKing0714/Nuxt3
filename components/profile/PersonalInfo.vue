@@ -5,7 +5,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="First name"
+        :placeholder="tran('First Name', store.state.lang)"
         standout
         readonly
         v-model="person.first_name"
@@ -18,7 +18,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="Last name"
+        :placeholder="tran('Last Name', store.state.lang)"
         standout
         readonly
         v-model="person.last_name"
@@ -31,7 +31,7 @@
       <QInput
         class="w-full"
         type="email"
-        placeholder="Email"
+        :placeholder="tran('Email', store.state.lang)"
         standout
         readonly
         v-model="person.email"
@@ -43,7 +43,7 @@
         class="w-full"
         type="tel"
         mask="phone"
-        placeholder="Phone number"
+        :placeholder="tran('Phone Number', store.state.lang)"
         standout
         readonly
         v-model="person.phone"
@@ -56,7 +56,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="Gender"
+        :placeholder="tran('Gender', store.state.lang)"
         standout
         readonly
         v-model="person.gender"
@@ -69,7 +69,7 @@
       <QInput
         class="w-full"
         type="date"
-        placeholder="Date of birth"
+        :placeholder="tran('Date of birth', store.state.lang)"
         standout
         readonly
         v-model="person.dob"
@@ -82,7 +82,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="Street address"
+        :placeholder="tran('Street Address', store.state.lang)"
         standout
         readonly
         v-model="person.street_1_address"
@@ -95,7 +95,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="State"
+        :placeholder="tran('State', store.state.lang)"
         standout
         readonly
         v-model="person.state"
@@ -108,7 +108,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="City"
+        :placeholder="tran('City', store.state.lang)"
         standout
         readonly
         v-model="person.city"
@@ -121,7 +121,7 @@
       <QInput
         class="w-full"
         type="text"
-        placeholder="Country"
+        :placeholder="tran('Country', store.state.lang)"
         standout
         readonly
         v-model="person.country"
@@ -132,11 +132,11 @@
         </template>
       </QInput>
       <div>
-        <p class="text-base font-bold pb-2">Credential</p>
+        <p class="text-base font-bold pb-2">{{tran('Credential', store.state.lang)}}</p>
         <QInput
           class="w-full pt-4"
           type="password"
-          placeholder="Old password"
+          :placeholder="tran('Old Password', store.state.lang)"
           standout
           v-model="old_password"
           :dense="true"
@@ -148,7 +148,7 @@
         <QInput
           class="w-full pt-4"
           type="password"
-          placeholder="New password"
+          :placeholder="tran('New Password', store.state.lang)"
           standout
           v-model="new_password"
           :dense="true"
@@ -157,13 +157,13 @@
             <QIcon name="lock" />
           </template>
         </QInput>
-        <p class="pt-4 text-sm">Forgot your password? Reset the password</p>
+        <p class="pt-4 text-sm">{{tran('Forgot your password? Reset the password', store.state.lang)}}</p>
       </div>
     </div>
     <QBtn 
       class="mt-4 px-8" 
       color="primary" 
-      label="Save" 
+      :label="tran('Save', store.state.lang)" 
       @click="
         ()=>{
           ResetPassword( {'old_password' : old_password, 'new_password' : new_password} , store);          
@@ -178,6 +178,7 @@ import { ref } from "vue";
 import { QInput } from "quasar";
 import { useStore } from "vuex";
 import {ResetPassword} from '~~/action/auth';
+import { tran } from "~~/utils/translation";
 
 const store = useStore();
 const person = ref(store.state.User);

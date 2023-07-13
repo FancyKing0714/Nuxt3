@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const providerImage = ref();
+const store = useStore();
 import 'swiper/swiper-bundle.css';
 interface ProviderInterface {
     logo: string;
@@ -19,6 +24,17 @@ const onSwiper = (swiper: any) => {
 };
 const onSlideChange = () => {
 };
+const providerSelectd = (provider) => {
+    store.commit('handleOnSearchDialog', {a:true, b:provider});
+}
+const handleImageError = (index: number) => {
+    // console.log(https://beta.canada777.com/casino-provider/am-light.png);
+    // console.log(providerImage.value[index]?.src);
+    if (providerImage.value[index]?.src) {
+        providerImage.value[index].src = 'https://beta.canada777.com/casino-provider/am-light.png'
+    }
+    
+}
 </script>
 
 <template>
@@ -31,7 +47,7 @@ const onSlideChange = () => {
                         src="/imgs/sidebar/provider.png"
                         alt="hot"
                     />
-                    <p class="font-bold text-lg pl-2">Providers</p>
+                    <p class="font-bold text-lg pl-2">{{tran('Providers', store.state.lang)}}</p>
                 </div>
                 <div>
                     <q-btn
@@ -95,15 +111,19 @@ const onSlideChange = () => {
                     },
                 }"
             >
-                <swiper-slide v-for="provider in providers">
+                <swiper-slide v-for="(provider, index) in providers">
                     <div
                         style="background: #4d5160"
                         class="h-10 md:h-12 lg:h-14 xl:h-16 w-full flex justify-center text-center rounded-2xl p-2"
+                        @click="providerSelectd(provider?.name)"
                     >
                         <img
                             class="h-full object-fill object-center"
                             alt="provider"
                             :src="provider?.logo ?? ''"
+                            @error="handleImageError(index)"
+                            ref="providerImage"
+                            :id="index"
                         />
                     </div>
                 </swiper-slide>

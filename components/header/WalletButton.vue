@@ -3,6 +3,7 @@ import { onBeforeMount } from 'vue';
 import {getBalances} from '~~/action/wallet';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
+import { tran } from "~~/utils/translation";
 
 const route = useRoute()
 const store = useStore();
@@ -28,7 +29,7 @@ const store = useStore();
                 <q-item-section>
                     <q-item-label>
                         <div class="flex justify-between">
-                            <p class="text-xs pl-1">Cash Balance: </p>
+                            <p class="text-xs pl-1">{{tran('Cash Balance:', store.state.lang)}} </p>
                             <p class="text-xs pl-1">{{ store.state.balance.balance }} {{ store.state.balance.currency }}</p>
                         </div>
                     </q-item-label>
@@ -43,7 +44,7 @@ const store = useStore();
                 <q-item-section>
                     <q-item-label>
                         <div class="flex justify-between">
-                            <p class="text-xs pl-1">Bonus Balance: </p>
+                            <p class="text-xs pl-1">{{tran('Bonus Balance:', store.state.lang)}} </p>
                             <p class="text-xs pl-1">{{ store.state.balance.bonus_balance }} {{ store.state.balance.currency }}</p>
                         </div>
                     </q-item-label>
@@ -57,7 +58,7 @@ const store = useStore();
                 <q-item-section>
                     <q-item-label>
                         <div class="flex justify-between ">
-                            <p class="text-xs pl-1">Total Balance: </p>
+                            <p class="text-xs pl-1">{{tran('Total Balance:', store.state.lang)}}</p>
                             <p class="text-xs pl-1">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p>
                         </div>
                     </q-item-label>
@@ -65,7 +66,7 @@ const store = useStore();
             </q-item>
         </q-btn-dropdown>
         <div class="flex items-center justify-center w-28" v-if="route.path.toString().includes('play')">
-            <p class="text-md font-bold pl-1">Playing</p>
+            <p class="text-md font-bold pl-1">{{tran('Playing', store.state.lang)}}</p>
         </div>
         <div
             class="bg-green-500 lg:bg-transparent rounded-r-md lg:border lg:border-solid lg:border-gray-500 lg:!rounded-3xl flex flex-nowrap items-center justify-start"
@@ -77,7 +78,7 @@ const store = useStore();
                 src="/imgs/header/wallet-icon.png"
                 alt="wallet"
             />
-            <p class="q-mr-md text-xs pl-1 q-mr-sm cursor-pointer hidden lg:!block">Deposit</p>
+            <p class="q-mr-md text-xs pl-1 q-mr-sm cursor-pointer hidden lg:!block">{{tran('Deposit', store.state.lang)}}</p>
             <q-icon name="add" size="sm" color="white" class="lg:hidden mx-1" ></q-icon>
         </div>
     </q-btn-group>

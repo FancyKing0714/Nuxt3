@@ -4,6 +4,7 @@
     import { gamePlay } from '../../action/game';
     import {useStore} from 'vuex';
     import {useRouter , useRoute} from 'vue-router';
+    import { tran } from "~~/utils/translation";
     import { addFavoriteGameBySlug , removeFavoriteGameBySlug } from '~~/action/game';
 
     const router = useRouter();
@@ -61,9 +62,9 @@
         <div class="hidden" :class="!fullScreenState&&'xl:!block'">
             <div class="flex flex-row justify-between pt-2">
                 <div class="flex flex-row items-center">
-                    <p class="text-sm font-semibold text-gray-500" :class="!playtoggle && 'text-white'">Real Play</p>
+                    <p class="text-sm font-semibold text-gray-500" :class="!playtoggle && 'text-white'">{{tran('Real Play', store.state.lang)}}</p>
                     <q-toggle v-model="playtoggle"/>
-                    <p class="text-sm font-semibold text-gray-500" :class="!!playtoggle && 'text-white'">Fun Play</p>
+                    <p class="text-sm font-semibold text-gray-500" :class="!!playtoggle && 'text-white'">{{tran('Fun Play', store.state.lang)}}</p>
                 </div>
                 <div class="flex flex-row">
                     <div v-if="!!store.state.favoriteGameSlugList.includes(slug)" class="bg-gray-700 p-2 mr-1 rounded-xl hover:cursor-pointer hover:bg-gray-800" @click="removeFavoriteGameBySlug(store, slug, route.query?.tab)">
@@ -88,14 +89,14 @@
         </div>
     </div>
     <q-dialog v-model="modal" persistent transition-show="scale" transition-hide="scale">
-      <q-card class="bg-gray-700 text-white" style="width: 500px">
+      <q-card class="bg-gray-700 text-white xl:ml-[270px]" style="width: 500px">
         <q-card-section></q-card-section>
         <q-card-section>
-          <div class="text-center text-3xl pb-5">Select Game Play Mode</div>
+          <div class="text-center text-3xl pb-5">{{tran('Select Game Play Mode', store.state.lang)}}</div>
         </q-card-section>
         <q-card-actions class="flex flex-row justify-center content-center">
-          <q-btn color="primary" class="w-1/3" label="Real" v-close-popup @click="store.commit('handleGamePlayMode', 0)"/>
-          <q-btn color="secondary" class="w-1/3" label="Demo" v-close-popup @click="store.commit('handleGamePlayMode', 1)"/>
+          <q-btn color="primary" class="w-1/3" :label="tran('Real', store.state.lang)" v-close-popup @click="store.commit('handleGamePlayMode', 0)"/>
+          <q-btn color="secondary" class="w-1/3" :label="tran('Demo', store.state.lang)" v-close-popup @click="store.commit('handleGamePlayMode', 1)"/>
         </q-card-actions>
       </q-card>
     </q-dialog>

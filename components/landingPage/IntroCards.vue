@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
 const store = useStore();
+import { tran } from "~~/utils/translation";
 const isDrawer = computed(() => {
     return ref(store.state.isDrawer);
 });
@@ -21,7 +22,7 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-xs' : 'lg:text-xl',
                             ]"
                         >
-                            BONUS WHEEL
+                        {{tran('BONUS WHEEL', store.state.lang)}}
                         </p>
                         <p
                             :class="[
@@ -29,9 +30,9 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-xxs' : 'lg:pb-4',
                             ]"
                         >
-                            Get free spin every 2 hours!
+                        {{tran('Get free spin every 2 hours!', store.state.lang)}}
                         </p>
-                        <q-btn size="xs" label="Free Spin"  @click="$router.push(linkTo('/wheel'))"/>
+                        <q-btn size="xs" :label="tran('Free Spin', store.state.lang)"  @click="$router.push(linkTo('/wheel'))"/>
                     </div>
                     <q-img
                         class="h-full rounded-md"
@@ -60,7 +61,7 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-xs' : 'lg:text-xl',
                             ]"
                         >
-                            DAILY CASHBACK
+                        {{tran('DAILY CASHBACK', store.state.lang)}}
                         </p>
                         <div class="flex items-center justify-start">
                             <p
@@ -71,7 +72,7 @@ const isDrawer = computed(() => {
                                         : 'pb-4 text-xs',
                                 ]"
                             >
-                                UP TO
+                            {{tran('UP TO', store.state.lang)}}
                             </p>
                             <p
                                 style="color: #ffd62f"
@@ -122,7 +123,7 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-md' : '',
                             ]"
                         >
-                            deposit
+                        {{tran('deposit', store.state.lang)}}
                         </p>
                         <p
                             :class="[
@@ -138,7 +139,7 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-base' : '',
                             ]"
                         >
-                            bonus
+                        {{tran('bonus', store.state.lang)}}
                         </p>
                     </div>
                     <q-img
@@ -165,7 +166,7 @@ const isDrawer = computed(() => {
                                 isDrawer.value ? 'lg:text-base' : 'lg:text-2xl',
                             ]"
                         >
-                            WELCOME BONUS
+                        {{tran('WELCOME BONUS', store.state.lang)}}
                         </p>
                     </div>
                     <div class="absolute z-10 right-8 lg:right-3">
@@ -191,8 +192,8 @@ const isDrawer = computed(() => {
                             >
                                 +100
                             </p>
-                            <p :class="[isDrawer.value ? 'lg:text-xxs' : '']">
-                                Free spins
+                            <p :class="[isDrawer.value ? 'lg:text-xs' : '']">
+                                {{tran('Free Spins', store.state.lang)}}
                             </p>
                         </div>
                     </div>
@@ -214,11 +215,11 @@ const isDrawer = computed(() => {
                     <div
                         class="w-1/2 absolute top-1/2 -translate-y-1/2 z-10 left-8"
                     >
-                        <p class="text-xs">Get a special</p>
+                        <p class="text-xs">{{tran('Take Advantage', store.state.lang)}}</p>
                         <p class="font-bold text-base text-shadow-lg">
-                            bonus on
+                            {{tran('Exclusif bonus', store.state.lang)}}
                         </p>
-                        <p class="gradiant text-lg font-black">SPORTBOOK</p>
+                        <p class="gradiant text-lg font-black">{{tran('VIP Program', store.state.lang)}}</p>
                     </div>
                     <q-img
                         src="/imgs/back_dark.png"

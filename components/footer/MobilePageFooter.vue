@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
+import { tran } from "~~/utils/translation";
 const store = useStore();
 const router = useRouter();
 
@@ -10,23 +11,23 @@ const list = [
         content: [
             {
                 name: 'All Games',
-                link: 'casino',
+                link: '/casino',
             },
             {
                 name: 'Slots',
-                link: 'casino?tab=slots',
+                link: '/casino?tab=slots',
             },
             {
                 name: 'Live Casino',
-                link: 'casino?tab=live',
+                link: '/casino?tab=live',
             },
             {
                 name: 'Table',
-                link: 'casino?tab=table',
+                link: '/casino?tab=table',
             },
             {
                 name: 'Roulette',
-                link: 'casino?tab=roulette',
+                link: '/casino?tab=roulette',
             },
         ],
     },
@@ -140,7 +141,7 @@ const itemClick = (link) => {
                     ></div>
                     <div class="relative flex justify-start items-center">
                         <p style="font-size: 13px" class="font-medium p-3">
-                            {{ item?.title }}
+                            {{ tran(item?.title, store.state.lang) }}
                         </p>
                     </div>
                     <q-img
@@ -162,7 +163,7 @@ const itemClick = (link) => {
                             v-if=" topic?.link == 'Affiliates' "
                             class="pb-1 py-2 px-6 text-xs text-left"
                         >
-                            {{ topic?.name }}
+                        {{ tran(topic?.name, store.state.lang) }}
                         </p>
                     </a>
                     <p
@@ -170,7 +171,7 @@ const itemClick = (link) => {
                         class="pb-1 py-2 px-6 text-xs text-left"
                         @click="itemClick(topic?.link)"
                     >
-                        {{ topic?.name }}
+                    {{ tran(topic?.name, store.state.lang) }}
                     </p>
                 </div>
                 </div>
@@ -185,22 +186,18 @@ const itemClick = (link) => {
                     @click="$router.push(linkTo('/'))"
                 />
                 <p class="pt-4" style="font-size: 9px; font-weight: 500">
-                    You’re in luck! You have landed on the best online casino in
-                    Canada. But that is not all, Europa777 welcomes not only
-                    Canadian players, but players from around the world too. Try
-                    your luck on our extraordinary selection of games and become
-                    one of the luckiest players out there.
+                    {{ tran(`footerDescription`, store.state.lang) }}
                 </p>
             </div>
 
             <div class="m-auto pt-4" style="max-width: 280px">
-                <p class="text-base font-semibold pb-2">Payment Methods</p>
+                <p class="text-base font-semibold pb-2">{{ tran(`Payment Methods`, store.state.lang) }}</p>
                 <q-img
                     class="w-full"
                     src="/imgs/footer/payment.png"
                     alt="logo"
                 />
-                <p class="text-base font-semibold pt-4 pb-2">Follow Us</p>
+                <p class="text-base font-semibold pt-4 pb-2">{{ tran(`Follow Us`, store.state.lang) }}</p>
                 <div class="flex justify-between items-center">
                     <q-img
                         style="max-width: 17px"

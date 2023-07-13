@@ -11,7 +11,7 @@
                     style="color: white; font-size: 11px"
                     class="font-medium p-3"
                 >
-                    All Games
+                {{tran('All Games', store.state.lang)}}
                 </p>
             </div>
         </a>
@@ -26,7 +26,7 @@
                     style="color: white; font-size: 11px"
                     class="font-medium p-3"
                 >
-                    Slots
+                {{tran('Slots', store.state.lang)}}
                 </p>
             </div>
         </a>
@@ -41,7 +41,7 @@
                     style="color: white; font-size: 11px"
                     class="font-medium p-3"
                 >
-                    Live Casino
+                {{tran('Live Casino', store.state.lang)}}
                 </p>
             </div>
         </a>
@@ -56,7 +56,7 @@
                     style="color: white; font-size: 11px"
                     class="font-medium p-3"
                 >
-                    Table
+                {{tran('Table', store.state.lang)}}
                 </p>
             </div>
         </a>
@@ -71,7 +71,7 @@
                     style="color: white; font-size: 11px"
                     class="font-medium p-3"
                 >
-                    Roulette
+                {{tran('Roulette', store.state.lang)}}
                 </p>
             </div>
         </a>
@@ -79,5 +79,8 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 defineProps(["down"]);
 </script>

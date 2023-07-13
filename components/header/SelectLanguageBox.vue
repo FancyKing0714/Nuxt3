@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { useStore } from 'vuex';
+const store = useStore();
+
 let lang = 'en';
 function onItemClick(item: any) {
     lang = item?.icon
+    store.commit('handleSetLanguage', lang);
 }
 
 const langs = [

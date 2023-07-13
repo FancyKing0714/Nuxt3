@@ -19,12 +19,14 @@ const router = useRouter();
                     src="/tmp/avatar.png"
                 />
             </div>
-
             <div class="w-full text-center mt-16 sm:mt-52 md:mt-16 lg:mt-16">
                 <p class="font-bold text-xl pb-3">{{store.state.User.username}}</p>
-                <p style="color: #ffffff8c" class="text-sm pb-3">
+                <p style="color: #ffffff8c" class="text-sm pb-1">
                     {{store.state.User.email}}
                 </p>
+                <div class="flex justify-center pb-2">
+                    <q-btn size="sm" color="primary" :label="tran('Update Avatar', store.state.lang)" @click="store.commit('handleOnAvatarDialog', true);"></q-btn>
+                </div>
                 <q-img class="w-7 mb-4 cursor-pointer" src="/imgs/logout.png" @click="logOut(store,router)"/>
             </div>
         </div>

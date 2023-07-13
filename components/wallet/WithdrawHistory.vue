@@ -45,21 +45,21 @@
                                     v-if="props.row.status == 0"
                                     color="primary"
                                     size="xs"
-                                    label="pending"
+                                    :label="tran('pending', store.state.lang)"
                                 />
                                 <q-btn
                                     class="w-20"
                                     v-if="props.row.status == 1"
                                     color="positive"
                                     size="xs"
-                                    label="Completed"
+                                    :label="tran('Completed', store.state.lang)"
                                 />
                             </q-td>
                             <q-td key="detail" :props="props">
                                 {{ props.row.detail }}
                             </q-td>
                             <q-td key="action" :props="props">
-                                INSTANT
+                                {{tran('INSTANT', store.state.lang)}}
                             </q-td>
                         </q-tr>
                     </template>
@@ -93,6 +93,7 @@ import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import {ref , onUnmounted} from 'vue';
 import { getWithdrawHistory } from '~~/action/wallet';
+import { tran } from "~~/utils/translation";
 
 const router = useRouter();
 const store = useStore();
@@ -140,62 +141,62 @@ const cols :columnformat[] = [
     {
         name: 'index',
         align: 'left',
-        label: 'S.No',
+        label: tran('No', store.state.lang),
         field: 'id',
     },
     {
         name: 'amount',
         required: true,
-        label: 'Amount',
+        label: tran('Amount', store.state.lang),
         align: 'left',
         field: 'amount',
     },
     {
         name: 'currency',
         align: 'left',
-        label: 'Currency',
+        label: tran('Currency', store.state.lang),
         field: 'currency',
     },
     {
         name: 'requested',
         align: 'left',
-        label: 'Requested',
+        label: tran('Requested', store.state.lang),
         field: 'requested',
     },
     {
         name: 'updatedAt',
         align: 'left',
-        label: 'Updated At',
+        label: tran('Updated At', store.state.lang),
         field: 'updatedAt',
     },
     {
         name: 'message',
         align: 'left',
-        label: 'Message (from Admin)',
+        label: tran('Message (from Admin)', store.state.lang),
         field: 'message',
     },
     {
         name: 'method',
         align: 'center',
-        label: 'Method',
+        label: tran('Method', store.state.lang),
         field: 'method',
     },
     {
         name: 'status',
         align: 'center',
-        label: 'Status',
+        label: tran('Status', store.state.lang),
         field: 'status',
     },
     {
         name: 'detail',
         align: 'center',
-        label: 'Details',
+        label: tran('Details', store.state.lang),
         field: 'detail',
     },
     {
         name: 'action',
         align: 'center',
-        label: 'Action',
+        label: tran('Action', store.state.lang),
         field: 'action',
     },
 ];

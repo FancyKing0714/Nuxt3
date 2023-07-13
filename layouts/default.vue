@@ -16,6 +16,7 @@ import { getProviders , getFavoriteGameSlugs } from '~~/action/game';
 import { getBalances } from '~~/action/wallet';
 import {useRoute , useRouter} from 'vue-router';
 import Cookies from 'js-cookie';
+import { tran } from "~~/utils/translation";
 
 const not = useQuasar();
 const store = useStore();
@@ -74,7 +75,7 @@ onBeforeMount(() => {
                     class="text-sm font-normal text-center p-3 z-[3000]"
                     :class="store.state.isLogin&&'sm:pb-3 pb-[120px]'"
                     style="background-color: #151515; color: #7d8396;"
-                    >Copyright 2023 Europa777 All Right Reserved.
+                    >Copyright 2023 {{tran('Europa777 All Right Reserved.', store.state.lang)}}
                 </div>
             </q-page-container> 
         </div>
@@ -82,6 +83,7 @@ onBeforeMount(() => {
         <Login />
         <SignUp />
         <SearchDialog />
+        <AvatarDialog />
         <VerifyEmail
             :open.sync="store.state.isVerifyEmail"
         />

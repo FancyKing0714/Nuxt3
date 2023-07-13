@@ -59,6 +59,7 @@ import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import { ref , onUnmounted} from 'vue';
 import { getGameHistory } from '~~/action/profile'; 
+import { tran } from "~~/utils/translation";
 
 const router = useRouter();
 const store = useStore();
@@ -106,49 +107,49 @@ const cols:columnformat[] = [
                 {
                     name: 'index',
                     align: 'left',
-                    label: 'No',
+                    label: tran('No', store.state.lang),
                     field: 'id',
                 },
                 {
                     name: 'game',
-                    label: 'game',
+                    label: tran('Game', store.state.lang),
                     align: 'left',
                     field: 'game',
                 },
                 {
                     name: 'type',
                     align: 'left',
-                    label: 'Type',
+                    label: tran('Type', store.state.lang),
                     field: 'type',
                 },
                 {
                     name: 'bet_amount',
                     align: 'left',
-                    label: 'BetSum',
+                    label: tran('BetSum', store.state.lang),
                     field: 'bet_amount',
                 },
                 {
                     name: 'win_amount',
                     align: 'left',
-                    label: 'WinSum',
+                    label: tran('WinSum', store.state.lang),
                     field: 'win_amount',
                 },
                 {
                     name: 'player_balance',
                     align: 'left',
-                    label: 'Balance',
+                    label: tran('Balance', store.state.lang),
                     field: 'player_balance',
                 },
                 {
                     name: 'currency',
                     align: 'left',
-                    label: 'Currency',
+                    label: tran('Currency', store.state.lang),
                     field: 'currency',
                 },
                 {
                     name: 'created_at',
                     align: 'left',
-                    label: 'Time',
+                    label: tran('Time', store.state.lang),
                     field: 'created_at',
                 },
 ];

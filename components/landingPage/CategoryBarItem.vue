@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {useRouter, useRoute} from 'vue-router';
+import { tran } from "~~/utils/translation";
 import { useStore } from 'vuex';
 const store = useStore();
 const router = useRouter();
@@ -38,6 +39,6 @@ const clickButton = () => {
     @click="clickButton"
   >
     <q-img class="w-4" :src="`/imgs/sidebar/${icon}.png`" alt="icon" />
-    <p class="pl-1 text-xs flex flex-row flex-nowrap" v-for="str in name?.split(' ')">{{ str }}</p> <!-- Use a utility class for font size -->
+    <p class="pl-1 text-xs flex flex-row flex-nowrap" v-for="str in name?.split(' ')">{{ tran(str, store.state.lang) }}</p> <!-- Use a utility class for font size -->
   </div>
 </template>

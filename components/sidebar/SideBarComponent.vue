@@ -7,6 +7,7 @@ import SideBarItem from '~~/components/sidebar/SideBarItem.vue';
 import SideBarMenu from '~~/components/sidebar/SideBarMenu.vue';
 import {linkTo} from '~~/utils/link';
 import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
 
 const store = useStore();
 interface SideBarItemInterFace {
@@ -17,13 +18,13 @@ interface SideBarItemInterFace {
 }
 const sideBarLinks: SideBarItemInterFace[] = [
     {
-        title: 'Daily Cash Back',
+        title: 'DAILY CASH BACK',
         backUrl: 'side_1.png',
         iconUrl: 'cash_back.png',
         link: '/bonus/cash-back',
     },
     {
-        title: 'BONUS WHEEl',
+        title: 'BONUS WHEEL',
         backUrl: 'side_2.png',
         iconUrl: 'wheel.png',
         link: '/wheel',
@@ -103,7 +104,7 @@ const langs = [
                     <q-item-section>
                         <q-item-label>
                             <div class="flex justify-between">
-                                <p class="text-xs sm:text-xs pl-1">Cash Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{tran('', store.state.lang)}}Cash Balance: </p>
                                 <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.balance }} {{ store.state.balance.currency }}</p>
                             </div>
                         </q-item-label>
@@ -118,7 +119,7 @@ const langs = [
                     <q-item-section>
                         <q-item-label>
                             <div class="flex justify-between">
-                                <p class="text-xs sm:text-xs pl-1">Bonus Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{tran('', store.state.lang)}}Bonus Balance: </p>
                                 <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.bonus_balance }} {{ store.state.balance.currency }}</p>
                             </div>
                         </q-item-label>
@@ -132,7 +133,7 @@ const langs = [
                     <q-item-section>
                         <q-item-label>
                             <div class="flex justify-between ">
-                                <p class="text-xs sm:text-xs pl-1">Total Balance: </p>
+                                <p class="text-xs sm:text-xs pl-1">{{tran('', store.state.lang)}}Total Balance: </p>
                                 <p class="text-xs sm:text-xs pl-1">{{ store.state.balance.total_balance }} {{ store.state.balance.currency }}</p>
                             </div>
                         </q-item-label>

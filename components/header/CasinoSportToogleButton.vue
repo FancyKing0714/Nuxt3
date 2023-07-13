@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { tran } from "~~/utils/translation";
+import { useStore } from 'vuex';
+const store = useStore();
 
 const casinoOrSport = ref('casino');
 function toggleCasinoSport(val: string) {
@@ -24,7 +27,7 @@ function toggleCasinoSport(val: string) {
                 src="/imgs/header/casino-icon.png"
                 alt="casino"
             />
-            Casino
+            {{tran('Casino', store.state.lang)}}
         </div>
         <div
             class="q-pl-md q-pt-sm q-pb-sm q-pr-md hover:!rounded-3xl flex justify-start items-center cursor-pointer"
@@ -39,7 +42,7 @@ function toggleCasinoSport(val: string) {
                 src="/imgs/header/sports-icon.png"
                 alt="sports"
             />
-            Sport
+            {{tran('Sport', store.state.lang)}}
         </div>
     </q-btn-group>
 </template>

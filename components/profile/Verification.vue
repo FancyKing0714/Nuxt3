@@ -38,55 +38,52 @@
         <q-stepper v-model="step" ref="stepper" color="primary" animated>
             <q-step :name="1" title="STEP 1" :done="step > 1">
                 <div>
-                    <p class="text-base font-bold pb-2">Identity</p>
+                    <p class="text-base font-bold pb-2">{{tran('Identity', store.state.lang)}}</p>
                     <p class="text-sm font-medium">
-                        Passport, driving license, or official government issued
-                        id card. Must be a passport, driving license, or another
-                        official government-issued id card both the front and
-                        back of the id card must be received.
+                        {{tran('identity', store.state.lang)}}
                     </p>
                     <br />
                     <p class="text-sm font-medium" style="color: #11a449">
-                        The document must be in date and not expired<br />
-                        The document must be showing the expiry date<br />
-                        The document must show your unaltered photo<br />
-                        The document must show your date of birth<br />
-                        Watermarks on documents must be visible<br />
+                        {{tran('iden1', store.state.lang)}}<br />
+                        {{tran('iden2', store.state.lang)}}<br />
+                        {{tran('iden3', store.state.lang)}}<br />
+                        {{tran('iden4', store.state.lang)}}<br />
+                        {{tran('iden5', store.state.lang)}}<br />
                     </p>
                 </div>
             </q-step>
 
             <q-step :name="2" title="STEP 2" icon="left" :done="step > 2">
                 <div>
-                    <p class="text-base font-bold pb-2">Address</p>
+                    <p class="text-base font-bold pb-2">{{tran('Address', store.state.lang)}}</p>
                     <p class="text-sm font-medium">
-                        Utility bill, phone bill, or bank statement displaying your name and address in full.
+                        {{tran('address', store.state.lang)}}
                     </p>
                     <br />
                     <p class="text-sm font-medium" style="color: #11a449">
-                        Must be either a utility bill, mobile phone bill, or bank statement (copy of paper statement)<br />
-                        Must show your full address including any post/zip codes<br />
-                        Must show your full name<br />
-                        Must display the official logo of issuing company<br />
-                        Must be dated within the last 90 days<br />
-                        Must be able to see the full document<br />
+                        {{tran('add1', store.state.lang)}}<br />
+                        {{tran('add2', store.state.lang)}}<br />
+                        {{tran('add3', store.state.lang)}}<br />
+                        {{tran('add4', store.state.lang)}}<br />
+                        {{tran('add5', store.state.lang)}}<br />
+                        {{tran('add6', store.state.lang)}}<br />
                     </p>
                 </div>
             </q-step>
 
             <q-step :name="3" title="STEP 3" :done="step > 3">
                 <div>
-                    <p class="text-base font-bold pb-2">Payment</p>
+                    <p class="text-base font-bold pb-2">{{tran('Payment', store.state.lang)}}</p>
                     <p class="text-sm font-medium">
-                        Screenshot or photo from an online bank, bank statement, skrill page, etc. Showing the deposit amount.
+                        {{tran('payment', store.state.lang)}}
                     </p>
                     <br />
                     <p class="text-sm font-medium" style="color: #11a449">
-                        Must display the company name<br />
-                        Must display the official logo of issuing company<br />
-                        Must display the amount paid<br />
-                        Must be able to see the full document<br />
-                        If the screenshot then must be able to see the full screen of the device<br />
+                        {{tran('pay1', store.state.lang)}}<br />
+                        {{tran('pay2', store.state.lang)}}<br />
+                        {{tran('pay3', store.state.lang)}}<br />
+                        {{tran('pay4', store.state.lang)}}<br />
+                        {{tran('pay5', store.state.lang)}}<br />
                     </p>
                 </div>
             </q-step>
@@ -95,7 +92,6 @@
             <q-select
                 class="w-1/2 mt-4"
                 standout="text-white"
-                placeholder="🖺Document Type"
                 v-model="model"
                 :options="options"
                 :dense="true"
@@ -106,12 +102,12 @@
                     style="background-color: #383d47"
                 >
                     <q-icon name="upload" class="pr-1" />
-                    Choose File
+                    {{tran('Choose File', store.state.lang)}}
                 </div>
                 <div
                     class="q-pl-md q-pt-sm q-pb-sm q-pr-md flex justify-start items-center cursor-pointer"
                 >
-                    No file chosen
+                {{tran('No file chosen', store.state.lang)}}
                 </div>
             </q-btn-group>
         </div>
@@ -119,6 +115,9 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { tran } from "~~/utils/translation";
+const store = useStore();
 import { ref } from 'vue';
 
 const options = ['Doc1', 'Doc2', 'Doc3', 'Doc4', 'Doc5'];

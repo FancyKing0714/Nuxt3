@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { tran } from "~~/utils/translation";
+import {useStore} from "vuex";
+const store = useStore();
+
 const props = defineProps({
     background: {
         type: String,
@@ -17,6 +21,7 @@ const props = defineProps({
         required: true,
     },
 });
+
 </script>
 <template>
     <div class="flex flex-col justify-between">
@@ -39,7 +44,7 @@ const props = defineProps({
         </div>
 
         <div class="text-center pb-10">
-            <q-btn color="primary" label="READ MORE" />
+            <q-btn color="primary" :label="tran('READ MORE', store.state.lang)" />
         </div>
     </div>
 </template>

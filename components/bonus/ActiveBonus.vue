@@ -9,7 +9,7 @@
                 <q-table :rows="rows" :columns="cols">
                     <template v-slot:body="props">
                         <q-tr :props="props">
-                            <q-td key="isComplete" :props="props">
+                            <q-td key="index" :props="props">
                                 {{ props.rowIndex + 1 }}
                             </q-td>
                             <q-td key="title" :props="props">
@@ -61,154 +61,69 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            rows: [
-                {
-                    title: 'Risk Free 110% Bonus upto 200 CAD',
-                    freeSpin: 'No Free Spin',
-                    game: 'No Free Spin',
-                    bonus: '22.00 CAD',
-                    wager: '811.80 CAD / 1470.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2023 - 08:26 AM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: -1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 0,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-                {
-                    title: 'Welcome Bonus upto 500 CAD',
-                    freeSpin: '50 Free Spins',
-                    game: 'Book of Dead',
-                    bonus: '100.00 CAD',
-                    wager: '3500.00 CAD / 7000.00 CAD',
-                    isComplete: 1,
-                    expireOn: '10-02-2022 - 12:00 PM',
-                },
-            ],
-            cols: [
+<script setup lang="ts">
+import { tran } from "~~/utils/translation";
+import {useStore} from "vuex";
+const store = useStore();
+const rows= [];
+
+interface columnformat{
+    name: string;
+    label: string;
+    field: string | ((row: any) => any);
+    required?: boolean | undefined;
+    align?: "left" | "center" | "right" | undefined;
+};
+
+const cols :columnformat[] = [
                 {
                     name: 'index',
+                    label: tran('No', store.state.lang),
                     align: 'left',
-                    label: 'S.No',
-                    field: (row) => this.rows.indexOf(row) + 1,
+                    field: 'id',
                 },
                 {
                     name: 'title',
                     required: true,
-                    label: 'Title',
+                    label: tran('Title', store.state.lang),
                     align: 'left',
                     field: 'title',
                 },
                 {
                     name: 'freeSpin',
                     align: 'left',
-                    label: 'Free Spin',
+                    label: tran('Free Spin', store.state.lang),
                     field: 'freeSpin',
                 },
                 {
                     name: 'game',
                     align: 'left',
-                    label: 'Game (Click on Game)',
+                    label: tran('Game (Click on Game)', store.state.lang),
                     field: 'game',
                 },
                 {
                     name: 'bonus',
                     align: 'left',
-                    label: 'Bonus',
+                    label: tran('Bonus', store.state.lang),
                     field: 'bonus',
                 },
                 {
                     name: 'wager',
                     align: 'left',
-                    label: 'Wager Required',
+                    label: tran('Wager Required', store.state.lang),
                     field: 'wager',
                 },
                 {
                     name: 'isComplete',
                     align: 'center',
-                    label: 'Completed',
+                    label: tran('Completed', store.state.lang),
                     field: 'isComplete',
                 },
                 {
                     name: 'expireOn',
                     align: 'left',
-                    label: 'Expire on',
+                    label: tran('Expire on', store.state.lang),
                     field: 'expireOn',
                 },
-            ],
-        };
-    },
-};
+            ];
 </script>
